@@ -58,3 +58,15 @@ deferred. Checks que publicam são exclusivos do repo vendor; no Genesis o
 agregador exige builds e smoke, com publicação pulada explicitamente. Regras
 de contraste usam régua Genesis; fixture Sage continua calibrando os canários
 legados. Resultado final depende de testes completos e recuperação real.
+
+## 2026-10-08 — navegação e falhas adicionais de segurança/release
+
+Supervisão 360 permanece no menu de uso diário. Meta Ads é consulta periódica no
+hub de Análise e na busca, com o mesmo RBAC; a densidade e o gate de dobra não
+mudam. Mensagem STOP cancela pausa manual, enquanto inbound comum e handoff a
+preservam. A tipagem inclui esse estado já existente no banco.
+
+O audit completo encontrou `braces@3.0.3` HIGH sem patch publicado; o resultado
+`--prod` limpo não encerra esse achado. O check herdado de tamanho do acervo
+também falha. Não cortar nova versão, apagar fragmentos vendor ou aumentar o
+limite do updater para fabricar um resultado verde nesta release manual v1.77.

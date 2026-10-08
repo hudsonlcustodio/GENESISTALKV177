@@ -138,7 +138,8 @@ A suíte herdada continha imports e expectativas de APIs removidas. As probes fo
 reconciliadas com o runtime atual, sem restaurar módulos antigos. Corrigidas duas
 regressões funcionais (onboarding em suporte e adiamento do refetch por render) e
 alinhada a marcação automática de lido ao piso agent da API. A contagem do catálogo
-é 16 com Supervisão; o teto visual histórico de 15 não comprova layout mobile.
+mantém 15 itens: Supervisão ocupa a porta diária e Meta Ads permanece no hub de
+Análise e na busca. O gate de dobra em 900px e os cinco viewports continuam ativos.
 
 O check de isolamento do kit usa releases vendor somente para calibrar as regras
 SQL contra a baseline local. Refs `refs/genesis/vendor-check/*` não habilitam

@@ -1,0 +1,32 @@
+{
+  "command": "corepack pnpm audit --audit-level high --json",
+  "exit_code": 1,
+  "duration": 1.2374333,
+  "status": "FAIL",
+  "package": "braces",
+  "version": "3.0.3",
+  "severity": "high",
+  "advisory_url": "https://github.com/advisories/GHSA-vfj7-8cjw-p6xm",
+  "patched_versions": "<0.0.0",
+  "patched_version_available": false,
+  "dependency_paths": [
+    ". > @types/jest@29.5.14 > expect@29.7.0 > jest-message-util@29.7.0 > micromatch@4.0.8 > braces@3.0.3",
+    ". > eslint-config-next@16.2.10 > @next/eslint-plugin-next@16.2.10 > fast-glob@3.3.1 > micromatch@4.0.8 > braces@3.0.3"
+  ],
+  "dependency_scope": "Both root paths are declared devDependencies; background Dockerfiles install the full dependency tree.",
+  "secret_scan": {
+    "status": "PASS",
+    "scanned_files": 7008,
+    "candidate_count": 7708,
+    "findings": [],
+    "limits": "Precise credential patterns and forbidden paths; not a proof that every possible secret format is absent."
+  },
+  "secret_scan_execution": {
+    "status": "PASS",
+    "duration_seconds": 6.3622331,
+    "exit_code": 0,
+    "scope": "Staged final delivery documentation and all tracked source",
+    "command": "python -X utf8 scripts/genesis-secret-scan.py"
+  },
+  "disposition": "Unresolved. No audit suppression, lockfile change or unverified patch introduced."
+}

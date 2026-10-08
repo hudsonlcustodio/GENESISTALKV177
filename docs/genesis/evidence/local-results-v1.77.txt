@@ -1,0 +1,72 @@
+GENESIS TALK v1.77 — sanitized local results
+Code SHA: 615c9a1c4c746bd981ee22c1c9aa53004d6b9bd9
+Genesis translation, contrast and contracts
+Test Files  5 passed (5)
+Tests  63 passed (63)
+Start at  17:09:02
+Duration  21.51s (transform 650ms, setup 2.12s, import 3.50s, tests 1.16s, environment 13.63s)
+Branding/workflow corrections
+Test Files  5 passed (5)
+Tests  84 passed (84)
+Start at  17:39:25
+Duration  12.86s (transform 587ms, setup 1.26s, import 7.21s, tests 3.39s, environment 1ms)
+Release workflow guards
+Test Files  3 passed (3)
+Tests  37 passed (37)
+Start at  17:51:22
+Duration  1.43s (transform 55ms, setup 769ms, import 49ms, tests 30ms, environment 0ms)
+Upstream reconciliation and manual-pause regression
+Test Files  6 passed (6)
+Tests  66 passed (66)
+Start at  17:55:31
+Duration  31.03s (transform 3.77s, setup 1.94s, import 12.08s, tests 6.06s, environment 9.75s)
+Actual painted Genesis contrast
+Test Files  1 passed (1)
+Tests  23 passed (23)
+Start at  18:07:19
+Duration  2.13s (transform 135ms, setup 323ms, import 205ms, tests 353ms, environment 1.03s)
+Vendor DB calibration adapter and painted contrast
+Test Files  2 passed (2)
+Tests  28 passed (28)
+Start at  18:08:10
+Duration  2.61s (transform 124ms, setup 603ms, import 195ms, tests 349ms, environment 1.03s)
+12 compatibility/Genesis files
+Test Files  12 passed (12)
+Tests  107 passed (107)
+Start at  18:17:33
+Duration  28.61s (transform 1.03s, setup 3.45s, import 8.77s, tests 2.28s, environment 11.66s)
+7 workflow/support/branding files
+Test Files  7 passed (7)
+Tests  53 passed (53)
+Start at  18:21:30
+Duration  56.28s (transform 2.60s, setup 1.91s, import 4.82s, tests 44.22s, environment 3.90s)
+Outgoing Genesis branding
+Test Files  1 passed (1)
+Tests  14 passed (14)
+Start at  18:40:45
+Duration  1.93s (transform 135ms, setup 304ms, import 63ms, tests 394ms, environment 962ms)
+Opt-out cancels manual pause; ordinary inbound/handoff preserve it
+Test Files  2 passed (2)
+Tests  27 passed (27)
+Start at  18:45:33
+Duration  10.91s (transform 1.27s, setup 586ms, import 1.84s, tests 460ms, environment 7.61s)
+Existing paused_manual state, vocabulary and handler compatibility: 164 assertions
+Test Files  4 passed (4)
+Tests  164 passed (164)
+Start at  18:57:01
+Duration  39.71s (transform 33.81s, setup 57.94s, import 16.02s, tests 1.40s, environment 70.58s)
+Menu density, reachability and image workflow guards
+Test Files  5 passed (5)
+Tests  54 passed (54)
+Start at  19:12:20
+Duration  36.81s (transform 241ms, setup 1.67s, import 7.30s, tests 36.74s, environment 2.31s)
+Navigation reachability, role guards and Genesis deployment contracts: 34 assertions
+Test Files  3 passed (3)
+Tests  34 passed (34)
+Start at  19:00:33
+Duration  40.59s (transform 217ms, setup 952ms, import 77.38s, tests 318ms, environment 2.20s)
+Actual FlowCanvas history, disconnection, movement, deletion, configuration and 100-state undo
+Test Files  1 passed (1)
+Tests  5 passed (5)
+Start at  17:17:50
+Duration  402.54s (transform 1.84s, setup 996ms, import 397.43s, tests 648ms, environment 2.61s)

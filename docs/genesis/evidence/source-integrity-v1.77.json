@@ -1,0 +1,2336 @@
+{
+  "baseline_and_lock_unchanged": true,
+  "sql_migration_count": 464,
+  "files": [
+    {
+      "path": "supabase/baseline.sql",
+      "sha256": "1c35fd11c9b5f33c28c609b84cb50e155d39c89d2927d8286ebef605ca544759",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "sha256": "adf3939a9093b866c0ccf4f70482ad72859014f6ccc6b61fd8f056a59c78f7a2",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/00001_initial_schema.sql",
+      "sha256": "77f7545b1f7b8987390ad736fd6ef893eb9709dc02d9111121b04503f2649f3b",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260428195354_0001_platform_base.sql",
+      "sha256": "044ea315c7ca243363aef744f241d17c39842cae7df42e34a9f49064d2b983a3",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260428195513_0002_event_log_and_compat.sql",
+      "sha256": "bf0fa9e33b6bb8510055cade11c47e56b4f4e15a80b5eaf61204100aad0cf033",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260428195708_0003_customer_360.sql",
+      "sha256": "4705c9cb2fa67d5a1c614f478a124062cfed7e6e9bf2c94dc5cc13525ca3b84b",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260428200016_0004_whatsapp_waha.sql",
+      "sha256": "efa32f3e8a63950042c61fa59a6943def61311ebd155a0e7ae74de9ff40e863a",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260428200128_0005_ai_rag.sql",
+      "sha256": "a7d10085a5470feea1d9174e8826174b18c3532075992903dd4cee053c60fae7",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260428200211_0006_nuvemshop_lgpd.sql",
+      "sha256": "1c4ec3ccd9fb2b57a0bce3ec9d9f5d8875cbacd9e2cda9b7c76689965908fd6f",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260428200331_0007_security_hardening.sql",
+      "sha256": "bfcb4c150fc638895c2e2243e298d3984c943df6f206eb012c2516a8fb769756",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260429013958_0008_tenant_onboarding_state.sql",
+      "sha256": "fb081c63f98f3766c9fe324c2818bc70982fbaf93f26c5933bf2ed45394a6b21",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260429021857_0009_expand_messaging_constraints.sql",
+      "sha256": "7c80403fa22532d4a7da94d276e8a2fb38a5b6b0f4b8fd44ed0b1300ead8c6bd",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260429032132_0010_ai_rag_handoff_columns_and_rpcs.sql",
+      "sha256": "842b94db375a497b312737d2d877b9067a62f188283a11732e0ddddcc00c918a",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260429040000_0011_handoff_reason_column.sql",
+      "sha256": "67c83ca7d69a26b201692356d10506d75edce22de8484b4644d52e3b979ee7b0",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260429060000_0012_kb_version_lifecycle_columns.sql",
+      "sha256": "637e0cc36c5a16c48ef585fbe8bdbb6f314a40a9eaa1fec0b6591f1d8009a8f4",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260429070000_0013_ai_faq_items.sql",
+      "sha256": "ae68dd52e918cf7e332cb5f27af1563cb9ffd7b8a6eb3986c0d8173285cddf15",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260429080000_0014_storage_policies_ai_policy.sql",
+      "sha256": "eaee919bd1f39a128123a7f4d226b80a3c906d3dfc18bd7fb609d92cf7c56c31",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260429090000_0015_conversations_rag_optin.sql",
+      "sha256": "c935414475a21672b2568443abe8934102132dfcef16df1c20483961f5079206",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260429100000_0017_storage_policies_lgpd_exports.sql",
+      "sha256": "ced113557c72023c18c30a9a61a2ee4a2e3e6b38944265f9cce94994c408c63d",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260429110000_0018_lgpd_redaction_queue.sql",
+      "sha256": "aa10b937f52238bc02b17497e674c5927915db277f12fbb003a1e04bb6080e53",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260429110001_0019_lgpd_cascade_redact_rpc.sql",
+      "sha256": "359e4d3dbe067c3dd7169b0a65ae592ebd80e2546b40d7ea869da7406b0572e6",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260429120000_0020_organization_suspend_reason.sql",
+      "sha256": "78916f209fa7e98a52ae76f8a81cdd1125c8e6498930bcc51d182e93c65e5a2f",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260429130000_0021_incidents.sql",
+      "sha256": "07e05497a48090e1c0e2b6202d63fac975ac733fabe3f066bad9f90a275b89a6",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260429140000_0022_ai_budget_trigger.sql",
+      "sha256": "eda498170056920a3f2455b77642d015162b67447391a1965353994e0b7a797a",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260505140000_0023_ai_agents_module.sql",
+      "sha256": "4b3cf34ca56f1f0110fdf56dd4e0a17a245b741aa2fed94689cc5d86b0bf35f2",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260506000000_0024_ai_agent_publish_fn.sql",
+      "sha256": "4821c893d38445b902758a16597e0865da45dcaaedaf6fb3cf2b70b9f9a067a9",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260506100000_0025_fix_publish_fn_and_realtime_publication.sql",
+      "sha256": "9e51ca6dc01b3f93dffbc1cce4397e5194c5e17c2f9e953b7bdc2ee23190aea3",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260706200000_0026_fix_publish_fn_status_case.sql",
+      "sha256": "f62cab737102ea31f72428cbf2be1e0811d1ae1e95db90372e3ee1fba567c15c",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260706210000_0027_whatsapp_conversation_unification.sql",
+      "sha256": "c7c776044e37f5f6718cd88f35bb58a3bc1fed123b4284cdcb4e9a54c1970f47",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260716120000_0030_config_rls_role_policies.sql",
+      "sha256": "01317fa0fc6f59b12aa0d9befb7fec9e8f5f1c2fe6ba5886b46c33e9d7540054",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260717120000_0031_conversation_assignment_events.sql",
+      "sha256": "5a74c886c9f166ca8ec3eb3ea1fbff969f6daa4caf7fab696ba7eb9904bc8980",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260717150000_0032_conversation_assignee_kind.sql",
+      "sha256": "90e99e13526751b8312676aaa9d0ea1e638af56ee4f6cd62404446d3e7e7d562",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260717180000_0033_conversation_tags.sql",
+      "sha256": "5cd47818316681e3b7cb63aca6d3d8665823c23a657b4093c40599d2c6a2c5b2",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260717190000_0034_hardening_revoke_anon_definer.sql",
+      "sha256": "9b76f82cdb83a290a10747bd3cd3450b9c38d84429271c9c41626911ffd6a175",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260717190001_0038_webhooks_automation.sql",
+      "sha256": "9cfff1e1d339d263be7d15892fc01826566f5136b183d14c203f8f1faf0cb898",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260717200000_0035_visibility_mode_conversation_rls.sql",
+      "sha256": "f3be19dd7b1d0d30916da0295947692957df1e26135986dd51b5bb71c92ea7b3",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260717210000_0036_visibility_mode_lead_rls.sql",
+      "sha256": "0612b6da89bd089274d95048ebc9cbabb3ae72fc2c72b89668c1e159d5545e79",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260718120000_0037_attendant_metrics.sql",
+      "sha256": "46141c7810db935b0ace9c6ec2d6093c243a653684dcd30399e0b9f956dabbd8",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260718130000_0039_attendant_availability.sql",
+      "sha256": "e6bf8718fadb6b597d54b30363f4802d7f4a0586e3a06a83cdaea1a0a4e7dde6",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260718140000_0040_conversation_routing_emit.sql",
+      "sha256": "7bd92769e56b5672b66ea479d48e5125c5f0313d8d0be5ca607f413c362f9e90",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260718150000_0041_webhook_secret_encryption.sql",
+      "sha256": "376bbd7f12023977ae133ec8bee06a47b6b8dec2045d7bb9261e04319727f04b",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260718160000_0042_lead_children_visibility_rls.sql",
+      "sha256": "337ab9ad02017c5840a8bdc9893d426e59b6ce535b21573da78fdc8e79076348",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260718160001_0043_retire_duplicate_lead_trigger_events.sql",
+      "sha256": "3315cc6a5f90a73bef3a6f3c7dbd027fdf07fcfa293913f897d5155064a54886",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260718170000_0044_user_orgs_select_manager.sql",
+      "sha256": "61a88bcad79c96d6de5d1d92c9280a3f262a24dbb83e69547602f79cdbc89220",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260719000000_0050_agent_harness.sql",
+      "sha256": "5e7af7966a82529522b871e2c0c5bf231783e609936cc9add4f75b8ec81ecada",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260719100000_0051_agent_version_immutability.sql",
+      "sha256": "da2d121671aae4902d2bf47477bf3150e6c1dfea97bce82377a67ec2b9505567",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260719110000_0052_republish_fn_uppercase_fix.sql",
+      "sha256": "489e1dd789338e775c37f2fcde7249ba86d14c0d0c23a9a9c24598b47e39eee3",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260720100000_0053_flywheel_proposal_applied.sql",
+      "sha256": "5d6fd4e1dc627d2683833882d10c167552ddc8dd19689434e439fd8a321a7be1",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260721120000_0054_followup_flows.sql",
+      "sha256": "8429b6261868162e3cc29843f1ff583aed859772806d83b02f80d9552334141b",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260721120001_0055_whatsapp_media_bucket.sql",
+      "sha256": "d1960ed53e9088b3fae2cc43b41788d57d2a51a093789b2afc02547d7e34924d",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260721130000_0056_followup_version_lineage.sql",
+      "sha256": "ca8c819cb58feba3d00681b18a7eb65ed0274218f929a5cc3d7c6ba1d1476764",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260721140000_0057_followup_dead_inbox_kind.sql",
+      "sha256": "a20f34d3c0aa0945a74d96df0f11b2a17f9686cbf933b7596d75dab58baa4dc3",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260722120000_0058_media_multimodal.sql",
+      "sha256": "9c294e05faa96cfe9e8fd8aea41f8b9671084eac4cdb2d0e1e91eb931389b75a",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260722130000_0059_agent_split_messages.sql",
+      "sha256": "c4d91dddcf128130db545692b1e07776ad6eb35bc9697cf5cf4638389d4c5454",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260722140000_0060_message_templates.sql",
+      "sha256": "099683aa38a255feacd7e69c4dc88c1df3ddcc18222e4064019f5c485020f869",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260722150000_0061_agent_followup_selector.sql",
+      "sha256": "7c0b3a42b4af83abcd61e896e6129181e5584089a4c6ae8cb38f7e31c2f5a388",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260722160000_0062_conversation_snooze.sql",
+      "sha256": "2e7ebe603d5dd5a634f900bc2dae94caf7c3896f753ee0f406073aa9ce347c2b",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260722160001_0064_followup_enrollment_exclusivity.sql",
+      "sha256": "67b1fb892585539a71a1b93e0e1fc1522a89c32a9db3b030cc70e954f1abea1d",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260723120000_0063_conversation_notes.sql",
+      "sha256": "8f9b221c877e5c09c3ebbab0b2ab421545c466daf296530f989ca47608e911e3",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260723130000_0065_reconcile_inbox_kind_check.sql",
+      "sha256": "a2d81a026fe08aacd1208ca98e3bbb7e672cb1434b9e7173a2f1e9be9ad5d899",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260724000000_0066_human_cases.sql",
+      "sha256": "24395da489208620be2af37deb189fea42b2783588861c94798d3301a76c0163",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260724010000_0067_org_memory.sql",
+      "sha256": "a069363c68f8246749a624452c95486a931c2917e68bdd3c0d4f4a0c72ef135e",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260724120000_0068_skills_marketplace.sql",
+      "sha256": "5a3ce355c8b81f046a1a71740a0b085eb6c236dac3c9c5667fab48a731d91a31",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260724130000_0069_seed_platform_skills.sql",
+      "sha256": "0bd431750522893cd80de2639f937c1e2bc475d1416b3ce5c01f2654f3dbe556",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260725000000_0070_crm_lead_owner_kind.sql",
+      "sha256": "15567a7c349c6473f8fa3ca59a3b6f757606eff96217cb420ab258c758f67f37",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260725010000_0071_crm_lead_activities_barramento.sql",
+      "sha256": "5a8adc50cde91ca4744e1aedbf192d611559f35eb03543ed42c7abd7971573f8",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260725020000_0072_activity_evidence_llm_call_ids.sql",
+      "sha256": "45fec9037f9c29bb8844ad698c51a5cca5643f0d2dbde2380f7095916724d93f",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260725030000_0073_next_action_identity_and_ambiguous_inbox.sql",
+      "sha256": "6fb13ccd15bc5080e5e3951ff22a3bac17e8fb0a0d8562e13afd078dc50940db",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260725040000_0074_lead_score_com_evidencia.sql",
+      "sha256": "ada10796e33ac757296a9340bc6abc4e64524f8e4ba3e87ffb9d86fe90500f0e",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260725050000_0075_score_sai_do_lead_para_tabela_propria.sql",
+      "sha256": "c8c29c401dfbfa1fb623ea0244757182e8c02fc54f2a327bbe59244b77de0a26",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260725060000_0076_evidencia_do_score_exige_ancora_e_fatores.sql",
+      "sha256": "e393e258d3c1ec9cfd0b396058f1b79e6e3c96a5b20d1697b113636e7c813b6d",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260725070000_0077_evidencia_do_score_uma_fonte_so.sql",
+      "sha256": "b7bcc651c7441b0d6e3b7c96ecd16f60ad5f2ab4eef90186c6c080b54e148a69",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260725080000_0078_estado_de_risco_do_negocio.sql",
+      "sha256": "de9fd86405426213528e4cf11d8eece71ead94a2dfa5e7500c76a6760ea03070",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260725090000_0079_relogio_do_silencio_so_conta_interacao.sql",
+      "sha256": "867d6306b222e45f5aa344b855069845fc582104e0b7a27814309126ec8da3eb",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260725100000_0080_kind_de_caixa_para_o_acervo_de_risco.sql",
+      "sha256": "05568393a46b3f35257927769c5c92b7622cb83f0485847e9f2dc3dff2b5ff39",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260725110000_0081_detected_at_e_carimbo_do_banco.sql",
+      "sha256": "f85d771bd5689bdb7cb2aaff26b990e94ac901f2ab84b5acdb1f74f205947215",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260725120000_0082_proposta_de_reativacao_com_prazo.sql",
+      "sha256": "725cd1652cc8b44d294563e73d9faa529a1a76d357c6368a5e9de727683cae35",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260725130000_0083_kind_de_caixa_para_reativacao_vencida.sql",
+      "sha256": "890301f57c35d75271d80639e73b552691c018201d8241bd86b99171d855f3e7",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260725140000_0084_agent_stage_hint.sql",
+      "sha256": "1dae922368bfc540142f48e7e4a48ad860a8185985c139472833dddfe6c75ce3",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260725150000_0113_ai_pricing_backfill.sql",
+      "sha256": "fc63070ccb69bb358a06573cad76d7606103cff69fa76cca4b6e900c5d6af330",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260726000000_0085_intent_router.sql",
+      "sha256": "d324b034021072f2acd47fc3c566ea1f6ae68b62a6475260f2f99df808cfbed8",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260727000000_0086_knowledge_searches.sql",
+      "sha256": "6aa10904b372d7d2a33a032f2b4dfad17c5ec45676e3454e50c738e479937ebc",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260727120000_0087_channel_provider.sql",
+      "sha256": "545c58eb7b98ae4dbe458a643e41da86db671fc16d6eca12ee237e0b30015fe0",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260728120000_0088_meta_templates.sql",
+      "sha256": "2e9c76bbcc50ecc52a88505ee819c91d4f4904a92403a01a0161188b74c4f209",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260728130000_0089_system_self_update.sql",
+      "sha256": "baf5b0941ce522bbf9ac322b08970ea253e6d24edfff136fdd2be605b4fffa27",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260728140000_0090_system_update_dispatched_unique.sql",
+      "sha256": "057b76a3e41b5cfcf4992cb25be92811930ffbd30bd374978ff34b3e3a49e635",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260729000000_0092_stage_names_acentos.sql",
+      "sha256": "7e2cb64afb2cccf2f79cfc08ba46cfa007644b50e1ffe0d74e0d9047cabed161",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260729120000_0091_message_type_template.sql",
+      "sha256": "fe187d564a5ff4afdf2b68c2c203fbce91cda70e224808d3de288c9957672a6b",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260729130000_0093_system_version_compare_failed.sql",
+      "sha256": "23281672dccf6a914886715f42feecb57de21679dbe69241f81bff985b44c63d",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260730000000_0094_system_version_has_known_release.sql",
+      "sha256": "d7813452df76ccc5d0adf2bae60a36a21ae630eaf533993d5de07bac94d263bc",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260730180000_0095_budget_conta_llm_calls.sql",
+      "sha256": "e81a8b14cc246f6b3822b3a33bf101ea199da589fa1aec2bb8d835a83da0ef33",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260730200000_0096_llm_default_model_da_org.sql",
+      "sha256": "ab072bd74d267deccd1e0426c2d388354a9828b4b5847cdaad80e165c86fac32",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260730220000_0097_rag_threshold_calibrado.sql",
+      "sha256": "0bf5a8149e01855c6db6441bc42f1fd274773bf31d14f226211bc31cc8e1963c",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260801200000_0098_contacts_locale.sql",
+      "sha256": "8137692615485a4467160712bae8ae80c30af2b6f338faf51f9118d6163cd122",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260801220000_0099_contacts_avatar.sql",
+      "sha256": "ca464707e74b2498d1883a526ab3236db6b789ff5f641a605c3fa1c75513e9aa",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260804180000_0102_cron_jobs_retorno_cancelado.sql",
+      "sha256": "8a980181050cd5f2318b10d268c4685a0b268bcb53ad9ab0d89eeeaef5bed94a",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260804200000_0100_agent_case_events_agent_noted.sql",
+      "sha256": "feb2bd6a73099d16301a66ac72e009b509d954d11a136e57fd3b5c811166ccbe",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260804210000_0101_autoria_da_configuracao.sql",
+      "sha256": "7bd4767dd2a7970a05bacbf729d20f050d1fccf8a690328018fe4bf6aaeacd67",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260804220000_0103_uso_de_capacidades_do_agente.sql",
+      "sha256": "813ca3f1000e89ec6e2e7952d2214fe84068b8ad92e622d4f87f990282f3d6a3",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260805120000_0104_catalogo_de_modelos_atualizado.sql",
+      "sha256": "a22a41fd2a93760342938652fad1c1cfa16cb68ce2b65a92b680e18a33341f5a",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260805140000_0105_inbox_capabilities_missing.sql",
+      "sha256": "a9bed3e24b8fc8602403196d00100aa7cfe8d810ae88f245d6c89ffd95f5deba",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260805150000_0106_channel_sessions_archived_at.sql",
+      "sha256": "da4fc822489931500faff487105813a2bc2f2b87666ffe65def3fb46a571d5d9",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260805160000_0107_channel_sessions_phone_unique_ativos.sql",
+      "sha256": "33423afa64dab4b62ae6cb0c93b842eaf80e673f001dc4950ef17b0060d1cc2b",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260805180000_0108_revoke_definer_exposto.sql",
+      "sha256": "43297d975955d2f50bb3a8b7143e80913288553991173ab746d3ef4fe0c04e38",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260805190000_0109_inbox_kind_message_send_stuck.sql",
+      "sha256": "2f31136ada313c7d8a3e1d4e7eae5faaabb7202e907d842ab03d4052feab77e4",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260805200000_0110_lead_checkpoints_declaracao.sql",
+      "sha256": "d8bd9d875fa5f98fb5793e2475c4e3af8a1c61c7cdf0f8574eabe5f3494cbaf6",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260806100000_0111_operator_turn.sql",
+      "sha256": "070b9b77add4d44d8bae0959e7e44efcb399d0ec090c17f12cd031be35c5e2d5",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260806120000_0114_ai_invocations_agent_id_nullable.sql",
+      "sha256": "4d3413b8fc665ef65ed8f96de7f8be8c7faff25b11694d0cd73f70033d6a5357",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260806140000_0112_operator_tool_ids.sql",
+      "sha256": "8f3d61aff98e1e0199b42b7a9bd9a20eff69da78072c9e567d70151c4d03ce28",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260806180000_0115_deletar_org_e_agente.sql",
+      "sha256": "6e29c4d5c13ebcb410c0bf0f4bba223d09cf28b63c0daf18b196e4ddf91f00f8",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260806190000_0133_fn_atrito_metrics.sql",
+      "sha256": "dd9178f3f3d39596a3c1b28756ee4cc7b072fb398c3b17000a995925799622d8",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260806210000_0134_atrito_abandono.sql",
+      "sha256": "d5d6e4097cc49526cba3a66f0bf937abb744e06aee5b5073303d7edf6d29a5c8",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260806230000_0135_atrito_repeticao_espera.sql",
+      "sha256": "fd501b27538dda18ed37c7872991dbab45f941e3fe3da5828024ead1bb14963d",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260807010000_0136_demandas.sql",
+      "sha256": "a566a9958721ca3497453c4af49671cc6e773cb5a80a9d747a78b4cb63909d12",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260807030000_0137_atrito_denominador_demanda.sql",
+      "sha256": "8becf91ed4bf1c5a594081eb6aadbc9c197d8a57e6fbdb837ea5a8fe5db81487",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260807050000_0138_demanda_no_ponto_de_entrada.sql",
+      "sha256": "ef2da705849d3782cd18b78d8b59ab41e3913cedb4603f49394d681423461714",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260807060000_0122_telefone_do_lid.sql",
+      "sha256": "34ea470862faf78e99a61bdc0282bf1d98d9064ff96c7bd1f130fa7ab053ac6e",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260807070000_0123_fila_de_confirmacao_de_dado.sql",
+      "sha256": "9ac6df5166ec894ad8fef799fdda4c23f5af3687341aac1529c7d8a3ab204ae3",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260807080000_0124_kind_proposta_vencida.sql",
+      "sha256": "17f31e13418ed61c357c5ce7d63022472d231bb6fd3edd65b1c8e1d6569e8bdb",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260807090000_0125_escopo_de_funil_do_agente.sql",
+      "sha256": "f866af5a4b4525f96b4a8b63ef3e30925bded2a8fef17d9a9dacdff9fe33e459",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260807120000_0126_ai_purpose_bindings.sql",
+      "sha256": "2ba26c2b7aa74a19031f60c5d7bbd8c314deb51a25fbdcd747aef73c0552e07d",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260807140000_0127_provider_vocabulario_aberto.sql",
+      "sha256": "f1719426228be7ff14d6449ba57d0187cd65495189aa47f35a4fdf9faeca8775",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260807160000_0116_definer_nova_nasce_exposta.sql",
+      "sha256": "5429fd23d3612f718cb4c8b8e5f498c854f129f9d7493ff043edbb92d52beeea",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260807160500_0128_llm_calls_registra_falha.sql",
+      "sha256": "9a1c36c525562f86560f7a0b9022579836dbee12845d650be048bc75e90509dc",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260807180000_0129_midia_nao_lida.sql",
+      "sha256": "247ba5383d412d80830f656af120338f32c3e028dc6c63edaf6c5f2454800734",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260807200000_0130_unifica_ai_invocations.sql",
+      "sha256": "211be299731bc132453a44605aeee27f75c2e7ccedbcd5efa4cbfb9ca1e71a30",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260808020000_0131_canal_zernio_vocabulario.sql",
+      "sha256": "001d4ef122b7a448a9757a2ac751bb7d329425c4e06a529d68f59b95370005a5",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260808030000_0132_zernio_envio.sql",
+      "sha256": "c10677455a25c530187b56a21ba2a50f85ed96a67e2a8333df4035ac5c66c9ef",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260808040000_0139_kind_check_completo.sql",
+      "sha256": "3743021b5d20496fd41a37b3f01cffe9a3fbf2b9bd7160360b42fb4bb5745817",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260808050000_0140_orcamento_nao_conta_backfill.sql",
+      "sha256": "1d6c842e2fa805287dc49f3966dedad25347754dade85a3a42c0651ea487a078",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260808060000_0141_binding_sobrevive_a_rotacao.sql",
+      "sha256": "bee9c6414d48b0b102f28d6b69232e3560e10761c345579078258e608b8cd6df",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260808180000_0119_contato_lookup_telefone.sql",
+      "sha256": "a75d2220b1dc6bf7a40fec779672dbeb915d306bf50f133de4b464c2a061f2d7",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260808200000_0120_avisos_de_canal.sql",
+      "sha256": "ec14f2dffd0d99ca5c2179cae41d9ab1c2308515c1832dc188d530bad1d67f3f",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260809100000_0142_camadas_de_seguranca_por_org.sql",
+      "sha256": "0253c046d67cd75207bafa7dac9ee76024b5b876fb9409ec4faf89de14819664",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260810120000_0145_dossie_do_followup.sql",
+      "sha256": "18f2326400238facae11786bde2587e73c9bb6ba8b19893b22744e2b265d84e6",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260810121000_0144_followup_timing_plan.sql",
+      "sha256": "0703ff3a480fc0a485c60ccf3dd0a8924ef4d42fa74bbcbf8c8b66902332c891",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260810122000_0146_claim_justo_entre_organizacoes.sql",
+      "sha256": "520626dc0c8b21eae54b8c441f87a1c73fb8e6f6bb32f9cc052bc9772c6a4507",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260810150000_0143_guardrail_layers_escrita_de_admin.sql",
+      "sha256": "b95dbf006c340ec8627eb87b571f62d3dcc2a72b7df0391da5fe1c2f98a2f596",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260810160000_0147_relogio_do_banco.sql",
+      "sha256": "c382f1cae271b591ca26114de54bf4afe2edb434f95264f140035f74f8b989c0",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260810180000_0153_mensagem_editada_e_apagada.sql",
+      "sha256": "0e7be0b1131a7b0d3cd58b3f9a697eeee7abd1bf4c3ac6c98eec8ace11801dc7",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260810210000_0154_template_sabe_de_qual_conexao.sql",
+      "sha256": "70981d9dd1a1d8e770ab83a492aee97273fdf62695c499e0fcf6388a4cecd805",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260811090000_0148_caso_anuncia_no_barramento.sql",
+      "sha256": "62faf389b145eabfd41390b867072fce17ac807f485a4471c906231b604694fb",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260811100000_0149_definer_valida_membership.sql",
+      "sha256": "13387e3c534460be55aa292e948468a1fbf718cf0cac4fe8c5c9e0a215b587d1",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260811110000_0150_rbac_na_config_de_ia_e_canais.sql",
+      "sha256": "a3133047d39a2dc023e7d618a6dcea6c9de61fcb96d25a0570bdf507554db7ce",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260811200000_0151_arquivo_do_webhook_por_canal.sql",
+      "sha256": "ded71c609d13c6b58b80602213f7ac6666303c604663017b2653229b908b36eb",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260811210000_0152_o_gatilho_manda_o_texto.sql",
+      "sha256": "396d0b80a2a22ba6d8079e6a391a8c899811a17e06ab9ef5a79a98a7f6616018",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260813090000_0155_marca_da_instalacao_no_banco.sql",
+      "sha256": "34e291e3fba9bfd0e884d6239a53150300f28a79f80716e0bc0e463f80ab3d7d",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260813120000_0156_quadro_do_onboarding.sql",
+      "sha256": "76e8eb6dec340c188bc3c1dafae5902f0ce965178ea222424faccdf736ff2498",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260814090000_0157_marca_por_organizacao.sql",
+      "sha256": "b89c9be83506371a70cda0ba15e8fc05a8e7de1eeb1cea4ad84347ef701043f6",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260814140000_0158_logo_no_storage.sql",
+      "sha256": "68a238f2a34cf8349875b557bf1fc942b2ef86323f42cc51262629671f9e9b1d",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260814210000_0159_o_teto_que_vincula.sql",
+      "sha256": "5759234e678e602b0fdaf6b686b146872fd9c216997e7e33540228aacf4b9256",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260815120000_0160_ai_budgets_so_escreve_pela_rota.sql",
+      "sha256": "3d8cd775531733bcc235355d5587ff7bf8b1aa1c3e952f871d48145c716990f2",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260819140000_0161_outbound_zera_unread.sql",
+      "sha256": "8fd03e0af6f224f0e596a3f486bb2a1053548de12939824b8b3633c2095e45dd",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260819150000_0162_contato_ultima_atividade_mensagem.sql",
+      "sha256": "294bfb3528f60ac2a6b1e8412951fad5fe1b0a3dd93b3bb94dc39aa77d2ebedf",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260820010000_0163_o_arquivo_do_webhook_pode_perder_o_corpo.sql",
+      "sha256": "616714bc9800c62c709564963e76544059ad5937a2eb032efe8542718e831a6e",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260820030000_0164_atribuicao_de_anuncio.sql",
+      "sha256": "f3b8ba830334f737eabb2f19f98fab87f846006d889b42a1751467088b9096c0",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260820120000_0166_indice_do_claim_da_fila.sql",
+      "sha256": "aee2e5535221c3a20c5735b6482676e8849406a17e74870097f1bb292fc7199c",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260820160000_0165_identificador_de_canal_unico_entre_ativos.sql",
+      "sha256": "28f3646bd6ac5924729bb4a9d9f75aab1b3e3e81ca4bb371de4953b79de3483f",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260820170000_0167_poda_da_fila_e_expurgo_do_audit.sql",
+      "sha256": "f49102a3a9d3f687768a98c72af052fe86003aed431eebc1b5a6c8ee191734c0",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260821090000_0168_a_mensagem_que_responde_outra.sql",
+      "sha256": "463bdbacf74df654436ec34bdfabdb3ace4c614963add5f18d0bf55dcb57090f",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260824120000_0173_quem_manda_na_conversa.sql",
+      "sha256": "69d815696cdd479c3e722b6ebe6fc9dbd635629cccab473148ca939c7f3adec2",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260825120000_0174_historico_de_leads_captados.sql",
+      "sha256": "9b32e103beb0493067a1faff7df1398ece792321f666bb6b3f3f28744636e035",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260825130000_0175_a_automacao_diz_a_verdade.sql",
+      "sha256": "2890bd350929bb96f8bbf0654631d70d90988dc546c12278247a6822e6098fb9",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260826140000_0181_o_acervo_e_da_organizacao.sql",
+      "sha256": "fad3f941e1e78a30906fb27a3f02080aeee8f2592106ac95b66072ef5b8ce4d8",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260826190000_0177_agenda_o_compromisso_marcado.sql",
+      "sha256": "475ccc34486f8e13e438aa935667524855b87caa91c9b176ca58fa11e3a3a878",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260826200000_0182_dois_cliques_nao_marcam_duas_vezes.sql",
+      "sha256": "831cf3f7ea0daf37fc23d0fbc544df302d0b87ad234d9cfbd1d729474eacd4b0",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260826210000_0183_a_grade_da_agenda_nao_se_move_sozinha.sql",
+      "sha256": "54004eb49bbd6ccd5d53096bcefc5f28cd7865a3f16a3e0ee30f31f1065b806a",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260826220000_0184_anonimizar_um_contato_deixava_a_agenda_legivel.sql",
+      "sha256": "c9bfdc2b47973f97c4c3dbf8cd52b304bcc8169431ba362832aa7a3a354c6cbb",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260826230000_0185_instalacao_fresca_nao_dava_para_marcar_nada.sql",
+      "sha256": "2c95acabf5388a2ee424a8d16937f2bdff2762413a4c05dc7be2d311f4cc005d",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260827000000_0186_a_cor_da_pessoa_e_uma_trilha_nao_um_hex.sql",
+      "sha256": "1c4fff00edfcf51831c543cf588953a2e1926e231225b6b66e69fb487252f494",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260827010000_0187_o_espelho_do_google_e_cache_com_prazo.sql",
+      "sha256": "685f4240317e4fbe01991715cb2fbb6c882fb9bec1f85ffb48c03fb93c7fdec9",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260827020000_0188_a_volta_do_google_sem_identidade_cria_fantasma.sql",
+      "sha256": "655c42cbc94136676ee318533627e8cc635c00b747b3560f3f28600cc4587ed8",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260827030000_0189_o_espelho_nao_se_limpa_sozinho.sql",
+      "sha256": "94fbaa85f5e16db2da216027d7a218df0efb672267b9af0f5ecf3d3a64f6f9ef",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260827040000_0190_o_mesmo_state_do_google_valia_duas_vezes.sql",
+      "sha256": "a765e3a2aac6ac7fc7e9b48fa6e329bb311f31a245f813475f4c060b780e900c",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260827050000_0191_o_playbook_de_agendamento_nao_conhecia_as_ferramentas.sql",
+      "sha256": "96960130996893f7f352c1e80f1609a05128007682569b7c640612e4c93ed951",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260827060000_0192_a_poda_de_nonces_esqueceu_authenticated.sql",
+      "sha256": "b2b12236f5d02d61fbc094709cdb962b7c75837fc3d2d90aa21588d9a3fe5e14",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260827080000_0193_a_conexao_do_google_sem_fk_e_sem_fuso.sql",
+      "sha256": "29344b9277c16f3f45f919863a63f29c87dbdc7f7982000262d2ef38d80b7099",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260827090000_0194_lembrete_nasce_desligado.sql",
+      "sha256": "c41f6a66dbbd083b8a1b2c34588917c5f929a05e951d40a0bea2b51e95467bb7",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260827100000_0195_tipo_semeado_nascia_sem_dono.sql",
+      "sha256": "495dc0c56fd434053a8d3fc3a04085c916ba3be339a8ec43974a400fdae1c843",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260827180000_0196_followup_pointer_surface.sql",
+      "sha256": "77bc4c1ab895e76190656791f74b5055282df3c3965d0fbd4efa3ef0b7ec1909",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260827181000_0197_push_subscriptions.sql",
+      "sha256": "c8cdbcdbb7a0c8305bcd46ee3b6f2b0ff0c22eac9c9a0fcfcf2947f101342745",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260827182000_0198_nono_digito_canonico.sql",
+      "sha256": "0a9a7efe32a5373ee4da22eac67276d12ac2d0ca61e2092a8e444e32dc8e8a98",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260827183000_0199_push_subscriptions_rbac.sql",
+      "sha256": "00aaa52500228ff20abeda186f6e3e7ae2d1dfa8b974851ee3322551f8fbbe0e",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260827190000_0200_o_que_ainda_nao_foi_ao_google.sql",
+      "sha256": "51e1d41c7ab888771d336ae113fe17e5eb4249077f359c132fe23b06105b67a9",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260827200000_0201_credencial_do_google_pela_tela.sql",
+      "sha256": "4df15284318d6e5f615cd53487247e209b7d78419304d2aab18fecc7e98e7477",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260828000000_0202_o_nome_do_atendente_custava_uma_chamada_http.sql",
+      "sha256": "2f282b0d616b37e029eeb678310e98d29dcbccd0cc2534b3157bee5b01b56122",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260831000000_0203_comando_da_conversa.sql",
+      "sha256": "ea24f56f871f596ed4f6bf649d9a527f9da5426f6a54873e4020b47041c0b49d",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260901120000_0204_catalogo_de_produtos_da_loja.sql",
+      "sha256": "1493b6709bb55051124be872b857db3fb5f0e648e56452e8ce6b5df5dfd67223",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260902020000_0205_um_agente_indexa_mais_de_um_material.sql",
+      "sha256": "ac54348d85db2d468fa429590cbb359a67febf14eb6f22a0ac19cbbd6ded1b59",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260903000000_0206_contact_ai_authorization.sql",
+      "sha256": "7d9efe1db5003aa32f3e2dc665c398221c73da2bbfb7428429b80065b7536deb",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260903143000_0210_tarefas_do_crm.sql",
+      "sha256": "3f6774198bf4268f3954483a4132345b7b26dbfddbf6589be38ed1d99ef00beb",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260903210000_0207_credenciais_de_ia_voltam_a_ser_lidas_por_manager.sql",
+      "sha256": "8c529c5f0f3ddb459f72a1ad56ebb20957837e075603372b014e00d0a9a590af",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260903230000_0211_contact_custom_fields.sql",
+      "sha256": "e3bb79086b561842e510917f7d9037c96cfe442b8424e13a700d39696b086672",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260904000000_0208_moeda_da_organizacao.sql",
+      "sha256": "9871b650ffa50a9161fd8ef51d0b83afcaf9ae150438f2a0f461d0ba64abd509",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260904011000_0209_mover_em_lote_sem_colidir_posicao.sql",
+      "sha256": "f75ec58386dd74df83b360f775343019c9174a9bc7afd372e277eeaeaed2b92a",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260904050000_0212_o_email_do_convidado.sql",
+      "sha256": "22a05131d736e6d9df59bee3ee6cd7ecfaf51d9f52126c62fcc47eda6e563606",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260904051000_0213_conversoes_de_anuncio.sql",
+      "sha256": "d1c7074d2c7759805362d33c4762e568161b950e27c9aa09d584e43bb606849a",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260904052000_0214_leitura_de_anuncios.sql",
+      "sha256": "f0838260dcf4043148dd6b040c00ca7bde1a2fa38075af2bb5b87bf3a268786b",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260904190000_0215_juntar_contatos_duplicados.sql",
+      "sha256": "14a584278c1d26af99c4c9e94789a0af4053f6c11f6b1bccbfad56eeb424cbf0",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260904210000_0216_agent_inbox_items_resolved_at.sql",
+      "sha256": "d5961fd150466f75cd4b0764679b763650ca88fb8d3c408c691226f134e21a2b",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260904220000_0217_relatorio_de_atividades.sql",
+      "sha256": "a51d63a9bf41ef59f10affef10ae2f0b22b37734b5f48e635f9b6344e9abc23e",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260905120000_0231_organizacao_e_acesso_atomicos.sql",
+      "sha256": "cc7a9c777fb8dbdb8bac276607350b5ba19b6891d20f89db9dfe565472033aec",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260905150000_0219_recibo_de_criacao_confiavel.sql",
+      "sha256": "3dd58a79a247d635f632025ebb10734f2d25044291246447a4e142a7b781c037",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260905160000_0218_configuracao_pre_go_live_atomica.sql",
+      "sha256": "f738a1303109500ec585c89dde8b4f0c3b5d352c6283fadcbdf92e0ae888fc13",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260905210000_0220_suporte_temporario_por_sessao.sql",
+      "sha256": "b3c8ab07083561d27318f146ac253002204f939c7f81effdfc874848f87d02a0",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260906010000_0221_interface_por_vinculo.sql",
+      "sha256": "5944dabb8bccb80d8fffc637ab9d29be775bfd31b1759f9918c8c25e8cd0f99d",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260906020000_0222_fronteira_do_atendimento.sql",
+      "sha256": "339a453b0143d5d904231b910246c32a21232e5b90f6e12f2b4eec1371fe95cd",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260906030000_0223_origem_imutavel_do_evento.sql",
+      "sha256": "c7382fb24beed8b55e76bcd9635eb90af4037f647996435fdfcf3bd6ccf4f9ac",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260906120000_0224_presenca_e_recuperacao.sql",
+      "sha256": "67b858574667e092c59297489697330898e356994c5385ed568dee556c9d1ef4",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260907010000_0225_google_reconciliacao.sql",
+      "sha256": "0667c46d34f4f806270234d67cd2ac930582e472653adacbb834713db7b223f1",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260907020000_0226_meet_e_entrega_transacional.sql",
+      "sha256": "c8aeb851b114a62c2118a06600c1448a472940154f505e6cc8fea92c2319c783",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260907030000_0227_autonomia_e_respostas_revisadas.sql",
+      "sha256": "1eb9be5a826d5afa8626fb2298813bef828f2ee2d5602397cb242bfcbea4f0b1",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260907040000_0228_roteamento_por_canal_e_reservas.sql",
+      "sha256": "5d3bdc7f9435440ea729f63b4eafcba97fd5a6c036c371a527eb160077e00333",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260907050000_0229_mfa_e_lgpd_agenda.sql",
+      "sha256": "67aada762b77acd2507f963e3ef9f12fad34144abe423e5f5b6c6397d6d5b32a",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260907060000_0230_reserva_pre_go_live.sql",
+      "sha256": "26964cfefa3c41d514a80a37f9e0176dae92f634ead717918be0cb6d5d4fe113",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260907120000_0233_chamada_de_voz_wacalls.sql",
+      "sha256": "7e698b4f3910bcb16a7fc356a34760ef5a1ce522fa3d19d0c069f3e56f11a2a8",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260907130000_0234_voice_calls_no_realtime.sql",
+      "sha256": "94431d724fe517e975f14efed137e9e1b31824b241626b9ba790dd3027eadbd3",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260908140000_0235_voz_isolamento_lgpd_e_dono.sql",
+      "sha256": "02832a470bd51bbacdf9ceb6fb154c55895613b7aaa5d60d596588176bfeb02f",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260909190000_0232_nome_de_sessao_waha_cabe_no_teto_do_waha.sql",
+      "sha256": "ac186ac456be251a596e376a0c508447e21afbed5fdf3e886eb05fbcfb39211d",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260911120000_0236_opt_in_de_chamada_de_voz.sql",
+      "sha256": "fd8f1f7fcf9392029caf4344a493fa49e26a427fddc6338abf5e6873526dd40d",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260911170000_0238_convites_de_time_persistidos.sql",
+      "sha256": "ad8ad80e1418a88b3501f5678f73e170392a8f9b49c7543040853053fb4320ff",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260912010000_0237_criador_provisorio_sai_na_entrega.sql",
+      "sha256": "a9b16b09e96b9243eed585ff257bcdb2d982be38b64660f0381d633942a868e7",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260912200000_0239_registro_nao_fica_pendente.sql",
+      "sha256": "0bcf31b3c4d8cd92d0d6bca184c815b69ca3ade145c362ccf297ae1abf87a0a8",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260912210000_0247_indices_fks_mensagens_e_runs.sql",
+      "sha256": "50c9764d3ee0058b09857aa92feca17dcf24a1a7481fe854435958e39c7dd1f2",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260912220000_0240_credencial_de_enfeite_nao_derruba_a_leitura.sql",
+      "sha256": "db37c0488a62923760de5c95b62e5a164bf88a24aed2656302983265a8d37e41",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260914090000_0248_caso_tem_assunto.sql",
+      "sha256": "26bb5b75aba862bd74970c225a0c34fc02c5f85518dcf34e71e32cec49b2e4f9",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260914150000_0241_rascunho_de_agente_sem_numero.sql",
+      "sha256": "07a567227201488fbc2d75624f1f119dd17bf5717e63c74c95bf23c117d3f4f6",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260914160000_0242_aviso_de_caso_parado.sql",
+      "sha256": "a96162f0702d0e381fc72dec4823cbdb02f41c05f1b0f72c38e4d0117b017fa8",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260914170000_0243_chamada_de_api_tem_prazo_de_trava.sql",
+      "sha256": "d06af13490fe7422409c469a89290e5b7aa77db3270cde888ea0d3870d0c0187",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260914180000_0244_tags_de_conversa_em_uso.sql",
+      "sha256": "e9d6bf7e7c4884cb347b5dfe9241c06bafe24fd97e5e9191f280707bbf34e7d2",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260914190000_0249_agenda_prazo_de_expiracao_do_pendente.sql",
+      "sha256": "ac33e4126957355bf949dd669c70268c5c6083f3dab23f55cd5997db01c98fd4",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260914195200_0245_followup_stale_nao_e_retry.sql",
+      "sha256": "b06126c8b53a5c1fbed95b48aaa2a66ddcf67a2ea608fdbc696208c5d5ff19b7",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260914200000_0250_guarda_contra_replay_do_gateway.sql",
+      "sha256": "549a4b4f201f03c328ed2d04e714d318486ecedc7d0a3fbac091a1f81a4e1226",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260914210000_0251_acesso_da_ia_volta_a_trilha_do_operador.sql",
+      "sha256": "d59b1f1bc0056e66beaf6db96dad922f982368ae56203e10a92702fb4677709b",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260914220000_0252_aniversario_do_contato.sql",
+      "sha256": "10fdea8a2142a428a19cd269f34250f9976804a80701c1c86115095679ec4c9f",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260914230000_0253_politica_de_cadastro.sql",
+      "sha256": "4fcaab84deaace148a2635c5a07197b8ae294f52c45a4b8db427d6d087492af3",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260915000000_0254_lembrete_em_degraus.sql",
+      "sha256": "9655b3a7c27f19f5a2026f775f83e37d0116346cbb91ab1c35b51551f8ba1fc1",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260915010000_0255_atualizar_nao_desliga_o_lembrete.sql",
+      "sha256": "05d3fd71e85911a1e1c5f9f372f23420304476b593ce1f5e7ee0744dd7bbda2a",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260915020000_0256_lead_do_ingest_nao_duplica.sql",
+      "sha256": "1800ce7f54bbb0c2e253f1bcbcbbfdf177197f4850a785464dcb5c7865a69cc1",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260915120000_0257_app_da_meta_da_instalacao.sql",
+      "sha256": "f85b5a82021b440af55a1a9a6423cb5240d12960611a1fe6f166968327b20f28",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260915140000_0258_audit_log_so_recebe_linha.sql",
+      "sha256": "3f774f70a578c626f4c74b585c8aeba5cb8787730590686abd3aeeb8a82c3ccb",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260915150000_0259_indices_redundantes_saem.sql",
+      "sha256": "57a4aa1566b79206239c578cab61f06f4886f9074bfd3962a2b2d83ffcb61a05",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260915160000_0260_ocupacao_do_google_do_dono.sql",
+      "sha256": "b94f65370efcd5d76a3c17e475909a600bba091fbb64f006800882e8cb134a2a",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260915170000_0261_titulo_do_evento_pessoal_sai_do_alcance.sql",
+      "sha256": "23aceabffb00da8127aad98ab04e3f5dbd650c3dc61be6a0a91f9f035e112d93",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260915180000_0262_cliente_pela_agenda.sql",
+      "sha256": "7ca382b63c96bc73416239b05682149fbe42517fe296336a24b25575cb089b5d",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260915193743_0263_etapa_de_perda_grava_o_motivo.sql",
+      "sha256": "7f3f21187afbcdaee1d979f326008b78901e411b937de81844c2ce084c98675e",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260915213849_0264_vocabulario_de_tags.sql",
+      "sha256": "9ecdae42bd2da67a4eff7d9e781dd62412f1bd74e6f1da808b4be80045828a6b",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260916120000_0266_transferencia_entre_funis_nao_e_perda.sql",
+      "sha256": "e97e0fc3e0276bb82d92d457e7343fa77ffd55caf1d6fabcaacfb00ca23d176b",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260916202500_0267_espera_da_fila_nao_recomeca.sql",
+      "sha256": "c1da9639e151117b761e3944fda9bf66aaef8f7ea0e00aad3459807bb296f19f",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260917034929_0268_regra_de_automacao_guarda_o_gatilho.sql",
+      "sha256": "863ababaf44ce41686358ab1afd7195af88ad66c0c315a4bf731f83b275937f4",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260917120000_0271_extensoes_declarativas.sql",
+      "sha256": "753d3a3d5058e4e5ddf14e3b82925820b60d032b28431c7e816a1cc15bf95781",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260917150000_0274_travas_de_suporte_cobrem_toda_tabela.sql",
+      "sha256": "933d0d9648c3b1c2f23fd8718e8e7f677824094beffb6555c778a223c3630cbb",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260917150401_0273_zona_de_perigo_apaga_com_resposta_revisada.sql",
+      "sha256": "202311e6abb654b2eab6c59e346166b43d201199a8f5188e6ac5bd592f1945c6",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260918001726_0276_rodada_do_banco.sql",
+      "sha256": "521417a604a11b21e3a2d0c300445e4d104d63c332761f3cf79163f5a0be8095",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260918011500_0282_extensoes_perfil_v2.sql",
+      "sha256": "05398e9742d357ca08f4aa0e534a19e0d232e7a1927a18c74c9864abd5224758",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260918014500_0277_pais_da_organizacao.sql",
+      "sha256": "14b9952d1bd29872f1aab3674d60f9f9fa7847677578c70186863e3fb3361b64",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260918100000_0279_caso_so_nasce_do_motor.sql",
+      "sha256": "54feee1d43473f504263ff20b0a7b5b88d80399c6872fc7b325950208d04bd9d",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260918101000_0280_anonimizar_alcanca_o_caso.sql",
+      "sha256": "3fcad88eb9fe4d2b0d06e959fcc6ee93abf81d85edd37faed39953d701f19960",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260918102000_0281_conversa_do_caso.sql",
+      "sha256": "d0c84121c6d69e009c3522abe554e32995ba62cb147ff8e0d6069c9eb245107e",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260918110000_0291_passagem_para_humano_tem_registro.sql",
+      "sha256": "9a51f439101f957e70e390a5d58100b7e610b0ccefcd8380cd2a0bd5b4436d5d",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260918120000_0310_csv_como_material_de_conhecimento.sql",
+      "sha256": "5535b2c8c90175d61c582c0f97169088a91b570c71223be9b32134112e8aebe7",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260918121000_0292_aviso_de_caso_no_whatsapp.sql",
+      "sha256": "c88834c6a2f543f6105453279f0b1a8ec762d0f33d54d8f88f1e65920dd62f0e",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260918130000_0293_a_passagem_se_reconhece_sozinha.sql",
+      "sha256": "c6203e44402ae2ceb7e987623cd18ea71efeac730b1952e5e23d56b67fe6255c",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260918140000_0294_o_cliente_repetiu_depois_da_passagem.sql",
+      "sha256": "28c702186a1a944dee6860d73b5b5e411b5b91b7f1500b329ab15d4fb28d4764",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260918210000_0306_google_ads_captura_de_clique.sql",
+      "sha256": "35cf1b3d72f3e6a3b15ac1e93174e728cbb50fa400b02f7d0880fb509a54999d",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260918211000_0307_google_ads_conversao.sql",
+      "sha256": "eb88775543116de80087f8e60eb84b1a5bf301cdc457a7789991e7d17e6dc854",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260918220000_0308_espera_longa_dorme.sql",
+      "sha256": "47872864bc4734e350f795a070bab25c6dfc34b5d835c1acd0fc152c0a3be480",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260918230000_0311_webhook_do_numero_no_canal_oficial.sql",
+      "sha256": "9dfac483f696af721219fcf6af1afc8bd06e6d527653acb8c613e62dae6233f5",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260918231000_0312_aviso_de_followup_sem_agente.sql",
+      "sha256": "22a1f72a53cc96b02195b1b978d54d26e809d24492d8eefa8489b2445a60c079",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260919103000_0322_automacao_tem_numero_proprio.sql",
+      "sha256": "69ac5ff4a65860f5993159d400fdd827e5eecda9ce1a6212fbdef182bfe1bfb0",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260919120000_0321_recibo_de_idempotencia_em_curso.sql",
+      "sha256": "57c316e701f93cd95f4e45aa4938b4b1d1fceefe4d4f9ac6bcdb09d939d69fb8",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260919130000_0323_marcadores_do_contato_na_conversa.sql",
+      "sha256": "bc9f6b8406b0bf8d1304d9193ffc5aa64b3fceb5f694b1dc364b5dbbb7019530",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260919140000_0324_destinos_internos_da_instalacao.sql",
+      "sha256": "4a6feca8e2c8bfe5585039b7cb878bf3d0fe86ba8e4e6cd6e536db38c636f9f2",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260919150500_0326_reconciliacao_das_branches_represadas.sql",
+      "sha256": "ee215014cb35c7dad31d7f2c0a0eeff3bf01e33ba8aab08608746821ee677eb0",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260919151000_0328_mensagem_do_lembrete.sql",
+      "sha256": "a8069aa85a47d80a830988ab8785fe48f0a6b9109a4fbb8679f1bcfa01e5ab87",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260919151100_0329_mensagem_por_lembrete.sql",
+      "sha256": "14b81c7a12e01e4597d07a76590ca2632695b7c0e416740734e3cddef0ea609b",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260919151200_0330_enderecos_salvos_da_agenda.sql",
+      "sha256": "92cbf4e4e9a84bae5496391393159ff476aa3a1cfa23223e33cc73c8af90848a",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260919152000_0331_comportamento_da_instalacao.sql",
+      "sha256": "ba332df1bd5672cbb4e4508dd699c153c9cc276ebe431d9fb63a03c142fcef50",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260919153000_0325_protecao_de_tabela_de_organizacao_sai_do_laco.sql",
+      "sha256": "128ac1bc446d299bd1837e37893fa89046de46d872fb56ff01853ca518652336",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260919154000_0333_transporte_smtp_da_instalacao.sql",
+      "sha256": "1e233498c875613ad13d43302efbfabbe3e38528a6b6690b27afbd4c99dfcb7e",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260919160000_0335_marcador_do_contato_normalizado.sql",
+      "sha256": "2172a07cc50d204deac14c827ce8b6deabaee396af2f94b9325ffce0a18f9fc9",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260919160431_0343_agenda_dos_colegas.sql",
+      "sha256": "328275d75b1cf1c81cf0a0a4859e516c9392a2cc7b5a55f2ccf61d57ee772fc9",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260919190000_0336_cor_das_etiquetas.sql",
+      "sha256": "f2b9c2aed28a6c2cce9752ce215c2bbe389036b0601220c970aaf75318176b12",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260919220000_0339_canal_mudo_sem_numero.sql",
+      "sha256": "780dd0f186081296f503aa96e3dfb6938d4131d3be8f7f3eb5a7c2caa84c50ee",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260919234000_0342_catalogo_deepseek.sql",
+      "sha256": "0897cf532d5b91d4d71f5a59392617a803f4cdbb090c7da89193b9301bf700de",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260919235000_0340_modulo_instalado.sql",
+      "sha256": "ffb40bdc89889d9ec4e0fca06ce479d3b3a20297954c6859fbb0c03c70474f36",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260920000000_0341_configuracao_da_instalacao_pela_tela.sql",
+      "sha256": "0d9308132abd0c3e28757edc53e74fe520a7aa82ab56c7beac0ca954f71cef37",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260920000500_0344_atribuicao_de_anuncio_exige_organizacao.sql",
+      "sha256": "6495b9954281eb355ad356f31dadfec34fbba7020b673707476a3078d1d8c1d7",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260920001000_0347_modulo_voip.sql",
+      "sha256": "95c4afa5a33addbda5d5ebd0fc9e6bf1ff2481fbe151ff886e7139b8364e27b4",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260920001100_0348_voice_calls_sip.sql",
+      "sha256": "8653f54555fcdecc1c9768de92c12d48faf5f0598d833ae06c5290d28fe70d0d",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260920001200_0349_voip_trunk_settings.sql",
+      "sha256": "fd6cf26b41940cce33bd0ba746c90a5e702cacb7da2f5b792cd8c70514867405",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260920002000_0350_catalogo_financeiro.sql",
+      "sha256": "c50a5bf9471ace45f8009e190073ada5d9d7c1cb2f9d18dcd3ce7d74fc574c5a",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260920002100_0351_comanda_e_financeiro.sql",
+      "sha256": "a33ab51be73e95994ce305b2d943876cb685ee0157f9db8fd4097ad29bb1716e",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260920002200_0352_comanda_por_agendamento_e_unica.sql",
+      "sha256": "7fde4576dd6f708ea5cca938747c1d62677ba6cb3dab8694a6fbd798c69a1b38",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260920002300_0353_relatorio_financeiro.sql",
+      "sha256": "782f8b869daa9cd908715efdfecc037b8c8bf0b872029c66b0c13236e9dd72a0",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260920002400_0354_regra_de_comissao_inativa.sql",
+      "sha256": "7a470bebb9bc1a2be709b40444dc17871698fe7d6dac1c9895236facdcf5eb60",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260920002500_0355_saldo_de_fidelidade.sql",
+      "sha256": "b9cde3c2ea47f141db2594ebc7c332758a00cb38c32f22f7f600eef6f418bb2b",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260920002600_0356_relatorio_por_servico_e_cliente.sql",
+      "sha256": "597f3635901367cc40ffa1b30bb1138efb7576be9a89abd9576e806590e928b8",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260920002700_0357_lancamento_recorrente.sql",
+      "sha256": "b7c533f8df4f63591c5cd030c3514fd2646c3b74eb2efbda2a4ccb0644b6ae52",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260920002800_0358_preco_do_tipo_de_evento.sql",
+      "sha256": "53df7535b708d897e7daadea47dff745bab3fdaed2baad052496cf871f8d8ef1",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260920003000_0359_cascata_lgpd_alcanca_a_comanda.sql",
+      "sha256": "cfa1c9d032749c3ee5f09f8e72ced26027b8527c580846ddc389575647919e6a",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260920020000_0363_recusa_permanente_da_agenda_nao_pede_repeticao.sql",
+      "sha256": "72cdfb0d83f11ca0ce46476a6aa1678a302f616fdc5624dcca0694c9fa821914",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260920120000_0364_a_poda_de_nonces_aceita_os_nomes_das_irmas.sql",
+      "sha256": "56dd0b2a39621066df3753a502c950a7183c665c9a25b2db6403d5cee3e98766",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260920130000_0365_reenviar_o_link_e_acao_propria.sql",
+      "sha256": "43bacf6e9767c00ef0158b3f672b7f5f21f993c49bda2fc34bf84d442e03de95",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260920140000_0366_o_compromisso_chega_sem_meet.sql",
+      "sha256": "b6a64ed0a99f7f6d006c98e4c208966ae8f1fa0850dd270a74bf43bab1558244",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260921020000_0367_interface_por_empresa.sql",
+      "sha256": "e27e0d05a52527748dbccb582d42752b0b8572b3660ff067a33ed8aab836c875",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260921030000_0368_redes_sociais_nativas.sql",
+      "sha256": "fd069a9b1ec34ec6306a74c0ad4bbd952856873ad3180664c71a099de215f92e",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260921030100_0369_prospeccao_nativa.sql",
+      "sha256": "75b65f527b29711661a686a9499a2b203d7f1a5c5b084df8a6ba6a76e641f2ce",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260921030200_0370_prospeccao_anonimizacao.sql",
+      "sha256": "215441da43a937b83e0be0aab1306528e9a3e13aedbbd6e3824db0e5791b642b",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260921030300_0371_prospeccao_conversa_salva.sql",
+      "sha256": "adaa980f7052bd8ee63359142e6610b03d8350ed91c936a4cdad205e453c2ac6",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260921040000_0372_banco_externo_do_agente.sql",
+      "sha256": "ad6f1a6e76ba4dc2c4de953810480936aa12ab4e314f1ced1467230dbea0bf41",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260921040100_0373_limites_configuraveis_do_banco_externo.sql",
+      "sha256": "8b471f21e277621d3bd274f512cc9913c24c88403a9e976f94703b975b0fa289",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260921050000_0374_remarcar_corrige_o_envio.sql",
+      "sha256": "a88818b59f75616cd2b0a75ba78474549703d04fe0efb6616058cd0221f2db27",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260921060000_0375_campanhas.sql",
+      "sha256": "7cd1e70249d8b21dbb1498faf3b00768d6effc8214d89b9d16b9b89903a68a8c",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260921060100_0376_campanhas_templates_e_exclusoes.sql",
+      "sha256": "12263f7ad6080a1409fe7b718d035bf1926396687e9b7475fbe104b7417d573c",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260921060200_0377_campanha_rodizio_de_numeros.sql",
+      "sha256": "38a764e9bd6e1880845cb16ab38e1e8ea5fe4bd43fdc1034026c17f6a015b691",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260921060300_0378_campanha_funil_e_agente.sql",
+      "sha256": "42b576575321a36fc510955612563b51a441032e589edd6bdb706972a4385e9a",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260921060400_0379_campanha_na_cascata_lgpd.sql",
+      "sha256": "66ace2fcfcf365d2c60f8f136a4e1c03a50fe0fc936e80f9335452414f2cd0f6",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260921070000_0380_hierarquia_do_anuncio.sql",
+      "sha256": "e276d21746b7c19e083e25657898a69df10af5d9ed5fccbef3c99ea713e3930e",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260921080000_0381_meta_ads_captura_de_utm.sql",
+      "sha256": "050b8d2541f1dbf85fdb9553c4f871aebce759679ce97c6bfa48a4749c5c269a",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260922021548_0382_link_salvo_no_modelo.sql",
+      "sha256": "2a9336e5117d82c5252ec778a48608054fb2e6ac3c6189a7752ad81d5ff4d917",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260922140000_0383_pedidos_de_cadastro.sql",
+      "sha256": "497b4d8c92bea25c5e12be2407343f179c2229582c1e8e3e6a271abe37ec53d6",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260922164700_0387_canal_datafy.sql",
+      "sha256": "1e87c282cdc95537a89cedb7897c751e34513bd9440df4259ec1947cfb216800",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260922190000_0384_banco_externo_vira_modulo_opcional.sql",
+      "sha256": "5c292cbc120d5af09105eb70e71b1aef6e2d5d002f6d2b8adc506a807606a451",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260923120000_0385_memoria_da_org_aceita_origem_agente.sql",
+      "sha256": "788cd8b386782ef8a9eeeec13364c28262175216dfd9690ff8124d114ac33d49",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260923120100_0386_preco_catalogo_e_conta_openai.sql",
+      "sha256": "b76036eb6768f913a55f40ca0209cad0fbe701d59b06139411564f81d834713b",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260923140000_0390_fotos_no_catalogo.sql",
+      "sha256": "bda9ea999e39577f5f066db53f4c3fec312bf7556aefcbe310b13d9a12d82e82",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260923150000_0391_anonimizar_pela_tela_redige_conversas.sql",
+      "sha256": "028da551609ea94197ae5c0b79ccb08f5e41d20d31dd128a65028dfb257a44fc",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260923160000_0392_demanda_derivada_nao_reduplica.sql",
+      "sha256": "04aa30fa5877cadd2a579ea2ef9e2ed78040e69f6b5951528d012c00681f4acd",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260923210000_0394_fluxos_de_atendimento_base.sql",
+      "sha256": "a99a3ee183082de54b6dc5e91e1d5fb3f6e9022cdd54f21c3e5669212cefaf26",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260923220000_0396_conversa_fica_com_quem_atendeu.sql",
+      "sha256": "180cfed3b52b024b1b7504cf944146674d6c07610126bf4f8481a666832e9446",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260923230000_0397_roteiro_encerra_com_humano_e_prazo.sql",
+      "sha256": "73e048cf513e8829f2f83b3b8885f96febd72e9b90e030aa594b74354a87b6c2",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260924053717_0401_conversoes_processamento_e_reenvio.sql",
+      "sha256": "1afaf5a0e4c532cf4dfdd9ff026df27b3230404394eabb2b12308de91eb8176a",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260924053718_0402_google_captura_e_qualificacao.sql",
+      "sha256": "2cc0bf4fbbe3251d2aed9f8a396cb3fa576c3b2ef0a4252814166db93ddb2244",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260924060000_0400_moeda_do_negocio_da_conversa.sql",
+      "sha256": "2bf4dec588bc7b3191849b18139786a54ff5ec84449c80a64a84fe841d330169",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260924070000_0403_lead_so_liga_a_propria_empresa.sql",
+      "sha256": "b8b3bd1c680f1e2909739d61d807f448ce7e30ca5d9f68db5e66a976ac505628",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260924180000_0404_comando_da_conversa_sem_reavaliar_rls.sql",
+      "sha256": "4bf72a4c56e55778f643228e5775fc16d3cf6b4a8d558cb8ba5b121df17e4256",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260924190000_0405_revogacao_de_membro_desatribui_conversas.sql",
+      "sha256": "35c3e334397020504d8ec250ffadcbac4e408e80ee3f61de152cafd541cfc137",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260924200000_0406_logo_por_tema.sql",
+      "sha256": "faab83fccada994ae56bd08ebdd6bdedad01933d42651c7dd24d76569aef8730",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260924200100_0407_social_identity_na_fusao.sql",
+      "sha256": "63213a64a3b3e566c9d5440c0e537686b7c034c1c63ed5594de1cca5494a73a6",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260924200200_0408_prospeccao_vence_no_cron.sql",
+      "sha256": "cad0dce4cdeb7616db228b1dbb7d09e6e04eb1312201262d87049c664b844fa3",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260925000000_0409_knowledge_content_hash.sql",
+      "sha256": "9b6013ab07d458bfbe8761a7d8fcef78ab875cef61c5e57b5a4e51d8badd918a",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260925120000_0410_catalogo_requesty.sql",
+      "sha256": "2df9bc8ef6022538be83d636fb06be7c1df5abc407c32b9d211bb0c142b00ebf",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260925150000_0412_birthdate_na_proposta_de_dado.sql",
+      "sha256": "ccce85adde0b843277c7518b3e7b955c1061d114df30d32bbef8d55c628cc777",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260925163550_0413_provedor_personalizado.sql",
+      "sha256": "daef4b49441d2e1cb11d4b9834dff71dc2d97f8727d7a67cd778cbc4df758eed",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260925170000_0414_redact_unificado_chama_a_cascata.sql",
+      "sha256": "9fb4fd88dad063c50fb27d0ac7382f7929d7dfd5a794d4ae83f83f80fe56403c",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260925180000_0415_teto_de_tokens_ativos_por_organizacao.sql",
+      "sha256": "121b61e65ce78415c1416c0297f720b7a7ad2e3464ee0246001028e2086e14fa",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260925200000_0416_autoria_em_nome_de_na_mensagem.sql",
+      "sha256": "852b9f5a83648846be8e9030e884ffe6c956ec3e1df2fb4ec58a86142f709c5d",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260925223000_0417_message_failed_vira_gatilho.sql",
+      "sha256": "4b7df1af5a71f14009f289d04d00587093c55b24c3101a24ec4bdf99056ee3c4",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260925235500_0418_publicar_com_provedor_personalizado.sql",
+      "sha256": "39cde87740e31b15a33ad3003b63af9148202a89400d193088f41c8ea0974e33",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260926022806_0419_rascunho_sugerido_por_integracao.sql",
+      "sha256": "6ce0e603712a527ec6176c8005dba6b02837c14f0e244616ef166cea64371197",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260926030000_0421_jev_observacoes.sql",
+      "sha256": "ed529d38efabed8c2f62563a32792f5eb390a706a5f89895b932ab921148c974",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260926035000_0420_motivo_de_ganho.sql",
+      "sha256": "15bfb116ee9f27d0772f4678f33c977036803688576ea3fb329a5d06ee4c56be",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260926040000_0422_skill_pointers_legados.sql",
+      "sha256": "1c3d4ca976c80dc0a62fbaa94fbe635d2ac3311be14c136f7973ed23a2a2b20c",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260926040100_0423_hardening_fn_espelha_nome.sql",
+      "sha256": "5b73c13b95355a55836286f031e46079cb2dfaac456e064e3891056d957bf145",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260926040200_0424_skill_versions_legadas_preservadas.sql",
+      "sha256": "9ef4d6a80c6d404ea74d85ac4f868fc1bc504210ffa6f169410a54a8588254c8",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260926120000_0425_retomada_como_novo_negocio.sql",
+      "sha256": "a878e01547a74bce171efd5fb6a86f5e25dbbb41327bce1c38c897f17f185080",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260926150000_0426_motivo_de_perda_com_categoria.sql",
+      "sha256": "ef5e5548184d1f25d946d8aa60a9f6efddce369a79d0f033512502162d2555a6",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260926160000_0427_probabilidade_de_ganho_por_etapa.sql",
+      "sha256": "4ea0b794be57da6279f680d27f2b96b1718bca2c1cf4f957dfc10609d7123765",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260926170000_0428_candidatos_ao_golden_na_tabela.sql",
+      "sha256": "f067290d1381317e41b592d2766c089a6c7e0ee049d4b26bedbfbd511381f140",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260926200200_0432_poda_de_midia.sql",
+      "sha256": "c7a4d6c0f916da04e976978469ed2d2452bd668dbb6a8c7ab1e8b2524797e886",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260926223000_0434_reenfileiramento_de_midia.sql",
+      "sha256": "a044d0e4feb37d8431fc5fe81f08efda55e1be8c82b9ff089c69e87c35a06a80",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260927015500_0435_contagem_do_expurgo_da_fila.sql",
+      "sha256": "e75b448bcf3399b1f8c21bda5e390e083892a4ef9b91ed5896993259c61103b7",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260927100000_0436_conversao_google_por_etapa.sql",
+      "sha256": "5d9772c7b6a961f78b3e83ab22c65133f22205af24ad1a20f9755045750e1752",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260927110000_0437_links_rastreaveis.sql",
+      "sha256": "8335483afee785b104b4484d7cd2514294ab620b58e358758659aebcc878580c",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260927120000_0438_aviso_de_caso_ignora_conexao_arquivada.sql",
+      "sha256": "ad628584d6fb2c1a5e7d0ae53d73454702f6ddbb459dcb3263534d7224f628e4",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260927130000_0439_aviso_de_caso_confere_o_destino_no_envio.sql",
+      "sha256": "d897430b02e9d5cb2c8d8a9efdbd3477001194301454fba822f7ab295e52eceb",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260927140100_0440_etapa_avisa_na_central.sql",
+      "sha256": "e2bde9a46a18397e249fac2b963d046f2b1ca9c5041d7c0087949ea6aaa2009e",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260927140200_0441_sons_dos_avisos.sql",
+      "sha256": "fe08c507321fc0e39e53cb90830d06f67ecb24fd7a9d487c16a86356a1b2825c",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260927140300_0442_aviso_da_central_no_barramento.sql",
+      "sha256": "dcd5ad95fe6e397a13d0d1d9d7f0f901d27c6ab2ec479bd288afd2c8cb9afca3",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260927160000_0443_icone_da_aba.sql",
+      "sha256": "1999367c461cd1cf855ccc69d84e0a53e171f64494e08f9e74f4e46cdc6c42fc",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260928120000_0444_relatorio_financeiro_por_moeda.sql",
+      "sha256": "0d2d0be49638f879d93bc57334466a2fb3b22b8e39995751cb9a00466dfb42be",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260928132000_0448_empresas_pessoas_importacao.sql",
+      "sha256": "06a1bcb843b036ff002715a80a39f0185f752b5d9150e3d8562c177b7d19cbb1",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260928132100_0449_lgpd_alcanca_empresas_e_pessoas.sql",
+      "sha256": "0603f4260f5802c51d8ce15a3280a8910ac551cbe9508c887924adb16240825b",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260928140000_0462_configuracoes_de_propostas.sql",
+      "sha256": "11f292da15b6b3a0f495f3b9140cba146c21e1ba9ce3debbb74550f429b72705",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260928140100_0463_proposta_ai_draft_enabled.sql",
+      "sha256": "ec9a2391100f1dc1ed103f1c3a6af82ecc4ac578a8df01ca13570a1fcc5a2554",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260928140200_0464_proposta_comercial.sql",
+      "sha256": "5f193652058abf0b6a8ef424ceb4209310acab0c564e203fd5ea415e8e0fb77a",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260928140300_0465_a_proposta_nao_aponta_para_outra_organizacao.sql",
+      "sha256": "713587fa69e7a02041948f4c27192a168336b5d339a62f41e0382b955cbb48ef",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260928140400_0466_c2_numeracao_envio_e_sobrevivencia.sql",
+      "sha256": "6525e88130f4c45288a6d84b44ed4b2bf9def0ef11358d907c084e4ed13dc1d0",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260928140500_0467_c3_precificacao_e_rascunho_unico.sql",
+      "sha256": "4d790daca517aaf5eca78e4ddf4222fb1f8401edeffdfc8caa9c377b4bac2855",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260928140600_0468_m0_proposta_referencia_modelo.sql",
+      "sha256": "67dd2eac64aa960d396191425dc0cf1f08b60000dde30c897fcddd8da6a4afc3",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260928140700_0469_c4_revisao_por_versao_e_auditoria.sql",
+      "sha256": "d3d102c2078f12eaa9c9c177ab1eebd49b7a0b6ad31de6783fd731e1a938224e",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260928140800_0470_e1_followup_e_orcamento.sql",
+      "sha256": "d4128bdc578566a1fd6809e21c5b30ad5616bec1c2e153790581f6c882852854",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260928140900_0471_m0_tabela_de_modelos.sql",
+      "sha256": "17c0f82dcba8ec731dce3aeec60871119167126c94205c84195e0d60193ec35f",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260928141000_0472_m1_briefing_e_revisao.sql",
+      "sha256": "a78f674738258719a70afb674ce87d21c1392ec0b2e67c777204c385f1d11c91",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260928141100_0473_m3_secoes_editadas.sql",
+      "sha256": "54caefce18f91c6718becde1ee80cae6c178c79bc8e26030ca4616a2672bccfd",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260928141200_0474_ia_sugere_modelo_da_proposta.sql",
+      "sha256": "4d85050a6bde7deef961b436563adbf9220c8602464c2f28e8c2ebfcddeb6b1e",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260928141300_0475_proposta_pronta_para_revisao.sql",
+      "sha256": "a9c3eb52a7849800d7e8ca378d5256cb0ad5388c9f4109942f9a88675855e755",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260928141400_0476_modelos_de_proposta_da_empresa.sql",
+      "sha256": "bcf2a4b9dcadb6fef2e44f4575bede4361a2988256d17da8d88d269850598dc5",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260928141500_0477_redact_alcanca_crm_proposals.sql",
+      "sha256": "9f2536ed55613727d5455c7a577cbf8ae532b189c389738b25a1df31ba49e58b",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260928150000_0478_notas_internas_realtime_e_visibilidade.sql",
+      "sha256": "991fef75e5e7371ceb2b8cbb1413907c35c8405565a2122c0685952daf71ad92",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260928150200_0480_honorarios_modulo_oficial.sql",
+      "sha256": "15831c3dce1686dcd37a5eeb1be53c7631fa5e53165844a67952e094a17b7cbe",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260928150300_0481_indice_cooldown_de_silencio.sql",
+      "sha256": "32de690f70b81e8a06b5e7d6c36c22cca1d31f44df441a2a6bf3dbac694adc41",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260928150400_0482_grupos_na_inbox.sql",
+      "sha256": "76671b5d2c0d9c9ae98dd816c972ac9ca7b7f0b3bd1908c8faa25d3e002957c5",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260928184045_0483_anexo_na_nota_interna.sql",
+      "sha256": "aeacf541eaa70fa2cd9785b9d9d68451c8ffe14f2710c8412e0882fe0a3020e9",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260928200400_0484_busca_humana_entra_na_telemetria.sql",
+      "sha256": "2a701646c50744512226b0c5638feccf9c25351a4f716c8bccf140caa892f483",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260928214705_0485_lgpd_alcanca_secoes_de_modulo.sql",
+      "sha256": "86f4cce9cef1c1f06784ea5358b1ed4a7e20f8b6e010604cb5cec7a6d4bf1f12",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260929020337_0486_o_playbook_da_agenda_aprende_os_dois_passos.sql",
+      "sha256": "5d8fa2d98ea22ea82474f06d4e94235fba060825624c68757028265e7f14ed36",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260929053040_0488_exclusao_de_contato_sem_perder_historico.sql",
+      "sha256": "b31db38741ae9c97d960a2477b6ff107b9d7d52b7997556a76a083975b0f2012",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260929060000_0489_followup_rls_por_operacao.sql",
+      "sha256": "e9d193523b10229f383a90868e995f51564bcf821b965347276b2db0ce97a291",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260929080000_0490_followup_trilha_e_versoes_rls_por_operacao.sql",
+      "sha256": "b50db6a191c36f435e5b3e42166c32520827051720cae5a658f2f651f0e00919",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260929115848_0491_dedupe_de_event_dead_atomico.sql",
+      "sha256": "9a22129db28fa05c53d94fa74a920c97161da096ffb01b493021bb7aeafb776a",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260930010300_0494_lgpd_cascata_banco_alcanca_notas_itens.sql",
+      "sha256": "b89e53e7daf6d1b24d5164ec1d37a42b99163124f8a10312699b19e414545d03",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260930120000_0495_janela_de_resposta_separada.sql",
+      "sha256": "bbc909039b227130ea84d6e33ccd27cc60af7047bb6a7e6b33a87df17eda19df",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260930140000_0497_lgpd_anonimizar_apaga_transcricao.sql",
+      "sha256": "8fa816d77a92a273e3610e18c0a7c90357953420e552c00f53411cf9ffdf5800",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260930150000_0498_debounce_rajada_configuravel.sql",
+      "sha256": "6b6ee3c464f771d3db21f97769692f167d951ecf0c25d285e53ce8fc95c55029",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260930160000_0499_atraso_humano_por_conexao.sql",
+      "sha256": "aaed49fc9027df00547e995b32dca66e4ada1c7f8f7ff749c0a9029aa0e9f790",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260930170000_0500_avisos_do_jev_na_central.sql",
+      "sha256": "cee866b414ea34288bf0e52892c3df25baec01cb92e96842b03af1a809a75d5f",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260930180000_0501_org_operante_e_suspensao_tipada.sql",
+      "sha256": "557114984c29ab4b7ab9bcad9d3b90e2214911a8af28a3c43510ffacea99f3b8",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20260930191523_0502_anotacao_simultanea_nao_apaga_a_outra.sql",
+      "sha256": "493e8432a1acc5a7cf03366f1b4101b0a04367289dcec72c427feeb37ef45221",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20261001120300_0503_trigger_imutavel_cobre_flags_e_debounce.sql",
+      "sha256": "214e7bdbd27090517f9ea271a11d41d666c7589c2878245fbc97a3ea2f73e90f",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20261001120400_0504_credencial_de_mapas.sql",
+      "sha256": "95b46aa6c644a0992f20e6e6fc29986843343240b093665d7e955f671a00dc5d",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20261001120500_0505_demanda_marca_proximo_passo_com_o_caso.sql",
+      "sha256": "5cddd6eea7a61af5b25091c5035e973cb1d394a3a49c101c42c0ac18420c1c4f",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20261001120600_0506_selecao_de_empresas_na_prospeccao.sql",
+      "sha256": "cfaeef412ed8f2608612b134fd163398ca0d779178ee9ea6441defc88ddf09ff",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20261001120800_0508_platform_admin_full_so_escreve.sql",
+      "sha256": "689997988339eb53011721b151090859aa8dc3fd522cd41e4d1b6defbbb2b18b",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20261001170000_0509_nota_interna_somente_autor_ou_manager.sql",
+      "sha256": "17891693b29a358dbe7bca12ae847069162a8a46a978ba4ed7094cbf21356fcf",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20261002151300_0513_motivo_de_perda_pediu_para_nao_receber.sql",
+      "sha256": "b74c5ee3ed97df66c523d2e3140aad5b3922f188ef3e87aa147000348b206cab",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20261002152000_0520_extensao_de_tema_gancho.sql",
+      "sha256": "d6bc77a04f446d97954583847643056f521b1be18cae9977d4fd79d907f73e8b",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20261002170000_0511_catalogo_oficial_instala.sql",
+      "sha256": "c0f3a1a41bf5664a3fb5a966849572e3653524c7723b278fa4b70b2118043262",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20261002190000_0514_recusa_permanente_do_atendimento_nao_pede_repeticao.sql",
+      "sha256": "a4ec33b14f5c97c4a9c938a117cb02b7f50146dcd0782265fd92719e169e8dfb",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20261002201500_0521_avisos_do_security_advisor.sql",
+      "sha256": "c3163058e9310fe0dc82216234a956e8c5880615d9d8979af8a085065b2f4a51",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20261002212525_0524_conversao_meta_por_etapa.sql",
+      "sha256": "5d8b60cc2f41610b2c5de7e62d46cdd7fa70752b3d3ac76c76e1c2e6a6819609",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20261002213953_0525_auditoria_so_inclusao_para_todo_papel.sql",
+      "sha256": "a92cf9c2a8180c90097d2610b8c13e3b165bd8489112ddcaa0ae688b9c8d12ee",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20261002220137_0530_classificador_do_roteador_automatico.sql",
+      "sha256": "6a729ad343520bf4eeda8fe6e856649f11be2fb6304fa34de3ee74838f11a929",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20261003140000_0527_dedupe_de_midia_nao_lida_atomico.sql",
+      "sha256": "8df2e8c535d3f91fafcd36189b53bb746fe4b28650557512384f75324552a47c",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20261003160000_0528_porteiro_do_envio_sem_meet.sql",
+      "sha256": "1437cbffd2f1fdec7ceaab493deda2b8dccd07ad99dc4061456768b57428c52f",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20261003161427_0532_anonimizar_exige_plataforma_full.sql",
+      "sha256": "b43c36f54336c71d32cc008712d299f5e2a459e467b33041f2f93fbe85543a40",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20261003170000_0531_origem_do_negocio_segue_o_canal_da_conversa.sql",
+      "sha256": "84342deab64c039be7c56d68570b67f1f88b19880033b19d963c24ca71d76012",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20261003200000_0529_support_readonly_nao_escreve_fatia_1.sql",
+      "sha256": "2deddf7f4652c60b443a63d521936f7edebb984e243740efaed1e25421b86667",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20261004090000_0533_support_readonly_nao_escreve_fatia_2.sql",
+      "sha256": "b77abf7a84222a6b1a2cbff1f51eb7eef6bb7c1ad2408090eb00d4712d6c4532",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20261004090001_0534_lead_reopened_vira_gatilho.sql",
+      "sha256": "deb47eac4b3df5203295f05f6a3d0ed8dace69c3a1306e3c739857ea829d0ce9",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20261004100000_0535_tipo_de_envio_no_trace.sql",
+      "sha256": "b0c8b74bb1abcf7c8e2a21f41639fef30440c33051006945261e66111735f884",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20261004110000_0536_remarcacao_carimba_o_horario.sql",
+      "sha256": "1e87d5e607ac6bfa5d8d80fa12b4d46113c1514012e7e8557584851948c79b57",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20261004120000_0537_ai_budgets_sem_truncate_para_a_chave_publica.sql",
+      "sha256": "cd8bf42c9afa4665dc0b72b55646540466548e8d32c9080a4380ff748b3ccd09",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20261004160000_0538_dedupe_de_job_dead_da_conversa_atomico.sql",
+      "sha256": "2f28932ea1f2b8a63134fff146080c6fe51dcb5a6ca6a90f21d033c3e4ccac17",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20261004180000_0539_dedupe_dos_avisos_other_por_titulo.sql",
+      "sha256": "f1fb0863827b9641fda30b0c209db10b8073c264f24d200606577d2dfb44d1a7",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20261004200000_0540_dedupe_dos_avisos_de_orcamento.sql",
+      "sha256": "2e1007edc929a585eaef95c07d1c41abf6eb37b2b6f6528b64f97f311989b5d4",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20261004230000_0542_destino_de_funil_da_intencao.sql",
+      "sha256": "5b64561db39d6ac133e5687b91f858536d14b7f5dacb2d0fd4e45a21ff72ce22",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20261005033449_0545_toggle_de_canal_desativado.sql",
+      "sha256": "fc2fcfe5b21be6c33fed533751f1ad3cea1b24d381edd424f58d196939076b87",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20261005090000_0543_teto_do_nome_de_sessao_waha_no_banco.sql",
+      "sha256": "b1f01162be29921039509faf14e9422634797b8ba43032aa2e2503ff392caf0f",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20261005124502_0547_jev_roteador_resultados.sql",
+      "sha256": "dd21be815fbbbde24fc89f2585a0b999b5b500ad7c781a34399a1de757fd5780",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20261005190101_0551_aniversario_e_compromisso_alcancam_a_origem.sql",
+      "sha256": "ee9ee6295fcdbbc5936b05681a68c0eb54d05489dc2bb827263500ac4f0729b4",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20261005200000_0553_leitura_do_catalogo_nao_avalia_a_regra_de_escrita.sql",
+      "sha256": "80a98b621445836491b5e54b74691b70dc41b3146b23fac554247291bb4a4bb4",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20261005200301_0557_retencao_de_midia_opt_in_e_marcador.sql",
+      "sha256": "c72d68c8fed2be3dcb9ca80a7c20e3fe1d1c6a0c25e3c3f4a6a34080c2b67a98",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20261005200302_0558_coluna_identificadora_do_cliente_no_banco_externo.sql",
+      "sha256": "1d363734f56de36253d4a8455ff514c59bf6e802e72b07bb14c2dd0e9e2d39a0",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20261006030529_0563_contato_pessoal.sql",
+      "sha256": "fcdb4f00903470c84673127466fda7fb02f02b91c8ff5d864156620dd7fe9133",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20261006060000_0564_pessoal_remove_trechos_do_rag.sql",
+      "sha256": "93eb5847119c600b7f44f225394b96d60fbadeff89f6d478e8b1e735890f141b",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20261006160001_0572_retencao_do_anexo_da_nota_interna_por_idade.sql",
+      "sha256": "1a04598d3b97d50115ba498696ce6073f2fcc97017edc206985a2a8d422585b8",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20261006200043_0577_form_source_ai_authorization.sql",
+      "sha256": "111dc97571e7b4c5267457883aebba2ccc278d2c814789161516202bb8646bcc",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20261006223000_0578_idle_limpa_erro_morto_google.sql",
+      "sha256": "9bb797eda758aa959820df3fdc08b53d2441cd254196dafadce0ca1fc83e14b8",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20261007010001_0580_chave_cifrada_do_mcp_externo.sql",
+      "sha256": "16114cc8a36a9c6471b4d0894bc69633673490be879e8fc656edd5681c21a743",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20261007011236_0581_desfecho_do_negocio_so_nasce_do_negocio.sql",
+      "sha256": "a41ae798ab757a8db7b1e3d3645a218c48df31bed011ea948e17f8e0ec524712",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20261007031828_0582_indice_unico_da_comanda_do_ganho_por_negocio.sql",
+      "sha256": "ff4bc04fcde9d69be7a293a65f75bd4ef951cfc2dcc029f0e15c65b526b0ac14",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20261007130926_0583_cobranca_planos_e_assinaturas.sql",
+      "sha256": "c8fe1ed231feedc2a3eb914d314067cc823eda30deebd152236a5e50eed91cac",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20261007131321_0585_indices_do_caminho_quente.sql",
+      "sha256": "ff4749efbf6bba6fc3262288a1636d7923c935d6b5cf48ab9fa4d62cb82cfcff",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20261007131331_0586_uso_de_ia_agregado_no_banco.sql",
+      "sha256": "1a714f11c73fc6ae7e1aff906aa0cf6f8be260a87a86a9f157a7185d6b888af9",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20261007131344_0587_retencao_das_tabelas_da_ia.sql",
+      "sha256": "87ad8154f7ece3559104ebfdb91dfe7c4bd27c5e348729d30eb14009f9d03d4f",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20261007180001_0589_canal_pausado_na_central.sql",
+      "sha256": "aa9cb2f0cdfb14bf8c19d9e8b5265165efce8116c2f39af013c3c0784360aa4f",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20261007180002_0590_relatorio_por_canal.sql",
+      "sha256": "a62c4a7b1a6aeb03e8f9400c1bf06b9e1af0db83e020c1ffaa6cb3240ca3126f",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20261007205134_0592_publicar_com_login_por_assinatura.sql",
+      "sha256": "cee6cd42dcd2db03fb89cf154570f4d3649aa27229e956bacfaf992a5d83c20b",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20261008012100_0595_form_fields_por_fonte_webhook.sql",
+      "sha256": "cd375f327b826b16658ec9c0cba3da5395536782695aecba4a7d5f00abc85f90",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20261008021443_0596_recorte_da_janela_nas_metricas.sql",
+      "sha256": "5ec0929cbccf5cf5c2b1520fe3ee3bd8db4d935a12f0b515bb111b4dc7f43762",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20261008021533_0597_cpf_cifra_at_rest.sql",
+      "sha256": "d8ac31adbff3ecb9aeaeb3e8a5f232f1c99fb59c6b5788f9bec6e502528abc89",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20261008040255_0599_gemini_35_flash_lite_no_catalogo.sql",
+      "sha256": "490b04ead13adcb256ec5f3b83c6f4dcce1b957af695f7e38f20cb61025215c5",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20261008045240_0600_catalogo_gemini_3x.sql",
+      "sha256": "4af060d300be3ef4b5ae357cac255d5d45405b446d8c6bc7be4f621666836b28",
+      "matches_supplied_zip": true
+    },
+    {
+      "path": "supabase/migrations/20261008133818_0612_push_so_a_quem_ve_a_conversa.sql",
+      "sha256": "e580ecff2f60f69610d674ff44b59af7f5a724aad1b3a494263bb9e459e9bf30",
+      "matches_supplied_zip": true
+    }
+  ]
+}

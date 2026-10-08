@@ -1,0 +1,50 @@
+GENESIS TALK v1.77 — sanitized Linux CI summaries
+Unit/build source: 615c9a1c4c746bd981ee22c1c9aa53004d6b9bd9
+DB source: 615c9a1c4c746bd981ee22c1c9aa53004d6b9bd9
+E2E source: 386d3d295438de53f5eb36ad4db41621a794f9f7; runtime scope equivalence recorded in JSON
+ci-final-part1.log
+2026-10-08T22:21:55.1639628Z  Test Files  589 passed (589)
+2026-10-08T22:21:55.1704006Z       Tests  5942 passed (5942)
+2026-10-08T22:21:55.1712191Z    Duration  348.78s (transform 24.54s, setup 111.74s, import 238.89s, tests 174.23s, environment 425.75s)
+ci-final-part2.log
+2026-10-08T22:23:56.3542258Z  Test Files  589 passed (589)
+2026-10-08T22:23:56.3589034Z       Tests  6048 passed (6048)
+2026-10-08T22:23:56.3598879Z    Duration  459.62s (transform 29.26s, setup 156.23s, import 333.48s, tests 143.55s, environment 606.27s)
+ci-final-part3.log
+2026-10-08T22:22:06.4463139Z  Test Files  588 passed (588)
+2026-10-08T22:22:06.4528228Z       Tests  6541 passed | 1 expected fail (6542)
+2026-10-08T22:22:06.4538411Z    Duration  456.03s (transform 30.53s, setup 154.30s, import 313.54s, tests 175.45s, environment 590.48s)
+ci-final-part4.log
+2026-10-08T22:14:48.6147421Z  ✓  cercas  tests/unit/namespace-das-imagens.test.ts (16 tests | 1 skipped) 226ms
+2026-10-08T22:16:02.0709950Z  ✓  cercas  tests/unit/namespace-das-imagens-runtime-owner.test.ts (1 test | 1 skipped) 4ms
+2026-10-08T22:16:19.3967854Z  Test Files  301 passed (301)
+2026-10-08T22:16:19.3991575Z       Tests  2929 passed | 2 skipped (2931)
+2026-10-08T22:16:19.3994807Z    Duration  104.08s (transform 5.95s, setup 66.30s, import 68.83s, tests 119.92s, environment 51ms)
+e2e-final-part1.log
+2026-10-08T22:20:49.7252748Z   151 passed (13.1m)
+e2e-final-part2.log
+2026-10-08T22:25:35.0584076Z   6 skipped
+2026-10-08T22:25:35.0584313Z   104 passed (16.3m)
+e2e-final-part3.log
+2026-10-08T22:24:53.1880414Z   1 skipped
+2026-10-08T22:24:53.1881155Z   85 passed (15.2m)
+e2e-final-part4.log
+2026-10-08T22:10:57.7187059Z   13 passed (44.0s)
+e2e-final-part5.log
+2026-10-08T22:22:22.6915610Z   70 passed (13.8m)
+e2e-final-part6.log
+2026-10-08T22:15:36.3461607Z   ✓  20 [chromium] › tests/e2e/genesis-mobile-first.spec.ts:38:9 › GENESIS Mobile First — body não transborda › 360px: rotas P0 cabem no viewport (10.2s)
+2026-10-08T22:15:47.0124723Z   ✓  21 [chromium] › tests/e2e/genesis-mobile-first.spec.ts:38:9 › GENESIS Mobile First — body não transborda › 375px: rotas P0 cabem no viewport (10.6s)
+2026-10-08T22:15:58.1265354Z   ✓  22 [chromium] › tests/e2e/genesis-mobile-first.spec.ts:38:9 › GENESIS Mobile First — body não transborda › 390px: rotas P0 cabem no viewport (11.1s)
+2026-10-08T22:16:09.1470738Z   ✓  23 [chromium] › tests/e2e/genesis-mobile-first.spec.ts:38:9 › GENESIS Mobile First — body não transborda › 412px: rotas P0 cabem no viewport (11.0s)
+2026-10-08T22:16:19.4940711Z   ✓  24 [chromium] › tests/e2e/genesis-mobile-first.spec.ts:38:9 › GENESIS Mobile First — body não transborda › 430px: rotas P0 cabem no viewport (10.3s)
+2026-10-08T22:27:30.6733909Z   63 passed (18.1m)
+
+Final quality job: https://github.com/hudsonlcustodio/GENESISTALKV177/actions/runs/37852151556/job/113567434125
+pnpm run gov:verify: PASS; exit 0; started 2026-10-08T22:14:31Z; completed 2026-10-08T22:42:22Z
+pnpm run build: PASS; exit 0; started 2026-10-08T22:42:22Z; completed 2026-10-08T22:45:36Z
+2026-10-08T22:42:22.2572981Z  Test Files  2067 passed (2067)
+2026-10-08T22:42:22.2739152Z       Tests  21460 passed | 1 expected fail | 2 skipped (21463)
+2026-10-08T22:42:22.2767208Z    Duration  1475.41s (transform 63.62s, setup 519.51s, import 993.72s, tests 623.62s, environment 1786.77s)
+2026-10-08T22:43:56.8460655Z ✓ Compiled successfully in 92s
+2026-10-08T22:45:28.1800474Z ✓ Generating static pages using 3 workers (62/62) in 22.0s

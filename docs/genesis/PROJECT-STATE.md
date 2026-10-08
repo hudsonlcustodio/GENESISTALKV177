@@ -111,3 +111,16 @@ O estado FOUNDATION acima é histórico. A árvore v1.77 e a rota manual Contabo
 versionadas e enviadas ao repositório Genesis autorizado. Decisão de produção:
 **BLOCKED** até a evidência final dos gates e validação no destino. Consulte
 `PRODUCTION-READINESS-v1.77.md`, seu JSON de evidências e o handoff pós-Codex.
+
+## Evidência de execução — estado atual
+
+Código revisado: `615c9a1c4c746bd981ee22c1c9aa53004d6b9bd9`, branch `main`.
+Unitários/cercas: 21.460 aprovados; PostgreSQL 15/17: 3.261 aprovados em cada
+major, com baseline install/update e isolamento. E2E: 486 aprovados, incluindo
+cinco larguras × oito rotas. Builds de quatro imagens em amd64/arm64 usam
+APP_VERSION 1.77.0. Os skips/falha esperada e o SHA de cada prova estão no JSON.
+
+Decisão continua **BLOCKED**: audit completo HIGH `braces@3.0.3` sem patch
+publicado, check adicional de acervo excede a tela do updater, e destino
+Contabo/smoke/backup/restore não foram disponibilizados/provados. O relatório
+de gates é a fonte do resultado de gov:verify/build, sem inferir PASS de pendência.

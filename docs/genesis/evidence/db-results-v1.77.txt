@@ -1,0 +1,18 @@
+Postgres 15
+2026-10-08T22:24:33.7454468Z ==> modo INSTALL: aplicando baseline.sql com ON_ERROR_STOP=1
+2026-10-08T22:24:36.3294317Z     ✓ molde de aplicação única: inv_baseline_uma_aplicacao
+2026-10-08T22:24:36.3295501Z ==> modo UPDATE: re-aplicando baseline.sql COM ON_ERROR_STOP=1 (idempotência de verdade)
+2026-10-08T22:39:51.6098382Z  Test Files  413 passed (413)
+2026-10-08T22:39:51.6136081Z       Tests  3261 passed | 1 skipped (3262)
+2026-10-08T22:39:51.6143836Z    Duration  903.38s (transform 8.42s, setup 77.85s, import 46.96s, tests 730.27s, environment 38ms)
+2026-10-08T22:39:53.9270863Z ==> INSTALL: baseline.sql com ON_ERROR_STOP=1
+2026-10-08T22:39:56.4999751Z ==> UPDATE: re-aplicando baseline.sql SOBRE OS DADOS, com ON_ERROR_STOP=1
+Postgres 17
+2026-10-08T22:23:29.7185072Z ==> modo INSTALL: aplicando baseline.sql com ON_ERROR_STOP=1
+2026-10-08T22:23:32.0888941Z     ✓ molde de aplicação única: inv_baseline_uma_aplicacao
+2026-10-08T22:23:32.0890655Z ==> modo UPDATE: re-aplicando baseline.sql COM ON_ERROR_STOP=1 (idempotência de verdade)
+2026-10-08T22:40:07.0356871Z  Test Files  413 passed (413)
+2026-10-08T22:40:07.0377479Z       Tests  3261 passed | 1 skipped (3262)
+2026-10-08T22:40:07.0383849Z    Duration  984.97s (transform 8.40s, setup 105.65s, import 45.08s, tests 784.56s, environment 38ms)
+2026-10-08T22:40:09.4808570Z ==> INSTALL: baseline.sql com ON_ERROR_STOP=1
+2026-10-08T22:40:11.8321582Z ==> UPDATE: re-aplicando baseline.sql SOBRE OS DADOS, com ON_ERROR_STOP=1
