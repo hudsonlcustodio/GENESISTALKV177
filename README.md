@@ -60,3 +60,28 @@ applicable. The upstream README captured at this intake is archived under
 
 Technical identifiers such as legacy cookies, webhook headers, migration names
 and wire contracts are not globally renamed merely for branding.
+
+## Contabo and development guides
+
+The manual Genesis installation is documented in `deploy/contabo/README.md`.
+The production gate and collected evidence are in
+`docs/genesis/PRODUCTION-READINESS-v1.77.md`.
+
+Os guias herdados `deskcomm-*` orientam contribuição e manutenção da base técnica.
+No Codex, a forma explícita de chamar um deles é `$deskcomm-instalar`; para o
+deploy Genesis, use a rota Contabo documentada acima, com o override Genesis.
+Quem desenvolve os guias pode ligá-los ao clone revisado:
+
+```bash
+bash scripts/instalar-guias.sh --fonte .
+```
+
+Guias copiados **não** se atualizam sozinhos: execute a instalação novamente
+após revisar a fonte. Um link criado com `--fonte` acompanha essa árvore.
+No Claude Code, o guia global instalado vale mais que o do clone aberto;
+quem edita a fonte deve usar o link para o clone revisado ou remover a instalação
+global. Para desfazer somente os guias que o script registrou:
+
+```bash
+bash -s -- --remover < scripts/instalar-guias.sh
+```
