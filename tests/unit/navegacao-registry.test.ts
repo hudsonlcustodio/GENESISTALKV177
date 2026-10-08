@@ -76,6 +76,19 @@ describe("canSee", () => {
 });
 
 describe("sidebarGroups", () => {
+  it("Supervisão 360 fica no uso diário e Meta Ads continua no hub, com RBAC", () => {
+    const analise = sidebarGroups(false, "manager").find((g) => g.group.id === "analise");
+    expect(analise?.items.map((i) => i.href)).toEqual([
+      "/app/supervisao", "/app/metrics", "/app/activities",
+    ]);
+    const hub = hubSections("analise", false, "manager").flatMap((s) => s.items.map((i) => i.href));
+    expect(hub).toContain("/app/ads/meta");
+    expect(searchable(false, "manager").map((d) => d.href)).toContain("/app/ads/meta");
+    const viewerHub = hubSections("analise", false, "viewer").flatMap((s) => s.items.map((i) => i.href));
+    expect(viewerHub).not.toContain("/app/ads/meta");
+    expect(viewerHub).not.toContain("/app/supervisao");
+  });
+
   it("devolve os grupos na ordem declarada em NAV_GROUPS", () => {
     const ordem = sidebarGroups(true, null).map((g) => g.group.id);
     const esperada = NAV_GROUPS.map((g) => g.id).filter((id) => ordem.includes(id));

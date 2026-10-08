@@ -27,7 +27,7 @@ async function entrarComoManager(page: Page) {
   await page.goto("/login");
   await page.getByLabel(/e-?mail/i).fill(manager.email);
   await page.getByLabel(/senha|password/i).fill(creds.password);
-  await page.getByRole("button", { name: /entrar|login|sign in/i }).click();
+  await page.getByRole("button", { name: "Entrar", exact: true }).click();
   await page.waitForURL(/\/app(?:\/|$)/);
 }
 

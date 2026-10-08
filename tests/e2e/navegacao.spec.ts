@@ -154,6 +154,17 @@ test.describe("navegação agrupada", () => {
     await expect(page.getByRole("heading", { name: "Funis", level: 1 })).toBeVisible();
   });
 
+  test("Supervisão fica no menu e Meta Ads continua alcançável pelo hub de Análise", async ({ page }) => {
+    await loginAdmin(page);
+    await sidebar(page).getByRole("link", { name: "Supervisão 360", exact: true }).click();
+    await expect(page).toHaveURL(/\/app\/supervisao$/);
+    await expect(page.getByTestId("genesis-supervisao-360")).toBeVisible();
+    await sidebar(page).getByRole("link", { name: "Ver tudo em Análise" }).click();
+    await expect(page).toHaveURL(/\/app\/analise$/);
+    await page.getByRole("link", { name: /Meta Ads/ }).click();
+    await expect(page).toHaveURL(/\/app\/ads\/meta$/);
+  });
+
   test("chega em Conhecimento, que só existia atrás das abas de IA", async ({ page }) => {
     await loginAdmin(page);
 

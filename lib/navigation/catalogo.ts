@@ -801,9 +801,10 @@ export const NAV_CATALOG = [
     sidebar: true,
   },
   {
-    // Logo abaixo de Desempenho porque responde a metade da MESMA pergunta: lá
-    // está o que aconteceu depois que a pessoa chegou; aqui, quanto custou
-    // trazê-la. Ler as duas juntas é o que fecha a conta do custo por cliente.
+    // Consulta periódica de campanhas no hub de Análise. Supervisão 360 ocupa
+    // a porta de uso diário no sidebar: acrescentar uma quarta linha fazia o
+    // menu rolar em 1280×900 (provado pelo e2e de navegação). O hub e o ⌘K
+    // continuam oferecendo Meta Ads, com a mesma permissão de manager.
     href: "/app/ads/meta",
     label: "Meta Ads",
     description: "Quanto custou cada resultado das campanhas que trazem gente para cá.",
@@ -814,7 +815,6 @@ export const NAV_CATALOG = [
     // pessoa — orçamento e criativo são da empresa inteira. Mesmo grau dos
     // outros dois vizinhos do grupo.
     minRole: "manager",
-    sidebar: true,
   },
   {
     // Irmã de "Desempenho", não a mesma coisa: lá é DESFECHO (funil agora,
