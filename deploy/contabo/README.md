@@ -118,3 +118,8 @@ mensagem real, Inbox autenticado, tenant isolation ou jornada humana/IA.
 E2E autenticado usa seed canônico e os cinco viewports Genesis; a evidência final
 está em `docs/genesis/PRODUCTION-READINESS-v1.77.md`. Não declare produção pronta
 sem restore/security/runtime realmente provados.
+
+Para o gate de banco nesta árvore sem releases Genesis, execute em Linux:
+`CONFERENCIA_KIT_UPSTREAM_REPO=melgarafael/DeskcommCRM pnpm test:db`.
+Isso confere as regras do kit local e das releases históricas do vendor contra
+a baseline Genesis; usa refs separados e não habilita o updater/publicação.

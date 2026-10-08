@@ -36,4 +36,13 @@ describe("Contabo: artefatos Genesis e segredos fora do build", () => {
         expect(job).toContain("if: github.repository == 'melgarafael/DeskcommCRM' &&");
     }
   });
+  it("o gate DB calibra o kit vendor sem importar suas tags como releases Genesis", () => {
+    expect(read(".github/workflows/ci.yml")).toContain("CONFERENCIA_KIT_UPSTREAM_REPO: melgarafael/DeskcommCRM");
+    const script = read("scripts/conferir-isolamento-do-kit.sh");
+    expect(script).toContain('refs/genesis/vendor-check/$1');
+    expect(script).toContain('gh release view --repo "$upstream_repo"');
+    expect(script).toContain('conferir "update.sh deste checkout"');
+    expect(script).toContain('conferir "update.sh da última release');
+    expect(script).toContain('conferir "update.sh da $ANTES_DO_FILTRO');
+  });
 });

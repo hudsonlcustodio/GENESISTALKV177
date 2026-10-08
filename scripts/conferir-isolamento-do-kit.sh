@@ -62,9 +62,21 @@ BANCO="${2:?uso: $0 <container> <banco>}"
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 KIT="$ROOT/hostgator-setup-kit"
 
+# Genesis keeps the vendor kit for compatibility, but has no published releases.
+# This explicit test-only source uses a separate ref namespace, never origin/tags.
+upstream_repo="${CONFERENCIA_KIT_UPSTREAM_REPO:-}"
+if [ -n "$upstream_repo" ]; then
+  [[ "$upstream_repo" == melgarafael/DeskcommCRM ]] || { echo 'FATAL: origem de calibração do kit não reconhecida.' >&2; exit 1; }
+  export DESKCOMM_RELEASES_LATEST_URL="https://api.github.com/repos/$upstream_repo/releases/latest"
+fi
+
 release="${CONFERENCIA_KIT_RELEASE:-}"
 if [ -z "$release" ] && [ -n "${GH_TOKEN:-}" ] && command -v gh >/dev/null 2>&1; then
-  release="$(cd "$ROOT" && gh release view --json tagName -q .tagName 2>/dev/null || true)"
+  if [ -n "$upstream_repo" ]; then
+    release="$(gh release view --repo "$upstream_repo" --json tagName -q .tagName 2>/dev/null || true)"
+  else
+    release="$(cd "$ROOT" && gh release view --json tagName -q .tagName 2>/dev/null || true)"
+  fi
 fi
 if [ -z "$release" ]; then
   release="$(cd "$ROOT" && bash -c 'source "$1/_common.sh" >/dev/null 2>&1; ultima_release_estavel' _ "$KIT" || true)"
@@ -83,6 +95,13 @@ ANTES_DO_FILTRO="v1.63.0"
 TMP="$(mktemp -d "${TMPDIR:-/tmp}/deskcomm-update-sh.XXXXXX")"
 trap 'rm -rf "$TMP"' EXIT
 update_sh_da() {  # update_sh_da <tag> — caminho de uma cópia do update.sh da tag
+  if [ -n "$upstream_repo" ]; then
+    local ref="refs/genesis/vendor-check/$1"
+    git -C "$ROOT" fetch -q --no-tags --depth=1 "https://github.com/$upstream_repo.git" "+refs/tags/$1:$ref"
+    git -C "$ROOT" show "$ref:hostgator-setup-kit/update.sh" > "$TMP/$1"
+    printf '%s' "$TMP/$1"
+    return
+  fi
   if ! git -C "$ROOT" rev-parse -q --verify "refs/tags/$1^{commit}" >/dev/null; then
     local profundidade=""
     [ "$(git -C "$ROOT" rev-parse --is-shallow-repository)" = true ] && profundidade="--depth=1"
