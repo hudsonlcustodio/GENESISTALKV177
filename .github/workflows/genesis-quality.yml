@@ -15,7 +15,7 @@ jobs:
       # Full type coverage includes the test suite; local 4 GiB heap exhausted.
       NODE_OPTIONS: --max-old-space-size=6144
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: ./.github/actions/preparar-node
         timeout-minutes: 5
       - run: pnpm run gov:verify
