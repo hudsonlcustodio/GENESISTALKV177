@@ -144,3 +144,12 @@ O check de isolamento do kit usa releases vendor somente para calibrar as regras
 SQL contra a baseline local. Refs `refs/genesis/vendor-check/*` não habilitam
 releases, imagens públicas ou atualização Genesis. Banco/migrations não foram
 reescritos. Modos executáveis Linux são versionados após extração do ZIP Windows.
+
+## Consentimento — STOP em pausa manual
+
+`lib/followup/reactivity.ts` inclui `paused_manual` somente nos estados alcançados
+por hard stop (STOP/opt-out/contato pessoal). Mensagem comum e handoff continuam
+sem acordar essa pausa. A regressão Postgres antes marcada `it.fails` agora exige
+cancelamento, outcome, motivo e idempotência; seu adapter honra os estados
+passados pelo código de produção. Os três novos controles unitários preservam
+as fronteiras da pausa manual. Nenhuma tabela ou migration foi alterada.

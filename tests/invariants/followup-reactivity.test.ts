@@ -77,14 +77,14 @@ function reactivityDb(): ReactivityAdminClient {
       );
       return rows[0]?.is_blocked ?? false;
     },
-    async loadLiveEnrollmentsForContact(orgId, contactId): Promise<LiveEnrollmentRef[]> {
+    async loadLiveEnrollmentsForContact(orgId, contactId, statuses = LIVE_STATUSES): Promise<LiveEnrollmentRef[]> {
       const { rows } = await pool.query(
         `select e.id, e.status, e.current_node_id, e.steps_taken, e.pointer_id,
                 p.handoff_policy, p.trigger_config
          from followup_enrollments e
          join followup_flow_pointers p on p.id = e.pointer_id
          where e.organization_id = $1 and e.contact_id = $2 and e.status = any($3)`,
-        [orgId, contactId, LIVE_STATUSES],
+        [orgId, contactId, statuses],
       );
       return rows;
     },
@@ -489,25 +489,15 @@ describe("applyReactivityEvent — STOP/opt-out (message.received + is_blocked)"
     expect(summary.matched).toBe(true); // completou; o QUANTO é a catraca abaixo
   });
 
-  // ACOPLADO À MIGRATION 0145: o `seedEnrollment` abaixo grava
-  // `status: "paused_manual"`, e na `main` o CHECK de `followup_enrollments`
-  // ainda RECUSA esse valor (0054: active, waiting_reply, paused_handoff,
-  // completed, cancelled, dead). Este caso só roda em árvore que carrega a 0145 —
-  // medido: 1 arquivo de migration 0145 e 7 ocorrências no baseline desta base.
-  // Cherry-pick isolado para uma árvore sem ela vira 23514 no seed, e o vermelho
-  // vai parecer defeito de reactivity em vez de migration ausente.
-  //
-  // `it.fails` = CATRACA, não teste desligado. Ele EXECUTA e exige que o defeito
-  // ainda esteja lá; no dia em que `LIVE_STATUSES` ganhar `paused_manual` este
-  // caso REPROVA por ter passado, e quem consertar é obrigado a vir tirar o
-  // `.fails`. O conserto é acrescentar o estado à lista em
-  // `lib/followup/reactivity.ts` — decisão de comportamento, do dono do arquivo.
-  it.fails("STOP alcança também o enrollment PAUSADO MANUALMENTE — opt-out não abre exceção de estado", async () => {
+  // A migration 0145 já pertence à baseline. A regressão antes era uma
+  // falha esperada; agora exige cancelamento real. O adapter honra a lista
+  // passada por produção, incluindo a pausa manual somente no hard stop.
+  it("STOP alcança também o enrollment PAUSADO MANUALMENTE — opt-out não abre exceção de estado", async () => {
     const org = nextOrgId();
     await seedOrg(org);
     const contactId = await seedContact(org, { isBlocked: true });
     const flow = await seedFlow(org, SIMPLE_GRAPH);
-    await seedEnrollment({
+    const enrollmentId = await seedEnrollment({
       org,
       pointerId: flow.pointerId,
       versionId: flow.versionId,
@@ -520,22 +510,12 @@ describe("applyReactivityEvent — STOP/opt-out (message.received + is_blocked)"
     const row = eventRow({ organization_id: org, event_type: "message.received", payload: { contact_id: contactId } });
     const summary = await applyReactivityEvent(reactivityDb(), () => new Date(), row);
 
-    // UMA asserção só, e é deliberado — `it.fails` é satisfeito pela PRIMEIRA
-    // que falha, então toda asserção extra aqui seria letra morta enquanto o
-    // defeito existir, e estrearia junto no dia do conserto. Se uma delas
-    // quebrasse por outro motivo, o caso seguiria falhando, o `.fails` seguiria
-    // satisfeito, e a catraca não reprovaria: sobreviveria ao próprio conserto.
-    //
-    // O estado final do enrollment cancelado é congelado pelo caso irmão
-    // "cancela o enrollment VIVO do contato (outcome='opted_out') e ignora os já
-    // terminais" — citado pelo TÍTULO, e não por "logo acima", porque a garantia
-    // desta catraca depende dele e um `git grep` precisa achá-lo se ele se mudar.
-    // Os dois passam pelo mesmo `cancelAll`, que não tem ramo por status.
-    //
-    // DÍVIDA DECLARADA: se aquele caso for removido, movido ou pulado, as três
-    // propriedades ficam órfãs e ESTA catraca continua com cara de saudável.
-    // Prosa não reprova — quem mexer no irmão está mexendo em dois lugares.
     expect(summary.reacted).toBe(1);
+    expect(await getEnrollment(enrollmentId)).toMatchObject({
+      status: "cancelled", outcome: "opted_out", cancel_reason: "stop_keyword",
+    });
+    const repeated = await applyReactivityEvent(reactivityDb(), () => new Date(), row);
+    expect(repeated.reacted).toBe(0);
   });
 
   it("re-drenar o MESMO event_log row é idempotente — sem efeito duplicado", async () => {

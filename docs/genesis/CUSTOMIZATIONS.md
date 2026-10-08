@@ -24,3 +24,12 @@ Probes atualizadas para o contrato v1.77: ramos via `nodeBranches`, recuperaçã
 padrão) e transição de organização no suporte. Reaplicados: bloqueio de onboarding
 durante suporte, marcação de lido somente para agente autorizado e relógio Realtime
 estável por hash semântico de query. Os testes continuam exigindo essas propriedades.
+
+## Consentimento — STOP em pausa manual
+
+`lib/followup/reactivity.ts` inclui `paused_manual` somente nos estados alcançados
+por hard stop (STOP/opt-out/contato pessoal). Mensagem comum e handoff continuam
+sem acordar essa pausa. A regressão Postgres antes marcada `it.fails` agora exige
+cancelamento, outcome, motivo e idempotência; seu adapter honra os estados
+passados pelo código de produção. Os três novos controles unitários preservam
+as fronteiras da pausa manual. Nenhuma tabela ou migration foi alterada.

@@ -137,6 +137,34 @@ describe("reatividade — a inscrição dormente", () => {
 });
 
 describe("reatividade — quem não dorme segue igual (não-regressão)", () => {
+  it("STOP cancela a pausa manual com outcome de opt-out", async () => {
+    const { db, espiao } = montarDb([inscricao({ status: "paused_manual" })], { bloqueado: true });
+    const s = await applyReactivityEvent(db, () => new Date(AGORA), eventoDeInbound());
+    expect(s.reacted).toBe(1);
+    expect(espiao.patches[0]?.patch).toMatchObject({
+      status: "cancelled", outcome: "opted_out", cancel_reason: "stop_keyword",
+    });
+  });
+
+  it("resposta comum não acorda nem cancela a pausa manual", async () => {
+    const { db, espiao } = montarDb([
+      inscricao({ status: "paused_manual", trigger_config: { kind: "manual", cancel_on_reply: true } }),
+    ]);
+    const s = await applyReactivityEvent(db, () => new Date(AGORA), eventoDeInbound());
+    expect(s.reacted).toBe(0);
+    expect(espiao.eventos).toEqual([]);
+    expect(espiao.patches).toEqual([]);
+  });
+
+  it("handoff não converte a pausa manual em pausa com retomada automática", async () => {
+    const { db, espiao } = montarDb([inscricao({ status: "paused_manual" })]);
+    const s = await applyReactivityEvent(db, () => new Date(AGORA), {
+      ...eventoDeInbound(), event_type: "ai.handoff_triggered", payload: { conversation_id: "conv-1" },
+    });
+    expect(s.reacted).toBe(0);
+    expect(espiao.patches).toEqual([]);
+  });
+
   it("espera comum é acordada pela mensagem", async () => {
     const { db, espiao } = montarDb([inscricao({ status: "active" })]);
 
@@ -235,4 +263,3 @@ describe("reatividade — o roteiro de atendimento ('coletando', PR 2 do #1130)"
     expect(espiao.patches).toEqual([]);
   });
 });
-
