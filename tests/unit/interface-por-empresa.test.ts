@@ -181,13 +181,17 @@ describe("a organização não consegue se trancar do lado de fora", () => {
 describe("medição da folga (pergunta de aceite da issue #1341)", () => {
   /**
    * Baseline: a configuração de HOJE — nenhuma escolha, nem da empresa nem do
-   * vínculo. O Genesis acrescenta Supervisão 360 aos 15 destinos do upstream.
-   * A capacidade visual de 15 itens é histórica; 16 exige rolagem e prova mobile.
+   * vínculo. Supervisão 360 fica no menu diário; Meta Ads fica no hub de Análise.
+   * Assim o menu mantém 15 itens e a dobra de 900px continua sendo provada em tela.
    */
-  it("Genesis: 16 itens com Supervisão 360 no catálogo", () => {
-    expect(itensNoMenuLateral(INTERFACE_COMPLETA)).toBe(16);
+  it("Genesis: 15 itens, com Supervisão no menu e Meta Ads no hub", () => {
+    expect(itensNoMenuLateral(INTERFACE_COMPLETA)).toBe(15);
     // `undefined` é o caminho de quem não tem escolha nenhuma gravada
-    expect(itensNoMenuLateral(undefined)).toBe(16);
+    expect(itensNoMenuLateral(undefined)).toBe(15);
+    const analise = sidebarGroups(false, "admin").find((g) => g.group.id === "analise");
+    expect(analise?.items.map((d) => d.href)).toContain("/app/supervisao");
+    expect(analise?.items.map((d) => d.href)).not.toContain("/app/ads/meta");
+    expect(hrefs(undefined)).toContain("/app/ads/meta");
   });
 
   /**
@@ -195,8 +199,8 @@ describe("medição da folga (pergunta de aceite da issue #1341)", () => {
    * A escolha da empresa é interseção, então o menu só ENCOLHE — a mudança não
    * tem como empurrar o instrumento de tela para o vermelho.
    */
-  it("configuração COMPLETA inclui Supervisão 360: 16 itens", () => {
-    expect(itensNoMenuLateral(combinarInterfaces(completa, completa))).toBe(16);
+  it("configuração COMPLETA preserva a dobra: 15 itens", () => {
+    expect(itensNoMenuLateral(combinarInterfaces(completa, completa))).toBe(15);
   });
 
   it("configuração SIMPLIFICADA (empresa escolhe o preset): 6 itens, folga 9", () => {

@@ -644,6 +644,8 @@ jobs:
           push: false
           load: true
           tags: deskcomm-worker:pr
+          build-args: |
+            APP_VERSION=${{ github.repository == 'hudsonlcustodio/GENESISTALKV177' && '1.77.0' || 'dev' }}
           # Mesmo escopo de cache do build-and-push, por imagem. Os dois jobs
           # correm em PARALELO, então o cache costuma estar frio no primeiro run
           # de um push e quente nos seguintes — "reaproveita aquele build" só
@@ -664,6 +666,8 @@ jobs:
           push: false
           load: true
           tags: deskcomm-scheduler:pr
+          build-args: |
+            APP_VERSION=${{ github.repository == 'hudsonlcustodio/GENESISTALKV177' && '1.77.0' || 'dev' }}
           cache-from: |
             type=gha,scope=deskcommcrm-scheduler-${{ matrix.arch }}
             type=gha,scope=deskcommcrm-scheduler
@@ -686,6 +690,8 @@ jobs:
           push: false
           load: true
           tags: deskcomm-voice-agent:pr
+          build-args: |
+            APP_VERSION=${{ github.repository == 'hudsonlcustodio/GENESISTALKV177' && '1.77.0' || 'dev' }}
           cache-from: |
             type=gha,scope=deskcommcrm-voice-agent-${{ matrix.arch }}
             type=gha,scope=deskcommcrm-voice-agent
