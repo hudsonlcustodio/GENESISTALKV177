@@ -49,6 +49,7 @@ const URL_DA_CONTAGEM = "/api/v1/conversations/counts";
 
 vi.mock("@/hooks/auth/AuthProvider", () => ({
   useAuth: () => ({ user: { id: "u-1", support: null }, activeOrg: orgRef.current }),
+  usePermission: () => true,
 }));
 // Só a listagem de números é dublada: `channelLabel` do módulo real é quem
 // resolve o rótulo das opções do alternador e não tem nada a ver com o defeito.

@@ -1,14 +1,20 @@
 import { describe, it, expect } from "vitest";
 
-import { edgeConditionOptions, conditionKey, conditionLabel } from "./edge-condition-options";
-import type { FlowNode } from "./graph-schema";
+import { conditionKey, conditionLabel } from "@/lib/followup/edge-condition-options";
+import { nodeBranches, type FlowNode } from "@/lib/followup/graph-schema";
+
+// O upstream monta o menu pela mesma lista de ramos que desenha os handles.
+function optionsForNode(source: FlowNode | undefined) {
+  if (!source) return [{ key: "always", label: "Sempre", condition: { type: "always" as const } }];
+  return nodeBranches(source).map((b) => ({ key: conditionKey(b.condition), label: b.label, condition: b.condition }));
+}
 
 function node<T extends FlowNode>(n: T): T {
   return n;
 }
 
-describe("edgeConditionOptions", () => {
-  it("ai_classify: always + one class_match per class + no_reply, in that order", () => {
+describe("optionsForNode", () => {
+  it("ai_classify: classes + sem resposta + outros casos", () => {
     const source = node({
       id: "n1",
       type: "ai_classify",
@@ -17,17 +23,17 @@ describe("edgeConditionOptions", () => {
       config: { classes: ["positivo", "objecao"], grace_timeout_ms: 900_000, target: "last_reply" },
     });
 
-    const options = edgeConditionOptions(source);
+    const options = optionsForNode(source);
 
     expect(options.map((o) => o.key)).toEqual([
-      "always",
       "class_match:positivo",
       "class_match:objecao",
       "class_match:no_reply",
+      "always",
     ]);
-    expect(options.map((o) => o.label)).toEqual(["Sempre", "positivo", "objecao", "Sem resposta"]);
-    expect(options[1]!.condition).toEqual({ type: "class_match", value: "positivo" });
-    expect(options[3]!.condition).toEqual({ type: "class_match", value: "no_reply" });
+    expect(options.map((o) => o.label)).toEqual(["positivo", "objecao", "Sem resposta", "Outros casos"]);
+    expect(options[0]!.condition).toEqual({ type: "class_match", value: "positivo" });
+    expect(options[2]!.condition).toEqual({ type: "class_match", value: "no_reply" });
   });
 
   it("match_reply: declared branches + no_reply + always from nodeBranches", () => {
@@ -41,9 +47,9 @@ describe("edgeConditionOptions", () => {
         grace_timeout_ms: 900_000,
       },
     });
-    const options = edgeConditionOptions(source);
+    const options = optionsForNode(source);
     expect(options.map((o) => o.key)).toEqual(["branch:br_sim", "branch:no_reply", "always"]);
-    expect(options.map((o) => o.label)).toEqual(["Sim", "Sem resposta", "Sempre"]);
+    expect(options.map((o) => o.label)).toEqual(["Sim", "Sem resposta", "Outros casos"]);
   });
 
   it("repeat: próxima volta + acabou + sempre", () => {
@@ -54,9 +60,9 @@ describe("edgeConditionOptions", () => {
       position: { x: 0, y: 0 },
       config: { max_count: 12 },
     });
-    const options = edgeConditionOptions(source);
+    const options = optionsForNode(source);
     expect(options.map((o) => o.key)).toEqual(["branch:body", "branch:done", "always"]);
-    expect(options.map((o) => o.label)).toEqual(["Próxima volta", "Acabou", "Sempre"]);
+    expect(options.map((o) => o.label)).toEqual(["Próxima volta", "Acabou", "Outros casos"]);
   });
 
   it("ai_classify: does not duplicate no_reply when it's already declared as a class", () => {
@@ -69,7 +75,7 @@ describe("edgeConditionOptions", () => {
       position: { x: 0, y: 0 },
       config: { classes: ["hot"], grace_timeout_ms: 900_000, target: "last_reply" },
     });
-    const options = edgeConditionOptions(source);
+    const options = optionsForNode(source);
     const keys = options.map((o) => o.key);
     expect(new Set(keys).size).toBe(keys.length);
   });
@@ -83,12 +89,12 @@ describe("edgeConditionOptions", () => {
       config: { combinator: "and", checks: [{ field: "steps_taken", op: "gte", value: 1 }] },
     });
 
-    const options = edgeConditionOptions(source);
+    const options = optionsForNode(source);
 
-    expect(options.map((o) => o.key)).toEqual(["always", "cond_result:true", "cond_result:false"]);
-    expect(options.map((o) => o.label)).toEqual(["Sempre", "Sim", "Não"]);
-    expect(options[1]!.condition).toEqual({ type: "cond_result", value: true });
-    expect(options[2]!.condition).toEqual({ type: "cond_result", value: false });
+    expect(options.map((o) => o.key)).toEqual(["cond_result:true", "cond_result:false", "always"]);
+    expect(options.map((o) => o.label)).toEqual(["Sim", "Não", "Outros casos"]);
+    expect(options[0]!.condition).toEqual({ type: "cond_result", value: true });
+    expect(options[1]!.condition).toEqual({ type: "cond_result", value: false });
   });
 
   it.each(["trigger", "wait", "action", "end"] as const)("%s: only always", (type) => {
@@ -106,11 +112,11 @@ describe("edgeConditionOptions", () => {
       ...bases[type],
     } as FlowNode);
 
-    expect(edgeConditionOptions(source)).toEqual([{ key: "always", label: "Sempre", condition: { type: "always" } }]);
+    expect(optionsForNode(source)).toEqual([{ key: "always", label: "Sempre", condition: { type: "always" } }]);
   });
 
   it("undefined source (dangling edge) falls back to always-only", () => {
-    expect(edgeConditionOptions(undefined)).toEqual([{ key: "always", label: "Sempre", condition: { type: "always" } }]);
+    expect(optionsForNode(undefined)).toEqual([{ key: "always", label: "Sempre", condition: { type: "always" } }]);
   });
 });
 

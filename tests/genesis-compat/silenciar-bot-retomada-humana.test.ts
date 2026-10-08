@@ -1,14 +1,12 @@
 import { describe, expect, it, vi } from "vitest";
 
-// ingest.ts importa @/lib/audit (→ supabase/server → validação de env); a função
-// testada aqui é isolada, mock corta a cadeia (mesmo padrão de waha-ingest-media.test.ts).
-vi.mock("@/lib/audit", () => ({ audit: vi.fn() }));
+vi.mock("@/lib/logger", () => ({ logger: { warn: vi.fn() } }));
+import { logger } from "@/lib/logger";
 
 import {
-  HUMAN_TAKEOVER_SILENCE_MS,
-  silenciarBotPorRetomadaHumana,
-  type Admin,
-} from "@/lib/waha/ingest";
+  PRAZO_DO_SILENCIO_MS,
+  pausarIaPorAtendimentoManual,
+} from "@/lib/escalacao/atendimento-manual";
 
 const ORG_ID = "23fe2ca9-7316-45eb-8b09-d607cb9696eb";
 const CONV_ID = "beaa6819-72f8-4a7c-80c0-75d2a033b564";
@@ -24,7 +22,7 @@ function fakeAdmin(opts: {
   selectError?: { message: string };
   updateError?: { message: string };
   onUpdate?: (patch: Record<string, unknown>) => void;
-}): Admin {
+}): Parameters<typeof pausarIaPorAtendimentoManual>[0] {
   const selectChain = {
     eq: () => selectChain,
     maybeSingle: () =>
@@ -52,43 +50,40 @@ function fakeAdmin(opts: {
 }
 
 /**
- * `silenciarBotPorRetomadaHumana` — ver docstring em `lib/waha/ingest.ts`. Cobre a
+ * `pausarIaPorAtendimentoManual` — ver docstring em `lib/escalacao/atendimento-manual.ts`. Cobre a
  * lacuna medida em produção (tenant YADEA): um humano respondeu direto pelo
  * WhatsApp, o bot não foi silenciado, e na mensagem seguinte do lead voltou a
  * rodar sozinho, alucinando sobre algo que só o humano tinha tratado (PIX).
  */
-describe("silenciarBotPorRetomadaHumana", () => {
-  it("sem silêncio prévio, grava bot_silenced_until = agora + HUMAN_TAKEOVER_SILENCE_MS", async () => {
+describe("pausarIaPorAtendimentoManual", () => {
+  it("sem silêncio prévio, grava bot_silenced_until = agora + PRAZO_DO_SILENCIO_MS", async () => {
     let patchGravado: Record<string, unknown> | null = null;
     const antes = Date.now();
-    await silenciarBotPorRetomadaHumana(
+    await pausarIaPorAtendimentoManual(
       fakeAdmin({ existing: null, onUpdate: (p) => (patchGravado = p) }),
-      ORG_ID,
-      CONV_ID,
+      { organizationId: ORG_ID, conversationId: CONV_ID },
     );
     expect(patchGravado).not.toBeNull();
     const gravado = new Date((patchGravado as unknown as { bot_silenced_until: string }).bot_silenced_until).getTime();
-    expect(gravado).toBeGreaterThanOrEqual(antes + HUMAN_TAKEOVER_SILENCE_MS - 1000);
-    expect(gravado).toBeLessThanOrEqual(Date.now() + HUMAN_TAKEOVER_SILENCE_MS + 1000);
+    expect(gravado).toBeGreaterThanOrEqual(antes + PRAZO_DO_SILENCIO_MS - 1000);
+    expect(gravado).toBeLessThanOrEqual(Date.now() + PRAZO_DO_SILENCIO_MS + 1000);
   });
 
   it("silêncio 'infinity' (handoff formal) NUNCA é encurtado", async () => {
     let chamouUpdate = false;
-    await silenciarBotPorRetomadaHumana(
+    await pausarIaPorAtendimentoManual(
       fakeAdmin({ existing: "infinity", onUpdate: () => (chamouUpdate = true) }),
-      ORG_ID,
-      CONV_ID,
+      { organizationId: ORG_ID, conversationId: CONV_ID },
     );
     expect(chamouUpdate).toBe(false);
   });
 
-  it("silêncio mais longo já em vigor (ex.: handoff manual de 6h) não é encurtado pras 3h padrão", async () => {
+  it("silêncio mais longo já em vigor (ex.: handoff manual de 6h) não é encurtado para a janela configurável (60 min por padrão)", async () => {
     let chamouUpdate = false;
     const daquiA6h = new Date(Date.now() + 6 * 60 * 60 * 1000).toISOString();
-    await silenciarBotPorRetomadaHumana(
+    await pausarIaPorAtendimentoManual(
       fakeAdmin({ existing: daquiA6h, onUpdate: () => (chamouUpdate = true) }),
-      ORG_ID,
-      CONV_ID,
+      { organizationId: ORG_ID, conversationId: CONV_ID },
     );
     expect(chamouUpdate).toBe(false);
   });
@@ -96,29 +91,28 @@ describe("silenciarBotPorRetomadaHumana", () => {
   it("silêncio mais curto já vencido (ou no passado) É estendido pra janela padrão", async () => {
     let chamouUpdate = false;
     const jaPassou = new Date(Date.now() - 60_000).toISOString();
-    await silenciarBotPorRetomadaHumana(
+    await pausarIaPorAtendimentoManual(
       fakeAdmin({ existing: jaPassou, onUpdate: () => (chamouUpdate = true) }),
-      ORG_ID,
-      CONV_ID,
+      { organizationId: ORG_ID, conversationId: CONV_ID },
     );
     expect(chamouUpdate).toBe(true);
   });
 
   it("falha de leitura não lança — best-effort, só loga", async () => {
-    const spy = vi.spyOn(console, "error").mockImplementation(() => {});
+    const spy = vi.mocked(logger.warn);
+    spy.mockClear();
     await expect(
-      silenciarBotPorRetomadaHumana(fakeAdmin({ selectError: { message: "boom" } }), ORG_ID, CONV_ID),
-    ).resolves.toBeUndefined();
+      pausarIaPorAtendimentoManual(fakeAdmin({ selectError: { message: "boom" } }), { organizationId: ORG_ID, conversationId: CONV_ID }),
+    ).resolves.toBe(false);
     expect(spy).toHaveBeenCalled();
-    spy.mockRestore();
   });
 
   it("falha de escrita não lança — best-effort, só loga", async () => {
-    const spy = vi.spyOn(console, "error").mockImplementation(() => {});
+    const spy = vi.mocked(logger.warn);
+    spy.mockClear();
     await expect(
-      silenciarBotPorRetomadaHumana(fakeAdmin({ existing: null, updateError: { message: "boom" } }), ORG_ID, CONV_ID),
-    ).resolves.toBeUndefined();
+      pausarIaPorAtendimentoManual(fakeAdmin({ existing: null, updateError: { message: "boom" } }), { organizationId: ORG_ID, conversationId: CONV_ID }),
+    ).resolves.toBe(false);
     expect(spy).toHaveBeenCalled();
-    spy.mockRestore();
   });
 });

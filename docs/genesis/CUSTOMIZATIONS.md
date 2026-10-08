@@ -16,3 +16,11 @@ Prioridades:
 Se o Deskcomm atual já satisfizer o comportamento, manter upstream.
 Se falhar um invariante Genesis, adaptar a implementação atual; não restaurar
 automaticamente código antigo.
+
+## Hardening Codex — 2026-10-08
+
+Probes atualizadas para o contrato v1.77: ramos via `nodeBranches`, recuperação via
+`followupGatilhoPresencaHandler`, pausa manual unificada por empresa (60 min por
+padrão) e transição de organização no suporte. Reaplicados: bloqueio de onboarding
+durante suporte, marcação de lido somente para agente autorizado e relógio Realtime
+estável por hash semântico de query. Os testes continuam exigindo essas propriedades.

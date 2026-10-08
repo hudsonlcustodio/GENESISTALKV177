@@ -15,6 +15,9 @@ export const dynamic = "force-dynamic";
 export default async function OnboardingIndex() {
   const user = await requireAuth();
   const activeOrg = await resolveActiveOrg(user);
+  // Resolve primeiro para manter o bloqueio canônico de suporte encerrado.
+  // Suporte acompanha a empresa; não inicia nem modifica seu onboarding.
+  if (user.support) redirect("/app");
   // Sem organização o onboarding não tem o que mostrar — mas mandar para
   // `/login` fechava o círculo: quem entrasse de novo voltaria para cá. A saída
   // é a tela que CRIA a organização que falta.

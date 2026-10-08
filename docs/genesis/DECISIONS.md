@@ -49,3 +49,12 @@ e regressões de viewport, não como obrigação de conservar implementação an
 Status: deferred
 Decisão: manter o subsistema upstream em código, mas não tratá-lo como canal de
 release Genesis até GHCR/releases/migrations/rollback serem reconciliados.
+
+## 2026-10-08 — release manual Contabo e reconciliação dos gates
+
+Preservar dependências, baseline SQL, engines e contrato multi-tenant upstream.
+Build próprio usa nomes `genesis-talk-*:1.77.0`; publicação/auto-update seguem
+deferred. Checks que publicam são exclusivos do repo vendor; no Genesis o
+agregador exige builds e smoke, com publicação pulada explicitamente. Regras
+de contraste usam régua Genesis; fixture Sage continua calibrando os canários
+legados. Resultado final depende de testes completos e recuperação real.

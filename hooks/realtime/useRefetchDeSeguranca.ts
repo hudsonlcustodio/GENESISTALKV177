@@ -1,5 +1,5 @@
 "use client";
-import { useQueryClient } from "@tanstack/react-query";
+import { hashKey, useQueryClient } from "@tanstack/react-query";
 import { useCallback, useEffect, useRef, useState, type RefObject } from "react";
 
 /**
@@ -73,6 +73,11 @@ export function useRefetchDeSeguranca<T>({
   enabled = true,
 }: Opts<T>): RefetchDeSeguranca {
   const qc = useQueryClient();
+  // Chaves equivalentes têm o mesmo hash canônico do React Query. Renders
+  // com arrays novos não podem adiar o timer; trocar empresa deve reiniciá-lo.
+  const queryKeyHash = hashKey(queryKey);
+  const queryKeyRef = useRef(queryKey);
+  useEffect(() => { queryKeyRef.current = queryKey; }, [queryKey]);
   const [estado, setEstado] = useState<RefetchDeSeguranca>({
     divergencias: 0,
     ultimaDivergencia: null,
@@ -91,11 +96,12 @@ export function useRefetchDeSeguranca<T>({
   }, [assinatura]);
 
   const verificar = useCallback(async () => {
-    const antes = assinaturaRef.current(qc.getQueryData<T>(queryKey));
+    const chave = queryKeyRef.current;
+    const antes = assinaturaRef.current(qc.getQueryData<T>(chave));
 
-    await qc.refetchQueries({ queryKey, exact: true });
+    await qc.refetchQueries({ queryKey: chave, exact: true });
 
-    const depois = assinaturaRef.current(qc.getQueryData<T>(queryKey));
+    const depois = assinaturaRef.current(qc.getQueryData<T>(chave));
 
     setEstado((prev) => {
       // O CRITÉRIO, em duas perguntas:
@@ -122,7 +128,9 @@ export function useRefetchDeSeguranca<T>({
     });
     // `ultimaEntrega` é ref (identidade estável): entra na lista por higiene,
     // sem recriar o callback nem reiniciar o intervalo.
-  }, [qc, queryKey, ultimaEntrega]);
+    // O hash faz a troca semântica da chave recriar o callback.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [qc, queryKeyHash, ultimaEntrega]);
 
   useEffect(() => {
     if (!enabled) return;

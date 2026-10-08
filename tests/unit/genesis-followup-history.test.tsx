@@ -82,7 +82,7 @@ function mount() {
   const draft: FlowGraph = {
     nodes: [
       { id: "trigger-1", type: "trigger", label: "Início", position: { x: 1, y: 2 }, config: {} },
-      { id: "end-2", type: "end", label: "Fim", position: { x: 3, y: 4 }, config: {} },
+      { id: "end-2", type: "end", label: "Fim", position: { x: 3, y: 4 }, config: { outcome: "converted" } },
     ],
     edges: [
       {

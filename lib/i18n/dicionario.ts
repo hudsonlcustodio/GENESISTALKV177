@@ -40,6 +40,7 @@ export const DICIONARIO: Traducoes = {
   // Genesis: Supervisão e histórico do Follow-up.
   "Desfazer ação": { es: "Deshacer acción" },
   "Desconectar box": { es: "Desconectar bloque" },
+  "Operação humana e IA agora: filas, presença, carga e sinais de execução.": { es: "Operación humana e IA ahora: colas, presencia, carga y señales de ejecución." },
   "Supervisão 360": { es: "Supervisión 360" },
   "Operação humana e IA em uma visão única, com dados que apontam para a fonte.": { es: "Operación humana e IA en una vista única, con datos que señalan la fuente." },
   "Fonte indisponível": { es: "Fuente no disponible" },

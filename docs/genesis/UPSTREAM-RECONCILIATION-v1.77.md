@@ -131,3 +131,16 @@ A v1.77 **não é declarada production-ready** sem execução em ambiente comple
 **GENESIS TALK v1.77 usa o Deskcomm atual fornecido como nova baseline técnica,
 preserva os avanços upstream e reaplica seletivamente apenas os contratos e
 diferenciais Genesis.**
+
+## Validação Codex — 2026-10-08
+
+A suíte herdada continha imports e expectativas de APIs removidas. As probes foram
+reconciliadas com o runtime atual, sem restaurar módulos antigos. Corrigidas duas
+regressões funcionais (onboarding em suporte e adiamento do refetch por render) e
+alinhada a marcação automática de lido ao piso agent da API. A contagem do catálogo
+é 16 com Supervisão; o teto visual histórico de 15 não comprova layout mobile.
+
+O check de isolamento do kit usa releases vendor somente para calibrar as regras
+SQL contra a baseline local. Refs `refs/genesis/vendor-check/*` não habilitam
+releases, imagens públicas ou atualização Genesis. Banco/migrations não foram
+reescritos. Modos executáveis Linux são versionados após extração do ZIP Windows.

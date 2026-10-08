@@ -98,3 +98,17 @@ describe("imagens-ok só aceita o pulo declarado", () => {
     );
   });
 });
+
+
+describe("Genesis valida builds com publicação desativada", () => {
+  it.each(["success", "failure", "cancelled", "skipped"])("app=%s: só success aprova", (app) => {
+    let code = 0;
+    try {
+      execFileSync("bash", ["-c", SCRIPT], {
+        env: { ...process.env, REPOSITORIO: "hudsonlcustodio/GENESISTALKV177", EVENTO: "push", ALCANCE: "sim", PORTAO: "success", BUILD: "skipped", MANIFESTO: "skipped", APP: app, FUNDO: "success" },
+        stdio: "ignore",
+      });
+    } catch { code = 1; }
+    expect(code).toBe(app === "success" ? 0 : 1);
+  });
+});

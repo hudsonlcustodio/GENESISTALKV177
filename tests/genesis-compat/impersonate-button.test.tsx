@@ -2,7 +2,10 @@ import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/re
 import { afterEach, expect, it, vi } from "vitest";
 import { ImpersonateButton } from "@/components/admin/ImpersonateButton";
 
-const mocks = vi.hoisted(() => ({ notify: vi.fn(), push: vi.fn(), error: vi.fn() }));
+const mocks = vi.hoisted(() => ({ notify: vi.fn(), push: vi.fn(), error: vi.fn(), begin: vi.fn(), cancel: vi.fn() }));
+vi.mock("@/components/shell/OrganizationTransitionProvider", () => ({
+  useOrganizationTransition: () => ({ begin: mocks.begin, cancel: mocks.cancel }),
+}));
 vi.mock("@/hooks/i18n/useT", () => ({ useT: () => (text: string) => text }));
 vi.mock("next/navigation", () => ({ useRouter: () => ({ push: mocks.push }) }));
 vi.mock("@/components/app/ImpersonateBanner", () => ({ notifySupportTransition: mocks.notify }));
@@ -29,6 +32,7 @@ it.each([false, true])("envia a escolha de somente leitura: %s", async (readonly
     ),
   );
   expect(mocks.notify).not.toHaveBeenCalled();
+  expect(mocks.cancel).toHaveBeenCalledOnce();
 });
 
 it("avisa as outras abas somente depois do suporte ser confirmado", async () => {
@@ -47,6 +51,8 @@ it("avisa as outras abas somente depois do suporte ser confirmado", async () => 
   fireEvent.click(screen.getByRole("button", { name: "Acompanhar Empresa teste" }));
   fireEvent.click(screen.getByRole("button", { name: "Confirmar e entrar" }));
   await waitFor(() => expect(mocks.notify).toHaveBeenCalledOnce());
+  expect(mocks.begin).toHaveBeenCalledWith("Carregando acompanhamento…");
+  expect(mocks.cancel).not.toHaveBeenCalled();
   expect(assign).toHaveBeenCalledWith("/app/inbox");
   // Uma navegação RSC simultânea reabre o cache do contexto anterior.
   expect(mocks.push).not.toHaveBeenCalled();

@@ -5,10 +5,7 @@ vi.mock("@/lib/supabase/admin", () => ({
   createAdminClient: () => ({ rpc }),
 }));
 
-import {
-  FOLLOWUP_GATILHO_FALTA_HANDLER_KEY,
-  followupGatilhoFaltaHandler,
-} from "./gatilho-falta.handler";
+import { followupGatilhoPresencaHandler } from "@/lib/followup/gatilho-presenca.handler";
 
 const event = {
   id: "00000000-0000-4000-8000-000000000001",
@@ -27,10 +24,10 @@ describe("gatilho de recuperação após falta", () => {
 
   it("entrega o evento à função idempotente do banco", async () => {
     rpc.mockResolvedValue({ data: { result: "started" }, error: null });
-    await expect(followupGatilhoFaltaHandler.handle(event)).resolves.toEqual({
-      consumer_key: FOLLOWUP_GATILHO_FALTA_HANDLER_KEY,
+    await expect(followupGatilhoPresencaHandler.handle(event)).resolves.toEqual({
+      consumer_key: followupGatilhoPresencaHandler.key,
       status: "ok",
-      detail: "result=started",
+      detail: "started",
     });
     expect(rpc).toHaveBeenCalledWith("fn_appointment_recover", {
       p_org: event.organization_id,
@@ -40,10 +37,10 @@ describe("gatilho de recuperação após falta", () => {
 
   it("mantém a linha retentável quando o banco falha", async () => {
     rpc.mockResolvedValue({ data: null, error: { message: "database unavailable" } });
-    await expect(followupGatilhoFaltaHandler.handle(event)).resolves.toMatchObject({
-      consumer_key: FOLLOWUP_GATILHO_FALTA_HANDLER_KEY,
+    await expect(followupGatilhoPresencaHandler.handle(event)).resolves.toMatchObject({
+      consumer_key: followupGatilhoPresencaHandler.key,
       status: "error",
-      detail: "database unavailable",
+      detail: "Recuperação indisponível: database unavailable",
     });
   });
 });

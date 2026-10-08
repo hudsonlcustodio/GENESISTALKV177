@@ -400,7 +400,7 @@ jobs:
           load: true
           tags: deskcomm-smoke:pr
           build-args: |
-            APP_VERSION=smoke
+            APP_VERSION=${{ github.repository == 'hudsonlcustodio/GENESISTALKV177' && '1.77.0' || 'smoke' }}
           # Mesmo escopo de cache do build-and-push: as camadas são idênticas,
           # então na prática este job reaproveita aquele build em vez de repeti-lo.
           cache-from: |
@@ -410,6 +410,21 @@ jobs:
           # este job — sem isto o segundo push do mesmo PR reconstruiria do
           # zero. Fora de PR continua só lendo: quem grava é o build-and-push.
           cache-to: ${{ github.event_name == 'pull_request' && format('type=gha,mode=max,scope=deskcommcrm-{0}', matrix.arch) || '' }}
+
+      - name: Registrar imagem local Genesis do app
+        if: github.repository == 'hudsonlcustodio/GENESISTALKV177'
+        run: |
+          set -euo pipefail
+          docker tag deskcomm-smoke:pr genesis-talk-app:1.77.0
+          mkdir -p genesis-image-evidence
+          docker image inspect genesis-talk-app:1.77.0 > genesis-image-evidence/app.json
+          printf '%s\n' "$GITHUB_SHA" > genesis-image-evidence/source-sha.txt
+      - uses: actions/upload-artifact@v4
+        if: github.repository == 'hudsonlcustodio/GENESISTALKV177'
+        with:
+          name: genesis-app-image-${{ matrix.arch }}
+          path: genesis-image-evidence/
+          retention-days: 30
 
       - name: O container chega a servir?
         run: |
@@ -676,6 +691,23 @@ jobs:
             type=gha,scope=deskcommcrm-voice-agent
           cache-to: ${{ github.event_name == 'pull_request' && format('type=gha,mode=max,scope=deskcommcrm-voice-agent-{0}', matrix.arch) || '' }}
 
+      - name: Registrar imagens locais Genesis de fundo
+        if: github.repository == 'hudsonlcustodio/GENESISTALKV177'
+        run: |
+          set -euo pipefail
+          mkdir -p genesis-image-evidence
+          for service in worker scheduler voice-agent; do
+            docker tag "deskcomm-${service}:pr" "genesis-talk-${service}:1.77.0"
+            docker image inspect "genesis-talk-${service}:1.77.0" > "genesis-image-evidence/${service}.json"
+          done
+          printf '%s\n' "$GITHUB_SHA" > genesis-image-evidence/source-sha.txt
+      - uses: actions/upload-artifact@v4
+        if: github.repository == 'hudsonlcustodio/GENESISTALKV177'
+        with:
+          name: genesis-background-images-${{ matrix.arch }}
+          path: genesis-image-evidence/
+          retention-days: 30
+
       - name: O laço do event_log CARREGA dentro da imagem do worker?
         run: |
           set -euo pipefail
@@ -905,6 +937,7 @@ jobs:
       - name: Falhar se qualquer imagem não construiu — ou se o app não sobe
         env:
           EVENTO: ${{ github.event_name }}
+          REPOSITORIO: ${{ github.repository }}
           PORTAO: ${{ needs.a-tag-veio-da-main.result }}
           ALCANCE: ${{ needs.a-tag-veio-da-main.outputs.imagem }}
           BUILD: ${{ needs.build-and-push.result }}
@@ -921,10 +954,9 @@ jobs:
           # O portão reprova antes de tudo: tag fora da main deixa os builds
           # `skipped`, e nenhum `skipped` abaixo pode ler isso como aceitável.
           [ "$PORTAO" = "success" ]
-          # Em pull_request o build-and-push é sempre `skipped` (as mesmas
-          # imagens são construídas pelos dois jobs de baixo). Fora de PR ele
-          # publica, e só `success` serve.
-          if [ "$EVENTO" = "pull_request" ]; then
+          # Genesis valida as imagens locais com publicação desativada.
+          # No upstream, fora de PR, publicação continua sendo obrigatória.
+          if [ "$EVENTO" = "pull_request" ] || [ "${REPOSITORIO:-melgarafael/DeskcommCRM}" != "melgarafael/DeskcommCRM" ]; then
             [ "$BUILD" = "skipped" ]
             [ "$MANIFESTO" = "skipped" ]
           else

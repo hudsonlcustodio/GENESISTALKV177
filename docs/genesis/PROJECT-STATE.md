@@ -104,3 +104,10 @@ GEN-001..023, follow-up Undo/disconnect, Mobile regression and Supervisão 360
 remain integrated. Database now carries 464 SQL migrations and the current
 baseline. Automatic update remains deferred. Runtime quality/DB/E2E gates remain
 pending execution in a complete environment.
+
+## Estado vigente — hardening Contabo v1.77, 2026-10-08
+
+O estado FOUNDATION acima é histórico. A árvore v1.77 e a rota manual Contabo foram
+versionadas e enviadas ao repositório Genesis autorizado. Decisão de produção:
+**BLOCKED** até a evidência final dos gates e validação no destino. Consulte
+`PRODUCTION-READINESS-v1.77.md`, seu JSON de evidências e o handoff pós-Codex.

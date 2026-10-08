@@ -1,5 +1,5 @@
 "use client";
-import { useAuth } from "@/hooks/auth/AuthProvider";
+import { useAuth, usePermission } from "@/hooks/auth/AuthProvider";
 import { useEffect, useRef } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { apiClient } from "@/lib/api/client";
@@ -13,6 +13,7 @@ const DEBOUNCE_MS = 1500;
 export function useMarkAsRead(conversationId: string | null, unread: number) {
   const { user } = useAuth();
   const readonly = user.support?.access_mode === "support_readonly";
+  const canOperate = usePermission("inbox.reply");
   const qc = useQueryClient();
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -38,7 +39,7 @@ export function useMarkAsRead(conversationId: string | null, unread: number) {
       timerRef.current = null;
     }
 
-    if (readonly || !conversationId || unread <= 0) return;
+    if (readonly || !canOperate || !conversationId || unread <= 0) return;
 
     timerRef.current = setTimeout(() => {
       mutate(conversationId);
@@ -47,5 +48,5 @@ export function useMarkAsRead(conversationId: string | null, unread: number) {
     return () => {
       if (timerRef.current) clearTimeout(timerRef.current);
     };
-  }, [conversationId, unread, mutate, readonly]);
+  }, [conversationId, unread, mutate, readonly, canOperate]);
 }

@@ -348,16 +348,10 @@ describe("controle positivo — o produto sem marca não pode se mexer", () => {
     // Claro: os dois números que `contraste.ts` documenta como medidos à mão.
     expect(foco(p.claro, "--color-bg")).toBeCloseTo(4.81, 2);
     expect(foco(p.claro, "--color-surface-elevated")).toBeCloseTo(4.56, 2);
-    // Escuro: 6,30 e 5,22 na rampa DERIVADA da semente; os literais do
-    // `globals.css` (`#82a077`) dão 6,31 e 5,23 — a rampa reproduz a Sage com
-    // Δ ≤ 2/255 por canal, e a diferença de 0,01 é esse arredondamento.
+    // Escuro: pares derivados da régua Genesis; o anel mantém o piso 3:1.
     expect(foco(p.escuro, "--color-bg")).toBeCloseTo(12.24, 2);
     expect(foco(p.escuro, "--color-surface-elevated")).toBeCloseTo(10.16, 2);
-    // No escuro o anel NÃO fica apertado contra as bases: quem aperta é o
-    // `-soft` COMPOSTO. 4,58 aqui — é este o par que a prova em tela reportou
-    // como "4,58 no escuro", e não `foco × --color-bg` (6,30). Nos literais do
-    // `globals.css` o mesmo par dá 4,59, e `superficiesDoTema` documenta o trio
-    // 4,99 · 4,59 · 4,02.
+    // Superfícies soft são compostas sobre sua base antes de medir.
     expect(foco(p.escuro, "--color-accent-soft@--color-surface")).toBeCloseTo(7.76, 2);
     expect(foco(p.escuro, "--color-accent-soft@--color-surface-elevated")).toBeCloseTo(6.87, 2);
   });
@@ -371,10 +365,7 @@ describe("controle positivo — o produto sem marca não pode se mexer", () => {
 
 describe("a navy #0f172a — o defeito que a prova em tela achou", () => {
   it("os quatro números do anel de foco, agora acima do piso", () => {
-    // ANTES (medido no browser, servidor de dev na 3111): claro 10,77 e 10,22;
-    // escuro 2,86 e 2,37 — os dois de baixo abaixo do piso 3,0, porque o anel
-    // pintava `--color-accent-400: #545f77`, o stop CRU. O tema escuro anda -1,
-    // então o anel agora pinta `#828a9d`, o stop 300 da rampa da marca.
+    // A navy continua calibrando a caminhada que corrige o foco no escuro.
     const p = pintadosDaSemente("#0f172a");
     expect(foco(p.claro, "--color-bg")).toBeCloseTo(16.55, 2);
     expect(foco(p.claro, "--color-surface-elevated")).toBeCloseTo(15.71, 2);

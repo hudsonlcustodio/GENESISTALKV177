@@ -3,7 +3,10 @@ import { afterEach, expect, it, vi } from "vitest";
 import { useMarkAsRead } from "@/hooks/inbox/useMarkAsRead";
 
 const mocks = vi.hoisted(() => ({ allowed: true, mutate: vi.fn() }));
-vi.mock("@/hooks/auth/AuthProvider", () => ({ usePermission: () => mocks.allowed }));
+vi.mock("@/hooks/auth/AuthProvider", () => ({
+  usePermission: () => mocks.allowed,
+  useAuth: () => ({ user: { support: null } }),
+}));
 vi.mock("@tanstack/react-query", () => ({ useQueryClient: () => ({}), useMutation: () => ({ mutate: mocks.mutate }) }));
 afterEach(() => { cleanup(); vi.useRealTimers(); vi.clearAllMocks(); });
 
