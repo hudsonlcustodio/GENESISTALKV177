@@ -24,7 +24,7 @@ const RAIZ = process.cwd();
 const CSS = fs.readFileSync(path.join(RAIZ, "app/globals.css"), "utf8");
 
 /**
- * Os stops esperados saem do CSS, NÃO de uma cópia colada aqui.
+ * Os stops Sage esperados saem da fixture CSS upstream versionada.
  *
  * Copiar à mão criaria uma segunda fonte da verdade que envelhece em silêncio: quem
  * mexesse na paleta do design system veria este teste verde contra a paleta de ontem, e

@@ -11,16 +11,12 @@ jobs:
   genesis-quality:
     runs-on: ubuntu-latest
     timeout-minutes: 40
+    env:
+      # Full type coverage includes the test suite; local 4 GiB heap exhausted.
+      NODE_OPTIONS: --max-old-space-size=6144
     steps:
       - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 9.15.9
-          run_install: false
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-          cache: pnpm
-      - run: pnpm install --frozen-lockfile
+      - uses: ./.github/actions/preparar-node
+        timeout-minutes: 5
       - run: pnpm run gov:verify
       - run: pnpm run build

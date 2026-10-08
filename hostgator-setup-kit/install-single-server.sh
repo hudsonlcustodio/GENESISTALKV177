@@ -28,7 +28,7 @@ SINGLE_SERVER_NETWORK="$(nome_do_projeto_atual)_supabase"
 
 usage() {
   cat <<'EOF'
-Uso: bash hostgator-setup-kit/install-single-server.sh [--domain DOMINIO]
+Uso: bash hostgator-setup-kit/install-single-server.sh [--domain DOMINIO] [--prepare-only]
 
 Instala na mesma VPS:
   - Supabase self-hosted oficial (Postgres 17, Auth, REST, Realtime e Storage);
@@ -38,6 +38,7 @@ Instala na mesma VPS:
 Sem --domain, pergunta somente o dominio. Administrador, senha e todos os
 segredos sao gerados automaticamente. A IA nasce desativada e pode ser
 configurada depois pela interface.
+--prepare-only provisiona Supabase e credenciais; termina antes da instalação do CRM.
 EOF
 }
 

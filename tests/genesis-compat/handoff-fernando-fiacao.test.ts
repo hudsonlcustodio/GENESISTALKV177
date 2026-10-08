@@ -54,21 +54,24 @@ describe("fiação — lead urgente represado pelo cap de warm-up gera alerta cr
   it("o bloco de reagendamento por cap checa detectUrgencySignal e abre agent_inbox_items kind='handoff'", () => {
     const i = FONTE_INBOUND.indexOf("pacingCapVeto !== null && outcomes.length === 0");
     expect(i).toBeGreaterThan(-1);
-    const janela = FONTE_INBOUND.slice(i, i + 2000);
-    expect(janela).toContain("detectUrgencySignal(inboundSignal)");
+    // Upstream now checks every pending inbound; the whole rule branch is measured.
+    const fim = FONTE_INBOUND.indexOf("} else if (!preview)", i);
+    expect(fim).toBeGreaterThan(i);
+    const janela = FONTE_INBOUND.slice(i, fim);
+    expect(janela).toContain("inboundsPendentes.some((texto) => detectUrgencySignal(texto))");
     expect(janela).toMatch(/kind:\s*'handoff'/);
     expect(janela).toMatch(/severity:\s*'critical'/);
   });
 });
 
 describe("fiação — resposta manual pelo WhatsApp silencia o bot temporariamente", () => {
-  it("handleOutboundFromUserPhone chama silenciarBotPorRetomadaHumana depois de registrar a mensagem", () => {
+  it("handleOutboundFromUserPhone chama a pausa unificada depois de registrar a mensagem", () => {
     const i = FONTE_INGEST.indexOf("async function handleOutboundFromUserPhone(");
     expect(i).toBeGreaterThan(-1);
     const j = FONTE_INGEST.indexOf("async function handleAck(", i);
     expect(j).toBeGreaterThan(i);
     const corpo = FONTE_INGEST.slice(i, j);
     expect(corpo).toContain('sent_via: "external_device"');
-    expect(corpo).toContain("silenciarBotPorRetomadaHumana(admin, session.organization_id, conversationId)");
+    expect(corpo).toMatch(/await pausarIaPorAtendimentoManual\(admin,\s*\{\s*organizationId: session.organization_id,\s*conversationId,/);
   });
 });

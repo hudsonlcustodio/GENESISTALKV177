@@ -16,7 +16,7 @@ genesis_compose exec -T app node -e '
 const net=require("net");const s=net.connect(3000,"127.0.0.1");s.setTimeout(5000);s.on("connect",()=>process.exit(0));s.on("error",()=>process.exit(1));s.on("timeout",()=>process.exit(1));
 ' || fail_contabo 'App TCP indisponível.'
 genesis_compose exec -T app node -e '
-(async()=>{const r=await fetch("http://127.0.0.1:3000/api/v1/health",{signal:AbortSignal.timeout(10000)});if(!r.ok)process.exit(1);const b=await r.json();if(JSON.stringify(b).indexOf("1.77.0")<0)process.exit(1)})().catch(()=>process.exit(1));
+(async()=>{const r=await fetch("http://127.0.0.1:3000/api/v1/health",{signal:AbortSignal.timeout(10000)});if(!r.ok)process.exit(1);const b=await r.json();if(b.data?.version!=="1.77.0")process.exit(1)})().catch(()=>process.exit(1));
 ' || fail_contabo 'Health/readiness ou versão 1.77.0 reprovou; verifique dependências internas.'
 tmp="$(mktemp)"; trap 'rm -f "$tmp"' EXIT
 curl --fail --silent --show-error --max-time 20 "https://$DOMAIN/login" -o "$tmp" || fail_contabo 'HTTPS/login indisponível (sem ignorar TLS).'

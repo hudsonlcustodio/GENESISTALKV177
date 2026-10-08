@@ -36,15 +36,17 @@ while IFS= read -r caminho || [ -n "$caminho" ]; do
     # barra casa só na RAIZ do contexto, e `*` de `case` atravessa `/`: por
     # isso todo padrão aqui começa pelo nome do diretório da raiz.
     evidence | .superpowers) ;;
+    .runtime | backups | .qa-backups | .auth | .qa-vps) ;;
     node_modules/* | .next/* | .git/* | test-results/* | tests/* | .lina/* \
       | docs/* | tasks/* | scratchpad/* | .vercel/* | .claude/* | .agents/* \
       | .agent/* | .codex/* | .cursor/* | .opencode/* | .specs/* | .changes/* \
-      | evidence/* | .superpowers/*) ;;
+      | evidence/* | .superpowers/* | .runtime/* | backups/* | .qa-backups/* | .auth/* | .qa-vps/*) ;;
+    asterisk/pjsip.conf | asterisk/ari.conf) ;;
     .github/*.yml | .github/*.yaml | .github/*.md) ;;
     # Daqui para baixo, só arquivo da RAIZ: qualquer outro caminho com `/` alcança.
     */*) echo sim; exit 0 ;;
     # ↓ espelho do .dockerignore — os arquivos da raiz.
-    .env | .env.* | playwright.config.ts | *.png | *.log | *.tsbuildinfo) ;;
+    .env | .env.* | playwright.config.ts | *.png | *.log | *.tsbuildinfo | .e2e-*.json | *.dump | *.pem | *.key) ;;
     *.md) ;;
     *) echo sim; exit 0 ;;
   esac

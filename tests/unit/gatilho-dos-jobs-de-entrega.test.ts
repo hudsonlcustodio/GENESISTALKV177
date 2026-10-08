@@ -63,16 +63,22 @@ const DIR = join(process.cwd(), ".github/workflows");
  * consciente: o teste reprova até alguém escrevê-la, e escrever uma condição
  * que desliga um job de entrega fica visível em code review.
  */
+// Genesis v1.77: publication jobs are deliberately upstream-only. Exact expression
+// comparison remains active; adding && false still fails the contract.
 const GATILHO_ESPERADO: Record<string, { condicao: string | null; efeito: string }> = {
+  "genesis-quality.yml::genesis-quality": {
+    condicao: null,
+    efeito: "Executa gov:verify e build Genesis em main/PR; a release manual depende desses resultados.",
+  },
   // --- a cadeia que leva o conserto até a VPS ---------------------------------
   "release.yml::abrir-pr-de-release": {
-    condicao: "github.event_name == 'workflow_dispatch'",
+    condicao: "github.repository == 'melgarafael/DeskcommCRM' && github.event_name == 'workflow_dispatch'",
     efeito:
       "Este job é quem monta o PR de release a partir dos fragmentos de `.changes/`. " +
       "Desligá-lo faz nenhuma versão ser fechada — sem erro em lugar nenhum.",
   },
   "release.yml::cortar-tag": {
-    condicao: "github.event_name == 'push'",
+    condicao: "github.repository == 'melgarafael/DeskcommCRM' && github.event_name == 'push'",
     efeito:
       "Este job é quem CRIA E EMPURRA a tag `vX.Y.Z`, que é o gatilho da atualização " +
       "do parque instalado inteiro. Desligá-lo faz a release parar em silêncio: nenhuma " +
@@ -91,13 +97,13 @@ const GATILHO_ESPERADO: Record<string, { condicao: string | null; efeito: string
   // nada a mais. A condição tira só o PR; o `imagens-ok` exige `success` dele
   // em todo outro evento e aceita `skipped` só em pull_request.
   "publish-image.yml::build-and-push": {
-    condicao: "github.event_name != 'pull_request'",
+    condicao: "github.repository == 'melgarafael/DeskcommCRM' && github.event_name != 'pull_request'",
     efeito:
       "Este job PUBLICA as quatro imagens no GHCR — é o artefato que o self-hoster instala. " +
       "Desligá-lo faz a tag existir sem imagem por trás dela.",
   },
   "publish-image.yml::juntar-manifestos": {
-    condicao: "github.event_name != 'pull_request'",
+    condicao: "github.repository == 'melgarafael/DeskcommCRM' && github.event_name != 'pull_request'",
     efeito:
       "Este job junta os builds nativos AMD64 e ARM64 em cada tag que o cliente puxa. " +
       "Desligá-lo deixa as tags finais sem um manifesto multi-arquitetura utilizável.",
@@ -121,7 +127,7 @@ const GATILHO_ESPERADO: Record<string, { condicao: string | null; efeito: string
   // versão anterior sem que nada tenha ficado vermelho.
   "publish-image.yml::promover-stable": {
     condicao:
-      "github.event_name == 'push' && github.ref_type == 'tag' && startsWith(github.ref_name, 'v')",
+      "github.repository == 'melgarafael/DeskcommCRM' && github.event_name == 'push' && github.ref_type == 'tag' && startsWith(github.ref_name, 'v')",
     efeito:
       "As três condições barram um caminho medido cada uma. Sem `push`, um dispatch numa " +
       "release ANTIGA faria `stable` REGREDIR, e todo self-hoster no default do compose " +
