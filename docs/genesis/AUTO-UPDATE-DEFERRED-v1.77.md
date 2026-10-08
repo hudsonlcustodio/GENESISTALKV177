@@ -2,6 +2,12 @@
 
 Status: **DEFERRED / NOT APPROVED FOR GENESIS PRODUCTION**
 
+2026-10-08: os jobs de escrita de release/GHCR têm guard explícito do repositório
+upstream, portanto não publicam automaticamente no repositório Genesis. A rota
+manual `deploy/contabo/` usa builds locais `genesis-talk-*:1.77.0` e não autoriza
+o updater herdado. Ela ainda depende dos gates de runtime/recovery do relatório
+`PRODUCTION-READINESS-v1.77.md`.
+
 The current Deskcomm self-update, release and image-publication implementation is
 retained in source so that this upstream intake does not fork those mechanisms
 prematurely.

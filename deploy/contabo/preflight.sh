@@ -29,6 +29,8 @@ done
 [[ "$NEXT_PUBLIC_APP_URL" == "https://$DOMAIN" && "$NEXT_PUBLIC_ADMIN_URL" == "https://$DOMAIN" ]] || fail_contabo 'URLs públicas precisam corresponder ao domínio HTTPS.'
 [[ "$NEXT_PUBLIC_SUPABASE_URL" == https://* ]] || fail_contabo 'Supabase público deve usar HTTPS.'
 [[ "$SUPABASE_SERVICE_ROLE_KEY" != "$NEXT_PUBLIC_SUPABASE_ANON_KEY" ]] || fail_contabo 'Anon e service role não podem ser a mesma chave.'
+supabase_key_role_ok "$NEXT_PUBLIC_SUPABASE_ANON_KEY" anon || fail_contabo 'NEXT_PUBLIC_SUPABASE_ANON_KEY precisa ser anon/publicável; credencial privilegiada recusada.'
+supabase_key_role_ok "$SUPABASE_SERVICE_ROLE_KEY" service_role || fail_contabo 'SUPABASE_SERVICE_ROLE_KEY precisa ser service_role/secret.'
 for key in INTERNAL_SECRET CPF_ENCRYPTION_KEY WAHA_BYO_ENCRYPTION_KEY WAHA_HMAC_SECRET; do
   value="${!key}"
   [[ "${#value}" -ge 32 ]] || fail_contabo "Segredo muito curto: $key."

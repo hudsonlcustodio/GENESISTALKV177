@@ -28,7 +28,9 @@ import type { Rampa } from "@/lib/branding/rampa";
 
 const RAIZ = process.cwd();
 const CSS = fs.readFileSync(path.join(RAIZ, "app/globals.css"), "utf8");
-const REGUA: Regua = extrairRegua(CSS);
+// Preserve upstream adversarial calibration independently of the Genesis product ramp.
+const REGUA: Regua = extrairRegua(fs.readFileSync(path.join(RAIZ, "tests/fixtures/branding-sage-calibration.css"), "utf8"));
+const GENESIS: Regua = extrairRegua(CSS);
 
 const rampaChapada = (hex: string): Rampa =>
   Array.from({ length: 11 }, () => hex) as unknown as Rampa;
@@ -481,6 +483,31 @@ describe("ramo degradado — rampas que não têm solução", () => {
     // que sempre degrada.
     for (const tema of [REGUA.claro, REGUA.escuro] as TemaDaRegua[]) {
       expect(escolherAccent(REGUA.rampaDoProduto, tema).motivo).toBeNull();
+    }
+  });
+});
+
+describe("Genesis — os papéis de produto e marcas usam os mesmos pisos", () => {
+  it("mantém as âncoras oficiais e passa o contraste nos dois temas", () => {
+    expect(GENESIS.rampaDoProduto[5]).toBe("#7ed321");
+    expect(GENESIS.rampaDoProduto[7]).toBe("#00c853");
+    expect(GENESIS.rampaDoProduto[10]).toBe("#0b3d3a");
+    for (const tema of [GENESIS.claro, GENESIS.escuro]) {
+      const pares = medirPares(tema, GENESIS.rampaDoProduto, 0);
+      expect(pares.length).toBeGreaterThanOrEqual(18);
+      expect(pares.filter(p => !p.passa), tema.nome).toEqual([]);
+    }
+    // Measure the literal CSS foreground too: the generic engine calculates it.
+    expect(razaoDeContraste("#ffffff", "#0b5d45")).toBeGreaterThanOrEqual(4.5);
+    expect(razaoDeContraste("#161510", "#8ae532")).toBeGreaterThanOrEqual(4.5);
+  });
+  it("as sementes adversariais também passam com a régua Genesis", () => {
+    for (const seed of [...FIXTURE, "#7ed321"]) {
+      const marca = derivarMarca(seed, GENESIS);
+      for (const tema of [marca.claro, marca.escuro]) {
+        expect(tema.pares.length).toBeGreaterThanOrEqual(18);
+        expect(tema.pares.filter(p => !p.passa), seed).toEqual([]);
+      }
     }
   });
 });

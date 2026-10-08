@@ -245,7 +245,7 @@ describe("o kit aponta para o que o CI realmente publica", () => {
     expect(COMUM).toContain(`local url="\${1:-${repo}.git}" ref`);
     for (const dockerfile of ["Dockerfile", "Dockerfile.worker", "Dockerfile.scheduler"]) {
       expect(fs.readFileSync(path.join(RAIZ, dockerfile), "utf8")).toContain(
-        `org.opencontainers.image.source="${repo}"`,
+        'org.opencontainers.image.source="https://github.com/hudsonlcustodio/GENESISTALKV177"',
       );
     }
   });
@@ -395,6 +395,7 @@ describe("catraca: ninguém mais repete o namespace", () => {
   function reincidentes(): string[] {
     const excluiDir = [
       ".git",
+      ".runtime", // caches e logs operacionais; não são fonte executável do produto
       "node_modules",
       ".next",
       "docs",

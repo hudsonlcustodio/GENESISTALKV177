@@ -37,6 +37,34 @@ import type { Idioma } from "./idiomas";
 type Traducoes = Record<string, Partial<Record<Exclude<Idioma, "pt-BR">, string>>>;
 
 export const DICIONARIO: Traducoes = {
+  // Genesis: Supervisão e histórico do Follow-up.
+  "Desfazer ação": { es: "Deshacer acción" },
+  "Desconectar box": { es: "Desconectar bloque" },
+  "Supervisão 360": { es: "Supervisión 360" },
+  "Operação humana e IA em uma visão única, com dados que apontam para a fonte.": { es: "Operación humana e IA en una vista única, con datos que señalan la fuente." },
+  "Fonte indisponível": { es: "Fuente no disponible" },
+  "Última atualização": { es: "Última actualización" },
+  "Parte da telemetria está indisponível. Os números abaixo podem estar incompletos.": { es: "Parte de la telemetría no está disponible. Las cifras siguientes pueden estar incompletas." },
+  "Operação agora": { es: "Operación ahora" },
+  "Atualização operacional a cada ~30 segundos.": { es: "Actualización operativa cada ~30 segundos." },
+  "Fila humana": { es: "Cola humana" },
+  "Em IA": { es: "En IA" },
+  "Abertas no escopo": { es: "Abiertas en el ámbito" },
+  "Pessoas presentes": { es: "Personas presentes" },
+  "de plantão": { es: "de guardia" },
+  "Carga atribuída": { es: "Carga asignada" },
+  "presente": { es: "presente" },
+  "sem presença recente": { es: "sin presencia reciente" },
+  "atendimentos": { es: "atenciones" },
+  "ganhos": { es: "ganados" },
+  "perdidos": { es: "perdidos" },
+  "Agentes de IA": { es: "Agentes de IA" },
+  "Métrica operacional do executor; não equivale sozinha a resolução de atendimento.": { es: "Métrica operativa del ejecutor; por sí sola no equivale a resolver una atención." },
+  "Turnos": { es: "Turnos" },
+  "Com ação": { es: "Con acción" },
+  "Promessas sem dono": { es: "Promesas sin responsable" },
+  "Sem ferramenta": { es: "Sin herramienta" },
+
   "Conectar a assinatura do ChatGPT": { es: "Conectar la suscripción de ChatGPT" },
   "Cada empresa conecta a própria conta do ChatGPT. Abra o link e entre com a conta que tem a assinatura. No fim, o navegador vai para http://127.0.0.1:1455/auth/callback, que pode não abrir — é esperado. Copie esse endereço inteiro, da barra do navegador, e cole aqui.": {
     es: "Cada empresa conecta su propia cuenta de ChatGPT. Abre el enlace e inicia sesión con la cuenta que tiene la suscripción. Al final, el navegador irá a http://127.0.0.1:1455/auth/callback, que quizá no se abra — es normal. Copia la dirección completa de la barra del navegador y pégala aquí.",

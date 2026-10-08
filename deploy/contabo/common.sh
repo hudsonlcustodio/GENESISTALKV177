@@ -7,6 +7,19 @@ export REPO_URL=https://github.com/hudsonlcustodio/GENESISTALKV177.git
 export GENESIS_CONTABO=1
 source "$GENESIS_ROOT/hostgator-setup-kit/_common.sh"
 fail_contabo() { printf 'BLOCKED: %s\n' "$*" >&2; exit 1; }
+supabase_key_role_ok() {
+  # Classify only; authenticity is checked by Supabase. Never print a key.
+  local key="$1" role="$2" payload
+  case "$role:$key" in
+    anon:sb_publishable_*) return 0 ;;
+    service_role:sb_secret_*) return 0 ;;
+  esac
+  [[ "$key" =~ ^[^.]+\.[^.]+\.[^.]+$ ]] || return 1
+  payload="${key#*.}"; payload="${payload%%.*}"
+  payload="${payload//-/+}"; payload="${payload//_/\/}"
+  case "$((${#payload} % 4))" in 2) payload+='==';; 3) payload+='=';; 1) return 1;; esac
+  printf '%s' "$payload" | openssl base64 -d -A 2>/dev/null | jq -e --arg role "$role" '.role == $role' >/dev/null 2>&1
+}
 load_contabo() {
   [[ -f .env && ! -L .env ]] || fail_contabo 'Falta .env regular na raiz; use o template Contabo.'
   load_env .env
