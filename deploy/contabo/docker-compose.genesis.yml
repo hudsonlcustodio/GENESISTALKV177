@@ -1,0 +1,36 @@
+# Paths resolve against the FIRST compose file, at the repository root.
+# Always use: -f docker-compose.prod.yml -f deploy/contabo/docker-compose.genesis.yml
+services:
+  app:
+    image: genesis-talk-app:1.77.0
+    pull_policy: never
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        APP_VERSION: "1.77.0"
+  worker:
+    image: genesis-talk-worker:1.77.0
+    pull_policy: never
+    build:
+      context: .
+      dockerfile: Dockerfile.worker
+      args:
+        APP_VERSION: "1.77.0"
+  scheduler:
+    image: genesis-talk-scheduler:1.77.0
+    pull_policy: never
+    build:
+      context: .
+      dockerfile: Dockerfile.scheduler
+      args:
+        APP_VERSION: "1.77.0"
+  voice-agent:
+    profiles: [telefonia]
+    image: genesis-talk-voice-agent:1.77.0
+    pull_policy: never
+    build:
+      context: .
+      dockerfile: Dockerfile.voice-agent
+      args:
+        APP_VERSION: "1.77.0"

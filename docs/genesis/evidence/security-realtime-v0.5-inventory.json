@@ -1,0 +1,1344 @@
+{
+  "GEN-013 provider recheck": [
+    {
+      "score": 471,
+      "path": "supabase/baseline.sql"
+    },
+    {
+      "score": 118,
+      "path": "lib/agent-engine/agent/inbound-turn.ts"
+    },
+    {
+      "score": 116,
+      "path": "docs/stories/epics/EPIC-13-ai-agents-module.md"
+    },
+    {
+      "score": 110,
+      "path": "lib/i18n/dicionario.ts"
+    },
+    {
+      "score": 110,
+      "path": "docs/superpowers/plans/2026-07-27-canais-seam-fases-0-2.md"
+    },
+    {
+      "score": 105,
+      "path": "supabase/migrations/MANIFEST.md"
+    },
+    {
+      "score": 101,
+      "path": "docs/superpowers/plans/2026-07-22-onda3-agente-multimodal.md"
+    },
+    {
+      "score": 95,
+      "path": "docs/handoffs/BRIEFING-crm-vivo.md"
+    },
+    {
+      "score": 90,
+      "path": "docs/specs/10-spec-ai-agents-runtime.md"
+    },
+    {
+      "score": 88,
+      "path": "docs/audits/2026-08-14-afirmacoes-de-estado.md"
+    },
+    {
+      "score": 85,
+      "path": "docs/handoffs/HANDOFF-canais-oficial.md"
+    },
+    {
+      "score": 85,
+      "path": "docs/design/teto-de-orcamento.md"
+    },
+    {
+      "score": 83,
+      "path": "HANDOFF-ia-360.md"
+    },
+    {
+      "score": 81,
+      "path": "docs/stories/epics/EPIC-06-ai-rag.md"
+    },
+    {
+      "score": 74,
+      "path": "lib/agent-engine/edge/llm/run-model-call.ts"
+    },
+    {
+      "score": 71,
+      "path": "lib/database.types.ts"
+    },
+    {
+      "score": 66,
+      "path": "workers/ai-response-worker.ts"
+    },
+    {
+      "score": 63,
+      "path": "lib/agent-engine/agent/human-handoff.ts"
+    },
+    {
+      "score": 63,
+      "path": "docs/prd/05-prd-ai-rag-handoff.md"
+    },
+    {
+      "score": 62,
+      "path": "lib/ai/handoff/orchestrator.ts"
+    },
+    {
+      "score": 60,
+      "path": "lib/ai/runtime/agent.ts"
+    },
+    {
+      "score": 60,
+      "path": "lib/ai/gateway-binding.ts"
+    },
+    {
+      "score": 60,
+      "path": "app/app/ai/agents/[id]/_components/AgentForm.tsx"
+    },
+    {
+      "score": 58,
+      "path": "docs/specs/05-spec-ai-rag-handoff.md"
+    },
+    {
+      "score": 55,
+      "path": "docs/testing/user-journey-map.md"
+    },
+    {
+      "score": 50,
+      "path": "lib/followup/node-handlers.ts"
+    },
+    {
+      "score": 47,
+      "path": "lib/followup/reactivity.ts"
+    },
+    {
+      "score": 47,
+      "path": "HANDOFF.md"
+    },
+    {
+      "score": 46,
+      "path": "supabase/migrations/20260505140000_0023_ai_agents_module.sql"
+    },
+    {
+      "score": 44,
+      "path": "tests/unit/handoff-por-orcamento.test.ts"
+    }
+  ],
+  "GEN-014 meet send safety": [
+    {
+      "score": 807,
+      "path": "supabase/baseline.sql"
+    },
+    {
+      "score": 290,
+      "path": "supabase/migrations/20260907020000_0226_meet_e_entrega_transacional.sql"
+    },
+    {
+      "score": 233,
+      "path": "tests/invariants/agenda-meet.test.ts"
+    },
+    {
+      "score": 149,
+      "path": "supabase/migrations/MANIFEST.md"
+    },
+    {
+      "score": 102,
+      "path": "supabase/migrations/20260920140000_0366_o_compromisso_chega_sem_meet.sql"
+    },
+    {
+      "score": 73,
+      "path": "tests/e2e/agenda-google-meet.spec.ts"
+    },
+    {
+      "score": 67,
+      "path": "components/agenda/MeetDoCompromisso.tsx"
+    },
+    {
+      "score": 58,
+      "path": "docs/stories/epics/EPIC-03-inbox-messaging.md"
+    },
+    {
+      "score": 52,
+      "path": "lib/database.types.ts"
+    },
+    {
+      "score": 45,
+      "path": "supabase/migrations/20260920130000_0365_reenviar_o_link_e_acao_propria.sql"
+    },
+    {
+      "score": 45,
+      "path": "supabase/migrations/20260920020000_0363_recusa_permanente_da_agenda_nao_pede_repeticao.sql"
+    },
+    {
+      "score": 45,
+      "path": "docs/stories/epics/EPIC-00-foundation.md"
+    },
+    {
+      "score": 44,
+      "path": "supabase/migrations/20260921050000_0374_remarcar_corrige_o_envio.sql"
+    },
+    {
+      "score": 43,
+      "path": "docs/superpowers/plans/2026-07-17-webhooks-backend.md"
+    },
+    {
+      "score": 42,
+      "path": "docs/specs/07-spec-events-workers.md"
+    },
+    {
+      "score": 37,
+      "path": "lib/agenda/google/sync-executor.ts"
+    },
+    {
+      "score": 35,
+      "path": "docs/specs/09-spec-frontend-backend-integration.md"
+    },
+    {
+      "score": 35,
+      "path": "docs/specs/06-spec-nuvemshop-lgpd.md"
+    },
+    {
+      "score": 33,
+      "path": "tests/unit/agenda-meet.test.ts"
+    },
+    {
+      "score": 32,
+      "path": "tests/unit/agenda-meet-ui.test.tsx"
+    },
+    {
+      "score": 32,
+      "path": "lib/agent-engine/agent/meet-delivery.ts"
+    },
+    {
+      "score": 30,
+      "path": "docs/stories/epics/EPIC-07-nuvemshop.md"
+    },
+    {
+      "score": 28,
+      "path": "docs/stories/epics/EPIC-08-lgpd.md"
+    },
+    {
+      "score": 27,
+      "path": "lib/i18n/dicionario.ts"
+    },
+    {
+      "score": 27,
+      "path": "lib/agent-engine/edge/crm/send-message.ts"
+    },
+    {
+      "score": 27,
+      "path": "docs/specs/01-spec-platform-base.md"
+    },
+    {
+      "score": 25,
+      "path": "docs/audits/2026-08-14-afirmacoes-de-estado.md"
+    },
+    {
+      "score": 24,
+      "path": "docs/testing/user-journey-map.md"
+    },
+    {
+      "score": 24,
+      "path": "docs/prd/06-prd-nuvemshop-lgpd.md"
+    },
+    {
+      "score": 23,
+      "path": "lib/agent-engine/guardrails/before-send.ts"
+    }
+  ],
+  "GEN-015 realtime auth": [
+    {
+      "score": 1606,
+      "path": "supabase/baseline.sql"
+    },
+    {
+      "score": 223,
+      "path": "docs/specs/03-spec-whatsapp-waha.md"
+    },
+    {
+      "score": 208,
+      "path": "supabase/migrations/MANIFEST.md"
+    },
+    {
+      "score": 178,
+      "path": "tests/unit/canal-arquivado-caminho-de-volta.test.ts"
+    },
+    {
+      "score": 170,
+      "path": "lib/database.types.ts"
+    },
+    {
+      "score": 165,
+      "path": "docs/specs/09-spec-frontend-backend-integration.md"
+    },
+    {
+      "score": 156,
+      "path": "docs/stories/epics/EPIC-01-auth-app-shell.md"
+    },
+    {
+      "score": 139,
+      "path": "docs/audits/2026-08-14-afirmacoes-de-estado.md"
+    },
+    {
+      "score": 128,
+      "path": "app/api/v1/channel-sessions/[id]/route.test.ts"
+    },
+    {
+      "score": 111,
+      "path": "lib/waha/client.ts"
+    },
+    {
+      "score": 100,
+      "path": "tests/unit/voz-pareamento-api.test.ts"
+    },
+    {
+      "score": 99,
+      "path": "supabase/migrations/20260905210000_0220_suporte_temporario_por_sessao.sql"
+    },
+    {
+      "score": 99,
+      "path": "docs/handoffs/BRIEFING-crm-vivo.md"
+    },
+    {
+      "score": 98,
+      "path": "docs/specs/08-spec-deploy-observability.md"
+    },
+    {
+      "score": 98,
+      "path": "docs/specs/01-spec-platform-base.md"
+    },
+    {
+      "score": 97,
+      "path": "docs/stories/epics/EPIC-07-nuvemshop.md"
+    },
+    {
+      "score": 97,
+      "path": "docs/stories/epics/EPIC-03-inbox-messaging.md"
+    },
+    {
+      "score": 87,
+      "path": "lib/waha/ingest.ts"
+    },
+    {
+      "score": 85,
+      "path": "docs/specs/06-spec-nuvemshop-lgpd.md"
+    },
+    {
+      "score": 84,
+      "path": "docs/specs/04-spec-pipeline-attendance.md"
+    },
+    {
+      "score": 82,
+      "path": "docs/stories/epics/EPIC-10-audit-settings.md"
+    },
+    {
+      "score": 80,
+      "path": "docs/superpowers/plans/2026-07-28-atualizar-versao-na-ui.md"
+    },
+    {
+      "score": 79,
+      "path": "docs/testing/user-journey-map.md"
+    },
+    {
+      "score": 78,
+      "path": "app/api/v1/channel-sessions/[id]/route.ts"
+    },
+    {
+      "score": 75,
+      "path": "docs/stories/epics/EPIC-11-admin-platform.md"
+    },
+    {
+      "score": 70,
+      "path": "supabase/migrations/20260907030000_0227_autonomia_e_respostas_revisadas.sql"
+    },
+    {
+      "score": 69,
+      "path": "docs/handoffs/HANDOFF-canais-oficial.md"
+    },
+    {
+      "score": 67,
+      "path": "docs/stories/epics/EPIC-13-ai-agents-module.md"
+    },
+    {
+      "score": 64,
+      "path": "supabase/migrations/20260907040000_0228_roteamento_por_canal_e_reservas.sql"
+    },
+    {
+      "score": 62,
+      "path": "lib/wacalls/client.ts"
+    }
+  ],
+  "GEN-016 refetch clock": [
+    {
+      "score": 121,
+      "path": "supabase/baseline.sql"
+    },
+    {
+      "score": 65,
+      "path": "lib/followup/node-handlers.test.ts"
+    },
+    {
+      "score": 44,
+      "path": "workers/agent-worker/main.ts"
+    },
+    {
+      "score": 39,
+      "path": "tests/unit/queue-loop.test.ts"
+    },
+    {
+      "score": 39,
+      "path": "docs/handoffs/BRIEFING-crm-vivo.md"
+    },
+    {
+      "score": 34,
+      "path": "tests/invariants/followup-silence-sweep.test.ts"
+    },
+    {
+      "score": 26,
+      "path": "tests/unit/pessoa-marca-fora-da-grade.test.ts"
+    },
+    {
+      "score": 26,
+      "path": "tests/invariants/agenda-meet.test.ts"
+    },
+    {
+      "score": 26,
+      "path": "lib/followup/reactivity.ts"
+    },
+    {
+      "score": 26,
+      "path": "hooks/realtime/useRefetchDeSeguranca.ts"
+    },
+    {
+      "score": 25,
+      "path": "supabase/migrations/20260907010000_0225_google_reconciliacao.sql"
+    },
+    {
+      "score": 25,
+      "path": "lib/followup/node-handlers.ts"
+    },
+    {
+      "score": 21,
+      "path": "lib/followup/engine.ts"
+    },
+    {
+      "score": 21,
+      "path": "docs/specs/04-spec-pipeline-attendance.md"
+    },
+    {
+      "score": 19,
+      "path": "CHANGELOG.md"
+    },
+    {
+      "score": 18,
+      "path": "lib/agent-engine/queue/loop.ts"
+    },
+    {
+      "score": 18,
+      "path": "lib/agent-engine/agent/followup-turn.ts"
+    },
+    {
+      "score": 17,
+      "path": "lib/followup/turn-bridge.test.ts"
+    },
+    {
+      "score": 17,
+      "path": "docs/testing/user-journey-map.md"
+    },
+    {
+      "score": 16,
+      "path": "tests/unit/aquecimento-aceita-o-dia-de-hoje.test.ts"
+    },
+    {
+      "score": 15,
+      "path": "tests/unit/presenca-do-atendente.test.ts"
+    },
+    {
+      "score": 15,
+      "path": "tests/invariants/queue-relogio.test.ts"
+    },
+    {
+      "score": 15,
+      "path": "tests/invariants/agenda-presenca-recuperacao.test.ts"
+    },
+    {
+      "score": 15,
+      "path": "supabase/migrations/20260907020000_0226_meet_e_entrega_transacional.sql"
+    },
+    {
+      "score": 14,
+      "path": "scripts/lib/followups-de-demonstracao.ts"
+    },
+    {
+      "score": 14,
+      "path": "app/app/ads/meta/_components/MetaAdsClient.tsx"
+    },
+    {
+      "score": 13,
+      "path": "tests/invariants/followup-engine.test.ts"
+    },
+    {
+      "score": 13,
+      "path": "lib/agent-engine/cron/scheduler.ts"
+    },
+    {
+      "score": 12,
+      "path": "tests/unit/realtime-reconecta.test.ts"
+    },
+    {
+      "score": 12,
+      "path": "tests/unit/followups-de-demonstracao-sao-possiveis.test.ts"
+    }
+  ],
+  "GEN-017 support readonly unread": [
+    {
+      "score": 208,
+      "path": "supabase/baseline.sql"
+    },
+    {
+      "score": 86,
+      "path": "supabase/migrations/20260905210000_0220_suporte_temporario_por_sessao.sql"
+    },
+    {
+      "score": 41,
+      "path": "tests/invariants/suporte-temporario.test.ts"
+    },
+    {
+      "score": 29,
+      "path": "lib/audit/index.ts"
+    },
+    {
+      "score": 27,
+      "path": "tests/invariants/travas-de-suporte-cobrem-toda-tabela-na-instalacao.test.ts"
+    },
+    {
+      "score": 27,
+      "path": "tests/invariants/molde-de-provisionadora.ts"
+    },
+    {
+      "score": 27,
+      "path": "tests/invariants/autonomia-authority.test.ts"
+    },
+    {
+      "score": 25,
+      "path": "lib/database.types.ts"
+    },
+    {
+      "score": 23,
+      "path": "lib/impersonate/support.ts"
+    },
+    {
+      "score": 22,
+      "path": "docs/specs/01-spec-platform-base.md"
+    },
+    {
+      "score": 21,
+      "path": "tests/unit/suporte-guardas.test.ts"
+    },
+    {
+      "score": 21,
+      "path": "app/api/v1/marca/logo/route.ts"
+    },
+    {
+      "score": 20,
+      "path": "tests/e2e/suporte-temporario.spec.ts"
+    },
+    {
+      "score": 19,
+      "path": "docs/specs/09-spec-frontend-backend-integration.md"
+    },
+    {
+      "score": 17,
+      "path": "components/inbox/InboxLayout.tsx"
+    },
+    {
+      "score": 16,
+      "path": "docs/stories/epics/EPIC-11-admin-platform.md"
+    },
+    {
+      "score": 14,
+      "path": "tests/invariants/lgpd-agenda-lock-order.test.ts"
+    },
+    {
+      "score": 14,
+      "path": "lib/instalacao/catalogo.ts"
+    },
+    {
+      "score": 14,
+      "path": "lib/agent-engine/agent/inbound-turn.ts"
+    },
+    {
+      "score": 14,
+      "path": "docs/specs/13-spec-governanca-atendimento.md"
+    },
+    {
+      "score": 13,
+      "path": "tests/invariants/hardening-definer-varredura.test.ts"
+    },
+    {
+      "score": 12,
+      "path": "tests/unit/suporte-cobertura-de-efeitos.test.ts"
+    },
+    {
+      "score": 12,
+      "path": "tests/invariants/definer-membership-varredura.test.ts"
+    },
+    {
+      "score": 12,
+      "path": "docs/prd/01-prd-platform-base.md"
+    },
+    {
+      "score": 11,
+      "path": "tests/unit/voz-so-sonda-quem-pode-atender.test.tsx"
+    },
+    {
+      "score": 11,
+      "path": "tests/invariants/agenda-meet.test.ts"
+    },
+    {
+      "score": 11,
+      "path": "supabase/migrations/MANIFEST.md"
+    },
+    {
+      "score": 11,
+      "path": "supabase/migrations/20260907030000_0227_autonomia_e_respostas_revisadas.sql"
+    },
+    {
+      "score": 11,
+      "path": "app/api/v1/contacts/[id]/route.ts"
+    },
+    {
+      "score": 10,
+      "path": "tests/invariants/agenda-google-reconciliacao.test.ts"
+    }
+  ],
+  "GEN-018 support reserved queries": [
+    {
+      "score": 221,
+      "path": "supabase/baseline.sql"
+    },
+    {
+      "score": 131,
+      "path": "tests/invariants/agenda-meet.test.ts"
+    },
+    {
+      "score": 123,
+      "path": "tests/invariants/extensoes-declarativas.test.ts"
+    },
+    {
+      "score": 108,
+      "path": "tests/invariants/lgpd-agenda-lock-order.test.ts"
+    },
+    {
+      "score": 100,
+      "path": "tests/invariants/cliente-nasce-do-agendamento.test.ts"
+    },
+    {
+      "score": 91,
+      "path": "docs/specs/09-spec-frontend-backend-integration.md"
+    },
+    {
+      "score": 85,
+      "path": "supabase/migrations/20260905210000_0220_suporte_temporario_por_sessao.sql"
+    },
+    {
+      "score": 78,
+      "path": "tests/invariants/agenda-google-reconciliacao.test.ts"
+    },
+    {
+      "score": 65,
+      "path": "tests/invariants/autonomia-authority.test.ts"
+    },
+    {
+      "score": 62,
+      "path": "docs/specs/04-spec-pipeline-attendance.md"
+    },
+    {
+      "score": 52,
+      "path": "docs/stories/epics/EPIC-10-audit-settings.md"
+    },
+    {
+      "score": 47,
+      "path": "tests/invariants/channel-routing.test.ts"
+    },
+    {
+      "score": 43,
+      "path": "tests/invariants/autonomia-delivery-http.test.ts"
+    },
+    {
+      "score": 41,
+      "path": "tests/invariants/suporte-temporario.test.ts"
+    },
+    {
+      "score": 40,
+      "path": "lib/extensions/manifest.ts"
+    },
+    {
+      "score": 39,
+      "path": "tests/invariants/agenda-meet-export.test.ts"
+    },
+    {
+      "score": 38,
+      "path": "lib/agent-engine/agent/inbound-turn.ts"
+    },
+    {
+      "score": 36,
+      "path": "tests/unit/helpers/cliente-admin.ts"
+    },
+    {
+      "score": 36,
+      "path": "docs/stories/epics/EPIC-11-admin-platform.md"
+    },
+    {
+      "score": 32,
+      "path": "docs/specs/01-spec-platform-base.md"
+    },
+    {
+      "score": 31,
+      "path": "docs/stories/epics/EPIC-03-inbox-messaging.md"
+    },
+    {
+      "score": 29,
+      "path": "supabase/migrations/MANIFEST.md"
+    },
+    {
+      "score": 29,
+      "path": "lib/prospecting/agent-setup.ts"
+    },
+    {
+      "score": 29,
+      "path": "lib/audit/index.ts"
+    },
+    {
+      "score": 29,
+      "path": "components/extensions/ExtensionsManager.test.tsx"
+    },
+    {
+      "score": 28,
+      "path": "tests/unit/agenda-aviso-da-conexao.test.tsx"
+    },
+    {
+      "score": 28,
+      "path": "docs/stories/epics/EPIC-09-team.md"
+    },
+    {
+      "score": 28,
+      "path": "docs/stories/epics/EPIC-01-auth-app-shell.md"
+    },
+    {
+      "score": 27,
+      "path": "tests/invariants/travas-de-suporte-cobrem-toda-tabela-na-instalacao.test.ts"
+    },
+    {
+      "score": 27,
+      "path": "tests/invariants/molde-de-provisionadora.ts"
+    }
+  ],
+  "GEN-019 support cross-tab": [
+    {
+      "score": 1970,
+      "path": "supabase/baseline.sql"
+    },
+    {
+      "score": 302,
+      "path": "supabase/migrations/MANIFEST.md"
+    },
+    {
+      "score": 146,
+      "path": "lib/database.types.ts"
+    },
+    {
+      "score": 144,
+      "path": "tests/invariants/rls-completude-varredura.test.ts"
+    },
+    {
+      "score": 133,
+      "path": "docs/audits/2026-08-14-afirmacoes-de-estado.md"
+    },
+    {
+      "score": 112,
+      "path": "supabase/migrations/20260905210000_0220_suporte_temporario_por_sessao.sql"
+    },
+    {
+      "score": 105,
+      "path": "lib/i18n/dicionario.ts"
+    },
+    {
+      "score": 99,
+      "path": "docs/stories/epics/EPIC-11-admin-platform.md"
+    },
+    {
+      "score": 92,
+      "path": "docs/specs/01-spec-platform-base.md"
+    },
+    {
+      "score": 90,
+      "path": "docs/handoffs/BRIEFING-crm-vivo.md"
+    },
+    {
+      "score": 70,
+      "path": "tests/invariants/travas-de-suporte-cobrem-toda-tabela-na-instalacao.test.ts"
+    },
+    {
+      "score": 69,
+      "path": "app/app/integracao-dados/[id]/_components/ExploradorDeDados.tsx"
+    },
+    {
+      "score": 65,
+      "path": "tests/invariants/molde-de-provisionadora.ts"
+    },
+    {
+      "score": 59,
+      "path": "components/extensions/ExtensionsManager.tsx"
+    },
+    {
+      "score": 57,
+      "path": "docs/superpowers/plans/2026-07-21-onda2-composer-whatsapp.md"
+    },
+    {
+      "score": 57,
+      "path": "docs/specs/02-spec-customer-360.md"
+    },
+    {
+      "score": 55,
+      "path": "supabase/migrations/20260826140000_0181_o_acervo_e_da_organizacao.sql"
+    },
+    {
+      "score": 55,
+      "path": "CHANGELOG.md"
+    },
+    {
+      "score": 54,
+      "path": "docs/stories/epics/EPIC-10-audit-settings.md"
+    },
+    {
+      "score": 53,
+      "path": "supabase/migrations/20260918110000_0291_passagem_para_humano_tem_registro.sql"
+    },
+    {
+      "score": 53,
+      "path": "docs/adr/0002-tabelas-de-modulo-num-banco-so.md"
+    },
+    {
+      "score": 52,
+      "path": "tests/invariants/caso-so-nasce-do-motor.test.ts"
+    },
+    {
+      "score": 50,
+      "path": "supabase/migrations/20260918121000_0292_aviso_de_caso_no_whatsapp.sql"
+    },
+    {
+      "score": 50,
+      "path": "docs/stories/epics/EPIC-03-inbox-messaging.md"
+    },
+    {
+      "score": 46,
+      "path": "docs/specs/03-spec-whatsapp-waha.md"
+    },
+    {
+      "score": 45,
+      "path": "tests/unit/baseline-nao-constroi-o-que-derruba.test.ts"
+    },
+    {
+      "score": 45,
+      "path": "docs/superpowers/plans/2026-07-22-onda3-agente-multimodal.md"
+    },
+    {
+      "score": 44,
+      "path": "supabase/migrations/20260918102000_0281_conversa_do_caso.sql"
+    },
+    {
+      "score": 44,
+      "path": "docs/superpowers/plans/2026-07-24-harness-fase2-skills.md"
+    },
+    {
+      "score": 42,
+      "path": "docs/specs/09-spec-frontend-backend-integration.md"
+    }
+  ],
+  "GEN-020 RLS hardening": [
+    {
+      "score": 1089,
+      "path": "supabase/baseline.sql"
+    },
+    {
+      "score": 318,
+      "path": "docs/stories/epics/EPIC-11-admin-platform.md"
+    },
+    {
+      "score": 234,
+      "path": "supabase/migrations/MANIFEST.md"
+    },
+    {
+      "score": 122,
+      "path": "lib/agent-engine/agent/inbound-turn.ts"
+    },
+    {
+      "score": 96,
+      "path": "docs/specs/01-spec-platform-base.md"
+    },
+    {
+      "score": 90,
+      "path": "docs/stories/epics/EPIC-10-audit-settings.md"
+    },
+    {
+      "score": 85,
+      "path": "supabase/migrations/20260811110000_0150_rbac_na_config_de_ia_e_canais.sql"
+    },
+    {
+      "score": 83,
+      "path": "tests/invariants/rls-isolation.test.ts"
+    },
+    {
+      "score": 82,
+      "path": "docs/specs/06-spec-nuvemshop-lgpd.md"
+    },
+    {
+      "score": 76,
+      "path": "tests/unit/baseline-nao-constroi-o-que-derruba.test.ts"
+    },
+    {
+      "score": 74,
+      "path": "tests/invariants/rls-completude-varredura.test.ts"
+    },
+    {
+      "score": 72,
+      "path": "docs/business-rules/00-business-rules-catalog.md"
+    },
+    {
+      "score": 70,
+      "path": "docs/specs/05-spec-ai-rag-handoff.md"
+    },
+    {
+      "score": 68,
+      "path": "docs/stories/epics/EPIC-06-ai-rag.md"
+    },
+    {
+      "score": 68,
+      "path": "docs/specs/08-spec-deploy-observability.md"
+    },
+    {
+      "score": 65,
+      "path": "docs/stories/epics/EPIC-07-nuvemshop.md"
+    },
+    {
+      "score": 60,
+      "path": "docs/audits/2026-08-14-afirmacoes-de-estado.md"
+    },
+    {
+      "score": 59,
+      "path": "docs/stories/epics/EPIC-08-lgpd.md"
+    },
+    {
+      "score": 59,
+      "path": "docs/prd/00-prd-master.md"
+    },
+    {
+      "score": 57,
+      "path": "docs/research/architecture-diagrams.md"
+    },
+    {
+      "score": 51,
+      "path": "docs/specs/09-spec-frontend-backend-integration.md"
+    },
+    {
+      "score": 49,
+      "path": "docs/specs/03-spec-whatsapp-waha.md"
+    },
+    {
+      "score": 49,
+      "path": "docs/prd/05-prd-ai-rag-handoff.md"
+    },
+    {
+      "score": 47,
+      "path": "supabase/migrations/20260826190000_0177_agenda_o_compromisso_marcado.sql"
+    },
+    {
+      "score": 47,
+      "path": "supabase/migrations/20260826140000_0181_o_acervo_e_da_organizacao.sql"
+    },
+    {
+      "score": 47,
+      "path": "docs/design-system/screen-flow/03-screen-inventory.md"
+    },
+    {
+      "score": 46,
+      "path": "tests/unit/admin-client-exige-filtro-de-tenant.test.ts"
+    },
+    {
+      "score": 44,
+      "path": "docs/stories/epics/EPIC-03-inbox-messaging.md"
+    },
+    {
+      "score": 43,
+      "path": "docs/specs/13-spec-governanca-atendimento.md"
+    },
+    {
+      "score": 42,
+      "path": "docs/stories/epics/EPIC-13-ai-agents-module.md"
+    }
+  ],
+  "GEN-021 LGPD hardening": [
+    {
+      "score": 591,
+      "path": "supabase/baseline.sql"
+    },
+    {
+      "score": 300,
+      "path": "docs/stories/epics/EPIC-08-lgpd.md"
+    },
+    {
+      "score": 127,
+      "path": "lib/i18n/dicionario.ts"
+    },
+    {
+      "score": 114,
+      "path": "docs/stories/epics/EPIC-05-customer-360.md"
+    },
+    {
+      "score": 110,
+      "path": "supabase/migrations/MANIFEST.md"
+    },
+    {
+      "score": 79,
+      "path": "tests/unit/lgpd-anonimizacao-retoma.test.ts"
+    },
+    {
+      "score": 77,
+      "path": "docs/specs/06-spec-nuvemshop-lgpd.md"
+    },
+    {
+      "score": 70,
+      "path": "workers/lgpd-redact-worker.ts"
+    },
+    {
+      "score": 54,
+      "path": "lib/agent-engine/guardrails/before-send.ts"
+    },
+    {
+      "score": 51,
+      "path": "lib/lgpd/export-collector.ts"
+    },
+    {
+      "score": 50,
+      "path": "docs/specs/01-spec-platform-base.md"
+    },
+    {
+      "score": 50,
+      "path": "CHANGELOG.md"
+    },
+    {
+      "score": 46,
+      "path": "app/api/v1/lgpd/anonymize/route.ts"
+    },
+    {
+      "score": 42,
+      "path": "supabase/migrations/20260907050000_0229_mfa_e_lgpd_agenda.sql"
+    },
+    {
+      "score": 41,
+      "path": "tests/capture-lgpd-ensaio-tenant-b.ts"
+    },
+    {
+      "score": 39,
+      "path": "docs/prd/06-prd-nuvemshop-lgpd.md"
+    },
+    {
+      "score": 36,
+      "path": "lib/lgpd/cascata.ts"
+    },
+    {
+      "score": 35,
+      "path": "tests/invariants/lgpd-avatar-anonimizacao.test.ts"
+    },
+    {
+      "score": 35,
+      "path": "supabase/migrations/20260918121000_0292_aviso_de_caso_no_whatsapp.sql"
+    },
+    {
+      "score": 35,
+      "path": "lib/agent-engine/guardrails/lgpd/legal-basis.ts"
+    },
+    {
+      "score": 33,
+      "path": "supabase/migrations/20260920001100_0348_voice_calls_sip.sql"
+    },
+    {
+      "score": 33,
+      "path": "supabase/migrations/20260918110000_0291_passagem_para_humano_tem_registro.sql"
+    },
+    {
+      "score": 33,
+      "path": "supabase/migrations/20260918102000_0281_conversa_do_caso.sql"
+    },
+    {
+      "score": 33,
+      "path": "docs/specs/09-spec-frontend-backend-integration.md"
+    },
+    {
+      "score": 33,
+      "path": "docs/prd/00-prd-master.md"
+    },
+    {
+      "score": 33,
+      "path": "docs/handoffs/HANDOFF-crm-vivo.md"
+    },
+    {
+      "score": 32,
+      "path": "tests/unit/lgpd-varredura-completa-a-cascata.test.ts"
+    },
+    {
+      "score": 32,
+      "path": "tests/unit/lgpd-cascata-cancela-a-regua.test.ts"
+    },
+    {
+      "score": 32,
+      "path": "supabase/migrations/20260921030200_0370_prospeccao_anonimizacao.sql"
+    },
+    {
+      "score": 32,
+      "path": "supabase/migrations/20260920003000_0359_cascata_lgpd_alcanca_a_comanda.sql"
+    }
+  ],
+  "GEN-022 AI draft anonymization": [
+    {
+      "score": 4596,
+      "path": "supabase/baseline.sql"
+    },
+    {
+      "score": 1179,
+      "path": "CHANGELOG.md"
+    },
+    {
+      "score": 1038,
+      "path": "lib/i18n/dicionario.ts"
+    },
+    {
+      "score": 990,
+      "path": "docs/handoffs/BRIEFING-crm-vivo.md"
+    },
+    {
+      "score": 926,
+      "path": "supabase/migrations/MANIFEST.md"
+    },
+    {
+      "score": 629,
+      "path": "docs/testing/user-journey-map.md"
+    },
+    {
+      "score": 556,
+      "path": "tests/e2e/followup-builder.spec.ts"
+    },
+    {
+      "score": 490,
+      "path": "lib/agent-engine/agent/inbound-turn.ts"
+    },
+    {
+      "score": 446,
+      "path": "triagem/TRIAGEM.md"
+    },
+    {
+      "score": 437,
+      "path": "tests/invariants/cliente-nasce-do-agendamento.test.ts"
+    },
+    {
+      "score": 397,
+      "path": "tests/e2e/agenda-presenca-recuperacao.spec.ts"
+    },
+    {
+      "score": 391,
+      "path": "docs/handoffs/HANDOFF-crm-vivo.md"
+    },
+    {
+      "score": 389,
+      "path": "docs/stories/epics/EPIC-06-ai-rag.md"
+    },
+    {
+      "score": 378,
+      "path": "docs/stories/epics/EPIC-13-ai-agents-module.md"
+    },
+    {
+      "score": 378,
+      "path": "HANDOFF-ia-360.md"
+    },
+    {
+      "score": 321,
+      "path": "docs/specs/05-spec-ai-rag-handoff.md"
+    },
+    {
+      "score": 252,
+      "path": "lib/database.types.ts"
+    },
+    {
+      "score": 251,
+      "path": "tests/invariants/agenda-presenca-recuperacao.test.ts"
+    },
+    {
+      "score": 242,
+      "path": "tests/e2e/vps-fresh-onboarding.spec.ts"
+    },
+    {
+      "score": 239,
+      "path": "docs/specs/10-spec-ai-agents-runtime.md"
+    },
+    {
+      "score": 234,
+      "path": "tests/capture-wave-6-cenarios.ts"
+    },
+    {
+      "score": 226,
+      "path": "tests/e2e/followup-journey.spec.ts"
+    },
+    {
+      "score": 217,
+      "path": "supabase/migrations/20260826140000_0181_o_acervo_e_da_organizacao.sql"
+    },
+    {
+      "score": 211,
+      "path": "tests/api/followup-flows.test.ts"
+    },
+    {
+      "score": 205,
+      "path": "tests/invariants/followup-silence-sweep.test.ts"
+    },
+    {
+      "score": 196,
+      "path": "HANDOFF.md"
+    },
+    {
+      "score": 195,
+      "path": "supabase/migrations/20260907030000_0227_autonomia_e_respostas_revisadas.sql"
+    },
+    {
+      "score": 195,
+      "path": "docs/specs/06-spec-nuvemshop-lgpd.md"
+    },
+    {
+      "score": 192,
+      "path": "HANDOFF-harness-evolution.md"
+    },
+    {
+      "score": 180,
+      "path": "tests/e2e/followup-dossie.spec.ts"
+    }
+  ],
+  "GEN-023 CRM task anonymization": [
+    {
+      "score": 458,
+      "path": "supabase/baseline.sql"
+    },
+    {
+      "score": 287,
+      "path": "docs/stories/epics/EPIC-08-lgpd.md"
+    },
+    {
+      "score": 155,
+      "path": "lib/i18n/dicionario.ts"
+    },
+    {
+      "score": 150,
+      "path": "docs/handoffs/HANDOFF-canais-oficial.md"
+    },
+    {
+      "score": 120,
+      "path": "supabase/migrations/MANIFEST.md"
+    },
+    {
+      "score": 91,
+      "path": "CHANGELOG.md"
+    },
+    {
+      "score": 82,
+      "path": "docs/testing/user-journey-map.md"
+    },
+    {
+      "score": 71,
+      "path": "supabase/migrations/20260903143000_0210_tarefas_do_crm.sql"
+    },
+    {
+      "score": 67,
+      "path": "evidence/canais/README.md"
+    },
+    {
+      "score": 63,
+      "path": "docs/specs/06-spec-nuvemshop-lgpd.md"
+    },
+    {
+      "score": 61,
+      "path": "lib/lgpd/export-collector.ts"
+    },
+    {
+      "score": 59,
+      "path": "docs/superpowers/plans/2026-07-27-canais-seam-fases-0-2.md"
+    },
+    {
+      "score": 49,
+      "path": "lib/agent-engine/guardrails/before-send.ts"
+    },
+    {
+      "score": 46,
+      "path": "tests/unit/tarefas-rota-nao-tem-porta-dos-fundos.test.ts"
+    },
+    {
+      "score": 46,
+      "path": "docs/audits/2026-08-14-afirmacoes-de-estado.md"
+    },
+    {
+      "score": 44,
+      "path": "lib/tarefas/tipos.ts"
+    },
+    {
+      "score": 44,
+      "path": "app/app/tasks/_components/TarefasClient.tsx"
+    },
+    {
+      "score": 41,
+      "path": "docs/specs/01-spec-platform-base.md"
+    },
+    {
+      "score": 40,
+      "path": "docs/stories/epics/EPIC-05-customer-360.md"
+    },
+    {
+      "score": 39,
+      "path": "docs/superpowers/plans/2026-07-27-harness-fase4-painel-evolucao.md"
+    },
+    {
+      "score": 39,
+      "path": "app/api/v1/tasks/[id]/route.ts"
+    },
+    {
+      "score": 38,
+      "path": "docs/prd/06-prd-nuvemshop-lgpd.md"
+    },
+    {
+      "score": 38,
+      "path": "app/api/v1/tasks/route.ts"
+    },
+    {
+      "score": 36,
+      "path": "tests/unit/lgpd-anonimizacao-retoma.test.ts"
+    },
+    {
+      "score": 35,
+      "path": "tests/capture-lgpd-ensaio-tenant-b.ts"
+    },
+    {
+      "score": 35,
+      "path": "docs/superpowers/plans/comunidade-360.md"
+    },
+    {
+      "score": 34,
+      "path": "docs/handoffs/HANDOFF-crm-vivo.md"
+    },
+    {
+      "score": 33,
+      "path": "hooks/tasks/useTasks.ts"
+    },
+    {
+      "score": 33,
+      "path": "docs/prd/00-prd-master.md"
+    },
+    {
+      "score": 30,
+      "path": "tests/invariants/lgpd-tarefa-do-contato-anonimizado.test.ts"
+    }
+  ]
+}

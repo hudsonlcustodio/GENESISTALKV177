@@ -1,0 +1,47 @@
+{
+  "environment": {
+    "node": "/opt/nvm/versions/node/v22.16.0/bin/node",
+    "npm": "/opt/nvm/versions/node/v22.16.0/bin/npm",
+    "node_modules": false,
+    "lockfiles": [
+      "pnpm-lock.yaml"
+    ]
+  },
+  "execution": {
+    "node_version": {
+      "exit": 0,
+      "seconds": 0.09,
+      "stdout": "v22.16.0\n",
+      "stderr": ""
+    },
+    "npm_version": {
+      "exit": 0,
+      "seconds": 0.29,
+      "stdout": "10.9.2\n",
+      "stderr": ""
+    },
+    "quality_execution": {
+      "exit": null,
+      "blocked": true,
+      "reason": "node_modules ausente; nenhuma instalação de rede foi feita no ambiente de auditoria."
+    }
+  },
+  "static_checks": {
+    "followup_exists": true,
+    "brand_css_exists": true,
+    "brand_module_exists": true,
+    "db_preflight_exists": true,
+    "ci_exists": true,
+    "followup_undo_100": true,
+    "followup_disconnect_testid": true,
+    "followup_undo_testid": true,
+    "brand_#7ED321": true,
+    "brand_#00C853": true,
+    "brand_#0B3D3A": true,
+    "brand_#00B8D9": true,
+    "brand_#6B7280": true,
+    "brand_#FFFFFF": true,
+    "merge_marker_files": 0
+  },
+  "merge_marker_files": []
+}

@@ -1,0 +1,27 @@
+{
+  "current_migrations": 312,
+  "aurum_migrations": 214,
+  "normalized_identical": 203,
+  "aurum_nonidentical": 1,
+  "current_nonidentical": 99,
+  "current_range": [
+    1,
+    20260921070000
+  ],
+  "aurum_range": [
+    1,
+    20260910145420
+  ],
+  "aurum_unique_objects": {
+    "table": [],
+    "function": [
+      "fn_lgpd_cascade_redact_contact"
+    ],
+    "index": []
+  },
+  "objects_not_found_nominally_in_current": {
+    "table": [],
+    "function": [],
+    "index": []
+  }
+}

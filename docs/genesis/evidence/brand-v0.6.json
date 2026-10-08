@@ -1,0 +1,3937 @@
+{
+  "changed_files": [
+    "README.md",
+    "lib/branding.ts",
+    "app/design/page.tsx",
+    "app/design/README.md",
+    "app/design/layout.tsx",
+    "app/api/v1/cron/sync-model-catalog/route.ts",
+    "app/design/lib/tokens.ts"
+  ],
+  "commercial_brand_hits_before": [
+    [
+      "README.es.md",
+      {
+        "DeskcommCRM": 16,
+        "Deskcomm CRM": 1,
+        "Deskcomm": 19
+      }
+    ],
+    [
+      "RELATORIO-W1-GATILHOS.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "VISION.md",
+      {
+        "DeskcommCRM": 3,
+        "Deskcomm": 6
+      }
+    ],
+    [
+      "SECURITY.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "HANDOFF-harness-evolution.md",
+      {
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "HANDOFF-followup-vivo.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "HANDOFF-ia-360.md",
+      {
+        "DeskcommCRM": 6,
+        "Deskcomm": 6
+      }
+    ],
+    [
+      "ARCHITECTURE.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "README.en.md",
+      {
+        "DeskcommCRM": 16,
+        "Deskcomm CRM": 1,
+        "Deskcomm": 20
+      }
+    ],
+    [
+      "HANDOFF-marca-propria.md",
+      {
+        "DeskcommCRM": 5,
+        "Deskcomm": 6
+      }
+    ],
+    [
+      "HANDOFF-tres-papeis.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "HANDOFF-fv-w1-fila.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docker-compose.yml",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "AGENTS.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 3
+      }
+    ],
+    [
+      "CHANGELOG.md",
+      {
+        "DeskcommCRM": 70,
+        "Deskcomm": 71
+      }
+    ],
+    [
+      "docker-compose.traefik.yml",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "README.md",
+      {
+        "DeskcommCRM": 20,
+        "Deskcomm CRM": 1,
+        "Deskcomm": 23
+      }
+    ],
+    [
+      "HANDOFF.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "CONTRIBUTING.md",
+      {
+        "DeskcommCRM": 4,
+        "Deskcomm": 4
+      }
+    ],
+    [
+      "HANDOFF-conversa-vira-lead.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docker-compose.prod.yml",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "HANDOFF-sistema-vivo-consertos.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "CLAUDE.md",
+      {
+        "DeskcommCRM": 4,
+        "Deskcomm": 4
+      }
+    ],
+    [
+      "triagem/TRIAGEM.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "tasks/todo.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "tasks/rag-completo.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/ATUALIZANDO.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/current-state.md",
+      {
+        "DeskcommCRM": 4,
+        "Deskcomm": 4
+      }
+    ],
+    [
+      "docs/SETUP.md",
+      {
+        "DeskcommCRM": 5,
+        "Deskcomm": 5
+      }
+    ],
+    [
+      "docs/white-label.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/threat-model.md",
+      {
+        "DeskcommCRM": 3,
+        "Deskcomm": 3
+      }
+    ],
+    [
+      "docs/vendaval-fusion-plan.md",
+      {
+        "DeskcommCRM": 4,
+        "Deskcomm": 11
+      }
+    ],
+    [
+      "docs/white-label.es.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/index.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/white-label.en.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/harness-audit.md",
+      {
+        "DeskcommCRM": 3,
+        "Deskcomm": 3
+      }
+    ],
+    [
+      "public/llms.txt",
+      {
+        "DeskcommCRM": 9,
+        "Deskcomm": 9
+      }
+    ],
+    [
+      "hostgator-setup-kit/README.md",
+      {
+        "DeskcommCRM": 4,
+        "Deskcomm": 4
+      }
+    ],
+    [
+      "hostgator-setup-kit/CLAUDE.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "tests/sonda-atrito-fase3.ts",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "tests/sonda-inbox-demandas-tela.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "tests/sonda-inbox-cabe-na-tela.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "tests/sonda-overflow-controle.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "tests/sonda-capacidade-radar-tela.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "tests/sonda-atrito-detalhe.ts",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "tests/sonda-atrito-regua.ts",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "tests/sonda-radar-demandas.ts",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "tests/sonda-atrito-tela.ts",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      ".changes/oauth-do-google-por-localhost.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "extensoes/catalogo.json",
+      {
+        "DeskcommCRM": 3,
+        "Deskcomm": 6
+      }
+    ],
+    [
+      "extensoes/loja.json",
+      {
+        "DeskcommCRM": 3,
+        "Deskcomm": 6
+      }
+    ],
+    [
+      "loop/LOOP.md",
+      {
+        "DeskcommCRM": 4,
+        "Deskcomm": 4
+      }
+    ],
+    [
+      "loop/loop.config.json",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "loop/INBOX.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "loop/RUN.md",
+      {
+        "DeskcommCRM": 6,
+        "Deskcomm": 6
+      }
+    ],
+    [
+      "plan/phases.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "plan/progress.md",
+      {
+        "DeskcommCRM": 3,
+        "Deskcomm": 3
+      }
+    ],
+    [
+      "plan/features.json",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "lib/branding.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "scripts/spike-adapter-meta.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "scripts/vigia-colisao-de-migration.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "scripts/bootstrap-owner.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "scripts/cortar-release.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "lib/nuvemshop/config.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "lib/waha/message-id.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "lib/agent-engine/PORT-NOTES.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 4
+      }
+    ],
+    [
+      "lib/webhooks/inbound.ts",
+      {
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "lib/system/changelog.test.ts",
+      {
+        "DeskcommCRM": 3,
+        "Deskcomm": 3
+      }
+    ],
+    [
+      "lib/email/resend.ts",
+      {
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "lib/branding/desenho.ts",
+      {
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "lib/lgpd/types.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "lib/lgpd/email-delivery.ts",
+      {
+        "DeskcommCRM": 3,
+        "Deskcomm": 3
+      }
+    ],
+    [
+      "lib/lgpd/sla-alarm.ts",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "lib/lgpd/pdf-renderer.tsx",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "lib/legal/operador.ts",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "lib/api/errors.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "lib/automation/actions/call-webhook.ts",
+      {
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "lib/mcp/tools/pacotes.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "lib/email/templates/ai-budget-alarm.tsx",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "lib/agent-engine/agent/draft-reply.test.ts",
+      {
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "lib/agent-engine/db/repository.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "lib/agent-engine/pacing/engine.ts",
+      {
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "lib/agent-engine/guardrails/lgpd/legal-basis.ts",
+      {
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "lib/agent-engine/edge/crm/session-reconciler.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "lib/ai/elegibilidade/gate.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "lib/ai/pontos/registro.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".specs/features/crm-automacao-fluxos/spec.md",
+      {
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".specs/features/crm-automacao-fluxos/tasks.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "tests/unit/campo-de-logo-marca-hidratacao.test.tsx",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "tests/unit/pdf-extractor.test.ts",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "tests/unit/sonda-de-pdf-na-imagem.test.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "tests/unit/guarda-da-release-reconhece-o-corte.test.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "tests/unit/executor-proprio-so-roda-o-que-e-nosso.test.ts",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "tests/unit/release-chega-na-lp.test.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "tests/unit/email-marca-e-remetente.test.ts",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "tests/unit/branding-saida.test.ts",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "tests/unit/faixa-de-conexao-caida-vem-do-seam.test.tsx",
+      {
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "tests/unit/marca-previa-do-logo-sem-refresh.test.tsx",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "tests/unit/marca-sem-divergencia-de-hidratacao.test.tsx",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "tests/unit/branding-marca-resolve.test.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "tests/unit/branding.test.ts",
+      {
+        "DeskcommCRM": 13,
+        "Deskcomm": 17
+      }
+    ],
+    [
+      "tests/unit/marca-do-produto-nao-se-edita-no-codigo.test.ts",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "tests/unit/lgpd-pdf-meet.test.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "tests/unit/documentacao-aponta-para-o-que-existe.test.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "tests/unit/guarda-da-release-confere-identidade.test.ts",
+      {
+        "DeskcommCRM": 3,
+        "Deskcomm": 3
+      }
+    ],
+    [
+      "tests/unit/catalogo-tools-leigo-friendly.test.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "tests/unit/namespace-das-imagens.test.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "tests/unit/namespace-das-imagens-runtime-owner.test.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "tests/e2e/logo-moldura-no-tema-escuro.spec.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "tests/e2e/mfa-opcional.spec.ts",
+      {
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "tests/e2e/cadastro-sem-confirmacao-de-email.spec.ts",
+      {
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "tests/e2e/signup-journey.spec.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "tests/e2e/primeiro-acesso-sem-organizacao.spec.ts",
+      {
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "tests/e2e/wizard-do-funcionario.spec.ts",
+      {
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "workers/agent-worker/main.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".github/workflows/publish-image.yml",
+      {
+        "DeskcommCRM": 5,
+        "Deskcomm": 5
+      }
+    ],
+    [
+      ".github/workflows/release.yml",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".github/workflows/e2e.yml",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".github/ISSUE_TEMPLATE/config.yml",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      ".github/ISSUE_TEMPLATE/bug_report.yml",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/adr/0001-packaging-e-distribuicao.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/doctrine/sistema-vivo.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/doctrine/packaging.md",
+      {
+        "DeskcommCRM": 7,
+        "Deskcomm": 7
+      }
+    ],
+    [
+      "docs/doctrine/extensoes.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/design-system/02-palette-sage.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/design-system/05-iconography-phosphor.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/design-system/01-foundation-tokens.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/design-system/04-density-aerada.md",
+      {
+        "DeskcommCRM": 4,
+        "Deskcomm": 4
+      }
+    ],
+    [
+      "docs/design-system/00-overview.md",
+      {
+        "DeskcommCRM": 3,
+        "Deskcomm": 3
+      }
+    ],
+    [
+      "docs/design-system/07-motion-language.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/design-system/09-anti-patterns.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/design-system/03-typography.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/design-system/README.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/design-system/08-voice-and-tone.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/design-system/06-components.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/handoffs/BRIEFING-ia-360.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/handoffs/HANDOFF-inbox-multimodal.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/handoffs/HANDOFF-wave1-devvivo.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/handoffs/HANDOFF-canais-oficial.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/handoffs/HANDOFF-provedores-de-ia.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/handoffs/HANDOFF-crm-vivo.md",
+      {
+        "DeskcommCRM": 4,
+        "Deskcomm": 4
+      }
+    ],
+    [
+      "docs/handoffs/PR-ia-360.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/handoffs/BRIEFING-crm-vivo.md",
+      {
+        "DeskcommCRM": 5,
+        "Deskcomm": 5
+      }
+    ],
+    [
+      "docs/diagrams/auth-flows.html",
+      {
+        "DeskcommCRM": 3,
+        "Deskcomm": 3
+      }
+    ],
+    [
+      "docs/diagrams/auth-flows.sequence.json",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/business-rules/00-business-rules-catalog.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/specs/pre-go-live-whatsapp.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/specs/01-spec-platform-base.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/specs/20-spec-banco-de-dados-externo.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/specs/08-spec-deploy-observability.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/specs/05-spec-ai-rag-handoff.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/specs/07-spec-events-workers.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 4
+      }
+    ],
+    [
+      "docs/specs/18-spec-voice-calls-wacalls.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/specs/14-contrato-governanca-agentes-externos.md",
+      {
+        "DeskcommCRM": 3,
+        "Deskcomm": 3
+      }
+    ],
+    [
+      "docs/specs/02-spec-customer-360.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/specs/06-spec-nuvemshop-lgpd.md",
+      {
+        "DeskcommCRM": 8,
+        "Deskcomm": 8
+      }
+    ],
+    [
+      "docs/specs/09-spec-frontend-backend-integration.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/specs/03-spec-whatsapp-waha.md",
+      {
+        "DeskcommCRM": 3,
+        "Deskcomm": 3
+      }
+    ],
+    [
+      "docs/release/teto-de-orcamento.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/architecture/marca-propria.architecture.json",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 3
+      }
+    ],
+    [
+      "docs/audits/2026-08-14-afirmacoes-de-estado.md",
+      {
+        "DeskcommCRM": 48,
+        "Deskcomm": 49
+      }
+    ],
+    [
+      "docs/runbooks/custo-e-cota-do-supabase.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/runbooks/cloudpanel.md",
+      {
+        "DeskcommCRM": 7,
+        "Deskcomm": 7
+      }
+    ],
+    [
+      "docs/runbooks/ativar-packaging.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/runbooks/relogio-http.md",
+      {
+        "DeskcommCRM": 3,
+        "Deskcomm": 3
+      }
+    ],
+    [
+      "docs/runbooks/remediar-worker-congelado.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/runbooks/waha-hostgator.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/decola-ai/prompt-sdr-inicial.md",
+      {
+        "IMOBI": 1
+      }
+    ],
+    [
+      "docs/brand/og-card.html",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/testing/HANDOFF-vps-qa.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/testing/user-journey-map.md",
+      {
+        "DeskcommCRM": 3,
+        "Deskcomm": 4
+      }
+    ],
+    [
+      "docs/handoff/agente-pausado-assume-conversa.md",
+      {
+        "DeskcommCRM": 4,
+        "Deskcomm": 8
+      }
+    ],
+    [
+      "docs/handoff/filtro-por-marcador-vermelho-no-963.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/research/reference-synthesis.md",
+      {
+        "DeskcommCRM": 3,
+        "Deskcomm": 3
+      }
+    ],
+    [
+      "docs/research/architecture-diagrams.md",
+      {
+        "DeskcommCRM": 17,
+        "Deskcomm": 17
+      }
+    ],
+    [
+      "docs/research/followup-reference-mining.md",
+      {
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/presentation/pitch-deck.md",
+      {
+        "DeskcommCRM": 4,
+        "Deskcomm": 4
+      }
+    ],
+    [
+      "docs/presentation/HANDOFF.md",
+      {
+        "DeskcommCRM": 7,
+        "Deskcomm": 7
+      }
+    ],
+    [
+      "docs/genesis/COMPATIBILITY-BACKLOG.md",
+      {
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/genesis/FOLLOWUP-CUSTOMIZATIONS-v0.3.md",
+      {
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/genesis/COMPATIBILITY-REPORT-v0.2.md",
+      {
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/genesis/FOUNDATION-REPORT.md",
+      {
+        "Deskcomm": 3
+      }
+    ],
+    [
+      "docs/genesis/CUSTOMIZATIONS.md",
+      {
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/genesis/PROJECT-STATE.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/genesis/DECISIONS.md",
+      {
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/growth/lp-plano.md",
+      {
+        "DeskcommCRM": 6,
+        "Deskcomm": 8
+      }
+    ],
+    [
+      "docs/growth/submissoes-diretorios.md",
+      {
+        "DeskcommCRM": 3,
+        "Deskcomm": 3
+      }
+    ],
+    [
+      "docs/growth/awesome-selfhosted-deskcommcrm.yml",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/deploy-hostgator/README.md",
+      {
+        "DeskcommCRM": 8,
+        "Deskcomm": 8
+      }
+    ],
+    [
+      "docs/prd/06-prd-nuvemshop-lgpd.md",
+      {
+        "DeskcommCRM": 7,
+        "Deskcomm": 7
+      }
+    ],
+    [
+      "docs/prd/00-prd-master.md",
+      {
+        "DeskcommCRM": 9,
+        "Deskcomm": 10
+      }
+    ],
+    [
+      "docs/prd/03-prd-whatsapp-waha.md",
+      {
+        "DeskcommCRM": 5,
+        "Deskcomm": 5
+      }
+    ],
+    [
+      "docs/prd/01-prd-platform-base.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/prd/05-prd-ai-rag-handoff.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/prd/02-prd-customer-360.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/design/teto-de-orcamento.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/design/onda-7-alarme-de-orcamento.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/deploy-selfhost/README.md",
+      {
+        "DeskcommCRM": 3,
+        "Deskcomm": 3
+      }
+    ],
+    [
+      "docs/stories/epics/EPIC-13-ai-agents-module.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/stories/epics/EPIC-06-ai-rag.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/stories/epics/MASTER.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/stories/epics/EPIC-01-auth-app-shell.md",
+      {
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/stories/epics/EPIC-10-audit-settings.md",
+      {
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/stories/epics/EPIC-07-nuvemshop.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/research/marketplace/03-o-que-pode-impactar.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/research/marketplace/02-o-que-sera-impactado.md",
+      {
+        "DeskcommCRM": 8,
+        "Deskcomm": 8
+      }
+    ],
+    [
+      "docs/research/marketplace/01-o-que-impacta.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/research/extensoes/03-o-que-pode-impactar.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/superpowers/handoffs/2026-07-17-webhooks.md",
+      {
+        "DeskcommCRM": 3,
+        "Deskcomm": 3
+      }
+    ],
+    [
+      "docs/superpowers/specs/2026-07-21-followup-system-design.md",
+      {
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/superpowers/specs/2026-07-17-webhooks-design.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 6
+      }
+    ],
+    [
+      "docs/superpowers/specs/2026-08-03-navegacao-agrupada-design.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/superpowers/specs/2026-07-28-atualizar-versao-na-ui-design.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/superpowers/specs/2026-07-02-hostgator-deploy-design.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/superpowers/plans/2026-07-28-atualizar-versao-na-ui.md",
+      {
+        "DeskcommCRM": 5,
+        "Deskcomm": 5
+      }
+    ],
+    [
+      "docs/superpowers/plans/2026-07-22-onda5-templates-vendedor.md",
+      {
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/superpowers/plans/2026-08-03-gestao-funis.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/superpowers/plans/2026-07-17-webhooks-backend.md",
+      {
+        "Deskcomm": 9
+      }
+    ],
+    [
+      "docs/superpowers/plans/2026-07-27-canais-seam-fases-0-2.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/superpowers/plans/2026-07-02-hostgator-frente-a-tecnica.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/superpowers/reports/2026-07-30-service-role-key-formato-novo.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/handoffs/waves/W1-painel-do-humano.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/handoffs/waves/W2-nao-perder-o-cliente.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/handoffs/waves/W4-organizar-a-operacao.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/handoffs/waves/W3-passar-para-humano.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/design-system/screen-flow/01-sitemap.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/design-system/screen-flow/README.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/doctrine/sistema-vivo/07-o-projeto-como-sistema.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/doctrine/sistema-vivo/06-tempo-do-sistema.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/doctrine/sistema-vivo/02-lei-dos-invariantes.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/doctrine/sistema-vivo/05-unidade-de-demanda.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/doctrine/sistema-vivo/01-fundamentos.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/doctrine/sistema-vivo/README.md",
+      {
+        "DeskcommCRM": 3,
+        "Deskcomm": 3
+      }
+    ],
+    [
+      "docs/doctrine/sistema-vivo/03-medida-do-proposito.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/doctrine/sistema-vivo/08-aplicacao.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/doctrine/sistema-vivo/04-fronteira-de-autoridade.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "triagem/references/complemento-do-ci.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "triagem/references/eixo-selfhost.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "triagem/instrumentos/tests/fixtures/promessas-reais.json",
+      {
+        "DeskcommCRM": 10,
+        "Deskcomm": 10
+      }
+    ],
+    [
+      "triagem/instrumentos/tests/fixtures/sonda-1170-verify-teto.json",
+      {
+        "DeskcommCRM": 9,
+        "Deskcomm": 9
+      }
+    ],
+    [
+      "triagem/instrumentos/tests/fixtures/sonda-reais.json",
+      {
+        "DeskcommCRM": 28,
+        "Deskcomm": 28
+      }
+    ],
+    [
+      "triagem/instrumentos/tests/fixtures/sonda-1122-action-required.json",
+      {
+        "DeskcommCRM": 6,
+        "Deskcomm": 6
+      }
+    ],
+    [
+      "app/design/page.tsx",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "app/design/README.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "app/design/layout.tsx",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "app/api/v1/cron/sync-model-catalog/route.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "app/design/lib/tokens.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".agents/rules/deskcomm-guias.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".agents/skills/deskcomm-metricas/SKILL.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".agents/skills/sistema-vivo/SKILL.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".agents/skills/deskcomm-instalar/SKILL.md",
+      {
+        "DeskcommCRM": 4,
+        "Deskcomm": 4
+      }
+    ],
+    [
+      ".agents/skills/deskcomm-prompt/SKILL.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".agents/skills/deskcomm-contribuir/SKILL.md",
+      {
+        "DeskcommCRM": 3,
+        "Deskcomm": 3
+      }
+    ],
+    [
+      ".agents/skills/deskcomm-doutrina/SKILL.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      ".agents/skills/deskcomm-extensao/SKILL.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      ".agents/skills/deskcomm-cliente-novo/SKILL.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".agents/skills/deskcomm-cliente-novo/agents/openai.yaml",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".agents/skills/deskcomm-extensao/references/testar-local.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".agents/skills/deskcomm-extensao/agents/openai.yaml",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".agents/skills/deskcomm-doutrina/agents/openai.yaml",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".agents/skills/deskcomm-contribuir/references/depois-do-pr.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".agents/skills/deskcomm-contribuir/references/pre-voo.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".agents/skills/deskcomm-contribuir/agents/openai.yaml",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".agents/skills/deskcomm-instalar/references/scripts-do-kit.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      ".agents/skills/deskcomm-instalar/references/agencia.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".agents/skills/deskcomm-instalar/references/problemas-e-armadilhas.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".agents/skills/deskcomm-instalar/references/o-que-a-instalacao-pede.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".agents/skills/deskcomm-instalar/agents/openai.yaml",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      ".claude/agents/gov-verifier.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      ".claude/agents/gov-implementer.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      ".claude/commands/deskcomm-gov-loop.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      ".claude/skills/deskcomm-metricas/SKILL.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".claude/skills/sistema-vivo/SKILL.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".claude/skills/deskcomm-instalar/SKILL.md",
+      {
+        "DeskcommCRM": 4,
+        "Deskcomm": 4
+      }
+    ],
+    [
+      ".claude/skills/deskcomm-prompt/SKILL.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".claude/skills/deskcomm-contribuir/SKILL.md",
+      {
+        "DeskcommCRM": 3,
+        "Deskcomm": 3
+      }
+    ],
+    [
+      ".claude/skills/deskcomm-doutrina/SKILL.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      ".claude/skills/deskcomm-extensao/SKILL.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      ".claude/skills/deskcomm-cliente-novo/SKILL.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".claude/skills/deskcomm-extensao/references/testar-local.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".claude/skills/deskcomm-contribuir/references/depois-do-pr.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".claude/skills/deskcomm-contribuir/references/pre-voo.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".claude/skills/deskcomm-instalar/references/scripts-do-kit.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      ".claude/skills/deskcomm-instalar/references/agencia.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".claude/skills/deskcomm-instalar/references/problemas-e-armadilhas.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".claude/skills/deskcomm-instalar/references/o-que-a-instalacao-pede.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ]
+  ],
+  "remaining_hits_after": [
+    [
+      "README.es.md",
+      {
+        "DeskcommCRM": 16,
+        "Deskcomm CRM": 1,
+        "Deskcomm": 19
+      }
+    ],
+    [
+      "RELATORIO-W1-GATILHOS.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "VISION.md",
+      {
+        "DeskcommCRM": 3,
+        "Deskcomm": 6
+      }
+    ],
+    [
+      "SECURITY.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "HANDOFF-harness-evolution.md",
+      {
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "HANDOFF-followup-vivo.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "HANDOFF-ia-360.md",
+      {
+        "DeskcommCRM": 6,
+        "Deskcomm": 6
+      }
+    ],
+    [
+      "ARCHITECTURE.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "README.en.md",
+      {
+        "DeskcommCRM": 16,
+        "Deskcomm CRM": 1,
+        "Deskcomm": 20
+      }
+    ],
+    [
+      "HANDOFF-marca-propria.md",
+      {
+        "DeskcommCRM": 5,
+        "Deskcomm": 6
+      }
+    ],
+    [
+      "HANDOFF-tres-papeis.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "HANDOFF-fv-w1-fila.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docker-compose.yml",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "AGENTS.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 3
+      }
+    ],
+    [
+      "CHANGELOG.md",
+      {
+        "DeskcommCRM": 70,
+        "Deskcomm": 71
+      }
+    ],
+    [
+      "docker-compose.traefik.yml",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "README.md",
+      {
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "HANDOFF.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "CONTRIBUTING.md",
+      {
+        "DeskcommCRM": 4,
+        "Deskcomm": 4
+      }
+    ],
+    [
+      "HANDOFF-conversa-vira-lead.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docker-compose.prod.yml",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "HANDOFF-sistema-vivo-consertos.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "CLAUDE.md",
+      {
+        "DeskcommCRM": 4,
+        "Deskcomm": 4
+      }
+    ],
+    [
+      "triagem/TRIAGEM.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "tasks/todo.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "tasks/rag-completo.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/ATUALIZANDO.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/current-state.md",
+      {
+        "DeskcommCRM": 4,
+        "Deskcomm": 4
+      }
+    ],
+    [
+      "docs/SETUP.md",
+      {
+        "DeskcommCRM": 5,
+        "Deskcomm": 5
+      }
+    ],
+    [
+      "docs/white-label.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/threat-model.md",
+      {
+        "DeskcommCRM": 3,
+        "Deskcomm": 3
+      }
+    ],
+    [
+      "docs/vendaval-fusion-plan.md",
+      {
+        "DeskcommCRM": 4,
+        "Deskcomm": 11
+      }
+    ],
+    [
+      "docs/white-label.es.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/index.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/white-label.en.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/harness-audit.md",
+      {
+        "DeskcommCRM": 3,
+        "Deskcomm": 3
+      }
+    ],
+    [
+      "public/llms.txt",
+      {
+        "DeskcommCRM": 9,
+        "Deskcomm": 9
+      }
+    ],
+    [
+      "hostgator-setup-kit/README.md",
+      {
+        "DeskcommCRM": 4,
+        "Deskcomm": 4
+      }
+    ],
+    [
+      "hostgator-setup-kit/CLAUDE.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "tests/sonda-atrito-fase3.ts",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "tests/sonda-inbox-demandas-tela.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "tests/sonda-inbox-cabe-na-tela.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "tests/sonda-overflow-controle.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "tests/sonda-capacidade-radar-tela.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "tests/sonda-atrito-detalhe.ts",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "tests/sonda-atrito-regua.ts",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "tests/sonda-radar-demandas.ts",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "tests/sonda-atrito-tela.ts",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      ".changes/oauth-do-google-por-localhost.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "extensoes/catalogo.json",
+      {
+        "DeskcommCRM": 3,
+        "Deskcomm": 6
+      }
+    ],
+    [
+      "extensoes/loja.json",
+      {
+        "DeskcommCRM": 3,
+        "Deskcomm": 6
+      }
+    ],
+    [
+      "loop/LOOP.md",
+      {
+        "DeskcommCRM": 4,
+        "Deskcomm": 4
+      }
+    ],
+    [
+      "loop/loop.config.json",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "loop/INBOX.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "loop/RUN.md",
+      {
+        "DeskcommCRM": 6,
+        "Deskcomm": 6
+      }
+    ],
+    [
+      "plan/phases.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "plan/progress.md",
+      {
+        "DeskcommCRM": 3,
+        "Deskcomm": 3
+      }
+    ],
+    [
+      "plan/features.json",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "scripts/spike-adapter-meta.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "scripts/vigia-colisao-de-migration.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "scripts/bootstrap-owner.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "scripts/cortar-release.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "lib/nuvemshop/config.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "lib/waha/message-id.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "lib/agent-engine/PORT-NOTES.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 4
+      }
+    ],
+    [
+      "lib/webhooks/inbound.ts",
+      {
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "lib/system/changelog.test.ts",
+      {
+        "DeskcommCRM": 3,
+        "Deskcomm": 3
+      }
+    ],
+    [
+      "lib/email/resend.ts",
+      {
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "lib/branding/desenho.ts",
+      {
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "lib/lgpd/types.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "lib/lgpd/email-delivery.ts",
+      {
+        "DeskcommCRM": 3,
+        "Deskcomm": 3
+      }
+    ],
+    [
+      "lib/lgpd/sla-alarm.ts",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "lib/lgpd/pdf-renderer.tsx",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "lib/legal/operador.ts",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "lib/api/errors.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "lib/automation/actions/call-webhook.ts",
+      {
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "lib/mcp/tools/pacotes.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "lib/email/templates/ai-budget-alarm.tsx",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "lib/agent-engine/agent/draft-reply.test.ts",
+      {
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "lib/agent-engine/db/repository.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "lib/agent-engine/pacing/engine.ts",
+      {
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "lib/agent-engine/guardrails/lgpd/legal-basis.ts",
+      {
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "lib/agent-engine/edge/crm/session-reconciler.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "lib/ai/elegibilidade/gate.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "lib/ai/pontos/registro.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".specs/features/crm-automacao-fluxos/spec.md",
+      {
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".specs/features/crm-automacao-fluxos/tasks.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "tests/unit/campo-de-logo-marca-hidratacao.test.tsx",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "tests/unit/pdf-extractor.test.ts",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "tests/unit/sonda-de-pdf-na-imagem.test.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "tests/unit/guarda-da-release-reconhece-o-corte.test.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "tests/unit/executor-proprio-so-roda-o-que-e-nosso.test.ts",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "tests/unit/release-chega-na-lp.test.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "tests/unit/email-marca-e-remetente.test.ts",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "tests/unit/branding-saida.test.ts",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "tests/unit/faixa-de-conexao-caida-vem-do-seam.test.tsx",
+      {
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "tests/unit/marca-previa-do-logo-sem-refresh.test.tsx",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "tests/unit/marca-sem-divergencia-de-hidratacao.test.tsx",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "tests/unit/branding-marca-resolve.test.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "tests/unit/branding.test.ts",
+      {
+        "DeskcommCRM": 13,
+        "Deskcomm": 17
+      }
+    ],
+    [
+      "tests/unit/marca-do-produto-nao-se-edita-no-codigo.test.ts",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "tests/unit/lgpd-pdf-meet.test.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "tests/unit/documentacao-aponta-para-o-que-existe.test.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "tests/unit/guarda-da-release-confere-identidade.test.ts",
+      {
+        "DeskcommCRM": 3,
+        "Deskcomm": 3
+      }
+    ],
+    [
+      "tests/unit/catalogo-tools-leigo-friendly.test.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "tests/unit/namespace-das-imagens.test.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "tests/unit/namespace-das-imagens-runtime-owner.test.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "tests/e2e/logo-moldura-no-tema-escuro.spec.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "tests/e2e/mfa-opcional.spec.ts",
+      {
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "tests/e2e/cadastro-sem-confirmacao-de-email.spec.ts",
+      {
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "tests/e2e/signup-journey.spec.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "tests/e2e/primeiro-acesso-sem-organizacao.spec.ts",
+      {
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "tests/e2e/wizard-do-funcionario.spec.ts",
+      {
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "workers/agent-worker/main.ts",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".github/workflows/publish-image.yml",
+      {
+        "DeskcommCRM": 5,
+        "Deskcomm": 5
+      }
+    ],
+    [
+      ".github/workflows/release.yml",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".github/workflows/e2e.yml",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".github/ISSUE_TEMPLATE/config.yml",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      ".github/ISSUE_TEMPLATE/bug_report.yml",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/adr/0001-packaging-e-distribuicao.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/doctrine/sistema-vivo.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/doctrine/packaging.md",
+      {
+        "DeskcommCRM": 7,
+        "Deskcomm": 7
+      }
+    ],
+    [
+      "docs/doctrine/extensoes.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/design-system/02-palette-sage.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/design-system/05-iconography-phosphor.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/design-system/01-foundation-tokens.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/design-system/04-density-aerada.md",
+      {
+        "DeskcommCRM": 4,
+        "Deskcomm": 4
+      }
+    ],
+    [
+      "docs/design-system/00-overview.md",
+      {
+        "DeskcommCRM": 3,
+        "Deskcomm": 3
+      }
+    ],
+    [
+      "docs/design-system/07-motion-language.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/design-system/09-anti-patterns.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/design-system/03-typography.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/design-system/README.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/design-system/08-voice-and-tone.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/design-system/06-components.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/handoffs/BRIEFING-ia-360.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/handoffs/HANDOFF-inbox-multimodal.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/handoffs/HANDOFF-wave1-devvivo.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/handoffs/HANDOFF-canais-oficial.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/handoffs/HANDOFF-provedores-de-ia.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/handoffs/HANDOFF-crm-vivo.md",
+      {
+        "DeskcommCRM": 4,
+        "Deskcomm": 4
+      }
+    ],
+    [
+      "docs/handoffs/PR-ia-360.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/handoffs/BRIEFING-crm-vivo.md",
+      {
+        "DeskcommCRM": 5,
+        "Deskcomm": 5
+      }
+    ],
+    [
+      "docs/diagrams/auth-flows.html",
+      {
+        "DeskcommCRM": 3,
+        "Deskcomm": 3
+      }
+    ],
+    [
+      "docs/diagrams/auth-flows.sequence.json",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/business-rules/00-business-rules-catalog.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/specs/pre-go-live-whatsapp.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/specs/01-spec-platform-base.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/specs/20-spec-banco-de-dados-externo.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/specs/08-spec-deploy-observability.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/specs/05-spec-ai-rag-handoff.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/specs/07-spec-events-workers.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 4
+      }
+    ],
+    [
+      "docs/specs/18-spec-voice-calls-wacalls.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/specs/14-contrato-governanca-agentes-externos.md",
+      {
+        "DeskcommCRM": 3,
+        "Deskcomm": 3
+      }
+    ],
+    [
+      "docs/specs/02-spec-customer-360.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/specs/06-spec-nuvemshop-lgpd.md",
+      {
+        "DeskcommCRM": 8,
+        "Deskcomm": 8
+      }
+    ],
+    [
+      "docs/specs/09-spec-frontend-backend-integration.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/specs/03-spec-whatsapp-waha.md",
+      {
+        "DeskcommCRM": 3,
+        "Deskcomm": 3
+      }
+    ],
+    [
+      "docs/release/teto-de-orcamento.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/architecture/marca-propria.architecture.json",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 3
+      }
+    ],
+    [
+      "docs/audits/2026-08-14-afirmacoes-de-estado.md",
+      {
+        "DeskcommCRM": 48,
+        "Deskcomm": 49
+      }
+    ],
+    [
+      "docs/runbooks/custo-e-cota-do-supabase.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/runbooks/cloudpanel.md",
+      {
+        "DeskcommCRM": 7,
+        "Deskcomm": 7
+      }
+    ],
+    [
+      "docs/runbooks/ativar-packaging.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/runbooks/relogio-http.md",
+      {
+        "DeskcommCRM": 3,
+        "Deskcomm": 3
+      }
+    ],
+    [
+      "docs/runbooks/remediar-worker-congelado.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/runbooks/waha-hostgator.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/decola-ai/prompt-sdr-inicial.md",
+      {
+        "IMOBI": 1
+      }
+    ],
+    [
+      "docs/brand/og-card.html",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/testing/HANDOFF-vps-qa.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/testing/user-journey-map.md",
+      {
+        "DeskcommCRM": 3,
+        "Deskcomm": 4
+      }
+    ],
+    [
+      "docs/handoff/agente-pausado-assume-conversa.md",
+      {
+        "DeskcommCRM": 4,
+        "Deskcomm": 8
+      }
+    ],
+    [
+      "docs/handoff/filtro-por-marcador-vermelho-no-963.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/research/reference-synthesis.md",
+      {
+        "DeskcommCRM": 3,
+        "Deskcomm": 3
+      }
+    ],
+    [
+      "docs/research/architecture-diagrams.md",
+      {
+        "DeskcommCRM": 17,
+        "Deskcomm": 17
+      }
+    ],
+    [
+      "docs/research/followup-reference-mining.md",
+      {
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/presentation/pitch-deck.md",
+      {
+        "DeskcommCRM": 4,
+        "Deskcomm": 4
+      }
+    ],
+    [
+      "docs/presentation/HANDOFF.md",
+      {
+        "DeskcommCRM": 7,
+        "Deskcomm": 7
+      }
+    ],
+    [
+      "docs/genesis/COMPATIBILITY-BACKLOG.md",
+      {
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/genesis/FOLLOWUP-CUSTOMIZATIONS-v0.3.md",
+      {
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/genesis/COMPATIBILITY-REPORT-v0.2.md",
+      {
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/genesis/FOUNDATION-REPORT.md",
+      {
+        "Deskcomm": 3
+      }
+    ],
+    [
+      "docs/genesis/CUSTOMIZATIONS.md",
+      {
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/genesis/PROJECT-STATE.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/genesis/DECISIONS.md",
+      {
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/growth/lp-plano.md",
+      {
+        "DeskcommCRM": 6,
+        "Deskcomm": 8
+      }
+    ],
+    [
+      "docs/growth/submissoes-diretorios.md",
+      {
+        "DeskcommCRM": 3,
+        "Deskcomm": 3
+      }
+    ],
+    [
+      "docs/growth/awesome-selfhosted-deskcommcrm.yml",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/deploy-hostgator/README.md",
+      {
+        "DeskcommCRM": 8,
+        "Deskcomm": 8
+      }
+    ],
+    [
+      "docs/prd/06-prd-nuvemshop-lgpd.md",
+      {
+        "DeskcommCRM": 7,
+        "Deskcomm": 7
+      }
+    ],
+    [
+      "docs/prd/00-prd-master.md",
+      {
+        "DeskcommCRM": 9,
+        "Deskcomm": 10
+      }
+    ],
+    [
+      "docs/prd/03-prd-whatsapp-waha.md",
+      {
+        "DeskcommCRM": 5,
+        "Deskcomm": 5
+      }
+    ],
+    [
+      "docs/prd/01-prd-platform-base.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/prd/05-prd-ai-rag-handoff.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/prd/02-prd-customer-360.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/design/teto-de-orcamento.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/design/onda-7-alarme-de-orcamento.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/deploy-selfhost/README.md",
+      {
+        "DeskcommCRM": 3,
+        "Deskcomm": 3
+      }
+    ],
+    [
+      "docs/stories/epics/EPIC-13-ai-agents-module.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/stories/epics/EPIC-06-ai-rag.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/stories/epics/MASTER.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/stories/epics/EPIC-01-auth-app-shell.md",
+      {
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/stories/epics/EPIC-10-audit-settings.md",
+      {
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/stories/epics/EPIC-07-nuvemshop.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/research/marketplace/03-o-que-pode-impactar.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/research/marketplace/02-o-que-sera-impactado.md",
+      {
+        "DeskcommCRM": 8,
+        "Deskcomm": 8
+      }
+    ],
+    [
+      "docs/research/marketplace/01-o-que-impacta.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/research/extensoes/03-o-que-pode-impactar.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/superpowers/handoffs/2026-07-17-webhooks.md",
+      {
+        "DeskcommCRM": 3,
+        "Deskcomm": 3
+      }
+    ],
+    [
+      "docs/superpowers/specs/2026-07-21-followup-system-design.md",
+      {
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/superpowers/specs/2026-07-17-webhooks-design.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 6
+      }
+    ],
+    [
+      "docs/superpowers/specs/2026-08-03-navegacao-agrupada-design.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/superpowers/specs/2026-07-28-atualizar-versao-na-ui-design.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/superpowers/specs/2026-07-02-hostgator-deploy-design.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/superpowers/plans/2026-07-28-atualizar-versao-na-ui.md",
+      {
+        "DeskcommCRM": 5,
+        "Deskcomm": 5
+      }
+    ],
+    [
+      "docs/superpowers/plans/2026-07-22-onda5-templates-vendedor.md",
+      {
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/superpowers/plans/2026-08-03-gestao-funis.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/superpowers/plans/2026-07-17-webhooks-backend.md",
+      {
+        "Deskcomm": 9
+      }
+    ],
+    [
+      "docs/superpowers/plans/2026-07-27-canais-seam-fases-0-2.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/superpowers/plans/2026-07-02-hostgator-frente-a-tecnica.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/superpowers/reports/2026-07-30-service-role-key-formato-novo.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/handoffs/waves/W1-painel-do-humano.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      "docs/handoffs/waves/W2-nao-perder-o-cliente.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/handoffs/waves/W4-organizar-a-operacao.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/handoffs/waves/W3-passar-para-humano.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/design-system/screen-flow/01-sitemap.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/design-system/screen-flow/README.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/doctrine/sistema-vivo/07-o-projeto-como-sistema.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/doctrine/sistema-vivo/06-tempo-do-sistema.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/doctrine/sistema-vivo/02-lei-dos-invariantes.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/doctrine/sistema-vivo/05-unidade-de-demanda.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/doctrine/sistema-vivo/01-fundamentos.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/doctrine/sistema-vivo/README.md",
+      {
+        "DeskcommCRM": 3,
+        "Deskcomm": 3
+      }
+    ],
+    [
+      "docs/doctrine/sistema-vivo/03-medida-do-proposito.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/doctrine/sistema-vivo/08-aplicacao.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "docs/doctrine/sistema-vivo/04-fronteira-de-autoridade.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "triagem/references/complemento-do-ci.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "triagem/references/eixo-selfhost.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      "triagem/instrumentos/tests/fixtures/promessas-reais.json",
+      {
+        "DeskcommCRM": 10,
+        "Deskcomm": 10
+      }
+    ],
+    [
+      "triagem/instrumentos/tests/fixtures/sonda-1170-verify-teto.json",
+      {
+        "DeskcommCRM": 9,
+        "Deskcomm": 9
+      }
+    ],
+    [
+      "triagem/instrumentos/tests/fixtures/sonda-reais.json",
+      {
+        "DeskcommCRM": 28,
+        "Deskcomm": 28
+      }
+    ],
+    [
+      "triagem/instrumentos/tests/fixtures/sonda-1122-action-required.json",
+      {
+        "DeskcommCRM": 6,
+        "Deskcomm": 6
+      }
+    ],
+    [
+      ".agents/rules/deskcomm-guias.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".agents/skills/deskcomm-metricas/SKILL.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".agents/skills/sistema-vivo/SKILL.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".agents/skills/deskcomm-instalar/SKILL.md",
+      {
+        "DeskcommCRM": 4,
+        "Deskcomm": 4
+      }
+    ],
+    [
+      ".agents/skills/deskcomm-prompt/SKILL.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".agents/skills/deskcomm-contribuir/SKILL.md",
+      {
+        "DeskcommCRM": 3,
+        "Deskcomm": 3
+      }
+    ],
+    [
+      ".agents/skills/deskcomm-doutrina/SKILL.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      ".agents/skills/deskcomm-extensao/SKILL.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      ".agents/skills/deskcomm-cliente-novo/SKILL.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".agents/skills/deskcomm-cliente-novo/agents/openai.yaml",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".agents/skills/deskcomm-extensao/references/testar-local.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".agents/skills/deskcomm-extensao/agents/openai.yaml",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".agents/skills/deskcomm-doutrina/agents/openai.yaml",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".agents/skills/deskcomm-contribuir/references/depois-do-pr.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".agents/skills/deskcomm-contribuir/references/pre-voo.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".agents/skills/deskcomm-contribuir/agents/openai.yaml",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".agents/skills/deskcomm-instalar/references/scripts-do-kit.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      ".agents/skills/deskcomm-instalar/references/agencia.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".agents/skills/deskcomm-instalar/references/problemas-e-armadilhas.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".agents/skills/deskcomm-instalar/references/o-que-a-instalacao-pede.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".agents/skills/deskcomm-instalar/agents/openai.yaml",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      ".claude/agents/gov-verifier.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      ".claude/agents/gov-implementer.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      ".claude/commands/deskcomm-gov-loop.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      ".claude/skills/deskcomm-metricas/SKILL.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".claude/skills/sistema-vivo/SKILL.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".claude/skills/deskcomm-instalar/SKILL.md",
+      {
+        "DeskcommCRM": 4,
+        "Deskcomm": 4
+      }
+    ],
+    [
+      ".claude/skills/deskcomm-prompt/SKILL.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".claude/skills/deskcomm-contribuir/SKILL.md",
+      {
+        "DeskcommCRM": 3,
+        "Deskcomm": 3
+      }
+    ],
+    [
+      ".claude/skills/deskcomm-doutrina/SKILL.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      ".claude/skills/deskcomm-extensao/SKILL.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      ".claude/skills/deskcomm-cliente-novo/SKILL.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".claude/skills/deskcomm-extensao/references/testar-local.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".claude/skills/deskcomm-contribuir/references/depois-do-pr.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".claude/skills/deskcomm-contribuir/references/pre-voo.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".claude/skills/deskcomm-instalar/references/scripts-do-kit.md",
+      {
+        "DeskcommCRM": 2,
+        "Deskcomm": 2
+      }
+    ],
+    [
+      ".claude/skills/deskcomm-instalar/references/agencia.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".claude/skills/deskcomm-instalar/references/problemas-e-armadilhas.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ],
+    [
+      ".claude/skills/deskcomm-instalar/references/o-que-a-instalacao-pede.md",
+      {
+        "DeskcommCRM": 1,
+        "Deskcomm": 1
+      }
+    ]
+  ],
+  "palette": [
+    "#7ED321",
+    "#00C853",
+    "#0B3D3A",
+    "#00B8D9",
+    "#6B7280",
+    "#FFFFFF"
+  ],
+  "logo_asset": "public/genesis-talk.svg",
+  "technical_identifier_policy": "No global replacement of generic IMOBI/Deskcomm identifiers in schemas, migrations, env vars or persisted contracts."
+}

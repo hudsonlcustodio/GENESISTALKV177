@@ -1,0 +1,283 @@
+{
+  "files_with_handoff_terms": 1487,
+  "top_relevant_files": [
+    {
+      "score": 756,
+      "path": "supabase/baseline.sql"
+    },
+    {
+      "score": 348,
+      "path": "lib/i18n/dicionario.ts"
+    },
+    {
+      "score": 345,
+      "path": "lib/agent-engine/agent/inbound-turn.ts"
+    },
+    {
+      "score": 256,
+      "path": "HANDOFF-ia-360.md"
+    },
+    {
+      "score": 250,
+      "path": "CHANGELOG.md"
+    },
+    {
+      "score": 210,
+      "path": "lib/agent-engine/agent/human-handoff.ts"
+    },
+    {
+      "score": 198,
+      "path": "supabase/migrations/MANIFEST.md"
+    },
+    {
+      "score": 181,
+      "path": "docs/specs/15-spec-casos-humanos.md"
+    },
+    {
+      "score": 172,
+      "path": "docs/handoffs/HANDOFF-crm-vivo.md"
+    },
+    {
+      "score": 164,
+      "path": "docs/handoffs/BRIEFING-crm-vivo.md"
+    },
+    {
+      "score": 155,
+      "path": "docs/testing/user-journey-map.md"
+    },
+    {
+      "score": 148,
+      "path": "docs/superpowers/plans/2026-07-23-casos-humanos.md"
+    },
+    {
+      "score": 128,
+      "path": "lib/ai/handoff/orchestrator.ts"
+    },
+    {
+      "score": 118,
+      "path": "tests/unit/escalacao-retomada.test.ts"
+    },
+    {
+      "score": 116,
+      "path": "docs/stories/epics/EPIC-06-ai-rag.md"
+    },
+    {
+      "score": 113,
+      "path": "docs/prd/05-prd-ai-rag-handoff.md"
+    },
+    {
+      "score": 107,
+      "path": "supabase/migrations/20260918110000_0291_passagem_para_humano_tem_registro.sql"
+    },
+    {
+      "score": 105,
+      "path": "docs/specs/13-spec-governanca-atendimento.md"
+    },
+    {
+      "score": 104,
+      "path": "workers/ai-response-worker.ts"
+    },
+    {
+      "score": 103,
+      "path": "tests/unit/handoff-por-orcamento.test.ts"
+    },
+    {
+      "score": 101,
+      "path": "docs/specs/05-spec-ai-rag-handoff.md"
+    },
+    {
+      "score": 99,
+      "path": "tests/invariants/followup-silence-sweep.test.ts"
+    },
+    {
+      "score": 97,
+      "path": "docs/specs/14-contrato-governanca-agentes-externos.md"
+    },
+    {
+      "score": 94,
+      "path": "tests/unit/passagem-registro-e-dedup.test.ts"
+    },
+    {
+      "score": 94,
+      "path": "lib/escalacao/passagem.ts"
+    },
+    {
+      "score": 93,
+      "path": "lib/escalacao/retomada.ts"
+    },
+    {
+      "score": 90,
+      "path": "scripts/seed-e2e-escalacao.ts"
+    },
+    {
+      "score": 85,
+      "path": "lib/agent-engine/agent/human-cases.ts"
+    },
+    {
+      "score": 84,
+      "path": "tests/invariants/escalacao-ciclo-humano.test.ts"
+    },
+    {
+      "score": 80,
+      "path": "tests/capture-wave-1.ts"
+    },
+    {
+      "score": 79,
+      "path": "docs/audits/2026-08-14-afirmacoes-de-estado.md"
+    },
+    {
+      "score": 78,
+      "path": "HANDOFF.md"
+    },
+    {
+      "score": 76,
+      "path": "tests/unit/cartao-da-passagem.test.ts"
+    },
+    {
+      "score": 72,
+      "path": "tests/unit/ai-cases-routes.test.ts"
+    },
+    {
+      "score": 72,
+      "path": "lib/agent-engine/guardrails/before-send.ts"
+    },
+    {
+      "score": 71,
+      "path": "tests/unit/handoff-avisa-o-lead.test.ts"
+    },
+    {
+      "score": 71,
+      "path": "docs/stories/epics/EPIC-13-ai-agents-module.md"
+    },
+    {
+      "score": 69,
+      "path": "lib/inbox/comando-da-conversa.test.ts"
+    },
+    {
+      "score": 67,
+      "path": "lib/mcp/tools/escalacao.ts"
+    },
+    {
+      "score": 65,
+      "path": "tests/invariants/operador-nao-pisa-no-humano.test.ts"
+    },
+    {
+      "score": 64,
+      "path": "tests/invariants/handoff-avisa-o-lead.test.ts"
+    },
+    {
+      "score": 60,
+      "path": "tests/invariants/followup-reactivity.test.ts"
+    },
+    {
+      "score": 57,
+      "path": "lib/escalacao/devolucao-automatica.ts"
+    },
+    {
+      "score": 57,
+      "path": "docs/handoffs/waves/W3-passar-para-humano.md"
+    },
+    {
+      "score": 56,
+      "path": "tests/unit/escalacao-devolucao-automatica.test.ts"
+    },
+    {
+      "score": 56,
+      "path": "lib/metrics/atrito.ts"
+    },
+    {
+      "score": 56,
+      "path": "docs/prd/00-prd-master.md"
+    },
+    {
+      "score": 55,
+      "path": "tests/unit/mcp-handoff-assignment.test.ts"
+    },
+    {
+      "score": 55,
+      "path": "tests/invariants/agenda-meet.test.ts"
+    },
+    {
+      "score": 55,
+      "path": "lib/escalacao/atendimento-manual.test.ts"
+    },
+    {
+      "score": 53,
+      "path": "tests/invariants/lgpd-cascata-alcanca-a-passagem.test.ts"
+    },
+    {
+      "score": 52,
+      "path": "tests/invariants/passagem-se-reconhece-sozinha.test.ts"
+    },
+    {
+      "score": 52,
+      "path": "tests/e2e/j20-elegibilidade-atendimento-manual.spec.ts"
+    },
+    {
+      "score": 52,
+      "path": "lib/database.types.ts"
+    },
+    {
+      "score": 51,
+      "path": "tests/invariants/case-promise-detector.test.ts"
+    },
+    {
+      "score": 50,
+      "path": "lib/followup/reactivity.ts"
+    },
+    {
+      "score": 49,
+      "path": "lib/inbox/comando-da-conversa.ts"
+    },
+    {
+      "score": 48,
+      "path": "tests/unit/mcp-escalacao-tools.test.ts"
+    },
+    {
+      "score": 48,
+      "path": "tests/unit/atrito-par-eficiencia-dano.test.ts"
+    },
+    {
+      "score": 48,
+      "path": "tests/unit/agent-atraso-humano.test.ts"
+    }
+  ],
+  "baseline_checks": {
+    "modern_escalation_module": true,
+    "force_human_referenced": true,
+    "human_handoff_referenced": true,
+    "followup_human_blocking_referenced": true,
+    "worker_human_guard_referenced": true
+  },
+  "aurum_probe_tests": {
+    "handoff-fernando-fiacao.test.ts": {
+      "tests": [
+        "send_message passa humanPromiseExtraTargets a partir de agentConfig.handoffKeywords",
+        "o fail-safe do case_promise (auto-abre-caso) chama moverParaHandoffBestEffort",
+        "a tool open_human_case (caso deliberado do modelo) também chama moverParaHandoffBestEffort",
+        "moverParaHandoffBestEffort é best-effort — nunca derruba o turno (.catch, não throw)",
+        "o bloco de reagendamento por cap checa detectUrgencySignal e abre agent_inbox_items kind=",
+        "handleOutboundFromUserPhone chama silenciarBotPorRetomadaHumana depois de registrar a mensagem"
+      ],
+      "imports": [
+        "node:fs",
+        "node:path",
+        "vitest"
+      ]
+    },
+    "silenciar-bot-retomada-humana.test.ts": {
+      "tests": [
+        "sem silêncio prévio, grava bot_silenced_until = agora + HUMAN_TAKEOVER_SILENCE_MS",
+        "silêncio ",
+        "silêncio mais longo já em vigor (ex.: handoff manual de 6h) não é encurtado pras 3h padrão",
+        "silêncio mais curto já vencido (ou no passado) É estendido pra janela padrão",
+        "falha de leitura não lança — best-effort, só loga",
+        "falha de escrita não lança — best-effort, só loga"
+      ],
+      "imports": [
+        "vitest",
+        "@/lib/waha/ingest"
+      ]
+    }
+  }
+}

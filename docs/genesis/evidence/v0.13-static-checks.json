@@ -1,0 +1,21 @@
+{
+  "checks": {
+    "package_current_next": true,
+    "current_migrations_400": true,
+    "flow_collect": true,
+    "flow_internal_task": true,
+    "flow_skill": true,
+    "flow_settings": true,
+    "flow_surface": true,
+    "flow_undo": true,
+    "flow_disconnect": true,
+    "brand_default": true,
+    "brand_dark_logo_preserved": true,
+    "mobile_spec": true,
+    "supervision_page": true,
+    "merge_markers": 0,
+    "kanban_inner_touch_scroller": true,
+    "kanban_mobile_column_width": true
+  },
+  "merge_marker_files": []
+}

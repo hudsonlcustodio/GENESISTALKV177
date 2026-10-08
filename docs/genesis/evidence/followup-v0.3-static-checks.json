@@ -1,0 +1,8 @@
+{
+  "history_100": true,
+  "undo_ui": true,
+  "disconnect": true,
+  "modern_nextSequenceId": true,
+  "modern_auto_layout": true,
+  "delete_helpers": true
+}
