@@ -23,6 +23,7 @@ export type EnrollmentStatus =
    */
   | "dormente"
   | "paused_handoff"
+  | "paused_manual"
   /**
    * Roteiro de atendimento em andamento (0394). Conduzido pelo TURNO, não pelo
    * relógio: o motor de follow-up nunca o reclama (o claim filtra
