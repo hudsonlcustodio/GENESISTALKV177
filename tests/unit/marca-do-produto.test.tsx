@@ -4,11 +4,11 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import { cleanup, render, screen } from "@testing-library/react";
 
 import { Sidebar } from "@/components/shell/Sidebar";
-import { CLASSES_DE_COR, LogotipoDoProduto, SimboloDoProduto } from "@/components/branding/MarcaDoProduto";
+import { LogotipoDoProduto, SimboloDoProduto } from "@/components/branding/MarcaDoProduto";
 import type { ActiveOrg, AuthUser } from "@/lib/auth/types";
 import { DEFAULT_APP_NAME, marcaEhADoProduto, type Branding } from "@/lib/branding";
 import { MarcaDaInstalacaoProvider } from "@/lib/branding/contexto";
-import { CORES_DA_MARCA } from "@/lib/branding/desenho";
+import { LOGOTIPO, SIMBOLO } from "@/lib/branding/desenho";
 
 /**
  * A marca do PRODUTO aparece — e SÓ aparece — quando ninguém pôs a sua.
@@ -114,20 +114,16 @@ describe("o desenho na barra lateral", () => {
 });
 
 describe("as cores do desenho", () => {
-  it("as classes do componente cobrem exatamente a paleta declarada, nos dois temas", () => {
-    // O Tailwind só gera utilitário para hex LITERAL no fonte, então o
-    // componente repete os valores. Isto é o que impede os dois de divergirem.
-    const nasClasses = Object.values(CLASSES_DE_COR).join(" ").match(/#[0-9a-f]{6}/g) ?? [];
-    const naPaleta = [...Object.values(CORES_DA_MARCA.claro), ...Object.values(CORES_DA_MARCA.escuro)];
-    expect([...nasClasses].sort()).toEqual([...naPaleta].sort());
-  });
-
-  it("cada tema tem a sua classe: `dark:` no escuro, nada no claro", () => {
-    for (const [papel, classes] of Object.entries(CLASSES_DE_COR)) {
-      const chave = papel as keyof typeof CORES_DA_MARCA.claro;
-      expect(classes).toContain(`fill-[${CORES_DA_MARCA.claro[chave]}]`);
-      expect(classes).toContain(`dark:fill-[${CORES_DA_MARCA.escuro[chave]}]`);
-    }
+  it("usa a arte oficial também recolhida, com viewport próprio e fundo legível", () => {
+    render(<LogotipoDoProduto nome={DEFAULT_APP_NAME} />);
+    expect(document.querySelector("svg")?.getAttribute("viewBox")).toBe(LOGOTIPO.viewBox);
+    expect(document.querySelector("image")?.getAttribute("href")).toBe(LOGOTIPO.arquivo);
+    expect(document.querySelector("rect")?.getAttribute("fill")).toBe("#ffffff");
+    cleanup();
+    render(<SimboloDoProduto nome={DEFAULT_APP_NAME} />);
+    expect(document.querySelector("svg")?.getAttribute("viewBox")).toBe(SIMBOLO.viewBox);
+    expect(document.querySelector("image")?.getAttribute("href")).toBe(LOGOTIPO.arquivo);
+    expect(fs.existsSync(path.join(process.cwd(), "public", LOGOTIPO.arquivo))).toBe(true);
   });
 
   it("decorativo esconde do leitor de tela; sem isso, nomeia a marca", () => {
@@ -144,7 +140,8 @@ describe("o favicon segue a mesma regra", () => {
 
   it("desenha o símbolo quando a marca é a do produto, e a inicial quando não é", () => {
     expect(icone).toMatch(/marcaEhADoProduto\(\{ name: marca\.nome, logoUrl: marca\.logoUrl \}\)/);
-    expect(icone).toMatch(/<path d=\{SIMBOLO\.d\}/);
+    expect(icone).toContain("await arteDoProduto()");
+    expect(icone).toContain("<image href={arte}");
     expect(icone).toMatch(/letraDoIcone\(marca\.nome\)/);
   });
 });

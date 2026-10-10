@@ -1,97 +1,71 @@
 #!/usr/bin/env bash
-# Restaura o banco a partir de um dump gerado pelo backup.sh.
-# Só restaura num banco VAZIO: num banco que já tem as tabelas do sistema ele
-# para antes, sem alterar nada (#2120) — ver a checagem abaixo.
-#
-# ⚠ O dump do backup.sh sai SEM --clean: não traz DROP/TRUNCATE nem IF NOT
-# EXISTS, e ele traz os schemas internos (auth, storage, realtime, vault) e
-# extensões como pg_net — então "already exists" e "extension is not
-# available" aparecem também num banco VAZIO. Por isso a checagem abaixo é a
-# que decide: se public já tem tabelas, paramos ANTES do psql com mensagem
-# própria (#2120), em vez de dizer "✓ banco restaurado" sobre ~2.800 erros.
-#
-# As flags `-v ON_ERROR_STOP=1 --single-transaction` saíram daqui por medição
-# do mantenedor em 03/10: elas fazem o restore falhar também em banco vazio
-# (rc=3, 0 tabelas) em Supabase novo, Postgres 17 puro e database nova — o
-# caminho que hoje funciona deixaria de funcionar. Sem elas, o psql avisa e
-# segue, saindo 0 num banco que restaurou.
-#
-#   bash hostgator-setup-kit/restore.sh backups/db-20260702-030000.sql.gz
+# Full recovery only into an empty, compatible, dedicated destination.
 source "$(dirname "$0")/_common.sh"
+RECOVERY_KIT="$(cd "$(dirname "$0")" && pwd)"
 enter_project
-
+command -v python3 >/dev/null || die 'Restore exige Python 3.'
+command -v flock >/dev/null || die 'Restore exige flock.'
+umask 077
+mkdir -p "$PROJECT_DIR/.runtime"
+exec 7>"$PROJECT_DIR/.runtime/recovery.lock"
+flock -n 7 || die 'Já existe backup/restore em andamento.'
 DUMP="${1:-}"
-[ -n "$DUMP" ] && [ -f "$DUMP" ] || die "Uso: restore.sh <arquivo-db-*.sql.gz>"
-
-c_ylw "⚠ Isto vai restaurar o backup no banco em $NEXT_PUBLIC_SUPABASE_URL (só se ele estiver vazio)."
-c_ylw "⚠ O dump do backup.sh sai SEM --clean: ele não restaura por cima de um banco que já tem o schema."
-c_ylw "   Ele também traz auth, storage e extensões — os erros de \"already exists\" aparecem até em banco novo."
-
-# #2120: checagem ANTES de pedir a confirmação. Se o banco já tem o schema,
-# não adianta chamar o psql (o dump não tem --clean, então ele só gritaria),
-# então paramos aqui com a mensagem certa. A contagem é medida em public — é
-# onde o dump do backup.sh despeja as tabelas do produto. Os "already exists"
-# de auth/storage e a extensão pg_net não entram nessa conta: são internas e
-# existem até em banco recém-criado.
-# A contagem NÃO pode comer o stdin: o `restore.sh` pede a confirmação logo
-# abaixo, e quem chama alimenta tudo com printf 'RESTAURAR\n' | restore.sh.
-if tabela="$(pg_container -i postgres:17-alpine psql "$(url_do_schema)" \
-      -tAc "select count(*) from pg_tables where schemaname='public'" \
-      </dev/null 2>/dev/null)"; then
-  # Falhar fechado também quando a conexão "deu certo" e a resposta não é um
-  # número (vazio, aviso no stdout): sem saber a contagem, não restauramos.
-  case "$tabela" in ''|*[!0-9]*)
-    die "Não consegui conferir se o banco em $NEXT_PUBLIC_SUPABASE_URL está vazio (a contagem voltou [$tabela]): nada foi alterado." ;;
-  esac
-  if [ "$tabela" -gt 0 ]; then
-    die "O banco em $NEXT_PUBLIC_SUPABASE_URL já tem as tabelas do sistema ($tabela em public): nada foi alterado. Este backup só volta num banco vazio — por exemplo, um projeto Supabase novo em que o instalador ainda não rodou. Veja \"Restaurar um backup\" em hostgator-setup-kit/README.md, ou peça ajuda."
-  fi
-else
-  die "Não consegui conferir se o banco em $NEXT_PUBLIC_SUPABASE_URL está vazio: nada foi alterado."
+[[ -f "$DUMP" ]] || die 'Uso: restore.sh <db-<instante>.sql.gz>'
+major="$(python3 "$RECOVERY_KIT/recovery.py" verify "$DUMP" --storage-required "${SINGLE_SERVER:-0}")" \
+  || die 'Bundle inválido/legado: nada foi alterado.'
+image="postgres:$major-alpine"
+target_major="$(pg_container "$image" psql "$(url_do_schema)" -X -qAt -v ON_ERROR_STOP=1 \
+  -c "select current_setting('server_version_num')::int / 10000;")" \
+  || die 'Não consegui verificar o destino.'
+python3 "$RECOVERY_KIT/recovery.py" verify "$DUMP" --major "$target_major" >/dev/null \
+  || die 'Destino incompatível: nada foi alterado.'
+# Initialized Supabase internal schemas are allowed only without users/objects.
+empty="$(pg_container "$image" psql "$(url_do_schema)" -X -qAt -v ON_ERROR_STOP=1 -c "
+  select (select count(*) from pg_tables where schemaname='public')
+       + case when to_regclass('auth.users') is null then 0 else
+         (xpath('/row/n/text()', query_to_xml('select count(*) n from auth.users',false,true,'')))[1]::text::bigint end
+       + case when to_regclass('storage.objects') is null then 0 else
+         (xpath('/row/n/text()', query_to_xml('select count(*) n from storage.objects',false,true,'')))[1]::text::bigint end;")" \
+  || die 'Não consegui conferir se o banco está vazio: nada foi alterado.'
+[[ "$empty" == 0 ]] || die 'Destino já tem tabelas do sistema, usuários ou anexos: nada foi alterado. Use um destino isolado vazio.'
+running="$(dc ps --status running -q app worker scheduler voice-agent waha)" \
+  || die 'Não consegui conferir os serviços do destino.'
+[[ -z "$running" ]] || die 'Pare app, worker, scheduler, voice-agent e canal antes do restore.'
+bundle_dir="$(cd "$(dirname "$DUMP")" && pwd)"
+bundle_id="$(basename "$DUMP" .sql.gz)"; bundle_id="${bundle_id#db-}"
+WAHA_TAR="$bundle_dir/waha-$bundle_id.tgz"
+STORAGE_TAR="$bundle_dir/storage-$bundle_id.tgz"
+empty_volume() {
+  docker run --rm -v "$1:/data:ro" alpine:3.20 sh -c \
+    'test -z "$(find /data -mindepth 1 -maxdepth 1 -print -quit)"' \
+    || die 'Volume de destino ocupado ou ilegível: nada foi restaurado. Use volumes vazios dedicados.'
+}
+if [[ -f "$WAHA_TAR" ]]; then empty_volume "$(volume_waha_data)"; fi
+if [[ "${SINGLE_SERVER:-0}" == 1 ]]; then empty_volume "$(dir_do_supabase)/volumes/storage"; fi
+c_ylw 'O restore recria os objetos do backup em um destino vazio COMPATÍVEL. Não use banco compartilhado.'
+read -r -p "Digite 'RESTAURAR' para confirmar: " answer
+[[ "$answer" == RESTAURAR ]] || die 'Cancelado.'
+checks="${DUMP%.sql.gz}.checks.sql"
+started="$(date +%s)"
+# SQL, COPY-count and ACL/schema errors all roll back. An auth/storage/extension
+# mismatch means incompatible destination, never permission for partial success.
+if ! { gunzip -c "$DUMP" && cat "$checks"; } | pg_container -i "$image" \
+  psql "$(url_do_schema)" -X -v ON_ERROR_STOP=1 --single-transaction; then
+  die 'Restauração reprovou e a transação foi revertida. Confira versão/roles/extensões do destino.'
 fi
+c_grn '✓ banco restaurado: contagens, schema, RLS e privilégios conferidos.'
 
-read -r -p "Digite 'RESTAURAR' para confirmar: " a
-[ "$a" = "RESTAURAR" ] || die "Cancelado."
-
-step "Restaurando $DUMP"
-# Sem `-v ON_ERROR_STOP=1 --single-transaction` (medição do mantenedor em
-# 03/10): com elas o restore falha também em banco VAZIO — Supabase novo,
-# Postgres 17 puro e database nova deram rc=3 e 0 tabelas; sem elas, nos dois
-# primeiros, o mesmo dump entrou com rc=0 e 110 tabelas. O dump traz auth, storage e
-# extensões que já existem num Supabase novo, então o erro é normal ali. Quem
-# segura o banco populado é a checagem de cima; aqui o psql avisa, segue e sai
-# 0, e o `&&` só confirma o rc. Em falha fatal (conexão, disco) o banco pode
-# ficar incompleto — sem a transação única não há rollback, por isso o aviso
-# abaixo não promete mais que nada.
-gunzip -c "$DUMP" | pg_container -i postgres:17-alpine psql "$(url_do_schema)" \
-  && c_grn "✓ banco restaurado" || die "Falha na restauração — confira o log acima e o estado do banco antes de repetir."
-
-# Restaura o estado das sessões do WhatsApp (WAHA) se o snapshot emparelhado existir
-WAHA_TAR="${DUMP/db-/waha-}"
-WAHA_TAR="${WAHA_TAR%.sql.gz}.tgz"
-if [ -f "$WAHA_TAR" ]; then
-  step "Restaurando sessões do WhatsApp de $WAHA_TAR"
+if [[ -f "$WAHA_TAR" ]]; then
   vol="$(volume_waha_data)"
-  WAHA_DIR="$(cd "$(dirname "$WAHA_TAR")" && pwd)"
-  WAHA_FILE="$(basename "$WAHA_TAR")"
-  docker run --rm -v "${vol}:/data" -v "${WAHA_DIR}:/in:ro" alpine:3.20 \
-    sh -c "rm -rf /data/* && tar xzf /in/${WAHA_FILE} -C /data" \
-    && c_grn "✓ sessões do WhatsApp restauradas" || c_ylw "⚠ Falha ao restaurar sessões do WhatsApp"
+  docker run --rm -v "${vol}:/data" -v "$(cd "$(dirname "$WAHA_TAR")" && pwd):/in:ro" alpine:3.20 \
+    sh -c 'test -z "$(find /data -mindepth 1 -maxdepth 1 -print -quit)" && tar xzf "/in/$1" -C /data' _ "$(basename "$WAHA_TAR")" \
+    || die 'Banco recuperado; sessão do canal falhou. Repare o volume antes de subir o app (não repita o restore do banco).'
 fi
-
-# Single-server: os anexos voltam junto com o banco (ver backup.sh).
-if [ "${SINGLE_SERVER:-0}" = "1" ]; then
-  STORAGE_TAR="$(dirname "$DUMP")/storage-$(basename "$DUMP" .sql.gz | sed 's/^db-//').tgz"
-  if [ -f "$STORAGE_TAR" ]; then
-    step "Restaurando os arquivos anexados de $STORAGE_TAR"
-    docker run --rm -v "$(dir_do_supabase)/volumes/storage:/data" \
-      -v "$(cd "$(dirname "$STORAGE_TAR")" && pwd):/in:ro" alpine:3.20 \
-      sh -c "find /data -mindepth 1 -delete && tar xzf /in/$(basename "$STORAGE_TAR") -C /data" \
-      && c_grn "✓ anexos restaurados" \
-      || die "Falha ao restaurar os anexos. O banco JÁ foi restaurado: repita o restore."
-  else
-    c_ylw "⚠ Não achei $(basename "$STORAGE_TAR") ao lado do dump: o banco voltou, os ANEXOS não."
-  fi
+if [[ "${SINGLE_SERVER:-0}" == 1 ]]; then
+  [[ -f "$STORAGE_TAR" ]] || die 'Banco recuperado, mas faltam anexos: não inicie o app.'
+  docker run --rm -v "$(dir_do_supabase)/volumes/storage:/data" \
+    -v "$(cd "$(dirname "$STORAGE_TAR")" && pwd):/in:ro" alpine:3.20 \
+    sh -c 'test -z "$(find /data -mindepth 1 -maxdepth 1 -print -quit)" && tar xzf "/in/$1" -C /data' _ "$(basename "$STORAGE_TAR")" \
+    || die 'Banco recuperado; anexos falharam. Repare o volume antes de subir o app (não repita o restore do banco).'
 fi
-
-c_ylw "Reinicie o app: docker compose $(dc_files) restart app"
+printf 'PASS: recuperação local em %s segundos. Valide login, objetos externos e canal antes de publicar.\n' "$(( $(date +%s) - started ))"

@@ -24,6 +24,9 @@ patchedDependencies:
   '@react-pdf/hyphenate':
     hash: 7zbg3hcwdkwwiwo2qqqwdmolwi
     path: patches/@react-pdf__hyphenate.patch
+  braces@3.0.3:
+    hash: 5bcvhnf22uubkmicmo3ioih57m
+    path: patches/braces@3.0.3.patch
 
 importers:
 
@@ -200,6 +203,9 @@ importers:
       tailwind-merge:
         specifier: ^3.7.0
         version: 3.7.0
+      tsx:
+        specifier: ^4.23.15
+        version: 4.23.15
       web-push:
         specifier: ^3.6.7
         version: 3.6.7
@@ -282,9 +288,6 @@ importers:
       tailwindcss:
         specifier: ^4.3.3
         version: 4.3.3
-      tsx:
-        specifier: ^4.23.15
-        version: 4.23.15
       typescript:
         specifier: ^6.0.3
         version: 6.0.3
@@ -8320,7 +8323,7 @@ snapshots:
     dependencies:
       balanced-match: 4.0.4
 
-  braces@3.0.3:
+  braces@3.0.3(patch_hash=5bcvhnf22uubkmicmo3ioih57m):
     dependencies:
       fill-range: 7.1.1
 
@@ -9821,7 +9824,7 @@ snapshots:
 
   micromatch@4.0.8:
     dependencies:
-      braces: 3.0.3
+      braces: 3.0.3(patch_hash=5bcvhnf22uubkmicmo3ioih57m)
       picomatch: 2.3.2
 
   mime-db@1.54.0: {}

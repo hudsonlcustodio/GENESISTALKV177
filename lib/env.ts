@@ -28,9 +28,7 @@ const isBuildPhase = process.env.NEXT_PHASE === "phase-production-build";
  * pra permitir setup parcial (ex: dev sem WAHA quando trabalhando só na UI).
  */
 const required = (name: string) =>
-  isProd
-    ? z.string().min(1, `${name} é obrigatória em produção`)
-    : z.string().default("");
+  isProd ? z.string().min(1, `${name} é obrigatória em produção`) : z.string().default("");
 
 const requiredAlways = (name: string) => z.string().min(1, `${name} é obrigatória`);
 
@@ -167,6 +165,14 @@ const schema = z.object({
    * (issue #192). Vigiado por `tests/unit/env-ddl-fora-do-app.test.ts`.
    */
   SUPABASE_DB_ADMIN_URL: z.string().optional().default(""),
+
+  // Operação do host: interpretadas pelos scripts, sem derrubar o app por
+  // configuração inválida. Os scripts recusam valores inválidos ao executar.
+  BACKUP_KEEP: z.string().optional().default("14"),
+  BACKUP_OFFSITE_DIR: z.string().optional().default(""),
+  GENESIS_ALERT_WEBHOOK: z.string().optional().default(""),
+  GENESIS_ALERT_AFTER_FAILURES: z.string().optional().default("3"),
+  GENESIS_BACKUP_MAX_HOURS: z.string().optional().default("26"),
 
   // WAHA
   WAHA_API_BASE_URL: required("WAHA_API_BASE_URL"),
@@ -549,14 +555,8 @@ const schema = z.object({
     .transform((v) => v === "true"),
 
   // App URLs
-  NEXT_PUBLIC_APP_URL: z
-    .string()
-    .url()
-    .default("http://localhost:3000"),
-  NEXT_PUBLIC_ADMIN_URL: z
-    .string()
-    .url()
-    .default("http://localhost:3000"),
+  NEXT_PUBLIC_APP_URL: z.string().url().default("http://localhost:3000"),
+  NEXT_PUBLIC_ADMIN_URL: z.string().url().default("http://localhost:3000"),
   /**
    * URL pública opcional para os webhooks da Meta (WhatsApp Cloud API / canais oficiais).
    * Quando definida, é usada no lugar de NEXT_PUBLIC_APP_URL para compor a URL de callback

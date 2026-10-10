@@ -54,9 +54,7 @@ export async function GET(req: Request): Promise<Response> {
   const t = (texto: string) => traduzir(texto, authz.user.idioma);
   const { org } = authz;
 
-  const parsed = querySchema.safeParse(
-    Object.fromEntries(new URL(req.url).searchParams.entries()),
-  );
+  const parsed = querySchema.safeParse(Object.fromEntries(new URL(req.url).searchParams.entries()));
   if (!parsed.success) {
     return fail("validation_failed", t("Filtros inválidos."), 422, {
       details: parsed.error.flatten(),
@@ -83,49 +81,11 @@ export async function GET(req: Request): Promise<Response> {
 
   const desde = new Date(Date.now() - DIAS * 24 * 60 * 60 * 1000).toISOString();
 
-  /** Uma contagem, sem trazer linha nenhuma (`head: true`). */
-  async function contar(
-    aplicar: (q: ReturnType<typeof base>) => ReturnType<typeof base>,
-  ): Promise<number> {
-    const { count, error } = await aplicar(base());
-    if (error) throw new Error(error.message);
-    return count ?? 0;
-  }
-  function base() {
-    const q = db
-      .from("event_log")
-      .select("id", { count: "exact", head: true })
-      .eq("organization_id", org!.orgId)
-      .eq("event_type", "agent.operator_turn")
-      .gte("created_at", desde);
-    // A chave é a que `registrarDesfecho` grava. Filtrar por uma que ninguém
-    // escreve casa zero linha e o painel zera em silêncio — pior que agregar.
-    return agenteDaTela === null ? q : q.eq("payload->>agent_id", agenteDaTela);
-  }
-
-  try {
-    const [turnos, agiu, comPromessa, assumidas, semDono, semFerramenta] = await Promise.all([
-      contar((q) => q),
-      // Pelo menos uma ferramenta chamada. O primeiro elemento existir é o teste
-      // mais barato de "array não vazio" que o PostgREST oferece.
-      contar((q) => q.not("payload->ferramentas_chamadas->>0", "is", null)),
-      contar((q) => q.not("payload->>promessas_declaradas", "eq", "0")),
-      contar((q) => q.not("payload->>promessa_assumida_por", "is", null)),
-      contar((q) => q.not("payload->>promessa_sem_dono_porque", "is", null)),
-      contar((q) => q.eq("payload->>promessa_sem_dono_porque", "operador_sem_ferramentas")),
-    ]);
-
-    return ok({
-      dias: DIAS,
-      turnos,
-      agiu,
-      promessas: { declaradas: comPromessa, assumidas, semDono },
-      // "Quis agir e não pôde": o papel rodou, havia promessa, e ele não tinha
-      // nenhuma capacidade marcada. A ação que cabe ao dono é na tela, não no
-      // cliente — por isso este número é separado do "não agiu".
-      quisAgirENaoPode: semFerramenta,
-    });
-  } catch (err) {
-    return fail("read_failed", err instanceof Error ? err.message : t("falha ao ler"), 500);
-  }
+  const { data, error } = await db.rpc("fn_genesis_operator_counts", {
+    p_org: org.orgId,
+    p_since: desde,
+    p_agent: agenteDaTela ?? undefined,
+  });
+  if (error) return fail("read_failed", t("falha ao ler"), 503);
+  return ok(data);
 }

@@ -28,25 +28,12 @@ import { Providers } from "./providers";
 import { PublicEnvScript } from "./public-env-script";
 import "./globals.css";
 
-// Fontes versionadas em app/fonts/ (origem e licença no README de lá): o
-// next/font/google as baixava durante o build, e o build caía quando o Google
-// não respondia. A família passa a se chamar como a variável JS ("atkinson"),
-// então use sempre a custom property (--font-atkinson), nunca o nome da fonte.
-const atkinson = localFont({
-  src: [
-    {
-      path: "./fonts/atkinson-hyperlegible-400-latin-latin-ext.woff2",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "./fonts/atkinson-hyperlegible-700-latin-latin-ext.woff2",
-      weight: "700",
-      style: "normal",
-    },
-  ],
+// DIN Next, quando instalada, tem prioridade no CSS. O fallback livre IBM Plex
+// Sans é versionado para builds offline; não redistribuímos uma fonte proprietária.
+const interfaceSans = localFont({
+  src: [{ path: "./fonts/ibm-plex-sans-300-700-latin.woff2", weight: "300 700", style: "normal" }],
   display: "swap",
-  variable: "--font-atkinson",
+  variable: "--font-interface",
 });
 
 const plexMono = localFont({
@@ -327,7 +314,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       lang="pt-BR"
       data-theme="light"
       suppressHydrationWarning
-      className={`${atkinson.variable} ${plexMono.variable}`}
+      className={`${interfaceSans.variable} ${plexMono.variable}`}
     >
       <head>
         {/* Primeiro de tudo: a cor da instalação, antes do CSS e do script de tema. */}

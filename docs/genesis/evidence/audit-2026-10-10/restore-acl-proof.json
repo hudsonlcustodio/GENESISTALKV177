@@ -1,0 +1,15 @@
+{
+  "status": "REPRODUCED",
+  "postgres": "17-alpine",
+  "scope": "Minimal isolated PostgreSQL counterexample using the production backup flags; not a full application restore or exploit.",
+  "before": {
+    "anon_executes_restricted_function": false,
+    "service_role_can_delete_audit": false
+  },
+  "after": {
+    "anon_executes_restricted_function": true,
+    "service_role_can_delete_audit": true
+  },
+  "grantRevokeCommandsInDump": false,
+  "noExistingDatabaseOrVolumeAccessed": true
+}

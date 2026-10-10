@@ -5,7 +5,7 @@ import { useLocaleDeData } from "@/hooks/i18n/useLocaleDeData";
 
 import { useT } from "@/hooks/i18n/useT";
 
-import { format, isBefore } from "date-fns";
+import { format } from "date-fns";
 import * as React from "react";
 
 import { Badge } from "@/components/ui/badge";
@@ -77,7 +77,13 @@ function separar(agendamentos: Agendamento[], agora: Date): Record<AbaDoHistoric
       vazio.aguardando.push(a);
       continue;
     }
-    (isBefore(new Date(a.comeca), agora) ? vazio.passados : vazio.proximos).push(a);
+    const encerrado = a.situacao === "completed" || a.situacao === "no_show";
+    // Em andamento continua visível até o término. Datas ISO com offset são
+    // comparadas como instantes, sem depender do fuso do navegador.
+    (encerrado || new Date(a.termina).getTime() <= agora.getTime()
+      ? vazio.passados
+      : vazio.proximos
+    ).push(a);
   }
   return vazio;
 }
@@ -218,7 +224,9 @@ export function HistoricoDaAgenda({
                   />
                   <div className="w-28 shrink-0">
                     <div className="text-sm font-medium tabular-nums first-letter:uppercase">
-                      {format(dataDeParede(comeca, fuso), t("d 'de' MMM"), { locale: localeDaData })}
+                      {format(dataDeParede(comeca, fuso), t("d 'de' MMM"), {
+                        locale: localeDaData,
+                      })}
                     </div>
                     <div className="text-[11px] text-text-muted tabular-nums">
                       {format(dataDeParede(comeca, fuso), "HH:mm")}

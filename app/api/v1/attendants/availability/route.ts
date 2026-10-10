@@ -23,6 +23,7 @@ import { randomUUID } from "node:crypto";
 import type { NextRequest } from "next/server";
 
 import { ok, fail } from "@/lib/api/wrappers";
+import { carregarNomesDoRoster } from "@/lib/atendimento/nomes-do-roster";
 import { estaPresente } from "@/lib/atendimento/presenca";
 import { isServiceRoleConfigured } from "@/lib/audit";
 import { requireRole } from "@/lib/auth/require-role";
@@ -32,8 +33,7 @@ import { createClient } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
 
-const SELECT_COLS =
-  "user_id, is_available, capacity, schedule, updated_at, last_heartbeat_at";
+const SELECT_COLS = "user_id, is_available, capacity, schedule, updated_at, last_heartbeat_at";
 
 interface AvailabilityRow {
   user_id: string;
@@ -97,17 +97,12 @@ export async function GET(_req: NextRequest): Promise<Response> {
   // Nome/email por atendente (mesmo padrão de /api/v1/metrics/attendants). Fica
   // NA ROTA, não na função compartilhada: e-mail é PII e a superfície do agente
   // não recebe e-mail nem telefone de atendente.
-  const names = new Map<string, { name: string | null; email: string | null }>();
-  await Promise.all(
-    roster.map(async ({ userId }) => {
-      const { data: userRes } = await admin.auth.admin.getUserById(userId);
-      const u = userRes?.user;
-      names.set(userId, {
-        name: (u?.user_metadata?.full_name as string | undefined) ?? null,
-        email: u?.email ?? null,
-      });
-    }),
-  );
+  let names;
+  try {
+    names = await carregarNomesDoRoster(await createClient(), activeOrg.orgId);
+  } catch {
+    return fail("read_failed", "Nomes da equipe indisponíveis.", 503, { requestId });
+  }
 
   const rows = roster.map((m) => ({
     user_id: m.userId,

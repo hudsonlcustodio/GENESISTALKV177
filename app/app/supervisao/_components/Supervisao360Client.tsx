@@ -1,20 +1,11 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
-import { apiClient } from "@/lib/api/client";
+import Link from "next/link";
 import { useConversationCounts } from "@/hooks/inbox/useConversationCounts";
 import { useAttendants } from "@/hooks/team/useAttendants";
-import { useAttendantMetrics } from "@/hooks/metrics/useAttendantMetrics";
 import { Card } from "@/components/ui/card";
 import { useT } from "@/hooks/i18n/useT";
-
-type OperatorMetrics = {
-  dias: number;
-  turnos: number;
-  agiu: number;
-  promessas: { declaradas: number; assumidas: number; semDono: number };
-  quisAgirENaoPode: number;
-};
+import { SupervisaoAnalise, type SupervisionOptions } from "./SupervisaoAnalise";
 
 function Fonte({
   titulo,
@@ -47,35 +38,38 @@ function Numero({
   titulo,
   valor,
   detalhe,
+  href,
 }: {
   titulo: string;
   valor: number | string;
   detalhe?: string;
+  href: string;
 }) {
   return (
     <Card className="min-w-0 p-4">
-      <div className="text-xs font-medium text-muted-foreground">{titulo}</div>
-      <div className="mt-1 text-2xl font-semibold tabular-nums">{valor}</div>
-      {detalhe ? <div className="mt-1 text-xs text-muted-foreground">{detalhe}</div> : null}
+      <Link
+        href={href}
+        className="block rounded-sm focus-visible:outline-2 focus-visible:outline-ring"
+      >
+        <div className="text-xs font-medium text-muted-foreground">{titulo}</div>
+        <div className="mt-1 text-2xl font-semibold tabular-nums">{valor}</div>
+        {detalhe ? <div className="mt-1 text-xs text-muted-foreground">{detalhe}</div> : null}
+      </Link>
     </Card>
   );
 }
 
-export function Supervisao360Client({ orgId }: { orgId: string }) {
+export function Supervisao360Client({
+  orgId,
+  options = { agents: [], channels: [], pipelines: [] },
+}: {
+  orgId: string;
+  options?: SupervisionOptions;
+}) {
   const t = useT();
   const counts = useConversationCounts(orgId);
   const attendants = useAttendants({ orgId, refetchInterval: 30_000 });
-  const performance = useAttendantMetrics(null, { orgId, refetchInterval: 30_000 });
-  const operator = useQuery({
-    queryKey: ["supervisao-360", "ai-operator-metrics", orgId],
-    queryFn: () =>
-      apiClient.get<{ data: OperatorMetrics }>("/api/v1/ai/operator-metrics").then((r) => r.data),
-    refetchInterval: 30_000,
-  });
-
   const equipe = attendants.isError ? [] : (attendants.data?.data ?? []);
-  const perf = performance.isError ? undefined : performance.data?.data;
-  const ai = operator.isError ? undefined : operator.data;
   const c = counts.isError ? undefined : counts.data;
   const equipeDisponivel = !attendants.isError && attendants.data !== undefined;
 
@@ -83,8 +77,7 @@ export function Supervisao360Client({ orgId }: { orgId: string }) {
   const dePlantao = equipe.filter((a) => a.is_available).length;
   const carga = equipe.reduce((total, a) => total + (a.current_load ?? 0), 0);
 
-  const indisponivel =
-    counts.isError || attendants.isError || performance.isError || operator.isError;
+  const indisponivel = counts.isError || attendants.isError;
 
   return (
     <div className="space-y-4 sm:space-y-6" data-testid="genesis-supervisao-360">
@@ -106,16 +99,29 @@ export function Supervisao360Client({ orgId }: { orgId: string }) {
           </div>
         </div>
         <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-6">
-          <Numero titulo={t("Fila humana")} valor={c?.fila ?? c?.unassigned ?? "—"} />
-          <Numero titulo={t("Em IA")} valor={c?.automatico ?? "—"} />
-          <Numero titulo={t("Minhas")} valor={c?.mine ?? "—"} />
-          <Numero titulo={t("Abertas no escopo")} valor={c?.all ?? "—"} />
+          <Numero
+            titulo={t("Fila humana")}
+            valor={c?.fila ?? c?.unassigned ?? "—"}
+            href="/app/inbox?filter=unassigned"
+          />
+          <Numero titulo={t("Em IA")} valor={c?.automatico ?? "—"} href="/app/inbox?filter=ai" />
+          <Numero titulo={t("Minhas")} valor={c?.mine ?? "—"} href="/app/inbox?filter=mine" />
+          <Numero
+            titulo={t("Abertas no escopo")}
+            valor={c?.all ?? "—"}
+            href="/app/inbox?filter=all"
+          />
           <Numero
             titulo={t("Pessoas presentes")}
             valor={equipeDisponivel ? presentes : "—"}
+            href="#equipe"
             detalhe={equipeDisponivel ? `${dePlantao} ${t("de plantão")}` : undefined}
           />
-          <Numero titulo={t("Carga atribuída")} valor={equipeDisponivel ? carga : "—"} />
+          <Numero
+            titulo={t("Carga atribuída")}
+            valor={equipeDisponivel ? carga : "—"}
+            href="#equipe"
+          />
         </div>
         <Fonte titulo={t("Conversas")} query={counts} />
       </section>
@@ -150,56 +156,7 @@ export function Supervisao360Client({ orgId }: { orgId: string }) {
         </div>
       </section>
 
-      <section aria-labelledby="resultado">
-        <h2 id="resultado" className="mb-3 font-semibold">
-          {t("Últimos 30 dias")}
-        </h2>
-        <div className="grid gap-2 lg:grid-cols-2">
-          <Card className="overflow-hidden">
-            <div className="border-b border-border p-4 font-medium">{t("Atendentes")}</div>
-            <Fonte titulo={t("Atendentes")} query={performance} />
-            <div className="divide-y divide-border">
-              {(perf?.attendants ?? []).map((a) => (
-                <div
-                  key={a.user_id}
-                  className="grid grid-cols-[minmax(0,1fr)_auto] gap-3 p-4 text-sm"
-                >
-                  <div className="min-w-0">
-                    <div className="truncate font-medium">{a.name ?? a.email ?? t("Sem nome")}</div>
-                    <div className="text-xs text-muted-foreground">
-                      {a.conversations_handled} {t("atendimentos")}
-                    </div>
-                  </div>
-                  <div className="text-right text-xs tabular-nums">
-                    <div>
-                      {t("ganhos")}: {a.won}
-                    </div>
-                    <div>
-                      {t("perdidos")}: {a.lost}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </Card>
-
-          <Card className="p-4">
-            <div className="font-medium">{t("Agentes de IA")}</div>
-            <Fonte titulo={t("Agentes de IA")} query={operator} />
-            <p className="mt-1 text-xs text-muted-foreground">
-              {t(
-                "Métrica operacional do executor; não equivale sozinha a resolução de atendimento.",
-              )}
-            </p>
-            <div className="mt-4 grid grid-cols-2 gap-2">
-              <Numero titulo={t("Turnos")} valor={ai?.turnos ?? "—"} />
-              <Numero titulo={t("Com ação")} valor={ai?.agiu ?? "—"} />
-              <Numero titulo={t("Promessas sem dono")} valor={ai?.promessas.semDono ?? "—"} />
-              <Numero titulo={t("Sem ferramenta")} valor={ai?.quisAgirENaoPode ?? "—"} />
-            </div>
-          </Card>
-        </div>
-      </section>
+      <SupervisaoAnalise orgId={orgId} options={options} attendants={equipe} />
     </div>
   );
 }

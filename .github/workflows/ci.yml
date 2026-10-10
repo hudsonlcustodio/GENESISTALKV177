@@ -158,13 +158,17 @@ jobs:
         parte: [1, 2, 3, 4]
     steps:
       - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
 
       - name: Marcar o início (o orçamento de tempo mede no fim do job)
         run: echo "VERIFY_INICIO=$(date +%s)" >> "$GITHUB_ENV"
 
       # ── O VERDE DESTE PR É DE QUAL ÁRVORE? ────────────────────────────────
       #
-      # Em `pull_request`, o CI mede a PRÉVIA do merge — base + head no instante
+      # Genesis: o checkout mede o SHA HEAD do candidato. A comparação abaixo
+      # continua avisando sobre conflitos com a base. No fluxo vendor original,
+      # o CI media a PRÉVIA do merge — base + head no instante
       # do evento — e essa prévia NÃO se atualiza sozinha quando a `main` anda.
       # Medido em 18/09/2026: três PRs "mergeable e verdes" tinham prévia
       # atrasada em 29, 52 e 35 commits; e o PR de release #1229 foi mesclado
@@ -379,7 +383,6 @@ jobs:
       - name: O acervo de .changes/ cabe na tela da VPS?
         if: matrix.parte == 1 && github.event_name != 'pull_request'
         run: pnpm release:acervo-cabe
-
 
       # Scripts do kit self-host num repo git descartável (docker/crontab
       # dublados). É o único gate que exercita o update.sh — um erro aqui
@@ -601,6 +604,8 @@ jobs:
       CONFERENCIA_KIT_UPSTREAM_REPO: melgarafael/DeskcommCRM
     steps:
       - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
 
       - uses: ./.github/actions/preparar-node
         # O teto do preâmbulo mora aqui porque passo de composite action não
@@ -613,6 +618,7 @@ jobs:
         # consultas/hora por IP — o executor próprio é um IP só.
         env:
           GH_TOKEN: ${{ github.token }}
+          CONFERENCIA_KIT_UPSTREAM_REPO: melgarafael/DeskcommCRM
         run: pnpm test:db
 
       # O `update.sh` do cliente roda sobre um banco COM DADOS, e nenhum gate
