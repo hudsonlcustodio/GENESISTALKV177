@@ -4,7 +4,7 @@ import * as path from "node:path";
 
 import { test, expect } from "./helpers/test";
 
-import { escolherDiaDesenhado, irParaASemanaSeguinte } from "./helpers/agenda-semana-integra";
+import { escolherDiaDesenhado, irParaProximoDiaUtilMobile } from "./helpers/agenda-semana-integra";
 
 /**
  * REMARCAR E CANCELAR PELA TELA — as duas ações que só a IA conseguia fazer.
@@ -82,7 +82,9 @@ async function entrar(page: import("@playwright/test").Page, creds: Creds): Prom
   await page.waitForURL(/\/app(\/|$)/, { timeout: 20_000 });
   await page.goto("/app/agenda");
   await expect(page.getByTestId("tela-agenda")).toBeVisible({ timeout: 20_000 });
-  // ⚠️ A SEMANA SEGUINTE, e ela é a condição de os dois casos existirem.
+  // No mobile a grade mostra UM dia. Avançamos até um dia útil futuro;
+  // preservamos dois horários distintos sem depender da hora atual.
+  // A regra de disponibilidade abaixo é a mesma da semana íntegra desktop.
   //
   // O caso de remarcar precisa de DOIS horários livres no mesmo dia ("só havia
   // um horário livre — o cenário não distingue remarcar de repetir"), e o dia
@@ -90,7 +92,7 @@ async function entrar(page: import("@playwright/test").Page, creds: Creds): Prom
   // às 15h, 2 às 16h, ZERO das 17h em diante — e zero o sábado inteiro. Um dia
   // inteiro da semana seguinte oferece 18, a qualquer hora e em qualquer dia da
   // semana. Tabela em `helpers/agenda-semana-integra`.
-  return irParaASemanaSeguinte(page);
+  return irParaProximoDiaUtilMobile(page);
 }
 
 /** Marca um compromisso pela tela e devolve o rótulo do horário escolhido. */

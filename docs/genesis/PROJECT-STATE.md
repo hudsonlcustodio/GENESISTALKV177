@@ -1,6 +1,8 @@
 # GENESIS TALK — PROJECT STATE
 
-Status: FOUNDATION / compatibility discovery
+Status vigente: candidato operacional em validação no PR #4.
+Contabo, domínio/TLS e provedores reais aguardam homologação posterior.
+Ver `FINALIZACAO-v1.77.md`; as seções de auditorias abaixo preservam a evolução histórica.
 Baseline técnica: snapshot DeskcommCRM fornecido pelo usuário em 2026-09-21.
 Fonte de customizações: snapshot Aurum/Imobi Talk fornecido pelo usuário em 2026-09-21.
 Marca-pai: GENESIS 360.
@@ -15,12 +17,12 @@ será fonte de invariantes, customizações, testes e regras proprietárias.
 Nome do produto: GENESIS TALK.
 Paleta obrigatória herdada de GENESIS 360:
 
-- Verde Lima #7ED321
-- Verde Take #00C853
-- Azul Profundo #0B3D3A
-- Azul Ciano #00B8D9
-- Cinza Técnico #6B7280
-- Branco #FFFFFF
+- Verde Lima #D4FF00
+- Verde Genesis #00E676
+- Azul Profundo #071B33
+- Azul Ciano #19C2FF
+- Cinza Técnico #52616F
+- Branco #F7FAFC
 
 A imagem de referência está em `docs/genesis/references/GENESIS-360-brand-reference.png`.
 
@@ -153,3 +155,20 @@ As duas asserções da reprodução do health passaram porque confirmam o defeit
 Os resultados completos de CI acima pertencem aos SHAs históricos, não à árvore
 com alterações locais de marca. Esta auditoria acrescentou documentação e provas,
 sem implementar correções de negócio ou executar deploy.
+
+
+## Candidato de finalização operacional — 2026-10-10
+
+A auditoria acima é histórica. Correções de health, backup/restore v2, monitor,
+rollback, Supervisão agregada, agenda e identidade foram implementadas no
+[PR #4](https://github.com/hudsonlcustodio/GENESISTALKV177/pull/4).
+Supabase segue o instalador Deskcomm. O proprietário adiou a homologação na
+Contabo; não executar deploy remoto até nova autorização e disponibilidade.
+
+O candidato permanece em validação. A primeira rodada confirmou build e boot das
+quatro imagens em AMD64/ARM64 e encontrou ajustes de tipagem, traduções e cercas,
+que foram corrigidos na revisão seguinte. Somente os gates no HEAD final do PR
+aprovam código; resultados históricos não são transferíveis.
+
+Contrato da entrega, ensaios locais e pendências externas:
+[FINALIZACAO-v1.77.md](FINALIZACAO-v1.77.md).

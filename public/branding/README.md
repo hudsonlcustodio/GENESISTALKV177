@@ -1,6 +1,7 @@
 # Identidade Genesis 360
 
-`genesis-360.png` é uma cópia sem alterações do arquivo `LOGO-CRM TALK AI.png`
+`genesis-360.png` é uma cópia sem alterações do arquivo de logotipo original
+("LOGO-CRM TALK AI", formato PNG)
 fornecido pelo responsável pelo projeto em 08/10/2026. Não é uma reconstrução
 do símbolo. Os componentes usam viewports SVG para enquadrar a marca completa
 ou somente a árvore com o G, mantendo o arquivo original e suas proporções.

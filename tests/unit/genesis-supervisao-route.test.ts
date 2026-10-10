@@ -1,3 +1,4 @@
+import { NextResponse } from "next/server";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { requireRole } from "@/lib/auth/require-role";
 import { createClient } from "@/lib/supabase/server";
@@ -27,7 +28,7 @@ describe("Supervisão HTTP: organização confiável e ausência explícita", ()
   it("exige gestor antes de consultar fontes", async () => {
     vi.mocked(requireRole).mockResolvedValue({
       ok: false,
-      response: new Response(null, { status: 403 }),
+      response: new NextResponse(null, { status: 403 }),
     });
     expect((await GET(new Request(base))).status).toBe(403);
     expect(createClient).not.toHaveBeenCalled();

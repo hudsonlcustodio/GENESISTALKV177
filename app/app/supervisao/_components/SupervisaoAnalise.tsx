@@ -130,7 +130,7 @@ export function SupervisaoAnalise({
   ) {
     return (
       <label className="min-w-0 text-xs font-medium">
-        {t(label)}
+        {label}
         <select
           className="mt-1 h-11 w-full rounded-md border border-input bg-background px-2 text-sm"
           value={draft[key]}
@@ -213,13 +213,13 @@ export function SupervisaoAnalise({
             />
           </label>
           {select(
-            "Atendente",
+            t("Atendente"),
             "owner",
             attendants.map((a) => ({ id: a.user_id, name: a.name || a.email || a.user_id })),
           )}
-          {select("Agente de IA", "agent", options.agents)}
-          {select("Canal", "channel", options.channels)}
-          {select("Funil", "pipeline", options.pipelines)}
+          {select(t("Agente de IA"), "agent", options.agents)}
+          {select(t("Canal"), "channel", options.channels)}
+          {select(t("Funil"), "pipeline", options.pipelines)}
           <label className="text-xs font-medium">
             {t("Régua de espera (minutos)")}
             <Input
@@ -305,7 +305,7 @@ export function SupervisaoAnalise({
               onClick={() => choose(key)}
               className={`min-h-24 min-w-0 rounded-lg border p-3 text-left focus-visible:outline-2 focus-visible:outline-ring ${kind === key ? "border-primary bg-primary/10" : "border-border bg-card"}`}
             >
-              <span className="block text-xs">{t(label)}</span>
+              <span className="block text-xs">{t(LABELS[key])}</span>
               <strong className="block text-2xl tabular-nums">
                 {noRule || !data ? "—" : (data.totals[key] ?? 0)}
               </strong>

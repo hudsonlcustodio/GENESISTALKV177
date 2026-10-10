@@ -944,14 +944,8 @@ jobs:
     # justificativa do teste antecipa — "um job novo nasce sem bloco e herda o
     # default de novo".
     permissions: {}
-    needs:
-      [
-        a-tag-veio-da-main,
-        build-and-push,
-        juntar-manifestos,
-        imagem-do-app-sobe,
-        imagens-de-fundo-sobem,
-      ]
+    # prettier-ignore
+    needs: [a-tag-veio-da-main, build-and-push, juntar-manifestos, imagem-do-app-sobe, imagens-de-fundo-sobem]
     steps:
       - name: Falhar se qualquer imagem não construiu — ou se o app não sobe
         env:

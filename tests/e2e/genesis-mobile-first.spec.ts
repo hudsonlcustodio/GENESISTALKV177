@@ -6,6 +6,12 @@ import { createClient } from "@supabase/supabase-js";
 import { carregarEnvLocal } from "../../scripts/lib/env-de-teste";
 import { expect, test, type Page } from "./helpers/test";
 
+function evidence(name: string) {
+  const folder = path.join(process.cwd(), "evidence", "genesis-v177-mobile");
+  fs.mkdirSync(folder, { recursive: true });
+  return path.join(folder, name);
+}
+
 const RAIZ = path.resolve(__dirname, "../..");
 const CREDS = path.join(RAIZ, ".e2e-creds.json");
 const VIEWPORTS = [360, 375, 390, 412, 430] as const;
@@ -33,11 +39,11 @@ async function entrarComoManager(page: Page) {
   const creds = JSON.parse(fs.readFileSync(CREDS, "utf8")) as Creds;
   const manager = creds.users.manager;
   if (!manager) throw new Error("seed E2E sem usuário `manager`");
-  await page.goto("/login");
+  await page.goto("/login?next=%2Fapp%2Finbox");
   await page.getByLabel(/e-?mail/i).fill(manager.email);
   await page.getByLabel(/senha|password/i).fill(creds.password);
   await page.getByRole("button", { name: "Entrar", exact: true }).click();
-  await page.waitForURL(/\/app(?:\/|$)/);
+  await page.waitForURL(/\/app\/inbox(?:[?#]|$)/);
 }
 
 test.describe("GENESIS Mobile First — body não transborda", () => {
@@ -126,6 +132,7 @@ test.describe("GENESIS Mobile — jornadas operacionais", () => {
       391,
     );
     await section.screenshot({ path: testInfo.outputPath("supervisao-mobile.png") });
+    await section.screenshot({ path: evidence("supervisao-mobile.png") });
   });
 
   test("CRM cria pela tela mobile e persiste após recarregar", async ({ page }, testInfo) => {
@@ -172,6 +179,7 @@ test.describe("GENESIS Mobile — jornadas operacionais", () => {
         391,
       );
       await page.screenshot({ path: testInfo.outputPath("crm-mobile.png") });
+      await page.screenshot({ path: evidence("crm-mobile.png") });
     } finally {
       const cleanup = admin
         .from("crm_leads")
@@ -180,6 +188,78 @@ test.describe("GENESIS Mobile — jornadas operacionais", () => {
         .eq("title", title);
       const { error } = await cleanup;
       if (error) throw new Error("Falha ao remover fixture do CRM: " + error.message);
+    }
+  });
+  test("Tarefas cria, prioriza, conclui e reabre com persistência no mobile", async ({
+    page,
+  }, testInfo) => {
+    const creds = JSON.parse(fs.readFileSync(CREDS, "utf8")) as Creds;
+    const env = carregarEnvLocal();
+    const admin = createClient(env.NEXT_PUBLIC_SUPABASE_URL!, env.SUPABASE_SERVICE_ROLE_KEY!, {
+      auth: { persistSession: false, autoRefreshToken: false },
+    });
+    const title = `Tarefa mobile ${randomUUID()}`;
+    try {
+      await entrarComoManager(page);
+      await page.goto("/app/tasks");
+      await page.getByRole("button", { name: "Nova tarefa", exact: true }).click();
+      const dialog = page.getByRole("dialog");
+      await dialog.getByLabel("O que precisa ser feito").fill(title);
+      await dialog.getByLabel("Prioridade").click();
+      await page.getByRole("option", { name: "Urgente", exact: true }).click();
+      const create = page.waitForResponse(
+        (r) => r.url().endsWith("/api/v1/tasks") && r.request().method() === "POST",
+      );
+      await dialog.getByRole("button", { name: "Salvar", exact: true }).click();
+      const response = await create;
+      expect(response.status()).toBe(201);
+      const task = (await response.json()).data.task;
+      expect(task.priority).toBe("urgent");
+      const row = page.locator("div.group").filter({ hasText: title });
+      await expect(row.getByText("Urgente", { exact: true })).toBeVisible();
+      const target = await row.getByRole("checkbox").boundingBox();
+      expect(target?.width).toBeGreaterThanOrEqual(44);
+      expect(target?.height).toBeGreaterThanOrEqual(44);
+      await expect(row.getByRole("button", { name: "Editar a tarefa" })).toBeVisible();
+      const done = page.waitForResponse(
+        (r) => r.url().endsWith(`/api/v1/tasks/${task.id}`) && r.request().method() === "PATCH",
+      );
+      await row.getByRole("checkbox", { name: "Marcar como concluída" }).click();
+      expect((await done).status()).toBe(200);
+      await page.getByRole("combobox").click();
+      await page.getByRole("option", { name: "Concluída", exact: true }).click();
+      await expect(row.getByRole("checkbox", { name: "Reabrir a tarefa" })).toBeChecked();
+      const reopened = page.waitForResponse(
+        (r) => r.url().endsWith(`/api/v1/tasks/${task.id}`) && r.request().method() === "PATCH",
+      );
+      await row.getByRole("checkbox", { name: "Reabrir a tarefa" }).click();
+      expect((await reopened).status()).toBe(200);
+      await page.getByRole("combobox").click();
+      await page.getByRole("option", { name: "Em aberto", exact: true }).click();
+      await page.reload();
+      await expect(row.getByRole("checkbox", { name: "Marcar como concluída" })).not.toBeChecked();
+      const persisted = await admin
+        .from("crm_tasks")
+        .select("status,priority")
+        .eq("organization_id", creds.org_id)
+        .eq("id", task.id)
+        .single();
+      expect(persisted.error).toBeNull();
+      expect(persisted.data).toMatchObject({ status: "pending", priority: "urgent" });
+      expect(
+        await page.evaluate(() =>
+          Math.max(document.body.scrollWidth, document.documentElement.scrollWidth),
+        ),
+      ).toBeLessThanOrEqual(391);
+      await page.screenshot({ path: testInfo.outputPath("tarefas-mobile.png") });
+      await page.screenshot({ path: evidence("tarefas-mobile.png") });
+    } finally {
+      const { error } = await admin
+        .from("crm_tasks")
+        .delete()
+        .eq("organization_id", creds.org_id)
+        .eq("title", title);
+      if (error) throw new Error("Falha na limpeza da tarefa mobile");
     }
   });
 });

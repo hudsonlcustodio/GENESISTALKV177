@@ -107,7 +107,7 @@ export function Supervisao360Client({
           <Numero titulo={t("Em IA")} valor={c?.automatico ?? "—"} href="/app/inbox?filter=ai" />
           <Numero titulo={t("Minhas")} valor={c?.mine ?? "—"} href="/app/inbox?filter=mine" />
           <Numero
-            titulo={t("Abertas no escopo")}
+            titulo={t("Conversas visíveis")}
             valor={c?.all ?? "—"}
             href="/app/inbox?filter=all"
           />
@@ -143,6 +143,9 @@ export function Supervisao360Client({
                   {a.present ? t("presente") : t("sem presença recente")}
                 </span>
               </div>
+              {a.capacity != null && a.current_load >= a.capacity ? (
+                <p className="mt-2 text-sm text-warning">{t("Capacidade atingida")}</p>
+              ) : null}
               <div className="mt-3 flex gap-4 text-sm">
                 <span>
                   {t("Carga")}: <b>{a.current_load}</b>

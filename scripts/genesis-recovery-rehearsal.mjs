@@ -201,12 +201,30 @@ try {
     verify(legacy, 1);
     rmSync(legacy);
   });
+  check("rollback-additive-contract-projection-and-drift-refusal", () => {
+    const before = sql("source", catalogQuery);
+    for (const name of [
+      "fn_genesis_supervisao",
+      "fn_genesis_nomes_do_roster",
+      "fn_genesis_operator_counts",
+    ])
+      sql("source", `create function public.${name}() returns int language sql as 'select 1';`);
+    const projected = command(python, [join(root, "deploy/contabo/rollback-catalog.py")]);
+    equal(sql("source", projected), before);
+    if (sql("source", catalogQuery) === before)
+      throw new Error("New function must change the full contract");
+    sql("source", "grant delete on public.audit_logs to service_role;");
+    if (sql("source", projected) === before)
+      throw new Error("Projection accepted unrelated privilege drift");
+  });
   const report = {
     format: 1,
     environment: "isolated-postgres17-network-none",
     fixture: "minimal-security-contract",
-    source_sha: command("git", ["rev-parse", "HEAD"]),
-    working_tree_dirty: Boolean(command("git", ["status", "--porcelain"])),
+    source_sha: command("git", ["-c", `safe.directory=${root}`, "rev-parse", "HEAD"]),
+    working_tree_dirty: Boolean(
+      command("git", ["-c", `safe.directory=${root}`, "status", "--porcelain"]),
+    ),
     limits:
       "Does not prove production data volume, managed Supabase compatibility, pairing or external Storage restoration.",
     results,

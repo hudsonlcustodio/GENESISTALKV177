@@ -4,6 +4,7 @@ import { ROLE_RANK } from "@/lib/auth/types";
 import { traduzir } from "@/lib/i18n/dicionario";
 import { Supervisao360Client } from "./_components/Supervisao360Client";
 import { createClient } from "@/lib/supabase/server";
+import { listSelectableChannels } from "@/lib/channels/selectable";
 
 export const dynamic = "force-dynamic";
 export const metadata = { title: "Supervisão 360" };
@@ -25,11 +26,9 @@ export default async function Supervisao360Page() {
       .is("archived_at", null)
       .order("name")
       .limit(500),
-    db
-      .from("channel_sessions")
-      .select("id,display_name")
-      .eq("organization_id", activeOrg.orgId)
-      .limit(500),
+    listSelectableChannels(db, activeOrg.orgId)
+      .then((data) => ({ data, error: false }))
+      .catch(() => ({ data: [], error: true })),
     db
       .from("crm_pipelines")
       .select("id,name")
@@ -43,14 +42,14 @@ export default async function Supervisao360Page() {
     pipelines: pipelines.data ?? [],
     channels: (channels.data ?? []).map((c) => ({
       id: c.id,
-      name: c.display_name || t("Canal sem nome"),
+      name: c.display_name,
     })),
     unavailable: Boolean(
       agents.error ||
       channels.error ||
       pipelines.error ||
       agents.data?.length === 500 ||
-      channels.data?.length === 500 ||
+      channels.data?.length >= 1000 ||
       pipelines.data?.length === 500,
     ),
   };

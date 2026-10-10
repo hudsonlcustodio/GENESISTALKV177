@@ -111,3 +111,27 @@ Supabase/Auth/SMTP, canais e provedores pagos; escolher armazenamento externo e
 receptor definitivo; ativar os agendamentos e medir recuperação com dados reais.
 O ensaio sintético não estabelece RTO/RPO nem comprova pareamento ou restauração
 de objetos de um provedor gerenciado. Não publicar antes desses checks.
+
+## Rodada de consolidação do candidato
+
+Na primeira rodada do PR #4, o SHA `67ab9979222191cd5a9593e8e9f450e149bc09eb`
+passou em build/tamanho, quatro imagens AMD64/ARM64 e DB/RLS integral em PostgreSQL
+15 e 17. As partes E2E 4, 5 e 6 passaram, incluindo Supervisão e criação no CRM
+em largura mobile. As falhas de tipagem, seletores de marca, fontes e período
+da agenda foram corrigidas para nova rodada completa. Esses resultados não
+aprovam automaticamente o próximo SHA.
+
+A consolidação acrescenta Tarefas com ações visíveis sem hover e alvos de 44 px,
+com jornada mobile de criação, prioridade, conclusão, reabertura e persistência.
+Contatos e follow-ups passam a executar suas jornadas operacionais em 390 px.
+A agenda mobile escolhe um dia útil futuro pela própria grade de um dia.
+Isso não substitui ensaio em aparelho físico, teclado virtual ou medição de INP/LCP.
+
+O ensaio PostgreSQL isolado executou 11 verificações, incluindo projeção estrita
+de compatibilidade do catálogo para rollback. Neste ambiente sintético o restore
+levou aproximadamente 2 segundos; o valor não representa RTO da produção.
+A reversão do script foi exercitada com doubles de Docker/DB; reversão completa
+das imagens anteriores e volumes reais permanece na homologação Linux adiada.
+
+As chaves Supabase seguem o contrato existente do instalador Deskcomm. A plataforma
+não ganha um configurador alternativo de banco principal em tempo de execução.

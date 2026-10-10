@@ -124,7 +124,7 @@ function fazerDb(eventos: Linha[]) {
         return chain;
       },
       maybeSingle: async () => ({ data: casadas()[0] ?? null, error: null }),
-      then: (res: (v: unknown) => unknown) =>
+      then: <T>(res: (v: { count: number; error: null }) => T | PromiseLike<T>) =>
         Promise.resolve({ count: casadas().length, error: null }).then(res),
     };
     return chain;

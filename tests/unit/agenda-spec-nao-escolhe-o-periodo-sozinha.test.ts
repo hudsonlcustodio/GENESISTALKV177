@@ -63,6 +63,7 @@ const MODULO = path.join(DIR_E2E, "helpers/agenda-semana-integra.ts");
 
 /** As funções que o módulo publica — chamar qualquer uma satisfaz a régua 2. */
 const CHAMADAS = [
+  "irParaProximoDiaUtilMobile",
   "irParaASemanaSeguinte",
   "irParaASemanaDoCompromisso",
   "escolherDiaDesenhado",

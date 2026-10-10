@@ -393,7 +393,8 @@ async function diasCheios(page: Page): Promise<string[]> {
   // "nenhum dia FUTURO disponível" com a espera antiga verde.
   await expect
     .poll(varrer, {
-      message: "nem o mês seguinte oferece dia futuro — a consulta deveria ter pedido o mês visível",
+      message:
+        "nem o mês seguinte oferece dia futuro — a consulta deveria ter pedido o mês visível",
       timeout: 20_000,
     })
     .not.toEqual([]);
@@ -431,4 +432,27 @@ export async function escolherUltimoDiaCheio(page: Page): Promise<string> {
   const dia = exigirDia(await diasCheios(page), "ultimo");
   await page.getByTestId(`dia-${dia}`).click();
   return dia;
+}
+
+/** No mobile a visão canônica é um dia. Escolhe pela grade um dia útil FUTURO,
+ * sem supor que o recorte mobile contém sete colunas ou usar o relógio do Node. */
+export async function irParaProximoDiaUtilMobile(page: Page): Promise<string[]> {
+  await aguardarGradeHidratada(page);
+  let antes = await diasDesenhados(page);
+  expect(antes).toHaveLength(1);
+  for (let tentativa = 0; tentativa < 8; tentativa++) {
+    await page.getByTestId("periodo-seguinte").click();
+    await expect
+      .poll(async () => (await diasDesenhados(page))[0], { timeout: 20_000 })
+      .not.toBe(antes[0]);
+    const depois = await diasDesenhados(page);
+    expect(depois).toHaveLength(1);
+    const diaDaSemana = await page.evaluate(
+      (dia) => new Date(`${dia}T12:00:00Z`).getUTCDay(),
+      depois[0],
+    );
+    if (diaDaSemana > 0 && diaDaSemana < 6) return depois;
+    antes = depois;
+  }
+  throw new Error("A navegação mobile não encontrou um dia útil futuro pela grade");
 }

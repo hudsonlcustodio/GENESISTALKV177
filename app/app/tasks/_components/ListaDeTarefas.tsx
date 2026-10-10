@@ -84,7 +84,7 @@ function Linha({
         disabled={ocupada || !podeEditar}
         onClick={() => comBloqueio(() => aoAlternarConcluida(tarefa))}
         className={cn(
-          "mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-md border transition-colors",
+          "mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-md border transition-colors",
           encerrada
             ? "border-primary bg-primary text-primary-foreground"
             : "border-muted-foreground/40 hover:border-primary",
@@ -94,12 +94,7 @@ function Linha({
       </button>
 
       <div className="min-w-0 flex-1">
-        <p
-          className={cn(
-            "text-sm font-medium",
-            encerrada && "text-muted-foreground line-through",
-          )}
-        >
+        <p className={cn("text-sm font-medium", encerrada && "text-muted-foreground line-through")}>
           {tarefa.title}
         </p>
         {tarefa.description ? (
@@ -115,7 +110,9 @@ function Linha({
           >
             {rotuloDaPrioridade[tarefa.priority]}
           </span>
-          <span className={cn("text-muted-foreground", atrasada && "font-semibold text-destructive")}>
+          <span
+            className={cn("text-muted-foreground", atrasada && "font-semibold text-destructive")}
+          >
             {tarefa.due_date
               ? new Date(tarefa.due_date).toLocaleString(tag, {
                   day: "2-digit",
@@ -129,11 +126,11 @@ function Linha({
       </div>
 
       {podeEditar ? (
-        <div className="flex shrink-0 items-center gap-1 opacity-0 transition-opacity focus-within:opacity-100 group-hover:opacity-100">
+        <div className="flex shrink-0 items-center gap-1 opacity-100 transition-opacity focus-within:opacity-100 md:opacity-0 md:group-hover:opacity-100">
           <Button
             variant="ghost"
             size="icon"
-            className="h-7 w-7"
+            className="h-11 w-11"
             aria-label={t("Editar a tarefa")}
             onClick={() => aoEditar(tarefa)}
           >
@@ -149,7 +146,7 @@ function Linha({
             <Button
               variant="destructive"
               size="sm"
-              className="h-7 px-2 text-[11px]"
+              className="min-h-11 px-2 text-xs"
               disabled={ocupada}
               onClick={() => comBloqueio(() => aoApagar(tarefa))}
             >
@@ -159,7 +156,7 @@ function Linha({
             <Button
               variant="ghost"
               size="icon"
-              className="h-7 w-7"
+              className="h-11 w-11"
               aria-label={t("Apagar a tarefa")}
               onClick={() => setConfirmando(true)}
               onBlur={() => setConfirmando(false)}
@@ -209,7 +206,7 @@ export function ListaDeTarefas({
         <section key={grupo.faixa}>
           <h2
             className={cn(
-              "mb-1 px-3 text-xs font-semibold uppercase tracking-wider",
+              "mb-1 px-3 text-xs font-semibold tracking-wider uppercase",
               grupo.faixa === "atrasada" ? "text-destructive" : "text-muted-foreground",
             )}
           >

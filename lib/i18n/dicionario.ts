@@ -37,6 +37,98 @@ import type { Idioma } from "./idiomas";
 type Traducoes = Record<string, Partial<Record<Exclude<Idioma, "pt-BR">, string>>>;
 
 export const DICIONARIO: Traducoes = {
+  // Supervisão operacional Genesis 1.77.
+  "Análise e próximos passos": { es: "Análisis y próximos pasos" },
+  "Os filtros abaixo controlam esta análise. A visão geral da organização permanece acima.": {
+    es: "Los filtros siguientes controlan este análisis. La vista general de la organización permanece arriba.",
+  },
+  "Informe um período válido de até 90 dias e réguas positivas.": {
+    es: "Indique un período válido de hasta 90 días y umbrales positivos.",
+  },
+  "De (UTC)": { es: "Desde (UTC)" },
+  "Até (UTC)": { es: "Hasta (UTC)" },
+  "Régua de espera (minutos)": { es: "Umbral de espera (minutos)" },
+  "Sem régua configurada": { es: "Sin umbral configurado" },
+  "Régua sem atividade (dias)": { es: "Umbral sin actividad (días)" },
+  "Aplicar filtros": { es: "Aplicar filtros" },
+  "Não foi possível carregar todas as opções de filtro. Recarregue a página.": {
+    es: "No se pudieron cargar todas las opciones de filtro. Recargue la página.",
+  },
+  "Fila, espera, leads e follow-ups mostram o estado atual. Falhas, passagens, IA e desfechos usam o período UTC selecionado. Réguas são limites desta análise, sem alterar o roteamento. A equipe é filtrada por atendente; esta versão não possui departamentos cadastráveis.":
+    {
+      es: "Cola, espera, leads y seguimientos muestran el estado actual. Fallos, transferencias, IA y resultados usan el período UTC seleccionado. Los umbrales son límites de este análisis y no cambian el enrutamiento. El equipo se filtra por agente; esta versión no permite crear departamentos.",
+    },
+  "Fonte indisponível. Nenhum zero foi inferido.": {
+    es: "Fuente no disponible. No se ha inferido ningún cero.",
+  },
+  "Carregando análise": { es: "Cargando análisis" },
+  "Fonte atualizada em": { es: "Fuente actualizada a las" },
+  Definição: { es: "Definición" },
+  "Dados sem atualização há mais de 90 segundos.": {
+    es: "Datos sin actualizar desde hace más de 90 segundos.",
+  },
+  "em média": { es: "en promedio" },
+  "Custo conhecido de IA (USD)": { es: "Costo conocido de IA (USD)" },
+  "chamadas sem preço; não entram no custo conhecido": {
+    es: "llamadas sin precio; no se incluyen en el costo conocido",
+  },
+  "Tokens de entrada + saída": { es: "Tokens de entrada + salida" },
+  "Conversas com passagem humana / observadas": {
+    es: "Conversaciones transferidas a humanos / observadas",
+  },
+  "Uma conversa conta uma vez. Observadas: mensagem ou passagem no período.": {
+    es: "Cada conversación cuenta una vez. Observadas: mensaje o transferencia en el período.",
+  },
+  "Inspecionar custos e tokens": { es: "Inspeccionar costos y tokens" },
+  "Inspecionar passagens": { es: "Inspeccionar transferencias" },
+  "Inspecionar conversas observadas": { es: "Inspeccionar conversaciones observadas" },
+  "Resultado por atendente no escopo": { es: "Resultado por agente en el alcance" },
+  ativas: { es: "activas" },
+  "acima da régua": { es: "por encima del umbral" },
+  "Primeira resposta média": { es: "Promedio de primera respuesta" },
+  "Fila no escopo": { es: "Cola en el alcance" },
+  "Automático no escopo": { es: "Automático en el alcance" },
+  "Com atendentes": { es: "Con agentes humanos" },
+  "Espera acima da régua": { es: "Espera por encima del umbral" },
+  "Leads sem atividade": { es: "Leads sin actividad" },
+  "Follow-ups vencidos": { es: "Seguimientos vencidos" },
+  "Falhas no período": { es: "Fallos en el período" },
+  "Passagens para humanos": { es: "Transferencias a humanos" },
+  "Negócios perdidos": { es: "Negocios perdidos" },
+  "Primeiras respostas humanas": { es: "Primeras respuestas humanas" },
+  "Passagens aguardando humano": { es: "Transferencias esperando a un humano" },
+  "Canais indisponíveis agora": { es: "Canales no disponibles ahora" },
+  "Conversas observadas no período": { es: "Conversaciones observadas en el período" },
+  "Agentes no escopo": { es: "Agentes en el alcance" },
+  chamadas: { es: "llamadas" },
+  passagens: { es: "transferencias" },
+  "Atividade do executor não comprova resolução. Confira ganhos, perdas, falhas e motivos das passagens.":
+    {
+      es: "La actividad del ejecutor no demuestra resolución. Revise ganancias, pérdidas, fallos y motivos de las transferencias.",
+    },
+  "Motivos das passagens": { es: "Motivos de las transferencias" },
+  "passagens sem executor identificado; incluídas no total, fora do filtro por agente de IA.": {
+    es: "transferencias sin ejecutor identificado; incluidas en el total, fuera del filtro por agente de IA.",
+  },
+  registros: { es: "registros" },
+  "Mesma fonte e mesmos filtros do indicador; até 50 registros por página.": {
+    es: "Misma fuente y mismos filtros del indicador; hasta 50 registros por página.",
+  },
+  "Nenhum registro nesta seleção.": { es: "No hay registros en esta selección." },
+  "até a primeira resposta humana": { es: "hasta la primera respuesta humana" },
+  "Abrir lead": { es: "Abrir lead" },
+  Investigar: { es: "Investigar" },
+  "Canal sem nome": { es: "Canal sin nombre" },
+  "Conversas visíveis": { es: "Conversaciones visibles" },
+  "Capacidade atingida": { es: "Capacidad alcanzada" },
+  "Detalhamento indisponível": { es: "Detalle no disponible" },
+  "Carregando registros": { es: "Cargando registros" },
+  "Defina a régua": { es: "Defina el umbral" },
+  "Ver registros": { es: "Ver registros" },
+  "Aguardando assumir": { es: "Esperando asignación" },
+  "Assumida por humano": { es: "Asignada a un humano" },
+  "Devolvida ao automático": { es: "Devuelta al automático" },
+
   // Genesis: Supervisão e histórico do Follow-up.
   "Desfazer ação": { es: "Deshacer acción" },
   "Desconectar box": { es: "Desconectar bloque" },
