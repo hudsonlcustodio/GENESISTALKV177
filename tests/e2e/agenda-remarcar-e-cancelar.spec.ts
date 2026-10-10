@@ -61,7 +61,8 @@ interface Creds {
 
 function lerCreds(): Creds {
   const p = path.join(RAIZ, ".e2e-creds.json");
-  if (!fs.existsSync(p)) throw new Error("`.e2e-creds.json` ausente — rode `scripts/seed-e2e-credentials.ts`");
+  if (!fs.existsSync(p))
+    throw new Error("`.e2e-creds.json` ausente — rode `scripts/seed-e2e-credentials.ts`");
   let c = JSON.parse(fs.readFileSync(p, "utf8")) as Creds;
   if (!c.agenda) {
     execFileSync("npx", ["tsx", "scripts/seed-e2e-agenda.ts"], { stdio: "inherit" });
@@ -117,8 +118,12 @@ async function marcarUm(
 // completas cada um (login + marcar + a ação). Estourar o teto vira "timeout",
 // que é indistinguível de defeito — e foi o que aconteceu na primeira execução.
 test.describe.configure({ timeout: 120_000 });
+// These complete booking/rescheduling/cancellation journeys exercise touch width.
+test.use({ viewport: { width: 390, height: 844 } });
 
-test("cancelar pela tela: o motivo é exigido, e o compromisso sai dos próximos", async ({ page }) => {
+test("cancelar pela tela: o motivo é exigido, e o compromisso sai dos próximos", async ({
+  page,
+}) => {
   const creds = lerCreds();
   if (!creds.agenda) throw new Error("sem bloco agenda");
   const diasDaSemana = await entrar(page, creds);
@@ -193,8 +198,13 @@ test("remarcar pela tela: o painel abre em modo remarcar e o horário muda", asy
 
   // Um horário DIFERENTE do original — senão "remarcou" e "não mudou nada" são
   // indistinguíveis, e a asserção passaria pelo motivo errado.
-  const outro = page.locator(`[data-testid^="horario-"]:not([data-testid="horario-${rotuloOriginal}"])`).first();
-  await expect(outro, "só havia um horário livre — o cenário não distingue remarcar de repetir").toBeVisible({
+  const outro = page
+    .locator(`[data-testid^="horario-"]:not([data-testid="horario-${rotuloOriginal}"])`)
+    .first();
+  await expect(
+    outro,
+    "só havia um horário livre — o cenário não distingue remarcar de repetir",
+  ).toBeVisible({
     timeout: 15_000,
   });
   const rotuloNovo = (await outro.getAttribute("data-testid"))!.replace("horario-", "");

@@ -41,9 +41,22 @@ const REGUA = extrairRegua(CSS);
 
 /** A mesma fixture adversarial versionada de `branding-contraste.test.ts`. */
 const SEMENTES = [
-  "#0f172a", "#f5c518", "#ffffff", "#000000", "#808080", "#dc2626", "#22c55e",
-  "#f59e0b", "#2563eb", "#14b8a6", "#4b0082", "#e11d48", "#7c3aed", "#1a1f36",
-  "#fafafa", "#506d48",
+  "#0f172a",
+  "#f5c518",
+  "#ffffff",
+  "#000000",
+  "#808080",
+  "#dc2626",
+  "#22c55e",
+  "#f59e0b",
+  "#2563eb",
+  "#14b8a6",
+  "#4b0082",
+  "#e11d48",
+  "#7c3aed",
+  "#1a1f36",
+  "#fafafa",
+  "#506d48",
 ] as const;
 
 /** Quantos pares cada tema tem no globals.css de hoje — o piso da vacuidade. */
@@ -179,9 +192,7 @@ function paresPintados(tema: TemaDaRegua, bloco: Bloco): ParPintado[] {
     // `--color-accent-fg` é medido contra `--color-accent`: o `Fonte` que a
     // régua guarda (grau 6) é só a FORMA como o `globals.css` escreve esse
     // token, e na tela o fundo é o TOKEN, que o bloco emitido reescreve.
-    const tokenDoAlvo = papel.token.endsWith("-fg")
-      ? papel.token.slice(0, -"-fg".length)
-      : null;
+    const tokenDoAlvo = papel.token.endsWith("-fg") ? papel.token.slice(0, -"-fg".length) : null;
     const alvos =
       papel.contra === null
         ? superficies
@@ -219,28 +230,25 @@ const foco = (pares: readonly ParPintado[], superficie: string): number =>
 // ── Os testes ────────────────────────────────────────────────────────────────
 
 describe("o que o produto pinta — todo par, toda semente", () => {
-  it.each(SEMENTES)(
-    "%s: nenhum papel abaixo do piso, nos dois temas, no pixel emitido",
-    (hex) => {
-      const pintados = pintadosDaSemente(hex);
-      for (const { nome } of TEMAS) {
-        const pares = pintados[nome];
-        // Vacuidade POR SEMENTE E POR TEMA: uma instrumentação que devolvesse
-        // lista vazia passaria no filtro abaixo sem ter medido nada.
-        expect(pares.length, `${hex}/${nome}: nenhum par medido`).toBeGreaterThanOrEqual(
-          PARES_DE_HOJE[nome],
-        );
-        const reprovas = pares.filter((p) => !p.passa);
-        expect(
-          reprovas,
-          `${hex}/${nome}: ` +
-            reprovas
-              .map((r) => `${r.papel}×${r.superficie}=${r.razao.toFixed(2)}<${r.piso}`)
-              .join(" | "),
-        ).toEqual([]);
-      }
-    },
-  );
+  it.each(SEMENTES)("%s: nenhum papel abaixo do piso, nos dois temas, no pixel emitido", (hex) => {
+    const pintados = pintadosDaSemente(hex);
+    for (const { nome } of TEMAS) {
+      const pares = pintados[nome];
+      // Vacuidade POR SEMENTE E POR TEMA: uma instrumentação que devolvesse
+      // lista vazia passaria no filtro abaixo sem ter medido nada.
+      expect(pares.length, `${hex}/${nome}: nenhum par medido`).toBeGreaterThanOrEqual(
+        PARES_DE_HOJE[nome],
+      );
+      const reprovas = pares.filter((p) => !p.passa);
+      expect(
+        reprovas,
+        `${hex}/${nome}: ` +
+          reprovas
+            .map((r) => `${r.papel}×${r.superficie}=${r.razao.toFixed(2)}<${r.piso}`)
+            .join(" | "),
+      ).toEqual([]);
+    }
+  });
 
   it("a instrumentação vê os papéis frágeis — inclusive o de stop fixo por tema", () => {
     // O anel de foco usa stop FIXO por tema (500 no claro, 400 no escuro,
@@ -250,7 +258,10 @@ describe("o que o produto pinta — todo par, toda semente", () => {
     const pintados = pintadosDaSemente("#506d48");
     for (const { nome } of TEMAS) {
       const papeis = new Set(pintados[nome].map((p) => p.papel));
-      expect([...papeis].some((p) => p.includes(":focus-visible")), nome).toBe(true);
+      expect(
+        [...papeis].some((p) => p.includes(":focus-visible")),
+        nome,
+      ).toBe(true);
       expect([...papeis], nome).toContain("--ring");
       expect(papeis.size, nome).toBe(REGUA[nome].papeis.length);
     }
@@ -340,20 +351,20 @@ describe("controle positivo — o produto sem marca não pode se mexer", () => {
   it("Genesis Lima reproduz os pares medidos do CSS emitido", () => {
     // Canary for the Genesis seed with current contrast roles. Legacy Sage
     // calibration remains asserted in branding-contraste/branding-rampa.
-    const cor = corDe("#7ed321");
+    const cor = corDe("#d4ff00");
     expect(cor.derivada?.claro.deslocamento).toBe(0);
     expect(cor.derivada?.escuro.deslocamento).toBe(0);
 
-    const p = pintadosDaSemente("#7ed321");
-    // Claro: os dois números que `contraste.ts` documenta como medidos à mão.
-    expect(foco(p.claro, "--color-bg")).toBeCloseTo(4.81, 2);
-    expect(foco(p.claro, "--color-surface-elevated")).toBeCloseTo(4.56, 2);
+    const p = pintadosDaSemente("#d4ff00");
+    // Medições recalibradas para as superfícies do manual Genesis (08/10/2026).
+    expect(foco(p.claro, "--color-bg")).toBeCloseTo(3.42, 2);
+    expect(foco(p.claro, "--color-surface-elevated")).toBeCloseTo(3.23, 2);
     // Escuro: pares derivados da régua Genesis; o anel mantém o piso 3:1.
-    expect(foco(p.escuro, "--color-bg")).toBeCloseTo(12.24, 2);
-    expect(foco(p.escuro, "--color-surface-elevated")).toBeCloseTo(10.16, 2);
+    expect(foco(p.escuro, "--color-bg")).toBeCloseTo(15.35, 2);
+    expect(foco(p.escuro, "--color-surface-elevated")).toBeCloseTo(11.56, 2);
     // Superfícies soft são compostas sobre sua base antes de medir.
-    expect(foco(p.escuro, "--color-accent-soft@--color-surface")).toBeCloseTo(7.76, 2);
-    expect(foco(p.escuro, "--color-accent-soft@--color-surface-elevated")).toBeCloseTo(6.87, 2);
+    expect(foco(p.escuro, "--color-accent-soft@--color-surface")).toBeCloseTo(8.73, 2);
+    expect(foco(p.escuro, "--color-accent-soft@--color-surface-elevated")).toBeCloseTo(7.32, 2);
   });
 
   it("sem marca configurada nada é injetado, e a tela fica como está", () => {
@@ -367,10 +378,10 @@ describe("a navy #0f172a — o defeito que a prova em tela achou", () => {
   it("os quatro números do anel de foco, agora acima do piso", () => {
     // A navy continua calibrando a caminhada que corrige o foco no escuro.
     const p = pintadosDaSemente("#0f172a");
-    expect(foco(p.claro, "--color-bg")).toBeCloseTo(16.55, 2);
-    expect(foco(p.claro, "--color-surface-elevated")).toBeCloseTo(15.71, 2);
-    expect(foco(p.escuro, "--color-bg")).toBeCloseTo(5.28, 2);
-    expect(foco(p.escuro, "--color-surface-elevated")).toBeCloseTo(4.39, 2);
+    expect(foco(p.claro, "--color-bg")).toBeCloseTo(16.62, 2);
+    expect(foco(p.claro, "--color-surface-elevated")).toBeCloseTo(15.7, 2);
+    expect(foco(p.escuro, "--color-bg")).toBeCloseTo(5.0, 2);
+    expect(foco(p.escuro, "--color-surface-elevated")).toBeCloseTo(3.77, 2);
     for (const superficie of ["--color-bg", "--color-surface-elevated"] as const) {
       expect(foco(p.escuro, superficie), superficie).toBeGreaterThanOrEqual(PISOS.componente);
     }

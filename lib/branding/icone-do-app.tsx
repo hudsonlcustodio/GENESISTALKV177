@@ -1,9 +1,10 @@
+import { arteDoProduto } from "./arte-do-produto";
 import { ImageResponse } from "next/og";
 
 import { marcaEhADoProduto } from "@/lib/branding";
 import { logger } from "@/lib/logger";
 
-import { CORES_DA_MARCA, SIMBOLO } from "./desenho";
+import { SIMBOLO } from "./desenho";
 import { letraDoIcone } from "./icone";
 import {
   baseDoStorage,
@@ -56,6 +57,9 @@ export async function gerarIconeDoApp(
   marca: MarcaDeSaida,
   arquivo: string | null,
 ): Promise<ArrayBuffer> {
+  const arte = marcaEhADoProduto({ name: marca.nome, logoUrl: marca.logoUrl })
+    ? await arteDoProduto()
+    : null;
   const desenhar = (imagem: string | null) => {
     const produto = marcaEhADoProduto({ name: marca.nome, logoUrl: marca.logoUrl });
     return new ImageResponse(
@@ -81,10 +85,8 @@ export async function gerarIconeDoApp(
             width={Math.round(lado * 0.78)}
             height={Math.round(lado * 0.78)}
           >
-            <g fill={CORES_DA_MARCA.claro.simbolo} transform={SIMBOLO.transform}>
-              <path d={SIMBOLO.d} />
-              <rect {...SIMBOLO.modulo} />
-            </g>
+            <rect x="0" y="0" width="1672" height="941" fill="#ffffff" />
+            <image href={arte!} width="1672" height="941" />
           </svg>
         ) : (
           (letraDoIcone(marca.nome) ?? "")

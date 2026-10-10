@@ -56,8 +56,8 @@ export default async function PublicLayout({ children }: { children: React.React
 
   return (
     <IdiomaProvider locale={locale}>
-      <div className="flex min-h-screen items-center justify-center bg-background p-6">
-        <div className="w-full max-w-sm space-y-6">
+      <div className="flex min-h-screen items-center justify-center bg-background px-4 py-8 sm:px-6">
+        <div className="w-full max-w-[26rem] space-y-8 rounded-xl border bg-card px-6 py-8 shadow-md sm:px-8 sm:py-10">
           {marca.logoUrl || marca.logoDarkUrl ? (
             <div className="flex justify-center">
               {/*
@@ -111,7 +111,7 @@ export default async function PublicLayout({ children }: { children: React.React
             </div>
           ) : marcaEhADoProduto({ name: marca.nome, logoUrl: null }) ? (
             <div className="flex justify-center">
-              <LogotipoDoProduto nome={marca.nome} className="h-12 w-auto" />
+              <LogotipoDoProduto nome={marca.nome} className="h-auto w-full max-w-[20rem]" />
             </div>
           ) : null}
           {children}

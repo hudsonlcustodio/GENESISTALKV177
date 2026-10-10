@@ -129,7 +129,39 @@ function fazerDb(eventos: Linha[]) {
     };
     return chain;
   };
-  return { from };
+  const rpc = async (_name: string, args: { p_org: string; p_since: string; p_agent?: string }) => {
+    const base = () => {
+      const q = from("event_log")
+        .select()
+        .eq("organization_id", args.p_org)
+        .eq("event_type", "agent.operator_turn")
+        .gte("created_at", args.p_since);
+      return args.p_agent ? q.eq("payload->>agent_id", args.p_agent) : q;
+    };
+    const [turnos, agiu, declaradas, assumidas, semDono, semFerramenta] = await Promise.all([
+      base(),
+      base().not("payload->ferramentas_chamadas->>0", "is", null),
+      base().not("payload->>promessas_declaradas", "eq", "0"),
+      base().not("payload->>promessa_assumida_por", "is", null),
+      base().not("payload->>promessa_sem_dono_porque", "is", null),
+      base().eq("payload->>promessa_sem_dono_porque", "operador_sem_ferramentas"),
+    ]);
+    return {
+      data: {
+        dias: 30,
+        turnos: turnos.count,
+        agiu: agiu.count,
+        promessas: {
+          declaradas: declaradas.count,
+          assumidas: assumidas.count,
+          semDono: semDono.count,
+        },
+        quisAgirENaoPode: semFerramenta.count,
+      },
+      error: null,
+    };
+  };
+  return { from, rpc };
 }
 
 async function pedir(eventos: Linha[], query: string) {
@@ -152,13 +184,22 @@ beforeEach(() => vi.mocked(createClient).mockReset());
 
 describe("a volta do papel Operador é do agente que a tela mostra (invariante 7)", () => {
   it("turnos de OUTRO agente não entram na contagem do agente aberto", async () => {
-    const linhas = [turno(AGENTE_A), turno(AGENTE_A), turno(AGENTE_B), turno(AGENTE_B), turno(AGENTE_B)];
+    const linhas = [
+      turno(AGENTE_A),
+      turno(AGENTE_A),
+      turno(AGENTE_B),
+      turno(AGENTE_B),
+      turno(AGENTE_B),
+    ];
     const m = await medir(linhas, AGENTE_A);
     expect(m.turnos, "a contagem somou turnos de outro agente").toBe(2);
   });
 
   it("'quis agir e não pôde' é do agente aberto — é o número que manda mexer na configuração DELE", async () => {
-    const semMao = { promessas_declaradas: 1, promessa_sem_dono_porque: "operador_sem_ferramentas" };
+    const semMao = {
+      promessas_declaradas: 1,
+      promessa_sem_dono_porque: "operador_sem_ferramentas",
+    };
     const linhas = [turno(AGENTE_A), turno(AGENTE_B, semMao), turno(AGENTE_B, semMao)];
     const m = await medir(linhas, AGENTE_A);
     expect(m.quisAgirENaoPode, "contou falta de capacidade de outro agente").toBe(0);
@@ -197,7 +238,9 @@ describe("ida e volta: o que o EMISSOR grava é o que o LEITOR filtra", () => {
   /** Grava pelo `registrarDesfecho` real e devolve a linha como o `event_log` a guardaria. */
   async function gravarPeloEmissor(agente: string): Promise<Linha> {
     const inserts: unknown[][] = [];
-    const pool = { query: vi.fn(async (_sql: string, params: unknown[]) => void inserts.push(params)) };
+    const pool = {
+      query: vi.fn(async (_sql: string, params: unknown[]) => void inserts.push(params)),
+    };
     const log = { info: vi.fn(), warn: vi.fn() };
     await registrarDesfecho(
       pool as never,

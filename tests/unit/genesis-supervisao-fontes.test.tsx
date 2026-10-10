@@ -16,6 +16,10 @@ vi.mock("@/hooks/metrics/useAttendantMetrics", () => ({
   useAttendantMetrics: () => queries.performance,
 }));
 vi.mock("@tanstack/react-query", () => ({ useQuery: () => queries.operator }));
+// This suite covers the existing overview; the filtered population has its own suite.
+vi.mock("@/app/app/supervisao/_components/SupervisaoAnalise", () => ({
+  SupervisaoAnalise: () => null,
+}));
 
 import { Supervisao360Client } from "@/app/app/supervisao/_components/Supervisao360Client";
 
@@ -63,12 +67,12 @@ describe("Supervisão 360: ausência de fonte não afirma zero", () => {
       "2026-10-08T12:00:00.000Z",
     );
   });
-  it("a falha da IA não apaga uma fonte operacional saudável", () => {
+  it("a falha do roster não apaga uma fonte de conversas saudável", () => {
     queries.counts.data = { fila: 3, automatico: 8, mine: 1, all: 12 };
     queries.operator.data = { turnos: 9, promessas: { semDono: 2 } };
-    queries.operator.isError = true;
+    queries.team.isError = true;
     render(<Supervisao360Client orgId="org-a" />);
     expect(metric("Fila humana")).toHaveTextContent("3");
-    expect(metric("Turnos")).toHaveTextContent("—");
+    expect(metric("Pessoas presentes")).toHaveTextContent("—");
   });
 });

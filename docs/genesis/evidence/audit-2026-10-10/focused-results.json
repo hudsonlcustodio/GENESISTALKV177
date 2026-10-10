@@ -1,0 +1,68 @@
+[
+  {
+    "name": "release-acervo",
+    "exitCode": 1,
+    "signal": null,
+    "timedOut": false,
+    "durationSeconds": 3.288,
+    "command": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "node_modules/tsx/dist/cli.mjs",
+      "scripts/acervo-cabe-na-tela.ts"
+    ],
+    "log": ".runtime/audit-2026-10-10/release-acervo.log"
+  },
+  {
+    "name": "channels",
+    "exitCode": 0,
+    "signal": null,
+    "timedOut": false,
+    "durationSeconds": 2.157,
+    "command": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "node_modules/tsx/dist/cli.mjs",
+      "scripts/lint-channels.ts"
+    ],
+    "log": ".runtime/audit-2026-10-10/channels.log"
+  },
+  {
+    "name": "role-rank",
+    "exitCode": 0,
+    "signal": null,
+    "timedOut": false,
+    "durationSeconds": 0.516,
+    "command": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "node_modules/tsx/dist/cli.mjs",
+      "scripts/lint-role-rank.ts"
+    ],
+    "log": ".runtime/audit-2026-10-10/role-rank.log"
+  },
+  {
+    "name": "genesis-focused",
+    "exitCode": 0,
+    "signal": null,
+    "timedOut": false,
+    "durationSeconds": 241.674,
+    "command": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "node_modules/vitest/vitest.mjs",
+      "run",
+      "tests/unit/genesis-contabo-contract.test.ts",
+      "tests/unit/genesis-followup-history.test.tsx",
+      "tests/unit/genesis-supervisao-fontes.test.tsx",
+      "tests/unit/agenda-separar-historico.test.tsx",
+      "tests/unit/branding-contraste.test.ts",
+      "tests/unit/branding-regua-do-produto.test.ts",
+      "tests/unit/branding-icone-do-app.test.ts",
+      "tests/unit/marca-do-produto.test.tsx",
+      "tests/unit/manifest-x-migrations.test.ts",
+      "tests/unit/realtime-bootstrap.test.tsx",
+      "tests/unit/suporte-cobertura-de-efeitos.test.ts",
+      "--maxWorkers=1",
+      "--testTimeout=60000",
+      "--reporter=default"
+    ],
+    "log": ".runtime/audit-2026-10-10/genesis-focused.log"
+  }
+]

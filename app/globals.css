@@ -32,71 +32,71 @@
 
 :root {
   /* GENESIS 360 — official anchors. Intermediate accent stops are derived. */
-  --genesis-lime: #7ed321;
-  --genesis-green: #00c853;
-  --genesis-deep: #0b3d3a;
-  --genesis-cyan: #00b8d9;
-  --genesis-gray: #6b7280;
-  --genesis-white: #ffffff;
+  --genesis-lime: #d4ff00;
+  --genesis-green: #00e676;
+  --genesis-deep: #071b33;
+  --genesis-cyan: #19c2ff;
+  --genesis-gray: #52616f;
+  --genesis-white: #f7fafc;
 
   /* Surfaces (light) */
-  --color-bg: #faf9f6;
+  --color-bg: #f7fafc;
   --color-surface: #ffffff;
-  --color-surface-elevated: #f5f3ee;
-  --color-overlay: rgba(28, 26, 22, 0.42);
+  --color-surface-elevated: #eef4f8;
+  --color-overlay: rgba(7, 27, 51, 0.42);
 
   /* Text (light) */
-  --color-text: #1c1a16;
-  --color-text-muted: #5d594f;
-  --color-text-subtle: #7d786c;
+  --color-text: #071b33;
+  --color-text-muted: #52616f;
+  --color-text-subtle: #617383;
 
   /* Borders (light) */
-  --color-border: #e7e3da;
-  --color-border-strong: #d2cdbf;
+  --color-border: #dce6ee;
+  --color-border-strong: #bccdd9;
 
   /* Accent — GENESIS 360 derived ramp (official anchors documented below) */
-  --color-accent-50: #f3ffe8;
-  --color-accent-100: #e4ffc7;
-  --color-accent-200: #c8ff91;
-  --color-accent-300: #a7f35b;
-  --color-accent-400: #8ae532;
-  --color-accent-500: #7ed321;
-  --color-accent-600: #39c82b;
-  --color-accent-700: #00c853;
-  --color-accent-800: #008f4b;
-  --color-accent-900: #0b5d45;
-  --color-accent-950: #0b3d3a;
+  --color-accent-50: #effff5;
+  --color-accent-100: #d8ffea;
+  --color-accent-200: #a7f8cf;
+  --color-accent-300: #6af2b0;
+  --color-accent-400: #39ed94;
+  --color-accent-500: #d4ff00;
+  --color-accent-600: #16df79;
+  --color-accent-700: #00e676;
+  --color-accent-800: #008747;
+  --color-accent-900: #006b3a;
+  --color-accent-950: #071b33;
   --color-accent: var(--color-accent-900);
   --color-accent-fg: #ffffff;
   --color-accent-soft: var(--color-accent-100);
   --color-accent-hover: var(--color-accent-950);
 
-  /* Neutrals — greige (11 stops, light) */
-  --color-neutral-50: #faf9f6;
-  --color-neutral-100: #f3f1ec;
-  --color-neutral-200: #e7e3da;
-  --color-neutral-300: #d2cdbf;
-  --color-neutral-400: #a9a395;
-  --color-neutral-500: #7d786c;
-  --color-neutral-600: #5d594f;
-  --color-neutral-700: #46433b;
-  --color-neutral-800: #2e2c26;
-  --color-neutral-900: #1c1a16;
-  --color-neutral-950: #0e0d0a;
+  /* Neutrals — blue gray (11 stops, light) */
+  --color-neutral-50: #f7fafc;
+  --color-neutral-100: #eef4f8;
+  --color-neutral-200: #dce6ee;
+  --color-neutral-300: #bccdd9;
+  --color-neutral-400: #93a7b6;
+  --color-neutral-500: #617383;
+  --color-neutral-600: #52616f;
+  --color-neutral-700: #334c62;
+  --color-neutral-800: #163047;
+  --color-neutral-900: #071b33;
+  --color-neutral-950: #041225;
 
   /* States (light) */
-  --color-success: #5a8a5f;
-  --color-success-bg: rgba(90, 138, 95, 0.12);
-  --color-success-fg: #41673f;
+  --color-success: #008747;
+  --color-success-bg: rgba(0, 135, 71, 0.12);
+  --color-success-fg: #006b3a;
   --color-warning: #b07a2b;
   --color-warning-bg: rgba(176, 122, 43, 0.12);
   --color-warning-fg: #875a1a;
   --color-error: #a94a3c;
   --color-error-bg: rgba(169, 74, 60, 0.12);
   --color-error-fg: #8a3a2e;
-  --color-info: #4a7a93;
-  --color-info-bg: rgba(74, 122, 147, 0.12);
-  --color-info-fg: #355d72;
+  --color-info: #087c9f;
+  --color-info-bg: rgba(25, 194, 255, 0.12);
+  --color-info-fg: #075b78;
 
   /* Spacing (4-base) */
   --space-0: 0px;
@@ -123,11 +123,11 @@
   --radius-full: 9999px;
 
   /* Shadows — desaturated, neutral-based */
-  --shadow-xs: 0 1px 2px 0 rgba(20, 18, 14, 0.04);
-  --shadow-sm: 0 1px 2px 0 rgba(20, 18, 14, 0.05), 0 1px 1px 0 rgba(20, 18, 14, 0.03);
-  --shadow-md: 0 4px 12px -2px rgba(20, 18, 14, 0.06), 0 2px 4px -1px rgba(20, 18, 14, 0.04);
-  --shadow-lg: 0 12px 32px -6px rgba(20, 18, 14, 0.1), 0 4px 12px -2px rgba(20, 18, 14, 0.06);
-  --shadow-xl: 0 24px 48px -12px rgba(20, 18, 14, 0.16), 0 8px 16px -4px rgba(20, 18, 14, 0.08);
+  --shadow-xs: 0 1px 2px 0 rgba(7, 27, 51, 0.04);
+  --shadow-sm: 0 1px 2px 0 rgba(7, 27, 51, 0.05), 0 1px 1px 0 rgba(7, 27, 51, 0.03);
+  --shadow-md: 0 4px 12px -2px rgba(7, 27, 51, 0.06), 0 2px 4px -1px rgba(7, 27, 51, 0.04);
+  --shadow-lg: 0 12px 32px -6px rgba(7, 27, 51, 0.1), 0 4px 12px -2px rgba(7, 27, 51, 0.06);
+  --shadow-xl: 0 24px 48px -12px rgba(7, 27, 51, 0.16), 0 8px 16px -4px rgba(7, 27, 51, 0.08);
 
   /* Density — Aerada */
   --density-row: 56px;
@@ -271,47 +271,47 @@
    (lib/branding/css.ts), que só ganha consumidor com a tela de marca.
    ───────────────────────────────────────────────────────────────────────── */
 [data-theme="light"] {
-  --color-bg: #faf9f6;
+  --color-bg: #f7fafc;
   --color-surface: #ffffff;
-  --color-surface-elevated: #f5f3ee;
-  --color-overlay: rgba(28, 26, 22, 0.42);
-  --color-text: #1c1a16;
-  --color-text-muted: #5d594f;
-  --color-text-subtle: #7d786c;
-  --color-border: #e7e3da;
-  --color-border-strong: #d2cdbf;
+  --color-surface-elevated: #eef4f8;
+  --color-overlay: rgba(7, 27, 51, 0.42);
+  --color-text: #071b33;
+  --color-text-muted: #52616f;
+  --color-text-subtle: #617383;
+  --color-border: #dce6ee;
+  --color-border-strong: #bccdd9;
   --color-accent: var(--color-accent-900);
   --color-accent-fg: #ffffff;
   --color-accent-soft: var(--color-accent-100);
   --color-accent-hover: var(--color-accent-950);
-  --color-neutral-50: #faf9f6;
-  --color-neutral-100: #f3f1ec;
-  --color-neutral-200: #e7e3da;
-  --color-neutral-300: #d2cdbf;
-  --color-neutral-400: #a9a395;
-  --color-neutral-500: #7d786c;
-  --color-neutral-600: #5d594f;
-  --color-neutral-700: #46433b;
-  --color-neutral-800: #2e2c26;
-  --color-neutral-900: #1c1a16;
-  --color-neutral-950: #0e0d0a;
-  --color-success: #5a8a5f;
-  --color-success-bg: rgba(90, 138, 95, 0.12);
-  --color-success-fg: #41673f;
+  --color-neutral-50: #f7fafc;
+  --color-neutral-100: #eef4f8;
+  --color-neutral-200: #dce6ee;
+  --color-neutral-300: #bccdd9;
+  --color-neutral-400: #93a7b6;
+  --color-neutral-500: #617383;
+  --color-neutral-600: #52616f;
+  --color-neutral-700: #334c62;
+  --color-neutral-800: #163047;
+  --color-neutral-900: #071b33;
+  --color-neutral-950: #041225;
+  --color-success: #008747;
+  --color-success-bg: rgba(0, 135, 71, 0.12);
+  --color-success-fg: #006b3a;
   --color-warning: #b07a2b;
   --color-warning-bg: rgba(176, 122, 43, 0.12);
   --color-warning-fg: #875a1a;
   --color-error: #a94a3c;
   --color-error-bg: rgba(169, 74, 60, 0.12);
   --color-error-fg: #8a3a2e;
-  --color-info: #4a7a93;
-  --color-info-bg: rgba(74, 122, 147, 0.12);
-  --color-info-fg: #355d72;
-  --shadow-xs: 0 1px 2px 0 rgba(20, 18, 14, 0.04);
-  --shadow-sm: 0 1px 2px 0 rgba(20, 18, 14, 0.05), 0 1px 1px 0 rgba(20, 18, 14, 0.03);
-  --shadow-md: 0 4px 12px -2px rgba(20, 18, 14, 0.06), 0 2px 4px -1px rgba(20, 18, 14, 0.04);
-  --shadow-lg: 0 12px 32px -6px rgba(20, 18, 14, 0.1), 0 4px 12px -2px rgba(20, 18, 14, 0.06);
-  --shadow-xl: 0 24px 48px -12px rgba(20, 18, 14, 0.16), 0 8px 16px -4px rgba(20, 18, 14, 0.08);
+  --color-info: #087c9f;
+  --color-info-bg: rgba(25, 194, 255, 0.12);
+  --color-info-fg: #075b78;
+  --shadow-xs: 0 1px 2px 0 rgba(7, 27, 51, 0.04);
+  --shadow-sm: 0 1px 2px 0 rgba(7, 27, 51, 0.05), 0 1px 1px 0 rgba(7, 27, 51, 0.03);
+  --shadow-md: 0 4px 12px -2px rgba(7, 27, 51, 0.06), 0 2px 4px -1px rgba(7, 27, 51, 0.04);
+  --shadow-lg: 0 12px 32px -6px rgba(7, 27, 51, 0.1), 0 4px 12px -2px rgba(7, 27, 51, 0.06);
+  --shadow-xl: 0 24px 48px -12px rgba(7, 27, 51, 0.16), 0 8px 16px -4px rgba(7, 27, 51, 0.08);
   --background: var(--color-bg);
   --foreground: var(--color-text);
   --card: var(--color-surface);
@@ -349,61 +349,61 @@
 
 [data-theme="dark"] {
   /* Surfaces (dark — drawn) */
-  --color-bg: #161510;
-  --color-surface: #1d1c17;
-  --color-surface-elevated: #272620;
+  --color-bg: #071b33;
+  --color-surface: #0d253e;
+  --color-surface-elevated: #16334c;
   --color-overlay: rgba(0, 0, 0, 0.55);
 
   /* Text (dark) */
-  --color-text: #f5f4ef;
-  --color-text-muted: #8e8b7f;
-  --color-text-subtle: #605e54;
+  --color-text: #f7fafc;
+  --color-text-muted: #a0b6c8;
+  --color-text-subtle: #829bad;
 
   /* Borders (dark) */
-  --color-border: #33312a;
-  --color-border-strong: #444239;
+  --color-border: #28435b;
+  --color-border-strong: #3b566e;
 
   /* Accent stays same hex stops; default shifts up for dark contrast */
-  --color-accent-50: #f3ffe8;
-  --color-accent-100: #e4ffc7;
-  --color-accent-200: #c8ff91;
-  --color-accent-300: #a7f35b;
-  --color-accent-400: #8ae532;
-  --color-accent-500: #7ed321;
-  --color-accent-600: #39c82b;
-  --color-accent-700: #00c853;
-  --color-accent-800: #008f4b;
-  --color-accent-900: #0b5d45;
-  --color-accent-950: #0b3d3a;
+  --color-accent-50: #effff5;
+  --color-accent-100: #d8ffea;
+  --color-accent-200: #a7f8cf;
+  --color-accent-300: #6af2b0;
+  --color-accent-400: #39ed94;
+  --color-accent-500: #d4ff00;
+  --color-accent-600: #16df79;
+  --color-accent-700: #00e676;
+  --color-accent-800: #008747;
+  --color-accent-900: #006b3a;
+  --color-accent-950: #071b33;
   --color-accent: var(--color-accent-400);
-  --color-accent-fg: #161510;
-  --color-accent-soft: rgba(130, 160, 119, 0.16);
+  --color-accent-fg: #071b33;
+  --color-accent-soft: rgba(0, 230, 118, 0.16);
   --color-accent-hover: var(--color-accent-300);
 
-  /* Neutrals — greige (11 stops, dark) */
-  --color-neutral-50: #f5f4ef;
-  --color-neutral-100: #e6e4dc;
-  --color-neutral-200: #bbb8ac;
-  --color-neutral-300: #8e8b7f;
-  --color-neutral-400: #605e54;
-  --color-neutral-500: #444239;
-  --color-neutral-600: #33312a;
-  --color-neutral-700: #272620;
-  --color-neutral-800: #1d1c17;
-  --color-neutral-900: #161510;
-  --color-neutral-950: #0c0b08;
+  /* Neutrals — blue gray (11 stops, dark) */
+  --color-neutral-50: #f7fafc;
+  --color-neutral-100: #dce6ee;
+  --color-neutral-200: #becfdd;
+  --color-neutral-300: #a0b6c8;
+  --color-neutral-400: #829bad;
+  --color-neutral-500: #3b566e;
+  --color-neutral-600: #28435b;
+  --color-neutral-700: #16334c;
+  --color-neutral-800: #0d253e;
+  --color-neutral-900: #071b33;
+  --color-neutral-950: #041225;
 
   /* States (dark) */
-  --color-success: #8ae532;
-  --color-success-bg: rgba(130, 160, 119, 0.18);
-  --color-success-fg: #a7f35b;
+  --color-success: #39ed94;
+  --color-success-bg: rgba(0, 230, 118, 0.18);
+  --color-success-fg: #6af2b0;
   --color-warning: #d09455;
   --color-warning-bg: rgba(208, 148, 85, 0.18);
   --color-warning-fg: #e0ad77;
   --color-error: #c87263;
   --color-error-bg: rgba(200, 114, 99, 0.18);
   --color-error-fg: #d99182;
-  --color-info: #7da9bf;
+  --color-info: #19c2ff;
   --color-info-bg: rgba(125, 169, 191, 0.18);
   --color-info-fg: #9bbfd2;
 
@@ -434,7 +434,7 @@
   --input: var(--color-border);
   --ring: var(--color-accent-400);
   /* ---- Agenda · cor de pessoa (tema escuro) ----------------------------
-   * Mais claras e menos saturadas que as do claro: sobre `#161510` a versão
+   * Mais claras e menos saturadas que as do claro: sobre `#071b33` a versão
    * escura de cada matiz sumiria. Mesma ordem, mesmos nomes.
    */
   --agenda-pessoa-1: #f89080;
@@ -484,7 +484,7 @@
   --color-text-muted: var(--color-text-muted);
   --color-text-subtle: var(--color-text-subtle);
 
-  /* Accent — Sage */
+  /* Accent — Genesis */
   --color-accent: var(--color-accent);
   --color-accent-foreground: var(--color-accent-fg);
   --color-accent-soft: var(--color-accent-soft);
@@ -501,7 +501,7 @@
   --color-accent-900: var(--color-accent-900);
   --color-accent-950: var(--color-accent-950);
 
-  /* Neutrals — greige */
+  /* Neutrals — blue gray */
   --color-neutral-50: var(--color-neutral-50);
   --color-neutral-100: var(--color-neutral-100);
   --color-neutral-200: var(--color-neutral-200);
@@ -528,15 +528,12 @@
   --color-info-bg: var(--color-info-bg);
   --color-info-fg: var(--color-info-fg);
 
-  /* Aliases shadcn (consumers ainda não migrados). Espelham 1:1 o que o
-     `tailwind.config.ts` mapeava — inclusive `ring`, que apontava para a
-     parada 500 fixa e NÃO para `--ring` (que muda no escuro). Mantido igual de
-     propósito: trocar aqui mudaria o anel de foco de toda a aplicação, e isso
-     é decisão de design, não de migração. */
+  /* Aliases shadcn (consumers ainda não migrados). O anel de foco usa
+     `--ring`, cuja cor mantém contraste no tema claro e no escuro. */
   --color-border: var(--color-border);
   --color-border-strong: var(--color-border-strong);
   --color-input: var(--color-border);
-  --color-ring: var(--color-accent-500);
+  --color-ring: var(--ring);
   --color-background: var(--color-bg);
   --color-foreground: var(--color-text);
   --color-primary: var(--color-accent);
@@ -554,7 +551,8 @@
 
   /* Tipografia */
   --font-sans:
-    var(--font-atkinson), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    "DIN Next", var(--font-interface), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    sans-serif;
   --font-mono: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
   /* Espaçamento. Os valores são px LITERAIS (`--space-6` = 24px), não rem — e
@@ -791,7 +789,8 @@
     background-color: var(--color-bg);
     color: var(--color-text);
     font-family:
-      var(--font-atkinson),
+      "DIN Next",
+      var(--font-interface),
       ui-sans-serif,
       system-ui,
       -apple-system,
@@ -978,7 +977,7 @@
   .card-pulse {
     animation: none;
     /* Anel ESTÁTICO, não fundo: no tema claro `--color-accent-soft` é cor
-       sólida (#e4ffc7), e um overlay sólido sobre o card inteiro deixaria quem
+       sólida (#d8ffea), e um overlay sólido sobre o card inteiro deixaria quem
        usa movimento reduzido 1,2s SEM LER o card. O caminho de acessibilidade
        é para ser igual, não pior — então o aviso é o mesmo anel, só que parado.
        Ele dura os PULSE_MS inteiros (useBoard.ts), NÃO os 320ms da animação:
@@ -1425,7 +1424,7 @@
    tem de respeitar isso.
 
    As rampas são desenhadas separadamente, não invertidas — no claro a 500
-   (#7d786c) é mais ESCURA que a 400 (#a9a395), e no escuro a 500 (#444239)
+   (#617383) é mais ESCURA que a 400 (#93a7b6), e no escuro a 500 (#3b566e)
    também é. Contra fundo claro, mais escuro = mais contraste; contra fundo
    escuro, mais escuro = MENOS contraste. Usar a 500 nos dois temas daria uma
    faixa que realça no claro e APAGA no escuro, caindo abaixo do piso justamente

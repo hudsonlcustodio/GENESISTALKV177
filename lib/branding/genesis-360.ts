@@ -1,10 +1,10 @@
 export const GENESIS_360 = {
-  lime: "#7ED321",
-  takeGreen: "#00C853",
-  deepBlueGreen: "#0B3D3A",
-  cyan: "#00B8D9",
-  technicalGray: "#6B7280",
-  white: "#FFFFFF",
+  lime: "#D4FF00",
+  takeGreen: "#00E676",
+  deepBlueGreen: "#071B33",
+  cyan: "#19C2FF",
+  technicalGray: "#52616F",
+  white: "#F7FAFC",
 } as const;
 
 /**

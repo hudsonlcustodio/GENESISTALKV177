@@ -15,7 +15,7 @@ import { z } from "zod";
 import { fail, ok } from "@/lib/api/wrappers";
 import { isServiceRoleConfigured } from "@/lib/audit";
 import { requireRole } from "@/lib/auth/require-role";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { carregarNomesDoRoster } from "@/lib/atendimento/nomes-do-roster";
 import { createClient } from "@/lib/supabase/server";
 import { traduzir } from "@/lib/i18n/dicionario";
 
@@ -87,19 +87,13 @@ export async function GET(req: NextRequest): Promise<Response> {
 
   // Enriquece cada atendente com nome/email (mesmo padrão de /api/v1/team).
   // Degrada com name=null quando o service role não está configurado (dev).
-  const names = new Map<string, { name: string | null; email: string | null }>();
+  let names = new Map<string, { name: string | null; email: string | null }>();
   if (isServiceRoleConfigured() && metrics.attendants.length > 0) {
-    const admin = createAdminClient();
-    await Promise.all(
-      metrics.attendants.map(async (a) => {
-        const { data: userRes } = await admin.auth.admin.getUserById(a.user_id);
-        const u = userRes?.user;
-        names.set(a.user_id, {
-          name: (u?.user_metadata?.full_name as string | undefined) ?? null,
-          email: u?.email ?? null,
-        });
-      }),
-    );
+    try {
+      names = await carregarNomesDoRoster(supabase, activeOrg.orgId);
+    } catch {
+      return fail("read_failed", "Nomes da equipe indisponíveis.", 503, { requestId });
+    }
   }
 
   const attendants = metrics.attendants.map((a) => ({

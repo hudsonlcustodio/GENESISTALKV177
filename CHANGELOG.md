@@ -8,6 +8,23 @@ Se você roda o DeskcommCRM numa VPS, **leia a seção da versão para a qual es
 
 ## [Não lançado]
 
+### Finalização do candidato GENESIS TALK 1.77.0
+
+- Supervisão com filtros por período/atendente/agente/canal/funil, população paginada,
+  motivos de passagem, custos conhecidos e indisponibilidade explícita.
+- Identidade oficial Genesis 360 no login e na navegação; compromissos em andamento
+  permanecem em Próximos até terminar.
+- Recuperação v2 preserva privilégios e valida arquivos, contagens e RLS na mesma
+  transação. Backups legados exigem plano isolado; não são aceitos pelo restore v2.
+- Monitor, cópia externa e rollback com guardas de compatibilidade. A ativação no
+  servidor depende da homologação futura, domínio/TLS e credenciais dos provedores.
+- Workers usam dependências de produção. A proteção local de profundidade de
+  `braces` tem regressão própria; o advisory upstream continua sem versão corrigida.
+
+O acervo consumido está preservado integralmente em
+[fragmentos do candidato](docs/genesis/releases/v1.77.0-candidate/fragmentos.json).
+As evidências e pendências ficam em [finalização](docs/genesis/FINALIZACAO-v1.77.md).
+
 ## [1.77.0] — 2026-10-08
 
 ### Adicionado
@@ -602,13 +619,13 @@ Se você roda o DeskcommCRM numa VPS, **leia a seção da versão para a qual es
 
   Contribuição de @webtecnica (#2289, fecha #2099).
 
-- **O assistente para de prometer retorno ao cliente sem que alguém fique responsável** Medido em produção em 16 de setembro. O assistente escreveu ao cliente: *"Vou encaminhar as informações do site imobiliário para análise e te retorno com a proposta."* O cliente saiu da conversa esperando um orçamento — e ninguém ficou devendo nada, porque o sistema não registrou nada: nenhum caso para alguém resolver, nenhum retorno marcado, nenhum aviso na Central.
+- **O assistente para de prometer retorno ao cliente sem que alguém fique responsável** Medido em produção em 16 de setembro. O assistente escreveu ao cliente: _"Vou encaminhar as informações do site imobiliário para análise e te retorno com a proposta."_ O cliente saiu da conversa esperando um orçamento — e ninguém ficou devendo nada, porque o sistema não registrou nada: nenhum caso para alguém resolver, nenhum retorno marcado, nenhum aviso na Central.
 
   Existe uma trava exatamente para isso — o assistente não pode prometer que uma pessoa da empresa vai agir sem que alguém fique responsável. A trava disparou **uma vez**, o assistente reformulou a frase, e a segunda formulação **passou**. O sistema dependia de reconhecer promessa por palavra: exigia "equipe", "setor" ou "responsável" colado ao verbo, e um objeto no meio da frase ("as informações") já a despistava. De sete frases equivalentes medidas, **cinco passavam** — inclusive uma que escrevia "equipe".
 
   Agora a trava também pergunta ao classificador que já roda a cada envio se a mensagem promete que alguém da empresa volta a falar com o cliente. Os dois sinais valem juntos: o antigo, que é de graça e imediato, e o novo, que pega o que a palavra não pega. **Nenhuma consulta a mais é feita** — a pergunta entrou na mesma que já existia.
 
-  Quando quem promete voltar é o próprio assistente (*"Combinado! Te retorno amanhã de manhã."*), marcar o retorno na agenda de follow-up também resolve: se o assistente agendou o retorno naquele mesmo atendimento, a mensagem sai sem precisar de caso. Isso vale só para a promessa do assistente. Se a frase diz que alguém da empresa vai agir (a equipe, uma análise, o responsável, um setor), o caso continua obrigatório, com ou sem retorno agendado. Na dúvida, por exemplo quando a resposta do classificador vem incompleta, vale a regra mais rígida: o caso é exigido.
+  Quando quem promete voltar é o próprio assistente (_"Combinado! Te retorno amanhã de manhã."_), marcar o retorno na agenda de follow-up também resolve: se o assistente agendou o retorno naquele mesmo atendimento, a mensagem sai sem precisar de caso. Isso vale só para a promessa do assistente. Se a frase diz que alguém da empresa vai agir (a equipe, uma análise, o responsável, um setor), o caso continua obrigatório, com ou sem retorno agendado. Na dúvida, por exemplo quando a resposta do classificador vem incompleta, vale a regra mais rígida: o caso é exigido.
 
   Um detalhe que vale saber na hora de decidir: a camada que faz a segunda pergunta segue a escolha que já existe na tela do assistente, no painel de segurança, e só o administrador da empresa a muda. Desligando, o reconhecimento volta a ser só por palavra — isto é, aquelas cinco frases voltam a passar.
 
@@ -1218,6 +1235,7 @@ Esta versão junta 106 mudanças. Cada item é curto para caber na tela de atual
 - **Formulários do Elementor Pro passam a criar lead pelo webhook** Contribuição de @paulolimajr77 (#2051).
 
 - **O lixo interno do JetFormBuilder não aparece mais no lead** Contribuição de @paulolimajr77 (#2051).
+
 ## [1.69.0] — 2026-09-30
 
 ### Adicionado
@@ -1567,7 +1585,7 @@ Esta versão junta 106 mudanças. Cada item é curto para caber na tela de atual
 
 ### Corrigido
 
-- **A busca de contatos entende como a gente digita — e para de devolver a lista inteira** Quem procura um contato passa a achar mesmo digitando do jeito que se digita na pressa: **"Paulo  Lima"** com espaço duplo, **"Paulo Jr"** com as palavras separadas e **"Silva, Maria"** com ou sem vírgula encontram o cadastro, onde antes davam zero para gente que existe. Digitar **uma letra só** deixa de devolver a lista inteira dos contatos — lista inteira sob busca não é resposta, é ruído que parece resposta.
+- **A busca de contatos entende como a gente digita — e para de devolver a lista inteira** Quem procura um contato passa a achar mesmo digitando do jeito que se digita na pressa: **"Paulo Lima"** com espaço duplo, **"Paulo Jr"** com as palavras separadas e **"Silva, Maria"** com ou sem vírgula encontram o cadastro, onde antes davam zero para gente que existe. Digitar **uma letra só** deixa de devolver a lista inteira dos contatos — lista inteira sob busca não é resposta, é ruído que parece resposta.
 
   A busca de contatos passou a seguir a **mesma régua da caixa de entrada**: todo separador (espaço, vírgula, ponto e vírgula) vira o curinga da busca e o termo só vai ao banco depois de ter os dois caracteres mínimos. A régua é uma só e continua morando em `lib/inbox/termo-de-busca.ts`, então a caixa de entrada e os contatos andam juntos a partir de agora — e se a regra mudar, muda para os dois ao mesmo tempo. A busca por telefone, CPF e e-mail continua exatamente como estava, e a caixa (maiúscula/minúscula) continua sendo do banco.
 
@@ -4376,7 +4394,7 @@ Esta versão junta 106 mudanças. Cada item é curto para caber na tela de atual
   Contribuição de @deskcommopp4s-cmd (#1275).
 
 - **Um comando tira esta instalação do Docker sem encostar no resto do servidor** Tirar o CRM de uma VPS era trabalho manual, e o atalho que todo mundo conhece — `docker system
-  prune -a` — é o errado: numa VPS que hospeda mais de uma coisa, ele leva junto containers, volumes
+prune -a` — é o errado: numa VPS que hospeda mais de uma coisa, ele leva junto containers, volumes
   e imagens de aplicações que ninguém pediu para apagar.
 
   Agora existe `desinstalar_docker.sh`, na raiz do repositório. Ele descobre o projeto pelo label que
@@ -4412,7 +4430,7 @@ Esta versão junta 106 mudanças. Cada item é curto para caber na tela de atual
   um atendimento com roteiro fixo isso baixa a conta de entrada sem perder qualidade.
 
   Os modelos disponíveis vêm prontos no catálogo (`DeepSeek Flash`, para volume, e `DeepSeek V4
-  Pro`, para conversas que exigem raciocínio) e a tela escolhe o mais barato que dá conta quando
+Pro`, para conversas que exigem raciocínio) e a tela escolhe o mais barato que dá conta quando
   você deixa em branco. Nada muda nas instalações que já usam outro provedor: a opção nasce
   disponível, não ligada.
 
@@ -4434,7 +4452,7 @@ Esta versão junta 106 mudanças. Cada item é curto para caber na tela de atual
 
   E o aviso não toca à toa: quando tudo volta, ele fica calado. Alarme que dispara sem motivo ensina quem opera a ignorar o alarme de verdade.
 
-  *(A causa de as peças não terem voltado naquela vez segue desconhecida. O que este ajuste garante é que uma próxima vez não passe despercebida.)*
+  _(A causa de as peças não terem voltado naquela vez segue desconhecida. O que este ajuste garante é que uma próxima vez não passe despercebida.)_
 
   Trabalho de @paulolimajr77, recortado do #803.
 
@@ -4603,7 +4621,7 @@ Esta versão junta 106 mudanças. Cada item é curto para caber na tela de atual
   sem ninguém assumir, o aviso volta para a Central apontando para a conversa. Ele insiste no máximo
   três vezes: alarme que nunca cala ensina a ignorar o alarme certo.
 
-  **E dá para saber se isso está funcionando.** Em *Métricas*, junto de "Passagens para humano",
+  **E dá para saber se isso está funcionando.** Em _Métricas_, junto de "Passagens para humano",
   nasceu **"Clientes que repetiram depois da passagem"**: de cada dez passagens em que o cliente voltou
   a falar, quantas ele teve de repetir o que já tinha dito. Se o contexto está chegando a quem assume,
   esse número cai. Se não está, ele não muda — e aí a novidade acima é só enfeite. Quem atende vê o
@@ -5128,7 +5146,7 @@ Esta versão junta 106 mudanças. Cada item é curto para caber na tela de atual
 
   Nada a fazer na instalação.
 
-- **Os testes do kit param de trocar o autor dos commits de quem os roda** Cinco testes de shell (`pnpm test:shell`) montam repositórios git descartáveis e gravavam neles uma identidade de mentira com `git -C <pasta> config user.*`. Só que o git grava onde ele *resolve* o repositório, e isso não é necessariamente a pasta pedida. Um `GIT_DIR` herdado, por exemplo quando a suíte roda de dentro de um hook, passa por cima do `-C`, e uma pasta que não é repositório sobe até o repositório de cima. Em 10/09/2026 isso deixou `Pessoa <alguem@fork.dev>` no `.git/config` de um checkout de desenvolvimento, e essa identidade assinou 829 dos 987 commits (sem merge) que entraram na `main` até 18/09.
+- **Os testes do kit param de trocar o autor dos commits de quem os roda** Cinco testes de shell (`pnpm test:shell`) montam repositórios git descartáveis e gravavam neles uma identidade de mentira com `git -C <pasta> config user.*`. Só que o git grava onde ele _resolve_ o repositório, e isso não é necessariamente a pasta pedida. Um `GIT_DIR` herdado, por exemplo quando a suíte roda de dentro de um hook, passa por cima do `-C`, e uma pasta que não é repositório sobe até o repositório de cima. Em 10/09/2026 isso deixou `Pessoa <alguem@fork.dev>` no `.git/config` de um checkout de desenvolvimento, e essa identidade assinou 829 dos 987 commits (sem merge) que entraram na `main` até 18/09.
 
   Agora cada um desses testes zera o ambiente do git herdado e dá a identidade de commit por variável de ambiente. Onde o próprio config é o dado sob teste, a escrita vai direto no arquivo de config do clone, sem resolver repositório. Uma guarda estática (`tests/unit/testes-de-shell-nao-vazam-identidade.test.ts`) reprova a volta de qualquer uma das duas formas. Nada muda para quem opera uma instalação.
 
@@ -5549,7 +5567,7 @@ Esta versão junta 106 mudanças. Cada item é curto para caber na tela de atual
   ligada (medido pelo @paulolimajr77 no PR #720).
 
   Agora cada aba aberta emite uma batida a cada 60 s (`POST
-  /api/v1/attendants/presence`), e "tem alguém aí?" é respondido na hora da
+/api/v1/attendants/presence`), e "tem alguém aí?" é respondido na hora da
   pergunta, a partir do carimbo: sem cron de expiração e sem coluna booleana de
   presença. Fechar a aba não escreve nada no banco — a pessoa some da lista de
   presentes dentro do prazo, sozinha. Quem lê: a rota de disponibilidade, a
@@ -5892,7 +5910,7 @@ Esta versão junta 106 mudanças. Cada item é curto para caber na tela de atual
   nenhum do produto. A instrução apontava para o vazio.
 
   Agora existe a troca de funil, por enquanto pela API (`POST
-  /api/v1/leads/[id]/clone`); o botão no quadro vem na fatia seguinte. O negócio é
+/api/v1/leads/[id]/clone`); o botão no quadro vem na fatia seguinte. O negócio é
   criado no funil de destino (na primeira etapa aberta, ou na etapa que você
   escolher) com os mesmos dados — título, contato, valor, dono, previsão, tags e
   campos personalizados (os que o funil de destino não tiver continuam guardados no
@@ -5977,7 +5995,7 @@ Esta versão junta 106 mudanças. Cada item é curto para caber na tela de atual
 - **Os guias do assistente passam a funcionar em qualquer pasta, e dois deixam de ser descartados** Um comando só (`curl -fsSL https://raw.githubusercontent.com/melgarafael/DeskcommCRM/main/scripts/instalar-guias.sh | bash`) liga os guias `deskcomm-instalar`, `deskcomm-cliente-novo`, `deskcomm-metricas`, `deskcomm-prompt`, `deskcomm-contribuir` e `deskcomm-doutrina` nas pastas globais do Claude Code, Codex, Cursor, OpenCode e Antigravity — antes eles só existiam com o assistente aberto dentro de um clone atualizado, o que deixava de fora justamente quem ainda não instalou. Pedir o assunto em português aciona o guia em qualquer um deles. Os guias não se atualizam sozinhos: rodar o comando de novo traz a versão nova, e `curl -fsSL https://raw.githubusercontent.com/melgarafael/DeskcommCRM/main/scripts/instalar-guias.sh | bash -s -- --remover` desfaz. O cabeçalho de dois guias trazia um erro de formato que assistentes mais rigorosos descartavam sem avisar, e foi corrigido.
 
 - **Quem ainda não tem conta já vê login, cadastro, convite e páginas legais em espanhol** O idioma da interface sempre dependeu de uma sessão: `preferência da pessoa → idioma da
-  organização → padrão`. Fora dessa cadeia — login, cadastro, aceite de convite, política de
+organização → padrão`. Fora dessa cadeia — login, cadastro, aceite de convite, política de
   privacidade e termos — não havia nenhum sinal para seguir, e a tela caía sempre em português,
   mesmo para quem nunca vai ler português.
 
@@ -6814,11 +6832,11 @@ Esta versão junta 106 mudanças. Cada item é curto para caber na tela de atual
 
 - **A busca do Inbox acha o contato mesmo quando o nome é digitado diferente** Procurar um contato pelo nome exigia digitar exatamente como estava gravado. Num
   contato salvo como "Paulo Lima Jr", buscar "Paulo Jr" não achava nada — e
-  "Paulo  Lima", com dois espaços por engano, também não. Só achava quem digitasse
+  "Paulo Lima", com dois espaços por engano, também não. Só achava quem digitasse
   o nome inteiro e na ordem certa.
 
   Agora espaço, vírgula e ponto e vírgula são tratados igual: "Paulo Jr",
-  "Paulo  Lima" e "Paulo, Jr" encontram o mesmo contato. Buscar pelo sobrenome
+  "Paulo Lima" e "Paulo, Jr" encontram o mesmo contato. Buscar pelo sobrenome
   primeiro ("Lima Paulo") continua não achando — isso é uma mudança maior, para
   outra versão.
 
@@ -6836,13 +6854,13 @@ Esta versão junta 106 mudanças. Cada item é curto para caber na tela de atual
 
   No computador nada muda.
 
-- **Botões que dependem do banco param de travar a instalação inteira quando o atendimento está ocupado** Medido numa instalação real. O botão **Enviar link ao cliente** (do Google Meet) parecia não funcionar: aparecia *"Erro inesperado. Tente novamente."*, sem nenhuma pista, e clicar de novo não resolvia.
+- **Botões que dependem do banco param de travar a instalação inteira quando o atendimento está ocupado** Medido numa instalação real. O botão **Enviar link ao cliente** (do Google Meet) parecia não funcionar: aparecia _"Erro inesperado. Tente novamente."_, sem nenhuma pista, e clicar de novo não resolvia.
 
   O que acontecia por baixo: a operação pede uma reserva no banco para não atropelar um atendimento em curso — e essa espera **não tinha prazo**. O navegador desistia em 10 segundos e mostrava o erro, mas **o pedido continuava vivo no banco**, segurando a fila. Como o botão voltava a funcionar, cada clique empilhava mais um pedido atrás do anterior.
 
   Com dez pedidos empilhados, o banco de dados da instalação foi a **357% de processador** — e nada mais respondia bem, inclusive telas que não tinham nada a ver com aquilo.
 
-  Agora toda chamada da aplicação desiste de esperar em 4 segundos e diz o motivo: *"Este atendimento está ocupado neste instante. Aguarde alguns segundos e tente de novo."* Nada fica pendurado, e a frase diz o que fazer.
+  Agora toda chamada da aplicação desiste de esperar em 4 segundos e diz o motivo: _"Este atendimento está ocupado neste instante. Aguarde alguns segundos e tente de novo."_ Nada fica pendurado, e a frase diz o que fazer.
 
   O conserto vale para **toda** a aplicação, não só para esse botão: sete operações tinham a mesma forma, incluindo **Aprovar e enviar** (da sugestão de resposta), **mesclar contatos**, **conectar canal** e **anonimizar contato** da LGPD. O trabalho de fundo (filas e agendadores) continua podendo esperar o tempo que precisar — lá não há ninguém olhando a tela.
 
@@ -7221,8 +7239,8 @@ Esta versão junta 106 mudanças. Cada item é curto para caber na tela de atual
 
 - **A instalação deixa de exigir chave de IA — dá para cadastrar depois pela tela** O instalador exigia uma chave de IA que **passasse numa chamada real** ao
   provedor: sem ela, a instalação morria na Fase 2/4. Só que a documentação
-  (`docs/deploy-selfhost`) sempre prometeu outra coisa — *"deixe vazio e cadastre
-  a chave depois"* —, e o próprio sistema concorda com a doc: faltar todas as
+  (`docs/deploy-selfhost`) sempre prometeu outra coisa — _"deixe vazio e cadastre
+  a chave depois"_ —, e o próprio sistema concorda com a doc: faltar todas as
   chaves é um aviso, não um erro.
 
   Agora o campo é opcional de verdade: dá para instalar sem abrir conta em
@@ -7284,7 +7302,7 @@ Esta versão junta 106 mudanças. Cada item é curto para caber na tela de atual
   nenhum trace — a amostragem decide se o dado é enviado, não se o coletor roda. Numa instalação
   real (2026-09-09), uma extensão do navegador mexendo na Performance API da página derrubava
   esse coletor com um erro no console (`TypeError: Cannot read properties of undefined (reading
-  'startTime')`), sem nenhum trace chegando a existir para explicar o motivo. Quem está no DSN da
+'startTime')`), sem nenhum trace chegando a existir para explicar o motivo. Quem está no DSN da
   comunidade não tinha telemetria nenhuma sendo enviada por essa integração — só o risco do
   crash. Ela deixa de ser carregada para essa população; quem aponta para o próprio Sentry
   mantém o tracing normalmente.
@@ -7543,7 +7561,7 @@ Esta versão junta 106 mudanças. Cada item é curto para caber na tela de atual
   **O que muda:**
 
   - **O membro revogado continua na lista**, com o estado `Revogado`, e quem administra devolve o acesso pelo menu da própria linha. Antes ele simplesmente sumia.
-  - **Quem já tem conta e clica num convite** deixa de receber *"Não foi possível criar a conta. Tente novamente."* — instrução impossível, porque tentar de novo nunca funciona. Passa a ler que já tem conta, com um botão que entra **e** cai direto no aceite.
+  - **Quem já tem conta e clica num convite** deixa de receber _"Não foi possível criar a conta. Tente novamente."_ — instrução impossível, porque tentar de novo nunca funciona. Passa a ler que já tem conta, com um botão que entra **e** cai direto no aceite.
   - **A tela de acesso revogado deixa de ser beco:** ela diz que, se chegou convite novo, o link do e-mail funciona mesmo dali.
 
   **Nada disso mudou o banco.** O comando que aceita convite já sabia reativar quem foi revogado, desde que o convite seja posterior à revogação — e foi exatamente isso que a prova em tela confirmou. O que faltava era caminho até ele.
@@ -7899,9 +7917,9 @@ Esta versão junta 106 mudanças. Cada item é curto para caber na tela de atual
   atendimento chegou a ser traduzido por engano, trocando "Retorno" por
   "Seguimiento". Todos os casos foram corrigidos.
 
-- **O botão de importar planilha volta a funcionar, e os leads entram na primeira etapa aberta do funil** O botão *Importar planilha*, no quadro do funil, estava morto. Quem escolhia o
-  funil e mandava a planilha recebia sempre o mesmo aviso de erro — *"Escolha o
-  funil e a etapa de destino"* — mesmo tendo escolhido o funil. Nenhum lead era
+- **O botão de importar planilha volta a funcionar, e os leads entram na primeira etapa aberta do funil** O botão _Importar planilha_, no quadro do funil, estava morto. Quem escolhia o
+  funil e mandava a planilha recebia sempre o mesmo aviso de erro — _"Escolha o
+  funil e a etapa de destino"_ — mesmo tendo escolhido o funil. Nenhum lead era
   criado, e não havia nada que o operador pudesse fazer para contornar: a tela não
   tem, nem deveria ter, um campo de etapa. A capacidade foi anunciada na 1.14.0 e
   seguiu assim nas duas atualizações seguintes — quem instalou a 1.14.0, a 1.15.0
@@ -7914,9 +7932,9 @@ Esta versão junta 106 mudanças. Cada item é curto para caber na tela de atual
 
   E ele resolve a etapa **aberta** de menos avançada — pulando as etapas de ganho
   e as de perda. Isso importa para quem reorganizou o próprio funil: numa
-  instalação onde uma etapa do tipo *Pago* ou *Cancelado* foi arrastada para a
+  instalação onde uma etapa do tipo _Pago_ ou _Cancelado_ foi arrastada para a
   primeira coluna, a importação teria feito a planilha inteira nascer como negócio
-  já ganho, ou teria recusado todas as linhas devolvendo *"0 leads criados"* sem
+  já ganho, ou teria recusado todas as linhas devolvendo _"0 leads criados"_ sem
   explicar por quê. Quem nunca mexeu na ordem das etapas não estava exposto a
   isso, porque o funil que vem pronto já começa com uma etapa aberta.
 
@@ -7935,9 +7953,9 @@ Esta versão junta 106 mudanças. Cada item é curto para caber na tela de atual
   recém-montada já vem. Nesse modo, criar a conta **já entra no sistema**: não
   existe link nenhum para clicar, porque e-mail nenhum é enviado.
 
-  A tela do cadastro não sabia disso e dizia assim mesmo: *"Enviamos um link de
+  A tela do cadastro não sabia disso e dizia assim mesmo: _"Enviamos um link de
   confirmação para o seu e-mail. Abra o e-mail e clique no link para ativar sua
-  conta."* A pessoa fazia o que a tela mandou — esperava. O e-mail nunca chegava.
+  conta."_ A pessoa fazia o que a tela mandou — esperava. O e-mail nunca chegava.
   Ela estava, o tempo todo, do lado de dentro, com a conta pronta e sem empresa
   nenhuma configurada, sem nenhuma razão para descobrir sozinha que bastava
   continuar.
@@ -7996,7 +8014,7 @@ Esta versão junta 106 mudanças. Cada item é curto para caber na tela de atual
   a cair no que ficou, então a mensagem seguinte não recria a duplicata.
 
   Quando os dois cadastros já conversavam pelo **mesmo número de WhatsApp**, a
-  *conversa* do cadastro antigo não pode ser transferida — o sistema guarda uma
+  _conversa_ do cadastro antigo não pode ser transferida — o sistema guarda uma
   conversa por pessoa em cada número, e o cadastro que fica já tem a dele. As
   mensagens vão todas para quem ficou; a conversa antiga permanece registrada, e
   a tela avisa **quantos** registros ficaram para trás em vez de dizer só
@@ -8429,7 +8447,7 @@ Esta versão junta 106 mudanças. Cada item é curto para caber na tela de atual
   **E o que estava ocupado lá não era desenhado aqui.** O horário já era
   respeitado — ninguém conseguia marcar em cima —, mas o bloco não aparecia na
   grade. O dono via a agenda vazia e o horário indisponível ao mesmo tempo. Agora o
-  bloco aparece, marcado como *Ocupado*.
+  bloco aparece, marcado como _Ocupado_.
 
   O **nome** do evento particular continua não aparecendo, de propósito: a agenda
   conectada é pessoal de quem atende, e esta tela é vista pela gestão.
@@ -8486,7 +8504,7 @@ Esta versão junta 106 mudanças. Cada item é curto para caber na tela de atual
 
 - **A proteção de envio volta a aceitar a data de hoje** Em **Conexões › Proteção de envio**, informar hoje em "este número é usado
   desde" era recusado durante a manhã inteira: até as 9h no relógio de quem
-  opera no Brasil, salvar devolvia *"Campos inválidos."* e não gravava nada — nem
+  opera no Brasil, salvar devolvia _"Campos inválidos."_ e não gravava nada — nem
   a janela de horário, nem o intervalo entre envios, nem o teto diário que você
   tinha acabado de mudar na mesma tela.
 
@@ -8555,8 +8573,8 @@ Esta versão junta 106 mudanças. Cada item é curto para caber na tela de atual
   trabalho em andamento num rascunho e usou o botão **Reverter**, na aba
   Histórico. Reverter cria uma versão nova e a publica na hora; o rascunho que
   existia fica, a partir dali, "atrás" da versão publicada. A tela sabe disso e
-  avisa, no selo ao lado do nome do agente: *"o rascunho v5 é anterior a esta
-  versão e foi superado por ela — ele continua no Histórico."*
+  avisa, no selo ao lado do nome do agente: _"o rascunho v5 é anterior a esta
+  versão e foi superado por ela — ele continua no Histórico."_
 
   Só que o servidor não sabia. Ele procurava "o rascunho de maior número" e
   gravava ali. Duas consequências, nenhuma delas com mensagem de erro:
@@ -8694,7 +8712,7 @@ Esta versão junta 106 mudanças. Cada item é curto para caber na tela de atual
   parte não mudou.
 
 - **A proteção de envio volta a salvar sem a data do número** Em **Conexões › Proteção de envio**, ajustar o horário de envio e salvar sem
-  preencher "este número é usado desde" devolvia *"Falha ao salvar os knobs."* e
+  preencher "este número é usado desde" devolvia _"Falha ao salvar os knobs."_ e
   não gravava nada — nem os campos que você tinha acabado de mudar.
 
   Isso atingia toda instalação nova, porque essa data começa em branco. E a
@@ -9179,7 +9197,7 @@ Esta versão junta 106 mudanças. Cada item é curto para caber na tela de atual
   cliente.
 
   **Uma observação escrita ao lado do preço.** Quem escreve `R$ 5.499,00 (promo até
-  10)` na mesma célula via os dígitos da observação grudarem no valor, e o produto
+10)` na mesma célula via os dígitos da observação grudarem no valor, e o produto
   entrava a R$ 54.990.010,00.
 
   Agora um ou dois dígitos depois da vírgula são sempre centavos — grupo de milhar
@@ -9312,7 +9330,7 @@ Esta versão junta 106 mudanças. Cada item é curto para caber na tela de atual
   outra pessoa enquanto o cliente original ainda estava contando com ele.
 
   **As capacidades novas não entram sozinhas nos agentes que já existem.** Para o
-  seu atendente usá-las, abra *O que o agente pode fazer*, ligue o pacote
+  seu atendente usá-las, abra _O que o agente pode fazer_, ligue o pacote
   **Vender** de novo e publique. Agente criado a partir de agora já nasce com elas.
 
 ### Corrigido
@@ -9527,7 +9545,7 @@ Esta versão junta 106 mudanças. Cada item é curto para caber na tela de atual
   de idioma para consultar), e o **relatório de LGPD** também — ele responde a uma
   lei brasileira, e mudar a forma dele conforme quem apertou o botão seria errado.
 
-  ---
+  ***
 
   A tradução para espanhol é, em boa parte, contribuição de **@JowaniOrantes**, que
   abriu três frentes de trabalho por conta própria: as áreas de IA e administração
@@ -9899,7 +9917,7 @@ Esta versão junta 106 mudanças. Cada item é curto para caber na tela de atual
   reconfigurado: quem já publicou a jornada continua com ela.
 
 - **O conhecimento cadastrado ia parar no assistente errado** Se a sua organização tem mais de um assistente, todo material cadastrado era preparado
-  para o *primeiro* deles — sempre. O segundo assistente nunca aprendia nada, sem erro, sem
+  para o _primeiro_ deles — sempre. O segundo assistente nunca aprendia nada, sem erro, sem
   aviso, sem nada na tela. E a tela de conhecimento só existia para o assistente que veio
   com a instalação: qualquer assistente criado por você era invisível ali.
   Depois de atualizar, o que cada assistente já lia continua valendo. Mas o material que
@@ -10131,15 +10149,15 @@ para não passarem em branco. Se você já atualizou para a 1.4.1, já os leu �
   resultado e por período.
   **E aparece também quem NÃO entrou.** Um formulário cujos campos o CRM não reconhece era
   recusado em silêncio: quem colou o endereço no site só sabia que "não chegou nada", sem
-  ter onde olhar. Agora a tentativa aparece na lista como *Não entrou*, com o motivo escrito
+  ter onde olhar. Agora a tentativa aparece na lista como _Não entrou_, com o motivo escrito
   em português e os campos crus do jeito que vieram — que é o que permite consertar o
   formulário em vez de adivinhar.
 - **Nas automações, no "então": "Mensagem escrita pela IA".**
   Antes só dava para mandar um texto pronto com `{{nome}}` e `{{telefone}}`. Se o seu
   formulário pergunta o segmento, o tamanho da equipe e a maior dificuldade de hoje, quem
   tem 3 funcionários e quem tem 300 recebiam a mesma frase. Agora você escolhe um agente já
-  **publicado**, escolhe o número, e escreve no campo *"O que a IA deve fazer com esses
-  dados"* — por exemplo, "cite a dificuldade que ela citou e ofereça uma conversa de 15
+  **publicado**, escolhe o número, e escreve no campo _"O que a IA deve fazer com esses
+  dados"_ — por exemplo, "cite a dificuldade que ela citou e ofereça uma conversa de 15
   minutos". A IA recebe as respostas do formulário e essa sua instrução, e sabe que é a
   primeira mensagem de alguém que acabou de preencher e não está esperando resposta. É o
   mesmo desenho da instrução de um passo de follow-up.
@@ -10173,8 +10191,8 @@ para não passarem em branco. Se você já atualizou para a 1.4.1, já os leu �
   **Central de avisos** ("Job descartado após esgotar tentativas"); o que faltava era o
   atendimento acontecer.
 - **O papel Operador mandava o modelo escolhido para o provedor errado**, pela mesma razão, e
-  o campo "Modelo do Operador" deixado em branco não fazia o que a tela prometia: ele diz *"A
-  mesma que conversa"* e usava o modelo padrão da organização. Agora vazio herda de verdade o
+  o campo "Modelo do Operador" deixado em branco não fazia o que a tela prometia: ele diz _"A
+  mesma que conversa"_ e usava o modelo padrão da organização. Agora vazio herda de verdade o
   modelo do Conversador.
 - **O painel de Provedores de IA mostrava o modelo errado** nos pontos que herdam do agente
   (classificador de etapa, detector de manipulação, verificador de promessa, resumo de
@@ -10351,7 +10369,7 @@ quem já passou por ali precisa corrigir à mão.
   no fim, em vez de te largar numa tela vazia, o sistema se apresenta: as seis partes
   principais, cada uma com uma frase sobre o que ela faz por você.
 - **Ponha o seu nome, o seu logo e a sua cor no sistema — pela tela, sem linha de comando e
-  sem reiniciar nada.** Em *Administração › Marca*, quem é dono da instalação troca o nome do
+  sem reiniciar nada.** Em _Administração › Marca_, quem é dono da instalação troca o nome do
   sistema, escolhe a cor da marca e sobe o arquivo do logo (PNG ou JPG, até 512 KB). Salvou,
   recarregou: a barra lateral, os botões, o destaque que aparece ao redor do campo em que você
   está digitando, o título da aba e o ícone do navegador já estão repintados. Até esta versão,
@@ -10361,8 +10379,8 @@ quem já passou por ali precisa corrigir à mão.
   deriva onze tons dela e mostra onde cada coisa vai pousar antes de você salvar; se a cor
   escolhida deixaria o texto do botão ilegível no tema escuro, ele anda os degraus necessários
   sozinho. Nada de escolher amarelo e descobrir depois que o botão ficou branco no branco. E
-  cada empresa dentro da mesma instalação pode ter a própria marca, em *Configurações ›
-  Marca*, sem depender de quem instalou o sistema: o que ela deixa em branco é herdado da
+  cada empresa dentro da mesma instalação pode ter a própria marca, em _Configurações ›
+  Marca_, sem depender de quem instalou o sistema: o que ela deixa em branco é herdado da
   instalação.
 - **A sua marca sai da tela e alcança o resto do produto.** O ícone da aba do navegador (que
   simplesmente não existia — a aba ficava sem ícone nenhum), o nome que aparece no aplicativo
@@ -10401,20 +10419,20 @@ quem já passou por ali precisa corrigir à mão.
   códigos internos como "Sessão: org_f3d61bc0" e "Status: INIT", e o passo do time deixou de
   listar "viewer, agent, manager, admin" em inglês.
 - **Dá para responder "em cima" de uma mensagem, e enviar o contato de alguém, como no
-  WhatsApp.** Passe o mouse (ou toque, no celular) sobre a mensagem, escolha *Responder*, e
+  WhatsApp.** Passe o mouse (ou toque, no celular) sobre a mensagem, escolha _Responder_, e
   ela aparece citada logo acima do campo de texto — com um × para desistir. O cliente recebe a
   sua resposta pendurada na mensagem original, do jeito que ele já conversa no WhatsApp.
   Funciona nas duas formas de conectar o número, e o botão aparece também no celular — antes
   de sair, ele só existia para quem tem mouse, ou seja, sumia justamente onde a maior parte do
   atendimento acontece. Trocar de conversa limpa a citação sozinho, para nenhuma frase sair
   citando a mensagem de outro cliente. E no "+" ao lado do campo de mensagem existe agora a
-  opção *Contato*: escolha alguém da sua base ou digite nome e telefone na hora, e chega no
+  opção _Contato_: escolha alguém da sua base ou digite nome e telefone na hora, e chega no
   WhatsApp do cliente como cartão de contato de verdade — ele salva ou chama a pessoa com um
   toque. Quando um cartão de contato chega para você, ele fica clicável dentro do CRM: um
   toque abre a conversa com aquela pessoa, criando o contato se ainda não existir. O telefone
   é conferido antes de sair, para o cartão não levar um número que não existe no WhatsApp (o
   caso clássico do nono dígito).
-- **Importar contatos de uma planilha.** Botão *Importar* na tela de Contatos: você sobe um
+- **Importar contatos de uma planilha.** Botão _Importar_ na tela de Contatos: você sobe um
   arquivo CSV — o que qualquer Excel ou Google Planilhas exporta — e ele entra com nome,
   telefone, e-mail, CPF, aniversário e etiquetas. Os títulos das colunas podem estar em
   português (`nome`, `telefone`, `celular`, `aniversário`, `etiquetas`), e o separador pode
@@ -10440,7 +10458,7 @@ quem já passou por ali precisa corrigir à mão.
   olhava para outro lugar: nenhuma instalação estava protegida, e a tela dizia que estava.
   Agora o número que você digita é o número que decide. Para que ligar isso não corte o
   atendimento de ninguém por engano, a proteção **começa desligada em todo mundo** e só liga
-  em três passos, na tela: *Só acompanhar* → *Me avisar* → *Parar a IA no limite*. Não dá para
+  em três passos, na tela: _Só acompanhar_ → _Me avisar_ → _Parar a IA no limite_. Não dá para
   pular direto para a parada, e quando você a arma ela **só começa a valer 72 horas depois**
   (dá para renunciar a essa espera marcando a caixa). **Você não precisa fazer nada** — quem
   não abrir essa tela continua exatamente como está hoje.
@@ -10471,6 +10489,7 @@ quem já passou por ali precisa corrigir à mão.
 
   Se você veio da 1.3.0 e rodou o `update.sh` uma vez só, é ele que termina o serviço a partir
   desta versão — a instrução de "rodar duas vezes" deixa de ser necessária daqui em diante.
+
 - **Da lista de Contatos direto para a conversa.** Na lista de Contatos e na ficha de cada
   pessoa há agora um botão que leva direto para a conversa dela no Inbox, sem precisar
   procurá-la na lista de conversas.
@@ -10542,12 +10561,12 @@ quem já passou por ali precisa corrigir à mão.
   tentar de novo.
 - **A caixa de conversas contava história errada.** O contador de pendentes só subia — responder não
   abaixava nada — e uma conversa com **uma** mensagem nova podia mostrar 6. Agora responder zera,
-  abrir marca como lida, e os contadores errados são recalculados na atualização. A coluna *Última
-  atividade* dos Contatos ficava parada, e mensagens novas só apareciam recarregando a página —
+  abrir marca como lida, e os contadores errados são recalculados na atualização. A coluna _Última
+  atividade_ dos Contatos ficava parada, e mensagens novas só apareciam recarregando a página —
   agora a tela se reconecta sozinha e recupera o que entrou nesse meio-tempo.
 - **A conexão do WhatsApp não voltava sozinha depois de um reinício.** Reiniciar o servidor ou uma
   falta de memória deixava o número parado — nada entrava, nada saía — até alguém abrir Conexões e
-  clicar em *Reconectar*, às vezes só no dia seguinte. Agora o sistema religa sozinho o número que
+  clicar em _Reconectar_, às vezes só no dia seguinte. Agora o sistema religa sozinho o número que
   apenas parou — mas não quando o WhatsApp recusou a conta nem quando o QR Code espera alguém com o
   celular na mão, porque aí insistir piora.
 - **O WhatsApp ficou três dias fora do ar dizendo apenas "Não foi possível verificar a conexão".**
@@ -10647,13 +10666,13 @@ serviços e cerca de 150 MB por número de WhatsApp conectado —, e isso não m
 **Se o seu servidor foi instalado antes desta versão, rode o `update.sh` DUAS vezes.**
 
 > **As duas execuções são necessárias nesta versão.** O agente que corrige isso sozinho entrou
-> **depois** da 1.3.0 (está em *Não lançado*) — se você está atualizando para a 1.3.0, ele não
+> **depois** da 1.3.0 (está em _Não lançado_) — se você está atualizando para a 1.3.0, ele não
 > existe no que você vai instalar. Esta nota já disse o contrário, e a frase teria feito você
 > esperar cinco minutos por algo que nunca ia acontecer.
-Medido em ensaio numa VPS: a primeira execução traz o agente novo, mas deixa a versão dele
-"solta" — acompanhando o canal em vez de ficar fixa, como o resto do sistema. Isso faria o
-agente saltar sozinho para a versão seguinte num reinício futuro, enquanto o resto do
-servidor continuaria onde está. A segunda execução fixa tudo na mesma versão.
+> Medido em ensaio numa VPS: a primeira execução traz o agente novo, mas deixa a versão dele
+> "solta" — acompanhando o canal em vez de ficar fixa, como o resto do sistema. Isso faria o
+> agente saltar sozinho para a versão seguinte num reinício futuro, enquanto o resto do
+> servidor continuaria onde está. A segunda execução fixa tudo na mesma versão.
 
 Para saber em que pé você está, sem mexer em nada:
 

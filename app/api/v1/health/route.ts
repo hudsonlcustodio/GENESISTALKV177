@@ -56,9 +56,7 @@ const TIMEOUT_MS = 3_000;
 async function withTimeout<T>(p: Promise<T>, ms = TIMEOUT_MS): Promise<T> {
   return Promise.race([
     p,
-    new Promise<T>((_, reject) =>
-      setTimeout(() => reject(new Error(`timeout after ${ms}ms`)), ms),
-    ),
+    new Promise<T>((_, reject) => setTimeout(() => reject(new Error(`timeout after ${ms}ms`)), ms)),
   ]);
 }
 
@@ -75,47 +73,61 @@ async function checkSupabase(): Promise<Check> {
   // CRM inteiro funcionando ao lado. Sem a variável, é a pública, como sempre.
   const url = urlDoSupabaseNoServidor(env.SUPABASE_SERVER_URL, env.NEXT_PUBLIC_SUPABASE_URL);
   try {
-    // Ping leve via REST com anon key — não precisa de service_role pra health check.
-    // Se chegar 200/401/empty body, conexão e API key estão OK.
-    const key = env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-    const res = await withTimeout(
-      fetch(`${url}/rest/v1/organizations?select=id&limit=1`, {
-        headers: {
-          apikey: key,
-          Authorization: `Bearer ${key}`,
-          // O SCHEMA VAI EXPLÍCITO, como o resto do app faz.
-          //
-          // Este `fetch` é cru, então ele cai no schema DEFAULT do PostgREST —
-          // o primeiro da lista "Exposed schemas" do projeto. Que esse default
-          // seja `public` é costume de projeto novo, não garantia do Supabase:
-          // num projeto que já servia outra aplicação (schema próprio primeiro
-          // na lista), o ping procurava `<outro>.organizations`, levava
-          // `404 PGRST205` e o check declarava o banco `down` — com o CRM
-          // atendendo normalmente ao lado.
-          //
-          // Não é falso alarme de menos importância: `update.sh` termina em
-          // `wait_app_healthy`, e sair diferente de zero é o sinal que o
-          // `agent.sh` usa para REVERTER a imagem. Uma atualização boa era
-          // desfeita por uma configuração de painel que o CRM não controla.
-          //
-          // Nenhum client do CRM declara `db.schema` (`lib/supabase/*.ts`), e o
-          // default do supabase-js é `public` — então é `public` que o app
-          // usa de verdade, e é o que esta sonda tem de perguntar para estar
-          // medindo o mesmo banco que o app enxerga.
-          "Accept-Profile": "public",
-        },
-        cache: "no-store",
-      }),
-    );
-    // 200 (lista vazia por RLS) ou 401/403 (auth ok mas RLS bloqueia anon) → conexão OK
-    if (res.status === 200 || res.status === 401 || res.status === 403) {
+    // A consulta de readiness usa o papel do servidor, não a permissão de
+    // leitura anônima de uma tabela tenant-aware. A chave pública é validada
+    // separadamente pelo Auth; RLS restritiva não vira indisponibilidade.
+    if (!env.SUPABASE_SERVICE_ROLE_KEY || !env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+      return { status: "down", latency_ms: Date.now() - t0, reason: "nao_configurado" };
+    }
+    const key = env.SUPABASE_SERVICE_ROLE_KEY;
+    const [res, auth] = await Promise.all([
+      withTimeout(
+        fetch(`${url}/rest/v1/organizations?select=id&limit=1`, {
+          headers: {
+            apikey: key,
+            Authorization: `Bearer ${key}`,
+            // O SCHEMA VAI EXPLÍCITO, como o resto do app faz.
+            //
+            // Este `fetch` é cru, então ele cai no schema DEFAULT do PostgREST —
+            // o primeiro da lista "Exposed schemas" do projeto. Que esse default
+            // seja `public` é costume de projeto novo, não garantia do Supabase:
+            // num projeto que já servia outra aplicação (schema próprio primeiro
+            // na lista), o ping procurava `<outro>.organizations`, levava
+            // `404 PGRST205` e o check declarava o banco `down` — com o CRM
+            // atendendo normalmente ao lado.
+            //
+            // Não é falso alarme de menos importância: `update.sh` termina em
+            // `wait_app_healthy`, e sair diferente de zero é o sinal que o
+            // `agent.sh` usa para REVERTER a imagem. Uma atualização boa era
+            // desfeita por uma configuração de painel que o CRM não controla.
+            //
+            // Nenhum client do CRM declara `db.schema` (`lib/supabase/*.ts`), e o
+            // default do supabase-js é `public` — então é `public` que o app
+            // usa de verdade, e é o que esta sonda tem de perguntar para estar
+            // medindo o mesmo banco que o app enxerga.
+            "Accept-Profile": "public",
+          },
+          cache: "no-store",
+          signal: AbortSignal.timeout(TIMEOUT_MS),
+        }),
+      ),
+      withTimeout(
+        fetch(`${url}/auth/v1/settings`, {
+          headers: { apikey: env.NEXT_PUBLIC_SUPABASE_ANON_KEY },
+          cache: "no-store",
+          signal: AbortSignal.timeout(TIMEOUT_MS),
+        }),
+      ),
+    ]);
+    if (res.status === 200 && auth.status === 200) {
       return { status: "ok", latency_ms: Date.now() - t0, target: alvoDe(url) };
     }
+    const failure = res.status !== 200 ? res : auth;
     return {
       status: "down",
       latency_ms: Date.now() - t0,
-      error: `http_${res.status}`,
-      reason: motivoDoStatusHttp(res.status),
+      error: `http_${failure.status}`,
+      reason: motivoDoStatusHttp(failure.status),
       target: alvoDe(url),
     };
   } catch (e) {
@@ -154,7 +166,12 @@ async function checkRedis(): Promise<Check> {
   const config = validarConfigRedisRest(url, token);
   if (!config.ok) {
     if (config.reason === "nao_configurado") {
-      return { status: "degraded", latency_ms: 0, error: "not_configured", reason: "nao_configurado" };
+      return {
+        status: "degraded",
+        latency_ms: 0,
+        error: "not_configured",
+        reason: "nao_configurado",
+      };
     }
     return {
       status: "down",
@@ -200,7 +217,12 @@ async function checkWaha(): Promise<Check> {
   const t0 = Date.now();
   const base = env.WAHA_API_BASE_URL;
   if (!base) {
-    return { status: "degraded", latency_ms: 0, error: "not_configured", reason: "nao_configurado" };
+    return {
+      status: "degraded",
+      latency_ms: 0,
+      error: "not_configured",
+      reason: "nao_configurado",
+    };
   }
   try {
     // /api/sessions valida conectividade E autenticação num tiro só. O WAHA Core não
@@ -290,11 +312,7 @@ function semAlvo(check: Check): Check {
 }
 
 export async function GET(req: NextRequest) {
-  const [supabase, redis, waha] = await Promise.all([
-    checkSupabase(),
-    checkRedis(),
-    checkWaha(),
-  ]);
+  const [supabase, redis, waha] = await Promise.all([checkSupabase(), checkRedis(), checkWaha()]);
 
   const verboso = req.nextUrl.searchParams.get("verbose") === "1" && segredoInternoConfere(req);
   const filtrar = verboso ? (c: Check) => c : semAlvo;

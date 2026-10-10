@@ -1,0 +1,156 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Finalização operacional Genesis 1.77",
+    "subtitle": "Da origem ao registro, da falha à recuperação",
+    "output": "genesis-operacao-v177.html",
+    "quality_profile": "standard"
+  },
+  "lanes": [
+    {
+      "id": "db",
+      "label": "Banco"
+    },
+    {
+      "id": "app",
+      "label": "Aplicação"
+    },
+    {
+      "id": "host",
+      "label": "Operação do host"
+    },
+    {
+      "id": "humano",
+      "label": "Pessoa"
+    }
+  ],
+  "mainPath": ["source", "rpc", "api", "panel", "operation"],
+  "nodes": [
+    {
+      "id": "source",
+      "lane": "db",
+      "col": 0,
+      "type": "database",
+      "label": "Conversas, leads, eventos, custos e passagens"
+    },
+    {
+      "id": "rpc",
+      "lane": "db",
+      "col": 1,
+      "type": "database",
+      "label": "0613: escopo tenant + gestor + população paginada"
+    },
+    {
+      "id": "api",
+      "lane": "app",
+      "col": 2,
+      "type": "service",
+      "label": "GET metrics/supervisao: filtros validados"
+    },
+    {
+      "id": "panel",
+      "lane": "humano",
+      "col": 3,
+      "type": "ui",
+      "label": "Supervisão: filtros, fonte e drill-down"
+    },
+    {
+      "id": "operation",
+      "lane": "humano",
+      "col": 4,
+      "type": "ui",
+      "label": "Conversa ou lead autorizado"
+    },
+    {
+      "id": "backup",
+      "lane": "host",
+      "col": 0,
+      "type": "service",
+      "label": "Backup v2: donos, ACL, arquivos e hashes"
+    },
+    {
+      "id": "restore",
+      "lane": "host",
+      "col": 1,
+      "type": "service",
+      "label": "Destino vazio + transação + validação"
+    },
+    {
+      "id": "monitor",
+      "lane": "host",
+      "col": 2,
+      "type": "service",
+      "label": "Health, containers e backup recente"
+    },
+    {
+      "id": "operator",
+      "lane": "humano",
+      "col": 3,
+      "type": "ui",
+      "label": "Incidente / receptor HTTPS / recuperação"
+    }
+  ],
+  "edges": [
+    {
+      "from": "source",
+      "to": "rpc",
+      "label": "RLS e organização ativa"
+    },
+    {
+      "from": "rpc",
+      "to": "api",
+      "label": "Mesma população e totais sem limite de mil"
+    },
+    {
+      "from": "api",
+      "to": "panel",
+      "label": "Freshness e ausência explícita"
+    },
+    {
+      "from": "panel",
+      "to": "operation",
+      "label": "Próximo passo no registro"
+    },
+    {
+      "from": "operation",
+      "to": "source",
+      "label": "Mudança por rotas existentes auditadas"
+    },
+    {
+      "from": "source",
+      "to": "backup",
+      "label": "Snapshot MVCC e contrato de segurança"
+    },
+    {
+      "from": "backup",
+      "to": "restore",
+      "label": "Bundle protegido e compatível"
+    },
+    {
+      "from": "restore",
+      "to": "source",
+      "label": "Contagens/ACL conferidas na transação"
+    },
+    {
+      "from": "backup",
+      "to": "monitor",
+      "label": "Idade e integridade"
+    },
+    {
+      "from": "api",
+      "to": "monitor",
+      "label": "Readiness real"
+    },
+    {
+      "from": "monitor",
+      "to": "operator",
+      "label": "Incidente deduplicado e recuperação"
+    },
+    {
+      "from": "operator",
+      "to": "operation",
+      "label": "Investigar origem e reparar"
+    }
+  ]
+}

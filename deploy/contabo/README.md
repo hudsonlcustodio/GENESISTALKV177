@@ -91,24 +91,86 @@ No single-server acrescente `-f docker-compose.single-server.yml` ANTES do
 override Genesis. Se usa CA própria Supabase, inclua o overlay CA como faz o
 wrapper. Nunca execute `config` sem redirecionamento privado: contém secrets.
 
+## Configuração do Supabase
+
+Mantemos o contrato do instalador Deskcomm: URL do projeto, chave pública
+anon/publishable, chave service-role/secret e conexão PostgreSQL do mesmo projeto.
+As chaves entram no processo de instalação e no `.env` protegido do host. Provedores
+IA e SMTP continuam nas telas existentes da plataforma; não há troca de banco em
+uma sessão do CRM. O modo single-server continua usando o instalador existente.
+O template Contabo mapeia as mesmas variáveis; preserve os segredos de cifra
+que o instalador gerou. Nunca use `install.sh` vendor para atualizar uma instalação
+Genesis: o deploy manual desta pasta constrói as imagens Genesis.
+
 ## Backup, restore e rollback
 
-`hostgator-setup-kit/backup.sh` salva banco comprimido com validação gzip,
-sessões WhatsApp e Storage no modo single-server. Um dump íntegro não prova
-restauração. Retenção padrão do kit: 14 por tipo; atualizações Genesis usam
-subpasta por execução e exigem política de retenção/cópia externa do operador.
-Nunca commite backups. Salve `.env`, `.runtime/admin-credentials`, credenciais
-Supabase e chaves de cifra em cofre separado: dados cifrados dependem delas.
+`hostgator-setup-kit/backup.sh` produz um bundle v2: dump com donos/ACLs,
+contrato de schema/RLS, verificações de contagens e manifesto SHA256. Sessões de
+canais pareados exigem snapshot não vazio; o modo single-server exige os anexos.
+Falha em qualquer componente impede a atualização. `BACKUP_KEEP=14` conserva os
+14 bundles completos mais recentes, incluindo as subpastas de deploy.
 
-Restore: use `hostgator-setup-kit/restore.sh` num clone isolado, com banco,
-volumes, rede e domínio de teste; confira auth, tenants, anexos e sessões.
-Registre tempos observados. O restore do kit altera dados e deve ser executado
-somente no destino isolado escolhido. Não há RTO/RPO afirmado nesta entrega.
+Configure `BACKUP_OFFSITE_DIR` como uma pasta existente, dedicada a esta
+instalação, montada de um armazenamento externo criptografado. O script copia e
+verifica o bundle inteiro; falha na cópia reprova o backup. A retenção dessa cópia
+externa deve ser configurada no provedor. Um diretório em outro ponto do mesmo
+disco não protege contra perda da VPS. Storage gerenciado externo exige também
+backup/restore dos objetos pelo provedor; o dump cobre metadados, não os blobs.
 
-Rollback do app: `.runtime/contabo/DATA/previous-images` guarda IDs anteriores
-e `rollback-DATA` preserva as imagens antes do build. Reaplique cada ID à tag
-`genesis-talk-SERVICO:1.77.0` e execute o mesmo compose `up -d --no-build --wait`;
-depois rode smoke. Verifique compatibilidade do schema; não faça down migration.
+Guarde `.env`, credenciais Supabase e chaves de cifra em cofre separado: dados
+cifrados dependem delas. Não envie bundles ou arquivos de ambiente ao Git.
+
+Em um clone isolado, vazio, com o mesmo major PostgreSQL (15/17), roles,
+extensões e versão Supabase compatíveis, execute:
+
+```bash
+bash hostgator-setup-kit/restore.sh /caminho/db-INSTANTE.sql.gz
+```
+
+O restore verifica os hashes antes de tocar o banco, exige app/workers/canal
+parados e volumes vazios. Executa SQL, contagens e contrato de privilégios na
+mesma transação com `ON_ERROR_STOP`. Bancos ocupados e dumps legados são
+recusados. Falha de volume após o commit é declarada: repare o volume sem repetir
+o banco. Depois confira autenticação, tenants, anexos, pareamento e uma jornada
+humana/IA. Supabase gerenciado pode impedir recriar schemas internos; valide
+compatibilidade em um projeto descartável antes de escolher esse destino.
+
+Rollback de aplicação:
+
+```bash
+bash deploy/contabo/rollback.sh .runtime/contabo/AAAAMMDDTHHMMSSZ
+```
+
+O comando valida o registro desta instalação, as imagens anteriores e o contrato
+de schema/ACL, preserva imagens de resgate e executa smoke após voltar. O delta
+0613 é aplicado na atualização, em transação, com os consumidores pausados.
+Na primeira aplicação, a compatibilidade aditiva é provada comparando todo o
+catálogo sem as três funções novas. Qualquer outra mudança de schema/permissões
+impede rollback automático e exige ensaio em clone. Não executamos down migrations.
+
+## Monitor e agendamento
+
+Preencha `GENESIS_ALERT_WEBHOOK` com o receptor HTTPS autorizado para os alertas.
+Sem receptor, os incidentes ficam somente no log local privado; não há notificação
+externa. Configure `GENESIS_ALERT_AFTER_FAILURES=3` e
+`GENESIS_BACKUP_MAX_HOURS=26`. No host Linux homologado:
+
+```bash
+bash deploy/contabo/monitor.sh
+bash deploy/contabo/schedule.sh
+```
+
+O monitor confere health real, estado/healthcheck de app/worker/scheduler e idade
+mais integridade do bundle. A integridade é reconferida a cada bundle novo ou
+15 minutos; health e contêineres, a cada minuto. Após três falhas consecutivas,
+envia um incidente deduplicado e envia recuperação quando os checks voltam.
+Falha no receptor é repetida no próximo ciclo. Logs e estado ficam em
+`.runtime/contabo/`, com permissões privadas. O cron instala backup às 02:17 no
+fuso do host e monitor a cada minuto, preservando os outros agendamentos.
+
+O ensaio automatizado usa PostgreSQL isolado e dados sintéticos. Seus tempos
+não são RTO/RPO da produção. O ensaio com volume real e o receptor definitivo
+continuam para a homologação futura autorizada pelo dono.
 
 ## Evidência e gate final
 

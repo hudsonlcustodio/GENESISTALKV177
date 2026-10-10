@@ -1,0 +1,43 @@
+[
+  {
+    "name": "audit-full",
+    "exitCode": 1,
+    "signal": null,
+    "timedOut": false,
+    "durationSeconds": 2.733,
+    "command": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:/Users/INFLUX/AppData/Roaming/npm/node_modules/pnpm/bin/pnpm.cjs",
+      "audit",
+      "--json"
+    ],
+    "log": ".runtime/audit-2026-10-10/audit-full.log"
+  },
+  {
+    "name": "audit-prod",
+    "exitCode": 0,
+    "signal": null,
+    "timedOut": false,
+    "durationSeconds": 1.54,
+    "command": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:/Users/INFLUX/AppData/Roaming/npm/node_modules/pnpm/bin/pnpm.cjs",
+      "audit",
+      "--prod",
+      "--json"
+    ],
+    "log": ".runtime/audit-2026-10-10/audit-prod.log"
+  },
+  {
+    "name": "secret-scan",
+    "exitCode": 1,
+    "signal": null,
+    "timedOut": false,
+    "durationSeconds": 0.758,
+    "command": [
+      "C:/Python314/python.exe",
+      "scripts/genesis-secret-scan.py"
+    ],
+    "log": ".runtime/audit-2026-10-10/secret-scan.log"
+  }
+]

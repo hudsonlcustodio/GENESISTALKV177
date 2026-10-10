@@ -24,6 +24,8 @@ unset COMPOSE_PROJECT_NAME
 
 ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
 KIT_DIR="$ROOT/hostgator-setup-kit"
+export RECOVERY_STUB_HELPER="$ROOT/tests/shell/recovery-v2-stub.sh"
+source "$RECOVERY_STUB_HELPER"
 WORK="$(mktemp -d)"
 trap 'rm -rf "$WORK"' EXIT
 
@@ -48,6 +50,8 @@ cat > "$WORK/bin/docker" <<'STUB'
 #!/usr/bin/env bash
 set -uo pipefail
 printf '%s\n' "$*" >> "$DUBLE_LOG"
+source "$RECOVERY_STUB_HELPER"
+if recovery_v2_stub "$@"; then exit 0; fi
 case " $* " in
   *" ps -a -q waha "*) printf '%s\n' "${WAHA_ID:-}"; exit 0 ;;
   *" inspect "*)

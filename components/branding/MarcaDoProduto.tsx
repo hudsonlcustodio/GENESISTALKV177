@@ -1,4 +1,4 @@
-import { SIMBOLO } from "@/lib/branding/desenho";
+import { LOGOTIPO, SIMBOLO } from "@/lib/branding/desenho";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -7,54 +7,32 @@ type Props = {
   readonly decorativo?: boolean;
 };
 
-const SIMBOLO_CLARO_ESCURO = "fill-[#0b3d3a] dark:fill-[#7ed321]";
-const NOME_CLARO_ESCURO = "fill-[#0b3d3a] dark:fill-[#ffffff]";
-const SUFIXO_CLARO_ESCURO = "fill-[#6b7280] dark:fill-[#00b8d9]";
-
-export const CLASSES_DE_COR = {
-  simbolo: SIMBOLO_CLARO_ESCURO,
-  nome: NOME_CLARO_ESCURO,
-  sufixo: SUFIXO_CLARO_ESCURO,
-} as const;
-
-function acessibilidade(nome: string, decorativo: boolean) {
-  return decorativo
-    ? ({ "aria-hidden": true } as const)
-    : ({ role: "img", "aria-label": nome } as const);
-}
-
-export function SimboloDoProduto({ nome, className, decorativo = false }: Props) {
+function ArteDoProduto({
+  nome,
+  className,
+  decorativo = false,
+  simbolo = false,
+}: Props & { simbolo?: boolean }) {
+  const arte = simbolo ? SIMBOLO : LOGOTIPO;
   return (
-    <svg viewBox={SIMBOLO.viewBox} className={cn("shrink-0", className)} {...acessibilidade(nome, decorativo)}>
-      <g className={SIMBOLO_CLARO_ESCURO} transform={SIMBOLO.transform}>
-        <path d={SIMBOLO.d} fillRule="evenodd" />
-        <rect {...SIMBOLO.modulo} className="fill-[#00b8d9] dark:fill-[#00b8d9]" />
-      </g>
+    <svg
+      viewBox={arte.viewBox}
+      className={cn("shrink-0 rounded-sm", className)}
+      {...(decorativo ? { "aria-hidden": true as const } : { role: "img", "aria-label": nome })}
+    >
+      <title>{nome}</title>
+      {/* A arte original permanece intacta. O viewport remove apenas seu respiro
+          externo; branco preserva o lettering azul também no tema escuro. */}
+      <rect x="0" y="0" width="1672" height="941" fill="#ffffff" />
+      <image href={arte.arquivo} width="1672" height="941" />
     </svg>
   );
 }
 
-export function LogotipoDoProduto({ nome, className, decorativo = false }: Props) {
-  return (
-    <svg viewBox="0 0 520 100" className={cn("shrink-0", className)} {...acessibilidade(nome, decorativo)}>
-      <g transform="translate(0 0)">
-        <g className={SIMBOLO_CLARO_ESCURO}>
-          <path d={SIMBOLO.d} fillRule="evenodd" />
-          <rect {...SIMBOLO.modulo} className="fill-[#00b8d9] dark:fill-[#00b8d9]" />
-        </g>
-      </g>
-      <text
-        x="118"
-        y="62"
-        className={NOME_CLARO_ESCURO}
-        fontFamily="Arial, system-ui, sans-serif"
-        fontSize="42"
-        fontWeight="800"
-        letterSpacing="1.5"
-      >
-        {nome}
-      </text>
-      <rect x="118" y="72" width="235" height="5" rx="2.5" className={SUFIXO_CLARO_ESCURO} />
-    </svg>
-  );
+export function SimboloDoProduto(props: Props) {
+  return <ArteDoProduto {...props} simbolo />;
+}
+
+export function LogotipoDoProduto(props: Props) {
+  return <ArteDoProduto {...props} />;
 }
