@@ -1,143 +1,159 @@
-# GENESIS TALK v1.77
+<div align="center">
 
-GENESIS TALK é uma plataforma multi-tenant de atendimento, CRM, automação e
-agentes de IA, baseada no DeskcommCRM, com identidade Genesis e operação
-self-hosted. A versão 1.77 reconcilia o Genesis v0.13 com a base técnica fornecida
-em `DeskcommCRM-main1-77.zip`, preservando os contratos de compatibilidade.
+<img src="public/branding/genesis-360.png" alt="Genesis 360 Talk AI" width="420">
 
-## Estado do candidato
+# Genesis 360 Talk AI
 
-**Candidato validado em CI; homologação na Contabo pendente.** Aplicação e imagens
-não foram publicadas. A homologação no servidor foi adiada pelo proprietário.
+**Atendimento, vendas e inteligência artificial em uma única plataforma.**
 
-| Referência             | Valor                                                                                                                                            |
-| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Tag do código validado | [`genesis-v1.77.0-rc.1`](https://github.com/hudsonlcustodio/GENESISTALKV177/tree/genesis-v1.77.0-rc.1)                                           |
-| Commit validado        | [`c390327b3e9f89985c974b314587988587d86724`](https://github.com/hudsonlcustodio/GENESISTALKV177/commit/c390327b3e9f89985c974b314587988587d86724) |
-| Revisão da entrega     | [PR #4](https://github.com/hudsonlcustodio/GENESISTALKV177/pull/4)                                                                               |
+Centralize conversas de WhatsApp, organize seu CRM e conecte sua equipe a agentes
+de IA, com instalação no seu próprio servidor.
 
-Os resultados abaixo pertencem a esse SHA. Atualizações posteriores apenas de
-documentação não alteram a tag nem ampliam o alcance da validação.
+[O que faz](#o-que-o-genesis-faz) · [Instalar](#instalação-na-vps) · [Primeiro acesso](#primeiro-acesso)
 
-## O que foi concluído
+</div>
 
-- **Supervisão 360:** 15 populações operacionais de atendimento humano e IA,
-  filtros, paginação, detalhamento, custos/tokens e acesso aos registros de origem.
-  Organização, permissões de gestor e isolamento RLS são validados no servidor.
-- **Experiência mobile e marca:** jornadas de Inbox, CRM, contatos, agenda,
-  tarefas e follow-up; verificações em larguras de 360 a 430 px; identidade
-  Genesis oficial, preservando configurações existentes de white-label.
-- **Agenda e acesso:** compromissos em andamento classificados em Próximos;
-  formulários de autenticação aguardam a hidratação antes de liberar preenchimento
-  e envio, evitando POST nativo e perda dos campos.
-- **Health e recuperação:** checks autenticados de REST/Auth; backup v2 com
-  donos, ACL, schema/RLS, contagens e SHA256; restore recusa destinos ocupados,
-  arquivos adulterados e bundles incompletos.
-- **Operação:** deploy manual registra SHA e imagens; rollback exige prova de
-  compatibilidade; monitor verifica serviços e backups, deduplica incidentes e
-  sinaliza recuperação. Cron e alertas estão preparados para configuração no host.
+## O que o Genesis faz
 
-Os contratos GEN-001..023 continuam orientando regressões de handoff, realtime,
-suporte, LGPD e segurança de efeitos externos. A vertical imobiliária IMOBI
-permanece fora desta entrega do produto geral.
+O **Genesis 360 Talk AI** reúne atendimento humano, agentes de IA e gestão comercial
+para acompanhar o cliente da primeira conversa ao fechamento.
 
-## Validação do código
+- **WhatsApp integrado:** atendimento por QR code via WAHA ou canal oficial da
+  Meta, com conversas, anexos e transferência entre atendentes.
+- **CRM e funis:** contatos, oportunidades e etapas de venda organizados em Kanban.
+- **Agentes de IA:** atendimento e qualificação com base de conhecimento, ferramentas
+  do CRM e passagem para uma pessoa quando necessário.
+- **Follow-ups e automações:** acompanhamento de contatos, regras por eventos,
+  webhooks e retomada de oportunidades.
+- **Supervisão 360:** visão conjunta da operação humana e de IA, com filas, carga
+  da equipe, falhas, tempos de resposta, filtros e custos registrados.
+- **Agenda e tarefas:** organização dos compromissos e das próximas ações da equipe.
+- **Uso no celular:** interfaces adaptadas para trabalhar com Inbox, contatos, CRM,
+  agenda e tarefas em telas menores.
+- **Organizações e permissões:** separação dos dados entre empresas, controle de
+  acesso por função e recursos de auditoria e privacidade.
 
-Os cinco workflows passaram no commit `c390327`:
+## Instalação na VPS
 
-| Gate                                                                                       | Evidência                                                                                        |
-| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
-| Tipagem, lint, unitários, shell e DB/RLS PostgreSQL 15/17, incluindo atualização com dados | [CI aprovado](https://github.com/hudsonlcustodio/GENESISTALKV177/actions/runs/38099542262)       |
-| Governança, build e 11 verificações de recuperação                                         | [Quality aprovado](https://github.com/hudsonlcustodio/GENESISTALKV177/actions/runs/38099542233)  |
-| E2E em seis partes e capturas mobile finais                                                | [E2E aprovado](https://github.com/hudsonlcustodio/GENESISTALKV177/actions/runs/38099542241)      |
-| Build e tamanho                                                                            | [Build aprovado](https://github.com/hudsonlcustodio/GENESISTALKV177/actions/runs/38099542239)    |
-| Imagens e verificações de runtime AMD64/ARM64                                              | [Imagens aprovadas](https://github.com/hudsonlcustodio/GENESISTALKV177/actions/runs/38099542244) |
+A instalação do Genesis utiliza o kit próprio em `deploy/contabo`, que prepara e
+compila os serviços no servidor. Há duas opções: Supabase na mesma VPS ou um
+projeto Supabase externo.
 
-Os jobs de publicação de imagens foram intencionalmente ignorados. As capturas
-finais estão no artefato `evidencia-parte-6` do E2E; capturas versionadas em
-`evidence/finalizacao-v177` são históricas e têm a origem indicada.
+> **Versão 1.77 — candidato de homologação.** O código foi validado em CI;
+> a homologação na Contabo e com provedores reais permanece pendente.
+> O [guia de instalação](deploy/contabo/README.md) detalha os requisitos e a operação.
 
-Uma prova local adicional de Realtime confirmou atualização pelo socket sem
-reload, com controle negativo usando token anônimo. A spec original continua
-fora do CI; as cinco exclusões e seus motivos estão declarados no
-[workflow E2E](.github/workflows/e2e.yml). Dispositivos físicos e métricas de
-desempenho mobile ainda não foram medidos.
+### O que você precisa
 
-O restore PostgreSQL sintético levou **394 ms**. Esse valor não representa RTO
-de produção; recuperação de volumes reais e rollback completo para imagens
-anteriores ainda exigem ensaio no ambiente de homologação.
+| Item        | Requisito                                                                            |
+| ----------- | ------------------------------------------------------------------------------------ |
+| Servidor    | VPS Linux AMD64 ou ARM64, com acesso SSH e permissão para operar o Docker            |
+| Memória     | Piso de 4 GB; 8 GB recomendados. A compilação pode exigir swap                       |
+| Disco       | Pelo menos 20 GiB livres para passar no preflight; dimensione também dados e backups |
+| Ferramentas | Docker com Compose, Git e utilitários listados no guia de instalação                 |
+| Domínio     | Registro DNS A apontando para a VPS e portas 80/443 disponíveis para o Caddy         |
+| Supabase    | Na mesma VPS ou um projeto externo dedicado, com schema `public` vazio               |
+| WhatsApp    | Número para pareamento via QR code ou credenciais do canal oficial da Meta           |
+| IA          | Credenciais do provedor escolhido, configuráveis posteriormente na plataforma        |
+| E-mail      | SMTP configurado no Supabase Auth para confirmação e recuperação de senha            |
 
-**Dependência com achado aberto:** `braces@3.0.3` recebe um patch local com oito
-reproduções automatizadas, mas o audit continua sinalizando a versão como HIGH.
-Veja o [advisory GHSA-vfj7-8cjw-p6xm](https://github.com/advisories/GHSA-vfj7-8cjw-p6xm).
+Se a VPS já tiver um proxy nas portas 80/443, siga a integração descrita no guia
+antes de instalar.
 
-## Instalação e configuração
+### 1. Conecte-se ao servidor
 
-A rota de instalação e atualização manual está no
-[guia Contabo](deploy/contabo/README.md), com opções de Supabase externo ou
-single-server. O guia inclui preflight, deploy, smoke, backup, restore, rollback
-e monitoramento. Use os wrappers e o override Genesis descritos nele.
-
-O Supabase segue o fluxo existente do instalador Deskcomm: URL do projeto, chave
-pública anon/publishable, chave service-role/secret e conexão PostgreSQL do mesmo
-projeto entram na instalação e no `.env` protegido do host. IA e SMTP mantêm as
-telas existentes da plataforma. Segredos e credenciais geradas não entram no Git.
-
-Instalações novas usam [supabase/baseline.sql](supabase/baseline.sql). As migrations
-mantêm o histórico de evolução. Bancos Aurum/IMOBI existentes precisam de um
-fingerprint real do schema antes de qualquer migração de compatibilidade.
-
-**Atualização automática/GHCR: adiada na v1.77.** O código herdado permanece para
-compatibilidade, mas o canal de publicação Genesis ainda exige validação.
-Instalação e atualização desta entrega seguem a rota manual Contabo; não execute
-diretamente o instalador, `update.sh` ou `agent.sh` herdados.
-
-## Pendências antes da publicação
-
-1. Homologar a instalação na VPS Contabo e configurar domínio, DNS, TLS e redirects
-   de autenticação.
-2. Conectar Supabase/Auth/SMTP e provedores reais; parear e validar os canais.
-3. Configurar armazenamento externo criptografado, receptor de alertas e cron no
-   servidor de homologação.
-4. Ensaiar restore com dados, objetos e volumes reais; testar rollback completo e
-   medir RTO/RPO nesse ambiente.
-
-## Documentação
-
-- [Finalização operacional: definições, implementação e limites](docs/genesis/FINALIZACAO-v1.77.md).
-- [Instalação e operação Contabo](deploy/contabo/README.md).
-- [Estado do projeto](docs/genesis/PROJECT-STATE.md).
-- [Reconciliação com a base Deskcomm](docs/genesis/UPSTREAM-RECONCILIATION-v1.77.md).
-- [Escopo mobile e Supervisão 360](docs/genesis/PRD-MOBILE-FIRST-SUPERVISAO-360-v0.12.md).
-- [Gate de release](docs/genesis/RELEASE-GATE-v0.8.md).
-- [Decisão sobre atualização automática](docs/genesis/AUTO-UPDATE-DEFERRED-v1.77.md).
-- [Índice técnico](docs/index.md) e [contrato de contribuição](AGENTS.md).
-
-## Origem e licença
-
-GENESIS TALK deriva do [DeskcommCRM](https://github.com/melgarafael/DeskcommCRM)
-e preserva a licença original e os contratos técnicos de compatibilidade. O
-[README upstream recebido](docs/upstream/DESKCOMM-README-at-intake-v1.77.md)
-permanece arquivado. Cookies legados, headers de webhook e nomes de migrations
-mantêm seus identificadores quando necessários à compatibilidade.
-
-## Guias de desenvolvimento
-
-Os guias herdados `deskcomm-*` orientam contribuição e manutenção da base técnica.
-No Codex, a forma explícita de chamar um deles é `$deskcomm-instalar`; para o
-deploy Genesis, use o guia Contabo acima, com o override Genesis.
-Quem desenvolve os guias pode ligá-los ao clone revisado:
+No terminal do computador, use os dados SSH fornecidos pela hospedagem:
 
 ```bash
-bash scripts/instalar-guias.sh --fonte .
+ssh -p PORTA USUARIO@IP_DA_VPS
 ```
 
-Guias copiados **não** se atualizam sozinhos: execute a instalação novamente
-após revisar a fonte. Um link criado com `--fonte` acompanha essa árvore.
-No Claude Code, o guia global instalado vale mais que o do clone aberto;
-quem edita a fonte deve usar o link para o clone revisado ou remover a instalação
-global. Para desfazer somente os guias que o script registrou:
+Substitua `PORTA`, `USUARIO` e `IP_DA_VPS`. A porta SSH padrão é `22`.
+Os próximos comandos são executados dentro da VPS.
+
+### 2. Baixe o candidato validado
 
 ```bash
-bash -s -- --remover < scripts/instalar-guias.sh
+git clone --branch genesis-v1.77.0-rc.1 --depth 1 https://github.com/hudsonlcustodio/GENESISTALKV177.git genesis-360-talk-ai
+cd genesis-360-talk-ai
 ```
+
+Escolha **uma** das opções abaixo para uma instalação nova.
+
+### 3A. Instale com Supabase na mesma VPS
+
+Nesta opção, o kit prepara o Supabase local, gera as credenciais e instala os
+serviços Genesis. Execute em um clone novo, sem `.env` ou instalação anterior.
+
+```bash
+bash deploy/contabo/install.sh --single-server --domain crm.seudominio.com.br
+```
+
+Troque `crm.seudominio.com.br` pelo domínio que já aponta para a VPS.
+A instalação gera as credenciais iniciais em `.runtime/admin-credentials`,
+com acesso protegido no servidor.
+
+### 3B. Instale com Supabase externo
+
+Use um projeto Supabase dedicado, sem tabelas existentes no schema `public`.
+No Supabase Auth, configure:
+
+- **Site URL:** `https://crm.seudominio.com.br`
+- **Redirect URL:** `https://crm.seudominio.com.br/auth/confirm`
+
+Prepare o arquivo de configuração:
+
+```bash
+cp deploy/contabo/.env.example .env
+chmod 600 .env
+```
+
+Edite o `.env` no servidor e preencha os campos obrigatórios do
+[template de instalação](deploy/contabo/.env.example), incluindo:
+
+| Configuração           | O que informar                                                                                              |
+| ---------------------- | ----------------------------------------------------------------------------------------------------------- |
+| Domínio e URLs         | `DOMAIN`, `ACME_EMAIL`, `NEXT_PUBLIC_APP_URL` e `NEXT_PUBLIC_ADMIN_URL`                                     |
+| Supabase público       | `NEXT_PUBLIC_SUPABASE_URL` e `NEXT_PUBLIC_SUPABASE_ANON_KEY`                                                |
+| Supabase servidor      | `SUPABASE_SERVICE_ROLE_KEY`, `SUPABASE_DB_URL` e `SUPABASE_DB_ADMIN_URL` do mesmo projeto                   |
+| Segurança e serviços   | Segredos de aplicação, cifra, cron, WAHA e Redis indicados no template; preserve os pares e hashes exigidos |
+| Primeiro administrador | `OWNER_EMAIL`, `OWNER_PASSWORD` e `OWNER_ORG_NAME`                                                          |
+
+As chaves do Supabase seguem o contrato do instalador: chave pública
+anon/publishable e chave de servidor service-role/secret. IA e SMTP podem ser
+configurados posteriormente; o SMTP do Auth é necessário para os e-mails de acesso.
+
+Depois de preencher a configuração:
+
+```bash
+bash deploy/contabo/install.sh --external
+```
+
+O instalador aplica o banco inicial, cria o primeiro administrador, compila e
+inicia os serviços Genesis. Depois do bootstrap, remova `OWNER_PASSWORD` do `.env`.
+Mantenha o arquivo protegido e fora do Git.
+
+## Primeiro acesso
+
+1. Abra `https://crm.seudominio.com.br`, usando o domínio configurado.
+2. Entre com o administrador criado na instalação. No modo single-server,
+   consulte as credenciais iniciais no arquivo protegido `.runtime/admin-credentials`.
+3. Configure a organização e a equipe.
+4. Conecte o WhatsApp por QR code ou configure o canal oficial da Meta.
+5. Cadastre as credenciais de IA, prepare a base de conhecimento e configure os agentes.
+6. Organize os funis, tarefas e follow-ups da operação.
+
+Para conferir a instalação pelo terminal:
+
+```bash
+bash deploy/contabo/smoke.sh
+```
+
+Os procedimentos de atualização manual, backup e recuperação estão no
+[guia Contabo](deploy/contabo/README.md). Esta versão utiliza os wrappers Genesis;
+seu canal de atualização automática ainda está adiado.
+
+---
+
+Baseado no [DeskcommCRM](https://github.com/melgarafael/DeskcommCRM), com
+personalizações Genesis e preservação da [licença MIT](LICENSE).
