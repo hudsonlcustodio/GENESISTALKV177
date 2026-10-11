@@ -15,7 +15,7 @@ jobs:
       # Full type coverage includes the test suite; local 4 GiB heap exhausted.
       NODE_OPTIONS: --max-old-space-size=6144
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
       - uses: ./.github/actions/preparar-node
@@ -27,7 +27,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
       - uses: actions/setup-node@v4
