@@ -3,6 +3,7 @@
 import { useState, useTransition } from "react";
 
 import { useT } from "@/hooks/i18n/useT";
+import { useAuthFormReady } from "./useAuthFormReady";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -14,6 +15,7 @@ interface RecoveryFormProps {
 
 export function RecoveryForm({ next }: RecoveryFormProps) {
   const t = useT();
+  const ready = useAuthFormReady();
   const [email, setEmail] = useState("");
   const [code, setCode] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -61,7 +63,7 @@ export function RecoveryForm({ next }: RecoveryFormProps) {
           maxLength={8}
           required
           placeholder="ABCD2345"
-          className="font-mono uppercase tracking-widest"
+          className="font-mono tracking-widest uppercase"
           value={code}
           onChange={(e) => setCode(e.target.value.toUpperCase())}
         />
@@ -79,7 +81,7 @@ export function RecoveryForm({ next }: RecoveryFormProps) {
         </div>
       )}
 
-      <Button type="submit" className="w-full" disabled={isPending}>
+      <Button type="submit" className="w-full" disabled={!ready || isPending}>
         {isPending ? t("Validando…") : t("Recuperar acesso")}
       </Button>
     </form>

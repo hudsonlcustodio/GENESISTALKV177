@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useTransition, useState } from "react";
 
 import { useT } from "@/hooks/i18n/useT";
+import { useAuthFormReady } from "./useAuthFormReady";
 import { forgotPasswordSchema, type ForgotPasswordInput } from "@/lib/auth/schemas";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,6 +14,7 @@ import { requestPasswordReset } from "@/app/actions/auth/requestPasswordReset";
 
 export function ForgotPasswordForm() {
   const t = useT();
+  const ready = useAuthFormReady();
   const [isPending, startTransition] = useTransition();
   const [serverError, setServerError] = useState<string | null>(null);
   const [sent, setSent] = useState(false);
@@ -46,10 +48,7 @@ export function ForgotPasswordForm() {
 
   if (sent) {
     return (
-      <div
-        className="space-y-2 rounded-md border bg-muted/40 px-4 py-6 text-center"
-        role="status"
-      >
+      <div className="space-y-2 rounded-md border bg-muted/40 px-4 py-6 text-center" role="status">
         <p className="text-sm font-medium">{t("Verifique seu e-mail")}</p>
         <p className="text-sm text-muted-foreground">
           {t("Se existir uma conta com esse e-mail, enviamos um link para redefinir a senha.")}
@@ -82,7 +81,7 @@ export function ForgotPasswordForm() {
           {serverError}
         </div>
       )}
-      <Button type="submit" className="w-full" disabled={isPending}>
+      <Button type="submit" className="w-full" disabled={!ready || isPending}>
         {isPending ? t("Enviando...") : t("Enviar link de redefinição")}
       </Button>
     </form>

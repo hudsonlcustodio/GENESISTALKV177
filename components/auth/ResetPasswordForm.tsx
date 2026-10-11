@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useTransition, useState } from "react";
 
 import { useT } from "@/hooks/i18n/useT";
+import { useAuthFormReady } from "./useAuthFormReady";
 import { resetPasswordSchema, type ResetPasswordInput } from "@/lib/auth/schemas";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -15,6 +16,7 @@ import { PasswordStrength } from "@/components/auth/PasswordStrength";
 
 export function ResetPasswordForm() {
   const t = useT();
+  const ready = useAuthFormReady();
   const [isPending, startTransition] = useTransition();
   const [serverError, setServerError] = useState<string | null>(null);
   const [needsMfa, setNeedsMfa] = useState(false);
@@ -148,7 +150,7 @@ export function ResetPasswordForm() {
           {serverError}
         </div>
       )}
-      <Button type="submit" className="w-full" disabled={isPending}>
+      <Button type="submit" className="w-full" disabled={!ready || isPending}>
         {isPending ? t("Salvando...") : t("Definir nova senha")}
       </Button>
     </form>

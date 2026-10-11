@@ -4,6 +4,7 @@ import { useEffect, useState, useTransition } from "react";
 import Link from "next/link";
 
 import { useT } from "@/hooks/i18n/useT";
+import { useAuthFormReady } from "./useAuthFormReady";
 import { TOTPInput } from "@/components/auth/TOTPInput";
 import { Button } from "@/components/ui/button";
 import { verifyMfa } from "@/app/actions/auth/verifyMfa";
@@ -14,6 +15,7 @@ interface MfaFormProps {
 
 export function MfaForm({ next }: MfaFormProps) {
   const t = useT();
+  const ready = useAuthFormReady();
   const [code, setCode] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [locked, setLocked] = useState(false);
@@ -77,7 +79,7 @@ export function MfaForm({ next }: MfaFormProps) {
         value={code}
         onChange={setCode}
         onComplete={(c) => submit(c)}
-        disabled={isPending || locked}
+        disabled={!ready || isPending || locked}
         autoFocus
         hasError={!!error}
       />
@@ -96,13 +98,16 @@ export function MfaForm({ next }: MfaFormProps) {
       <Button
         type="submit"
         className="w-full"
-        disabled={isPending || locked || code.length !== 6}
+        disabled={!ready || isPending || locked || code.length !== 6}
       >
         {isPending ? t("Verificando...") : t("Verificar")}
       </Button>
 
       <div className="text-center text-sm">
-        <Link href={recoveryHref} className="text-muted-foreground underline-offset-4 hover:underline">
+        <Link
+          href={recoveryHref}
+          className="text-muted-foreground underline-offset-4 hover:underline"
+        >
           {t("Perdi acesso ao autenticador")}
         </Link>
       </div>

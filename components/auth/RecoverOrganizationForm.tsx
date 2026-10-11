@@ -3,6 +3,7 @@
 import { useState, useTransition } from "react";
 
 import { useT } from "@/hooks/i18n/useT";
+import { useAuthFormReady } from "./useAuthFormReady";
 import { recoverOrganization } from "@/app/actions/auth/recoverOrganization";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -49,6 +50,7 @@ export function RecoverOrganizationForm({
   comAprovacao?: boolean;
 }) {
   const t = useT();
+  const ready = useAuthFormReady();
   const [name, setName] = useState(nomeSugerido ?? "");
   const [error, setError] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
@@ -74,7 +76,7 @@ export function RecoverOrganizationForm({
           onChange={(event) => setName(event.target.value)}
           autoComplete="organization"
           autoFocus
-          disabled={isPending}
+          disabled={!ready || isPending}
           aria-invalid={Boolean(error)}
         />
       </div>
@@ -83,7 +85,11 @@ export function RecoverOrganizationForm({
           {error}
         </p>
       )}
-      <Button className="w-full" type="submit" disabled={isPending || name.trim().length < 2}>
+      <Button
+        className="w-full"
+        type="submit"
+        disabled={!ready || isPending || name.trim().length < 2}
+      >
         {isPending
           ? t("Preparando seu ambiente…")
           : comAprovacao

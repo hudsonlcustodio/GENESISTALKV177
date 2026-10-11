@@ -438,8 +438,8 @@ export async function escolherUltimoDiaCheio(page: Page): Promise<string> {
  * sem supor que o recorte mobile contém sete colunas ou usar o relógio do Node. */
 export async function irParaProximoDiaUtilMobile(page: Page): Promise<string[]> {
   await aguardarGradeHidratada(page);
+  await expect.poll(() => diasDesenhados(page), { timeout: 20_000 }).toHaveLength(1);
   let antes = await diasDesenhados(page);
-  expect(antes).toHaveLength(1);
   for (let tentativa = 0; tentativa < 8; tentativa++) {
     await page.getByTestId("periodo-seguinte").click();
     await expect

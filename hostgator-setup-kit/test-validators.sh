@@ -1830,10 +1830,32 @@ montar_vps() {
   # topo, igual ao `_common.sh`. Sem eles aqui, o script morre na LINHA 21 — antes
   # de qualquer mensagem — e todo cenario reporta "o update.sh nao chegou ao
   # banco / ao fim / ao up -d", que le como defeito do produto e e cenario faltando.
-  cp install.sh update.sh backup.sh _common.sh _i18n.sh marca-emails.sh manutencao.sh "$raiz/"
+  cp install.sh update.sh backup.sh recovery.py recovery-catalog.sql _common.sh _i18n.sh marca-emails.sh manutencao.sh "$raiz/"
+  cp ../tests/shell/recovery-v2-stub.sh "$raiz/"
+  sed -i '2i export RECOVERY_STUB_MODE=1' "$raiz/backup.sh"
   cp -R manutencao "$raiz/"
   : > "$VPS_PROJ/docker-compose.prod.yml"
-  cat > "$raiz/bin/docker"
+  cat > "$raiz/bin/docker-scenario"
+  # A fixture de recuperação responde apenas às chamadas novas do backup.
+  # O Docker específico do cenário continua medindo instalação/DDL/proxy.
+  cat > "$raiz/bin/docker" <<'RECOVERY_DOCKER'
+#!/usr/bin/env bash
+if [[ "${RECOVERY_STUB_MODE:-0}" == 1 ]]; then
+case " $* " in
+  *" pg_dump "*|*" psql "*" -X -qAt "*)
+    printf '%s\n' "$*" >> "$DOCKER_LOG"
+    source "$(dirname "$0")/../recovery-v2-stub.sh"
+    recovery_v2_stub "$@"
+    exit $? ;;
+  *" run "*" tar czf - "*)
+    printf '%s\n' "$*" >> "$DOCKER_LOG"
+    tar czf - --files-from /dev/null
+    exit $? ;;
+esac
+fi
+exec "$(dirname "$0")/docker-scenario" "$@"
+RECOVERY_DOCKER
+  chmod +x "$raiz/bin/docker-scenario"
   # Só o v_supabase_url exige resposta online (000 reprova, e quem responde tem
   # de ser o GoTrue — o ramo `*auth/v1/verify*`); os outros toleram.
   #

@@ -94,6 +94,8 @@ test.describe("o ícone e o título carregam a marca da instalação", () => {
     // prova que concordam entre si — um resolvedor quebrado deixa as duas
     // erradas e iguais. A verdade independente (o nome digitado na tela chega
     // ao login) está em `marca-logo.spec.ts`, "o nome trocado em /admin/marca…".
-    await expect(page.locator("body").getByText(marcaNoTitulo, { exact: true })).toBeVisible();
+    const marcaVisivel = page.getByRole("paragraph").filter({ hasText: marcaNoTitulo });
+    await expect(marcaVisivel).toHaveText(marcaNoTitulo);
+    await expect(marcaVisivel).toBeVisible();
   });
 });

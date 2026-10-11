@@ -135,3 +135,29 @@ das imagens anteriores e volumes reais permanece na homologação Linux adiada.
 
 As chaves Supabase seguem o contrato existente do instalador Deskcomm. A plataforma
 não ganha um configurador alternativo de banco principal em tempo de execução.
+
+## Dependência com correção local
+
+O scanner de dependências continua identificando `braces@3.0.3` como HIGH
+(GHSA-vfj7-8cjw-p6xm), porque avalia a versão publicada. O patch pnpm versionado
+limita profundidade, tamanho da AST e ciclos, com oito regressões de reprodução.
+Isso é uma mitigação local validada; não é um resultado de audit sem achados nem
+uma atualização oficial do pacote. As imagens de worker/voz passam a instalar
+apenas dependências de produção. A substituição pela correção oficial deve ser
+reavaliada quando publicada.
+
+## Acesso em carregamento lento
+
+A navegação local revelou que um clique anterior à hidratação fazia POST nativo
+e voltava ao login sem chamar a action. `useAuthFormReady` mantém o submit dos
+sete formulários de acesso desabilitado no HTML inicial e o libera após a
+hidratação. Preserva o POST e as regras de autenticação, MFA, erros e rate limit
+existentes. O teste renderiza o HTML do servidor, hidrata o login real e verifica
+o envio pela action e a mensagem de credenciais inválidas.
+
+Checklist dessa alteração: o HTML alimenta a hidratação, que libera as actions
+existentes; o registro de acesso permanece nessas actions; erro aparece no
+formulário; a porta é login/cadastro/recuperação/MFA. O envio impossível antes
+do handler é seu bloqueio preventivo. Não acrescenta configuração, demanda de
+atendimento ou transição IA/humano. O retorno é o erro inline e a nova tentativa;
+o mapa inclui HTML → hidratação → action → formulário.

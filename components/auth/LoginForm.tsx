@@ -6,6 +6,7 @@ import { useTransition, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import { useT } from "@/hooks/i18n/useT";
+import { useAuthFormReady } from "./useAuthFormReady";
 import { loginSchema, type LoginInput } from "@/lib/auth/schemas";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -15,6 +16,7 @@ import { Eye, EyeSlash } from "@/lib/ui/icons";
 
 export function LoginForm({ next }: { next?: string }) {
   const t = useT();
+  const ready = useAuthFormReady();
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const [serverError, setServerError] = useState<string | null>(null);
@@ -109,7 +111,7 @@ export function LoginForm({ next }: { next?: string }) {
           {serverError}
         </div>
       )}
-      <Button type="submit" className="w-full" disabled={isPending}>
+      <Button type="submit" className="w-full" disabled={!ready || isPending}>
         {isPending ? t("Entrando...") : t("Entrar")}
       </Button>
     </form>

@@ -3351,3 +3351,15 @@ paleta Genesis e prioridade das marcas personalizadas preservada.
 Escopo, verificações automatizadas e limitações registrados em
 [`evidence/identidade-genesis/README.md`](../../evidence/identidade-genesis/README.md).
 Esta evidência é local e não comprova operações de mensagens ou produção.
+
+## Genesis 1.77 — Supervisão e jornadas mobile (2026-10-10)
+
+| Jornada | Prova e limite |
+| --- | --- |
+| Supervisão autenticada, filtros e detalhamento | **PASS pela tela local** — `evidence/finalizacao-v177/supervisao-desktop.png`, `evidence/finalizacao-v177/supervisao-mobile.png`, `evidence/finalizacao-v177/supervisao-mobile-escuro.png` |
+| Supervisão mobile recupera fonte após 503 controlado | **PASS no build de produção CI** — `evidence/finalizacao-v177/ci-supervisao-mobile.png` |
+| CRM cria e persiste após reload em 390 px | **PASS pela tela + banco CI** — `evidence/finalizacao-v177/ci-crm-mobile.png`; o negócio não está no enquadramento inicial |
+| Tarefas cria, prioriza, conclui e reabre | **PASS pela tela + banco CI** — `evidence/finalizacao-v177/ci-tarefas-mobile.png`; alvos 44 px, ações sem hover |
+
+Origem, SHA e limites em [evidências da finalização](../../evidence/finalizacao-v177/README.md).
+Contabo, provedores reais e aparelho físico permanecem fora desta prova.

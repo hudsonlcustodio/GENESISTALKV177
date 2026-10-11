@@ -75,8 +75,9 @@ bash deploy/contabo/smoke.sh
 `deploy.sh` faz backup mesmo se o app estiver parado/ausente, quando não é
 fresh install. Usa o kit para dump/WhatsApp/Storage e registra checksums.
 Build, subida e smoke ficam em `.runtime/contabo/DATA_UTC/` (permissões privadas).
-Não publica imagens. Não aplica migrações novas durante atualização: mudança de
-schema exige procedimento específico após backup e clone isolado. As tags locais
+Não publica imagens. Durante atualização, pausa os consumidores desta instalação e aplica somente o
+delta versionado 0613, em transação, após backup verificado. Outras mudanças de
+schema exigem procedimento específico após backup e clone isolado. As tags locais
 são `genesis-talk-{app,worker,scheduler}:1.77.0`; telefonia é explícita via profile
 `telefonia`, com `genesis-talk-voice-agent:1.77.0`. Serviços terceiros preservados.
 Para `voz`, configure as credenciais do WaCalls antes de ativar o profile.

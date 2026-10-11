@@ -89,6 +89,27 @@
       "col": 3,
       "type": "ui",
       "label": "Incidente / receptor HTTPS / recuperação"
+    },
+    {
+      "id": "auth-html",
+      "lane": "app",
+      "col": 0,
+      "type": "ui",
+      "label": "Acesso: HTML com submit desabilitado"
+    },
+    {
+      "id": "auth-ready",
+      "lane": "app",
+      "col": 1,
+      "type": "service",
+      "label": "Hidratação pronta: handler disponível"
+    },
+    {
+      "id": "auth-action",
+      "lane": "app",
+      "col": 2,
+      "type": "service",
+      "label": "Actions existentes de autenticação e recuperação"
     }
   ],
   "edges": [
@@ -151,6 +172,21 @@
       "from": "operator",
       "to": "operation",
       "label": "Investigar origem e reparar"
+    },
+    {
+      "from": "auth-html",
+      "to": "auth-ready",
+      "label": "useAuthFormReady preserva o primeiro render"
+    },
+    {
+      "from": "auth-ready",
+      "to": "auth-action",
+      "label": "Libera envio pelo handler autenticado"
+    },
+    {
+      "from": "auth-action",
+      "to": "auth-html",
+      "label": "Erro inline permite corrigir e tentar novamente"
     }
   ]
 }

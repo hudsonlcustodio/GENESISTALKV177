@@ -7,6 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useTransition, useState } from "react";
 
 import { useT } from "@/hooks/i18n/useT";
+import { useAuthFormReady } from "./useAuthFormReady";
 import {
   signupSchema,
   signupComConviteSchema,
@@ -33,6 +34,7 @@ export interface ConviteDoSignup {
 
 export function SignupForm({ convite }: { convite?: ConviteDoSignup }) {
   const t = useT();
+  const ready = useAuthFormReady();
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const [serverError, setServerError] = useState<string | null>(null);
@@ -285,7 +287,7 @@ export function SignupForm({ convite }: { convite?: ConviteDoSignup }) {
           {serverError}
         </div>
       )}
-      <Button type="submit" className="w-full" disabled={isPending}>
+      <Button type="submit" className="w-full" disabled={!ready || isPending}>
         {isPending ? t("Criando conta...") : t("Criar conta")}
       </Button>
     </form>
