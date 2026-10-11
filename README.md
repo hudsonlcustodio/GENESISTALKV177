@@ -304,6 +304,29 @@ O instalador aplica o banco inicial, cria o primeiro administrador, compila e
 inicia os serviços Genesis. Depois do bootstrap, remova `OWNER_PASSWORD` do `.env`.
 Mantenha o arquivo protegido e fora do Git.
 
+### Instalação dos guias para assistentes de IA
+
+O repositório inclui guias para auxiliar a instalação e a manutenção. Para usar
+os guias deste clone revisado no seu assistente, execute em Linux, macOS ou WSL:
+
+```bash
+bash scripts/instalar-guias.sh --fonte .
+```
+
+No Codex, a chamada explícita do guia de instalação é `$deskcomm-instalar`.
+Esse identificador técnico é preservado; para instalar o Genesis, oriente o
+assistente a seguir `deploy/contabo/README.md` e os wrappers Genesis.
+
+Guias copiados **não** se atualizam sozinhos: instale novamente após revisar a
+fonte. O link com `--fonte` acompanha o clone. No Claude Code, o guia global
+instalado vale mais que o do clone aberto; mantenha-o ligado à fonte revisada.
+
+Para remover somente os guias registrados pelo instalador:
+
+```bash
+bash -s -- --remover < scripts/instalar-guias.sh
+```
+
 ## Primeiro acesso
 
 1. Abra `https://crm.seudominio.com.br`, usando o domínio configurado.
