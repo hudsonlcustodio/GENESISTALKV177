@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="public/branding/genesis-360.png" alt="Genesis 360 Talk AI" width="420">
+<img src="public/branding/genesis-360.png" alt="Logo oficial Genesis 360 — CRM Talk AI" width="640">
 
 # Genesis 360 Talk AI
 
@@ -9,7 +9,7 @@
 Centralize conversas de WhatsApp, organize seu CRM e conecte sua equipe a agentes
 de IA, com instalação no seu próprio servidor.
 
-[O que faz](#o-que-o-genesis-faz) · [Instalar](#instalação-na-vps) · [Primeiro acesso](#primeiro-acesso)
+[O que faz](#o-que-o-genesis-faz) · [Funcionalidades](#funcionalidades-do-sistema) · [Instalar](#instalação-na-vps) · [Primeiro acesso](#primeiro-acesso)
 
 </div>
 
@@ -32,6 +32,177 @@ para acompanhar o cliente da primeira conversa ao fechamento.
   agenda e tarefas em telas menores.
 - **Organizações e permissões:** separação dos dados entre empresas, controle de
   acesso por função e recursos de auditoria e privacidade.
+
+## Funcionalidades do sistema
+
+Os recursos abaixo fazem parte do código desta versão. A disponibilidade para
+cada usuário depende das permissões, dos módulos habilitados e das integrações
+configuradas. Recursos com provedores externos precisam de credenciais e
+homologação no ambiente de instalação.
+
+### Atendimento e WhatsApp
+
+- **Inbox:** conversas com atendimento humano e IA, histórico, mensagens e anexos,
+  atualizações em tempo real e atribuição de responsáveis.
+- **Fila e transferências:** passagem da IA para a equipe, distribuição de
+  conversas e retomada do atendimento humano.
+- **Respostas rápidas:** textos reutilizáveis pessoais ou compartilhados com a equipe.
+- **Radar:** acompanhamento de conversas abertas e contatos sem resposta ou atividade.
+- **Conexões:** gestão de números, pareamento por QR code via WAHA, estado das
+  sessões e configuração do canal oficial da Meta e seus templates.
+- **Preferências de atendimento:** visibilidade das conversas, distribuição,
+  disponibilidade dos atendentes e limites de carga.
+
+### CRM, contatos e vendas
+
+- **Funis e Kanban:** acompanhamento dos negócios por etapa, responsáveis,
+  ganhos e perdas; configuração de etapas, vocabulário e motivos de perda.
+- **Contatos e ficha do negócio:** cadastro, telefones, histórico de relacionamento,
+  atividades, tags e informações ligadas às conversas e oportunidades.
+- **Produtos:** catálogo com preços para consulta da equipe e dos agentes de IA.
+- **Campanhas:** seleção de contatos e envio de mensagens respeitando o ritmo
+  configurado para o número.
+- **Prospecção:** busca de empresas e preparação de abordagens graduais com IA.
+- **CRM B2B, opcional:** empresas, CNPJ, decisores, pessoas com múltiplos telefones
+  e importação de lotes CSV/XLSX, com acompanhamento da importação.
+- **Propostas comerciais, opcionais:** elaboração, revisão, envio e aceite;
+  modelos personalizáveis, validade e condições comerciais. Exigem habilitação
+  na instalação e na organização.
+
+### Agenda e tarefas
+
+- **Agenda:** compromissos individuais e da equipe, responsáveis e visualização
+  dos agendamentos, incluindo compromissos em andamento.
+- **Tipos de agendamento:** definição de duração, local e pessoas que atendem.
+- **Disponibilidade:** configuração de fuso e janelas de atendimento da equipe.
+- **Tarefas:** acompanhamento de prazos, pendências, atrasos e conclusão,
+  com ações adaptadas ao celular.
+- **Planos de tarefa:** sequências reutilizáveis de atividades para aplicar aos negócios.
+
+### Agentes e inteligência artificial
+
+- **Agentes:** configuração de instruções, modelos, ferramentas e publicação.
+- **Roteadores:** escolha do agente que recebe cada conversa e regras para
+  transferência ao atendimento humano.
+- **Conhecimento e RAG:** fontes e materiais do negócio usados como referência
+  para as respostas dos agentes.
+- **Memória:** informações da operação que o agente pode reutilizar.
+- **Skills e ferramentas:** ações que a IA pode executar no CRM durante o atendimento.
+- **Fluxos de atendimento, opcionais:** roteiros de perguntas conduzidos pela IA,
+  com respostas vinculadas à ficha do cliente.
+- **Provedores e credenciais:** escolha da inteligência usada em cada parte do
+  sistema e gestão das chaves dos provedores suportados.
+- **Casos e alertas:** acompanhamento dos atendimentos conduzidos pela IA,
+  desfechos e situações que precisam de decisão humana.
+- **Avisos no WhatsApp:** configuração de destinatário para avisos de casos,
+  dependente de canal conectado e entrega real validada.
+- **Propostas de melhoria da IA:** sugestões para revisão e aprovação humana.
+- **Execuções:** histórico das ações da IA e informações sobre falhas.
+- **Uso e orçamento:** consumo, tokens, custos registrados e limites de gasto.
+- **Evolução da IA:** indicadores para acompanhar resultados e necessidades de aprendizado.
+
+### Follow-ups e automações
+
+- **Follow-ups:** fluxos para retomar contatos, acompanhar oportunidades e
+  executar etapas conforme condições e eventos do atendimento.
+- **Editor visual:** organização de etapas e conexões, histórico para desfazer
+  alterações e opção de desconectar elementos sem apagá-los.
+- **Inscrições e execução:** acompanhamento dos contatos em cada fluxo e de
+  seus estados de processamento.
+- **Consentimento:** tratamento de STOP/opt-out e pausas nas jornadas de follow-up.
+- **Automações por eventos:** regras de condições e ações, como aplicar tags,
+  mover negócios, atribuir responsáveis, enviar mensagens e chamar webhooks.
+- **Atividade das integrações:** histórico das execuções, resultados e tratamento
+  de falhas, conforme a integração.
+
+### Supervisão 360 e análise
+
+- **Supervisão humana e IA:** visão operacional com 15 populações/indicadores,
+  incluindo filas, espera, atuação humana e automática, follow-ups vencidos,
+  falhas, passagens de atendimento e chamadas de IA.
+- **Equipe:** presença, disponibilidade, carga e recortes por responsável.
+- **Resultados:** negócios ganhos/perdidos, primeira resposta humana,
+  passagens pendentes e sinais de indisponibilidade dos canais.
+- **Filtros e detalhamento:** período, atendente, agente, canal e funil,
+  com paginação e acesso aos registros de origem.
+- **Custos:** tokens e valores conhecidos da telemetria, com indicação separada
+  de chamadas sem preço registrado.
+- **Desempenho:** acompanhamento do funil e da performance por atendente.
+- **Meta Ads:** conexão da conta de anúncios e análise dos resultados disponíveis.
+- **Auditoria:** registro das ações e consulta ao histórico operacional.
+
+### Integrações e extensões
+
+- **Nuvemshop:** conexão da loja para integrar clientes e pedidos ao CRM.
+- **Webhooks de entrada:** recebimento de leads de formulários e sistemas externos.
+- **Webhooks de saída:** comunicação de eventos e resultados para outras ferramentas.
+- **API e MCP:** acesso autorizado ao CRM por integrações e ferramentas de agentes,
+  com tokens e controles de permissão.
+- **Integração de dados externos, opcional:** configuração de fontes externas,
+  sujeita à habilitação pelo administrador da instalação.
+- **Extensões e módulos:** catálogo e administração de recursos adicionais;
+  cada extensão depende de instalação, compatibilidade e configuração próprias.
+
+### Financeiro e serviços
+
+- **Comandas:** registro dos serviços realizados, profissionais envolvidos e valores.
+- **Faturamento:** acompanhamento de entradas, formas de pagamento e valores
+  associados aos profissionais.
+- **Configuração financeira:** contas, formas de pagamento e classificação dos lançamentos.
+- **Honorários, opcional:** modelos de cobrança por caso e calendário de parcelas,
+  mediante instalação e ativação do módulo.
+- **Billing e cobrança:** telas de plano e cobrança da organização; a operação
+  depende da configuração e, quando aplicável, dos provedores de pagamento.
+
+### Voz e telefonia opcionais
+
+- **Chamadas:** histórico de ligações por IA e transcrições disponíveis.
+- **Trunk SIP:** configuração das credenciais do provedor de telefonia.
+- **Serviços de voz:** ativação pelos profiles documentados para telefonia e voz,
+  com credenciais, infraestrutura e provedores correspondentes.
+
+### Organização, segurança e privacidade
+
+- **Equipe e papéis:** convites, usuários e permissões por função.
+- **Organizações:** dados da empresa, configurações e isolamento entre empresas.
+- **Marca própria:** nome, cores e identidade configuráveis por instalação/organização.
+- **Perfil e notificações:** idioma, fuso, avatar e preferências de aviso.
+- **Autenticação:** login, recuperação de acesso, MFA opcional, códigos de
+  recuperação e gestão de sessões.
+- **LGPD:** solicitações de exportação e exclusão/anonimização, retenção e
+  informações do encarregado, respeitando os fluxos e permissões do sistema.
+- **API Tokens:** gestão do acesso autorizado de sistemas externos.
+- **Recursos opcionais:** controles de habilitação disponíveis conforme o papel
+  e o nível de administração.
+
+### Administração da plataforma
+
+- **Empresas e usuários:** administração das organizações e contas da instalação.
+- **Administradores:** controle das pessoas com acesso administrativo à plataforma.
+- **Configuração central:** políticas de cadastro, marca, e-mail, integrações,
+  módulos e parâmetros da instalação.
+- **Acompanhamento:** painéis administrativos, uso, saúde por organização,
+  incidentes e auditoria.
+- **Suporte:** acesso às ferramentas administrativas de atendimento conforme
+  as permissões e as regras de auditoria.
+
+### Operação no próprio servidor
+
+- **Implantação:** instalação e atualização manual pelos wrappers Genesis.
+- **Health:** verificação autenticada de banco/API e Auth.
+- **Backup:** bundles com banco, componentes locais necessários, hashes,
+  contagens e contrato de permissões/schema/RLS.
+- **Restore e rollback:** validações de integridade e compatibilidade antes de
+  recuperar dados ou retornar às imagens anteriores.
+- **Monitoramento:** verificação dos serviços e da idade/integridade dos backups,
+  com incidentes deduplicados e avisos de recuperação.
+- **Cópia externa e alertas:** configuração de destino de backup e receptor de
+  alertas, com ativação do cron no servidor.
+
+A interface conta com navegação para celular, busca de telas e temas claro/escuro.
+A atualização automática Genesis permanece adiada. A liberação para produção
+continua condicionada à homologação na VPS, integrações reais e ensaios de
+recuperação descritos no [guia Contabo](deploy/contabo/README.md).
 
 ## Instalação na VPS
 
