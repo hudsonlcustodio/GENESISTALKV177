@@ -42,48 +42,50 @@ export function RecoveryForm({ next }: RecoveryFormProps) {
 
   return (
     <form method="post" onSubmit={onSubmit} className="space-y-4" noValidate>
-      <div className="space-y-1.5">
-        <Label htmlFor="email">Email</Label>
-        <Input
-          id="email"
-          type="email"
-          autoComplete="email"
-          autoFocus
-          required
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </div>
-      <div className="space-y-1.5">
-        <Label htmlFor="recovery-code">{t("Código de recuperação")}</Label>
-        <Input
-          id="recovery-code"
-          inputMode="text"
-          autoComplete="one-time-code"
-          maxLength={8}
-          required
-          placeholder="ABCD2345"
-          className="font-mono tracking-widest uppercase"
-          value={code}
-          onChange={(e) => setCode(e.target.value.toUpperCase())}
-        />
-        <p className="text-xs text-muted-foreground">
-          {t("Use um dos 10 códigos que você salvou ao configurar a verificação em duas etapas.")}
-        </p>
-      </div>
-
-      {error && (
-        <div
-          role="alert"
-          className="rounded-md border border-destructive/30 bg-destructive/10 px-3 py-2 text-sm text-destructive"
-        >
-          {error}
+      <fieldset disabled={!ready} className="min-w-0 space-y-4">
+        <div className="space-y-1.5">
+          <Label htmlFor="email">Email</Label>
+          <Input
+            id="email"
+            type="email"
+            autoComplete="email"
+            autoFocus
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
         </div>
-      )}
+        <div className="space-y-1.5">
+          <Label htmlFor="recovery-code">{t("Código de recuperação")}</Label>
+          <Input
+            id="recovery-code"
+            inputMode="text"
+            autoComplete="one-time-code"
+            maxLength={8}
+            required
+            placeholder="ABCD2345"
+            className="font-mono tracking-widest uppercase"
+            value={code}
+            onChange={(e) => setCode(e.target.value.toUpperCase())}
+          />
+          <p className="text-xs text-muted-foreground">
+            {t("Use um dos 10 códigos que você salvou ao configurar a verificação em duas etapas.")}
+          </p>
+        </div>
 
-      <Button type="submit" className="w-full" disabled={!ready || isPending}>
-        {isPending ? t("Validando…") : t("Recuperar acesso")}
-      </Button>
+        {error && (
+          <div
+            role="alert"
+            className="rounded-md border border-destructive/30 bg-destructive/10 px-3 py-2 text-sm text-destructive"
+          >
+            {error}
+          </div>
+        )}
+
+        <Button type="submit" className="w-full" disabled={!ready || isPending}>
+          {isPending ? t("Validando…") : t("Recuperar acesso")}
+        </Button>
+      </fieldset>
     </form>
   );
 }

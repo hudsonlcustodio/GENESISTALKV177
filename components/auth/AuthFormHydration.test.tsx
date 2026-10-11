@@ -39,10 +39,16 @@ describe("auth waits for its client handler", () => {
     const submits = [...container.querySelectorAll<HTMLButtonElement>('button[type="submit"]')];
     expect(submits.length).toBeGreaterThan(0);
     for (const submit of submits) expect(submit.disabled).toBe(true);
+    for (const control of container.querySelectorAll("input,button,select,textarea")) {
+      expect(control).toBeDisabled();
+    }
   });
 
   it("hydration enables login and sends credentials through the action, preserving inline errors", async () => {
-    vi.mocked(signInWithPassword).mockResolvedValueOnce({ error: "invalid_credentials" });
+    vi.mocked(signInWithPassword).mockResolvedValueOnce({
+      ok: false,
+      error: "invalid_credentials",
+    });
     const container = document.createElement("div");
     container.innerHTML = renderToString(<LoginForm />);
     document.body.append(container);
@@ -50,7 +56,7 @@ describe("auth waits for its client handler", () => {
       true,
     );
     render(<LoginForm />, { container, hydrate: true });
-    const submit = screen.getByRole("button", { name: "Entrar", exact: true });
+    const submit = screen.getByRole("button", { name: "Entrar" });
     await waitFor(() => expect(submit).toBeEnabled());
     fireEvent.change(screen.getByLabelText("Email"), {
       target: { value: "hydration@example.com" },

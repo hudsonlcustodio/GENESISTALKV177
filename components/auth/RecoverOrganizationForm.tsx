@@ -68,34 +68,36 @@ export function RecoverOrganizationForm({
 
   return (
     <form method="post" className="space-y-4" onSubmit={submit} noValidate>
-      <div className="space-y-1.5">
-        <Label htmlFor="recovery-org-name">{t("Nome da empresa")}</Label>
-        <Input
-          id="recovery-org-name"
-          value={name}
-          onChange={(event) => setName(event.target.value)}
-          autoComplete="organization"
-          autoFocus
-          disabled={!ready || isPending}
-          aria-invalid={Boolean(error)}
-        />
-      </div>
-      {error && (
-        <p className="text-sm text-destructive" role="alert">
-          {error}
-        </p>
-      )}
-      <Button
-        className="w-full"
-        type="submit"
-        disabled={!ready || isPending || name.trim().length < 2}
-      >
-        {isPending
-          ? t("Preparando seu ambiente…")
-          : comAprovacao
-            ? t("Enviar pedido")
-            : t("Continuar para o onboarding")}
-      </Button>
+      <fieldset disabled={!ready} className="min-w-0 space-y-4">
+        <div className="space-y-1.5">
+          <Label htmlFor="recovery-org-name">{t("Nome da empresa")}</Label>
+          <Input
+            id="recovery-org-name"
+            value={name}
+            onChange={(event) => setName(event.target.value)}
+            autoComplete="organization"
+            autoFocus
+            disabled={!ready || isPending}
+            aria-invalid={Boolean(error)}
+          />
+        </div>
+        {error && (
+          <p className="text-sm text-destructive" role="alert">
+            {error}
+          </p>
+        )}
+        <Button
+          className="w-full"
+          type="submit"
+          disabled={!ready || isPending || name.trim().length < 2}
+        >
+          {isPending
+            ? t("Preparando seu ambiente…")
+            : comAprovacao
+              ? t("Enviar pedido")
+              : t("Continuar para o onboarding")}
+        </Button>
+      </fieldset>
     </form>
   );
 }

@@ -66,7 +66,9 @@ baixar_para() {
 # pelo motivo ERRADO — o `curl` recusava o protocolo do arquivo local antes de a validação
 # rodar, e tirar a validação inteira não deixava o teste vermelho. Medido, não suposto.
 catalogo_tem_forma() {
-  jq -e '.format_version == 1 and (.entries | type == "array") and (.origin | type == "string")' \
+  # Slurp requires exactly one JSON document, including on jq 1.6 where an
+  # empty input may otherwise exit successfully without evaluating the filter.
+  jq -e -s 'length == 1 and (.[0] | type == "object" and .format_version == 1 and (.entries | type == "array") and (.origin | type == "string"))' \
     "$1" >/dev/null 2>&1
 }
 

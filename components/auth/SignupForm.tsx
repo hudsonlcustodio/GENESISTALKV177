@@ -163,133 +163,135 @@ export function SignupForm({ convite }: { convite?: ConviteDoSignup }) {
 
   return (
     <form method="post" onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate>
-      {/*
+      <fieldset disabled={!ready} className="min-w-0 space-y-4">
+        {/*
         Só no modo CONVITE. Quem abre a própria empresa dá o nome no onboarding;
         quem é convidado pula o onboarding e ficava sem nome para sempre —
         aparecendo como um pedaço do identificador interno em toda tela que o
         nomeia (medido no diálogo de transferir conversa, em produção).
       */}
-      {convite && (
-        <div className="space-y-1.5">
-          <Label htmlFor="full_name">{t("Seu nome")}</Label>
-          <Input
-            id="full_name"
-            type="text"
-            autoComplete="name"
-            autoFocus
-            aria-invalid={errors.full_name ? true : undefined}
-            {...register("full_name")}
-          />
-          {errors.full_name && (
-            <p className="text-xs text-destructive">{t(errors.full_name.message ?? "")}</p>
-          )}
-        </div>
-      )}
-      {!convite && (
-        <div className="space-y-1.5">
-          <Label htmlFor="org_name">{t("Nome da empresa")}</Label>
-          <Input
-            id="org_name"
-            type="text"
-            autoComplete="organization"
-            autoFocus
-            aria-invalid={errors.org_name ? true : undefined}
-            {...register("org_name")}
-          />
-          {errors.org_name && (
-            <p className="text-xs text-destructive">{t(errors.org_name.message ?? "")}</p>
-          )}
-        </div>
-      )}
-      <div className="space-y-1.5">
-        <Label htmlFor="email">Email</Label>
-        <Input
-          id="email"
-          type="email"
-          autoComplete="email"
-          // O convite vale para UM endereço. Deixar editável convidaria a
-          // trocar e receber "email_divergente" depois de preencher tudo.
-          readOnly={Boolean(convite)}
-          aria-invalid={errors.email ? true : undefined}
-          {...register("email")}
-        />
-        {errors.email && (
-          <p className="text-xs text-destructive">{t(errors.email.message ?? "")}</p>
-        )}
-      </div>
-      <div className="space-y-1.5">
-        <Label htmlFor="password">{t("Senha")}</Label>
-        <div className="relative">
-          <Input
-            id="password"
-            type={showPassword ? "text" : "password"}
-            autoComplete="new-password"
-            className="pr-12"
-            aria-invalid={errors.password ? true : undefined}
-            {...register("password")}
-          />
-          <button
-            type="button"
-            className="absolute inset-y-0 right-0 flex w-11 items-center justify-center rounded-r-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:outline-hidden focus-visible:ring-inset"
-            aria-pressed={showPassword}
-            onClick={() => setShowPassword((visible) => !visible)}
-          >
-            {/* Nome em sr-only, não aria-label: getByLabel(/senha/i) casa aria-label e acharia o botão junto do campo. */}
-            <span className="sr-only">{t(showPassword ? "Ocultar senha" : "Mostrar senha")}</span>
-            {showPassword ? <EyeSlash size={20} aria-hidden /> : <Eye size={20} aria-hidden />}
-          </button>
-        </div>
-        {errors.password && (
-          <p className="text-xs text-destructive">{t(errors.password.message ?? "")}</p>
-        )}
-        <PasswordStrength password={password} />
-      </div>
-      <div className="space-y-1.5">
-        <Label htmlFor="password_confirm">{t("Confirmar senha")}</Label>
-        <div className="relative">
-          <Input
-            id="password_confirm"
-            type={showPasswordConfirm ? "text" : "password"}
-            autoComplete="new-password"
-            className="pr-12"
-            aria-invalid={errors.password_confirm ? true : undefined}
-            {...register("password_confirm")}
-          />
-          <button
-            type="button"
-            className="absolute inset-y-0 right-0 flex w-11 items-center justify-center rounded-r-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:outline-hidden focus-visible:ring-inset"
-            aria-pressed={showPasswordConfirm}
-            onClick={() => setShowPasswordConfirm((visible) => !visible)}
-          >
-            <span className="sr-only">
-              {t(
-                showPasswordConfirm
-                  ? "Ocultar confirmação da senha"
-                  : "Mostrar confirmação da senha",
-              )}
-            </span>
-            {showPasswordConfirm ? (
-              <EyeSlash size={20} aria-hidden />
-            ) : (
-              <Eye size={20} aria-hidden />
+        {convite && (
+          <div className="space-y-1.5">
+            <Label htmlFor="full_name">{t("Seu nome")}</Label>
+            <Input
+              id="full_name"
+              type="text"
+              autoComplete="name"
+              autoFocus
+              aria-invalid={errors.full_name ? true : undefined}
+              {...register("full_name")}
+            />
+            {errors.full_name && (
+              <p className="text-xs text-destructive">{t(errors.full_name.message ?? "")}</p>
             )}
-          </button>
-        </div>
-        {errors.password_confirm && (
-          <p className="text-xs text-destructive">{t(errors.password_confirm.message ?? "")}</p>
+          </div>
         )}
-      </div>
-      {serverError && (
-        <div
-          className="rounded-md border border-destructive/30 bg-destructive/10 px-3 py-2 text-sm text-destructive"
-          role="alert"
-        >
-          {serverError}
+        {!convite && (
+          <div className="space-y-1.5">
+            <Label htmlFor="org_name">{t("Nome da empresa")}</Label>
+            <Input
+              id="org_name"
+              type="text"
+              autoComplete="organization"
+              autoFocus
+              aria-invalid={errors.org_name ? true : undefined}
+              {...register("org_name")}
+            />
+            {errors.org_name && (
+              <p className="text-xs text-destructive">{t(errors.org_name.message ?? "")}</p>
+            )}
+          </div>
+        )}
+        <div className="space-y-1.5">
+          <Label htmlFor="email">Email</Label>
+          <Input
+            id="email"
+            type="email"
+            autoComplete="email"
+            // O convite vale para UM endereço. Deixar editável convidaria a
+            // trocar e receber "email_divergente" depois de preencher tudo.
+            readOnly={Boolean(convite)}
+            aria-invalid={errors.email ? true : undefined}
+            {...register("email")}
+          />
+          {errors.email && (
+            <p className="text-xs text-destructive">{t(errors.email.message ?? "")}</p>
+          )}
         </div>
-      )}
-      <Button type="submit" className="w-full" disabled={!ready || isPending}>
-        {isPending ? t("Criando conta...") : t("Criar conta")}
-      </Button>
+        <div className="space-y-1.5">
+          <Label htmlFor="password">{t("Senha")}</Label>
+          <div className="relative">
+            <Input
+              id="password"
+              type={showPassword ? "text" : "password"}
+              autoComplete="new-password"
+              className="pr-12"
+              aria-invalid={errors.password ? true : undefined}
+              {...register("password")}
+            />
+            <button
+              type="button"
+              className="absolute inset-y-0 right-0 flex w-11 items-center justify-center rounded-r-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:outline-hidden focus-visible:ring-inset"
+              aria-pressed={showPassword}
+              onClick={() => setShowPassword((visible) => !visible)}
+            >
+              {/* Nome em sr-only, não aria-label: getByLabel(/senha/i) casa aria-label e acharia o botão junto do campo. */}
+              <span className="sr-only">{t(showPassword ? "Ocultar senha" : "Mostrar senha")}</span>
+              {showPassword ? <EyeSlash size={20} aria-hidden /> : <Eye size={20} aria-hidden />}
+            </button>
+          </div>
+          {errors.password && (
+            <p className="text-xs text-destructive">{t(errors.password.message ?? "")}</p>
+          )}
+          <PasswordStrength password={password} />
+        </div>
+        <div className="space-y-1.5">
+          <Label htmlFor="password_confirm">{t("Confirmar senha")}</Label>
+          <div className="relative">
+            <Input
+              id="password_confirm"
+              type={showPasswordConfirm ? "text" : "password"}
+              autoComplete="new-password"
+              className="pr-12"
+              aria-invalid={errors.password_confirm ? true : undefined}
+              {...register("password_confirm")}
+            />
+            <button
+              type="button"
+              className="absolute inset-y-0 right-0 flex w-11 items-center justify-center rounded-r-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:outline-hidden focus-visible:ring-inset"
+              aria-pressed={showPasswordConfirm}
+              onClick={() => setShowPasswordConfirm((visible) => !visible)}
+            >
+              <span className="sr-only">
+                {t(
+                  showPasswordConfirm
+                    ? "Ocultar confirmação da senha"
+                    : "Mostrar confirmação da senha",
+                )}
+              </span>
+              {showPasswordConfirm ? (
+                <EyeSlash size={20} aria-hidden />
+              ) : (
+                <Eye size={20} aria-hidden />
+              )}
+            </button>
+          </div>
+          {errors.password_confirm && (
+            <p className="text-xs text-destructive">{t(errors.password_confirm.message ?? "")}</p>
+          )}
+        </div>
+        {serverError && (
+          <div
+            className="rounded-md border border-destructive/30 bg-destructive/10 px-3 py-2 text-sm text-destructive"
+            role="alert"
+          >
+            {serverError}
+          </div>
+        )}
+        <Button type="submit" className="w-full" disabled={!ready || isPending}>
+          {isPending ? t("Criando conta...") : t("Criar conta")}
+        </Button>
+      </fieldset>
     </form>
   );
 }

@@ -70,89 +70,93 @@ export function ResetPasswordForm() {
       autoComplete="on"
       noValidate
     >
-      <div className="space-y-1.5">
-        <Label htmlFor="password">{t("Nova senha")}</Label>
-        <div className="relative">
-          <Input
-            id="password"
-            type={showPassword ? "text" : "password"}
-            autoComplete="new-password"
-            autoFocus
-            className="pr-12"
-            aria-invalid={errors.password ? true : undefined}
-            {...register("password")}
-          />
-          <button
-            type="button"
-            className="absolute inset-y-0 right-0 flex w-11 items-center justify-center rounded-r-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:outline-hidden focus-visible:ring-inset"
-            aria-label={t(showPassword ? "Ocultar nova senha" : "Mostrar nova senha")}
-            aria-pressed={showPassword}
-            onClick={() => setShowPassword((visible) => !visible)}
-          >
-            {showPassword ? <EyeSlash size={20} aria-hidden /> : <Eye size={20} aria-hidden />}
-          </button>
-        </div>
-        {errors.password && (
-          <p className="text-xs text-destructive">{t(errors.password.message ?? "")}</p>
-        )}
-        <PasswordStrength password={password} />
-      </div>
-      <div className="space-y-1.5">
-        <Label htmlFor="password_confirm">{t("Confirmar nova senha")}</Label>
-        <div className="relative">
-          <Input
-            id="password_confirm"
-            type={showPasswordConfirm ? "text" : "password"}
-            autoComplete="new-password"
-            className="pr-12"
-            aria-invalid={errors.password_confirm ? true : undefined}
-            {...register("password_confirm")}
-          />
-          <button
-            type="button"
-            className="absolute inset-y-0 right-0 flex w-11 items-center justify-center rounded-r-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:outline-hidden focus-visible:ring-inset"
-            aria-label={t(
-              showPasswordConfirm ? "Ocultar confirmação da senha" : "Mostrar confirmação da senha",
-            )}
-            aria-pressed={showPasswordConfirm}
-            onClick={() => setShowPasswordConfirm((visible) => !visible)}
-          >
-            {showPasswordConfirm ? (
-              <EyeSlash size={20} aria-hidden />
-            ) : (
-              <Eye size={20} aria-hidden />
-            )}
-          </button>
-        </div>
-        {errors.password_confirm && (
-          <p className="text-xs text-destructive">{t(errors.password_confirm.message ?? "")}</p>
-        )}
-      </div>
-      {needsMfa && (
+      <fieldset disabled={!ready} className="min-w-0 space-y-4">
         <div className="space-y-1.5">
-          <Label htmlFor="mfa_code">{t("Código de verificação (2 etapas)")}</Label>
-          <Input
-            id="mfa_code"
-            inputMode="numeric"
-            autoComplete="one-time-code"
-            maxLength={6}
-            placeholder="000000"
-            autoFocus
-            {...register("mfa_code")}
-          />
+          <Label htmlFor="password">{t("Nova senha")}</Label>
+          <div className="relative">
+            <Input
+              id="password"
+              type={showPassword ? "text" : "password"}
+              autoComplete="new-password"
+              autoFocus
+              className="pr-12"
+              aria-invalid={errors.password ? true : undefined}
+              {...register("password")}
+            />
+            <button
+              type="button"
+              className="absolute inset-y-0 right-0 flex w-11 items-center justify-center rounded-r-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:outline-hidden focus-visible:ring-inset"
+              aria-label={t(showPassword ? "Ocultar nova senha" : "Mostrar nova senha")}
+              aria-pressed={showPassword}
+              onClick={() => setShowPassword((visible) => !visible)}
+            >
+              {showPassword ? <EyeSlash size={20} aria-hidden /> : <Eye size={20} aria-hidden />}
+            </button>
+          </div>
+          {errors.password && (
+            <p className="text-xs text-destructive">{t(errors.password.message ?? "")}</p>
+          )}
+          <PasswordStrength password={password} />
         </div>
-      )}
-      {serverError && (
-        <div
-          className="rounded-md border border-destructive/30 bg-destructive/10 px-3 py-2 text-sm text-destructive"
-          role={needsMfa ? "status" : "alert"}
-        >
-          {serverError}
+        <div className="space-y-1.5">
+          <Label htmlFor="password_confirm">{t("Confirmar nova senha")}</Label>
+          <div className="relative">
+            <Input
+              id="password_confirm"
+              type={showPasswordConfirm ? "text" : "password"}
+              autoComplete="new-password"
+              className="pr-12"
+              aria-invalid={errors.password_confirm ? true : undefined}
+              {...register("password_confirm")}
+            />
+            <button
+              type="button"
+              className="absolute inset-y-0 right-0 flex w-11 items-center justify-center rounded-r-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:outline-hidden focus-visible:ring-inset"
+              aria-label={t(
+                showPasswordConfirm
+                  ? "Ocultar confirmação da senha"
+                  : "Mostrar confirmação da senha",
+              )}
+              aria-pressed={showPasswordConfirm}
+              onClick={() => setShowPasswordConfirm((visible) => !visible)}
+            >
+              {showPasswordConfirm ? (
+                <EyeSlash size={20} aria-hidden />
+              ) : (
+                <Eye size={20} aria-hidden />
+              )}
+            </button>
+          </div>
+          {errors.password_confirm && (
+            <p className="text-xs text-destructive">{t(errors.password_confirm.message ?? "")}</p>
+          )}
         </div>
-      )}
-      <Button type="submit" className="w-full" disabled={!ready || isPending}>
-        {isPending ? t("Salvando...") : t("Definir nova senha")}
-      </Button>
+        {needsMfa && (
+          <div className="space-y-1.5">
+            <Label htmlFor="mfa_code">{t("Código de verificação (2 etapas)")}</Label>
+            <Input
+              id="mfa_code"
+              inputMode="numeric"
+              autoComplete="one-time-code"
+              maxLength={6}
+              placeholder="000000"
+              autoFocus
+              {...register("mfa_code")}
+            />
+          </div>
+        )}
+        {serverError && (
+          <div
+            className="rounded-md border border-destructive/30 bg-destructive/10 px-3 py-2 text-sm text-destructive"
+            role={needsMfa ? "status" : "alert"}
+          >
+            {serverError}
+          </div>
+        )}
+        <Button type="submit" className="w-full" disabled={!ready || isPending}>
+          {isPending ? t("Salvando...") : t("Definir nova senha")}
+        </Button>
+      </fieldset>
     </form>
   );
 }

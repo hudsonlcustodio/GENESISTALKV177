@@ -150,6 +150,8 @@ montar_instalacao() {  # montar_instalacao <raiz> <0|1 sem .env> [WAHA_IMAGE]
   local raiz="$1" sem_env="${2:-0}" waha="${3:-devlikeapro/waha:latest-2026.7.2}" proj="$1/deskcommcrm"
   mkdir -p "$proj"
   cp -RL "$REPO_ROOT/hostgator-setup-kit" "$proj/"
+  source "$REPO_ROOT/tests/shell/recovery-v2-stub.sh"
+  install_recovery_backup_double "$proj/hostgator-setup-kit" "$WORK/bin"
   mkdir -p "$proj/supabase"
   printf 'select 1;\n' > "$proj/supabase/baseline.sql"
   printf 'services:\n  app:\n    image: \${APP_IMAGE:-x}\n' > "$proj/docker-compose.prod.yml"

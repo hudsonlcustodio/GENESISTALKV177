@@ -149,10 +149,11 @@ reavaliada quando publicada.
 ## Acesso em carregamento lento
 
 A navegação local revelou que um clique anterior à hidratação fazia POST nativo
-e voltava ao login sem chamar a action. `useAuthFormReady` mantém o submit dos
-sete formulários de acesso desabilitado no HTML inicial e o libera após a
-hidratação. Preserva o POST e as regras de autenticação, MFA, erros e rate limit
-existentes. O teste renderiza o HTML do servidor, hidrata o login real e verifica
+e voltava ao login sem chamar a action. `useAuthFormReady` mantém os campos e o
+envio dos sete formulários de acesso desabilitados no HTML inicial e os libera após a
+hidratação. Isso também impede que o preenchimento anterior ao registro dos
+campos seja apagado pelo formulário no cliente. Preserva o POST e as regras de
+autenticação, MFA, erros e rate limit existentes. O teste renderiza o HTML do servidor, hidrata o login real e verifica
 o envio pela action e a mensagem de credenciais inválidas.
 
 Checklist dessa alteração: o HTML alimenta a hidratação, que libera as actions
@@ -161,3 +162,7 @@ formulário; a porta é login/cadastro/recuperação/MFA. O envio impossível an
 do handler é seu bloqueio preventivo. Não acrescenta configuração, demanda de
 atendimento ou transição IA/humano. O retorno é o erro inline e a nova tentativa;
 o mapa inclui HTML → hidratação → action → formulário.
+
+O catálogo de extensões também recusa download vazio, JSON incompleto e múltiplos
+objetos concatenados. A regressão encontrada com jq 1.6 foi corrigida exigindo
+exatamente um documento JSON com a estrutura de catálogo esperada.

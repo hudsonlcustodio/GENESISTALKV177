@@ -59,31 +59,33 @@ export function ForgotPasswordForm() {
 
   return (
     <form method="post" onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate>
-      <div className="space-y-1.5">
-        <Label htmlFor="email">Email</Label>
-        <Input
-          id="email"
-          type="email"
-          autoComplete="email"
-          autoFocus
-          aria-invalid={errors.email ? true : undefined}
-          {...register("email")}
-        />
-        {errors.email && (
-          <p className="text-xs text-destructive">{t(errors.email.message ?? "")}</p>
-        )}
-      </div>
-      {serverError && (
-        <div
-          className="rounded-md border border-destructive/30 bg-destructive/10 px-3 py-2 text-sm text-destructive"
-          role="alert"
-        >
-          {serverError}
+      <fieldset disabled={!ready} className="min-w-0 space-y-4">
+        <div className="space-y-1.5">
+          <Label htmlFor="email">Email</Label>
+          <Input
+            id="email"
+            type="email"
+            autoComplete="email"
+            autoFocus
+            aria-invalid={errors.email ? true : undefined}
+            {...register("email")}
+          />
+          {errors.email && (
+            <p className="text-xs text-destructive">{t(errors.email.message ?? "")}</p>
+          )}
         </div>
-      )}
-      <Button type="submit" className="w-full" disabled={!ready || isPending}>
-        {isPending ? t("Enviando...") : t("Enviar link de redefinição")}
-      </Button>
+        {serverError && (
+          <div
+            className="rounded-md border border-destructive/30 bg-destructive/10 px-3 py-2 text-sm text-destructive"
+            role="alert"
+          >
+            {serverError}
+          </div>
+        )}
+        <Button type="submit" className="w-full" disabled={!ready || isPending}>
+          {isPending ? t("Enviando...") : t("Enviar link de redefinição")}
+        </Button>
+      </fieldset>
     </form>
   );
 }
