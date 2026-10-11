@@ -3,7 +3,7 @@ set -Eeuo pipefail
 source "$(dirname "${BASH_SOURCE[0]}")/common.sh"
 [[ "$(uname -s)" == Linux ]] || fail_contabo 'Execute na VPS Linux, não no Windows/Git Bash.'
 arquitetura_suportada_pelo_kit "$(uname -m)" || fail_contabo 'Arquitetura não suportada (use amd64/arm64).'
-for tool in docker git curl openssl jq ss getent stat awk df sha256sum gzip tar flock; do
+for tool in docker git curl openssl jq ss getent stat awk df sha256sum gzip tar flock python3; do
   command -v "$tool" >/dev/null || fail_contabo "Ferramenta ausente: $tool."
 done
 docker info >/dev/null 2>&1 || fail_contabo 'Docker daemon indisponível ou sem permissão.'

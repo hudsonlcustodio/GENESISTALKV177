@@ -1,91 +1,93 @@
 #!/usr/bin/env bash
-# Backup: dump do banco (Supabase) + snapshot das sessões do WhatsApp.
-# Supabase free NÃO tem backup automático — rode isto num cron diário.
-#
-#   crontab -e →  0 3 * * *  cd /caminho/deskcommcrm && bash hostgator-setup-kit/backup.sh
+# Recovery v2: data, ownership, ACLs, row counts and hashes belong to one bundle.
 source "$(dirname "$0")/_common.sh"
+RECOVERY_KIT="$(cd "$(dirname "$0")" && pwd)"
 enter_project
-
-BACKUP_DIR="${BACKUP_DIR:-$PROJECT_DIR/backups}"
-# Backup é o banco inteiro, a sessão do WhatsApp (quem a lê fala pelo número da
-# empresa) e os anexos dos clientes: só o dono lê. Todo arquivo de backup nasce
-# no HOST, deste umask e com dono = quem chamou: os `tar` dos contêineres mandam
-# o snapshot pela saída padrão em vez de gravar numa montagem — gravado lá
-# dentro, ele nasceria do umask da imagem (022) e do root do contêiner, ilegível
-# para quem roda o backup pelo grupo docker. O `chmod` fecha a pasta que um
-# backup antigo deixou 755; onde o sistema de arquivos o recusa (CIFS/NFS), o
-# backup segue — os arquivos já nascem 600 — em vez de derrubar o update.sh.
+command -v python3 >/dev/null || die 'Backup exige Python 3 (biblioteca padrão).'
 umask 077
+command -v flock >/dev/null || die 'Backup exige flock.'
+mkdir -p "$PROJECT_DIR/.runtime"
+exec 7>"$PROJECT_DIR/.runtime/recovery.lock"
+flock -n 7 || die 'Já existe backup/restore em andamento.'
+BACKUP_DIR="${BACKUP_DIR:-$PROJECT_DIR/backups}"
 mkdir -p "$BACKUP_DIR"
-chmod 700 "$BACKUP_DIR" 2>/dev/null \
-  || c_ylw "⚠ não consegui fechar a pasta $BACKUP_DIR (chmod 700): os arquivos deste backup saem legíveis só pelo dono, mas a pasta ficou como estava."
-# Timestamp vem do host (não do script) pra manter determinismo do kit.
-ts="$(date +%Y%m%d-%H%M%S)"
+chmod 700 "$BACKUP_DIR" || die 'Não consegui proteger a pasta de backup.'
+ts="$(date +%Y%m%d-%H%M%S)-$$"
+dump="$BACKUP_DIR/db-$ts.sql.gz"
+catalog="$BACKUP_DIR/db-$ts.catalog.json"
 
-step "Dump do banco → $BACKUP_DIR/db-$ts.sql.gz"
-# Pela conexão de SCHEMA (url_do_schema), não pela do app: `pg_dump` só despeja
-# o que a role enxerga, e com uma role menor — a que recomendamos no `.env` de
-# quem usa Supabase próprio — o backup sai PARCIAL e sai verde. Falha silenciosa
-# de backup é a pior das falhas: só aparece na hora de restaurar.
-# O dump só recebe o nome definitivo depois de conferido — o mesmo padrão
-# `.parcial` + `mv` do snapshot do WhatsApp logo abaixo. Duas guardas, dois casos:
-#   1. uma etapa do pipe falha (`gzip` morre com disco cheio, `pg_dump` sai ≠0):
-#      o `if !` pega o exit e apaga o arquivo cortado — sem ele, o `set -e`
-#      abortava ali mesmo e o `db-*.sql.gz` cortado ficava na pasta, dentro da
-#      retenção e ao alcance do restore;
-#   2. o pipe sai com zero mas o arquivo não se lê: `gzip -t` percorre o arquivo
-#      inteiro e confere o CRC. BACKUP QUE NINGUÉM CONSEGUE LER NÃO É BACKUP.
-parcial_db="$BACKUP_DIR/.db-$ts.sql.gz.parcial"
-if ! pg_container postgres:17-alpine pg_dump "$(url_do_schema)" --no-owner --no-privileges \
-     | gzip > "$parcial_db"; then
-  rm -f "$parcial_db"
-  die "o dump do banco falhou no meio (disco cheio? pg_dump interrompido?) — removi o arquivo incompleto. Sem backup válido, não siga com atualização."
-fi
-if ! gzip -t "$parcial_db" 2>/dev/null; then
-  rm -f "$parcial_db"
-  die "o dump do banco saiu corrompido (gzip -t reprovou) — removi o arquivo para ninguém confiar nele. Sem backup válido, não siga com atualização."
-fi
-mv "$parcial_db" "$BACKUP_DIR/db-$ts.sql.gz"
-c_grn "✓ banco: $(du -h "$BACKUP_DIR/db-$ts.sql.gz" | awk '{print $1}') (conferido)"
+step 'Verificando versão e contrato de segurança do banco'
+pg_container -i postgres:17-alpine psql "$(url_do_schema)" -X -qAt -v ON_ERROR_STOP=1 \
+  < "$RECOVERY_KIT/recovery-catalog.sql" > "$catalog" \
+  || die 'Não consegui medir schema/RLS/permissões; backup recusado.'
+major="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["postgres_major"])' "$catalog")"
+case "$major" in 15|17) ;; *) die 'Major PostgreSQL sem homologação de recuperação (15/17).';; esac
+sessions="$(pg_container "postgres:$major-alpine" psql "$(url_do_schema)" -X -qAt -v ON_ERROR_STOP=1 \
+  -c "select count(*) from public.channel_sessions where waha_session_name is not null;")" \
+  || die 'Não consegui verificar as sessões cadastradas.'
+case "$sessions" in ''|*[!0-9]*) die 'Contagem de sessões inválida.';; esac
+required_sessions=0
+[[ "$sessions" -eq 0 ]] || required_sessions=1
 
-step "Snapshot das sessões do WhatsApp → $BACKUP_DIR/waha-$ts.tgz"
+step "Dump completo → $dump"
+# Keep owners AND privileges. --clean is used only by the guarded, transactional
+# restore into a dedicated empty destination; legacy bundles are never trusted.
+partial="$BACKUP_DIR/.db-$ts.sql.gz.parcial"
+if ! pg_container "postgres:$major-alpine" pg_dump "$(url_do_schema)" \
+    --clean --if-exists | gzip > "$partial"; then
+  rm -f "$partial"
+  die 'Dump falhou no meio: arquivo parcial removido.'
+fi
+gzip -t "$partial" || { rm -f "$partial"; die 'Dump saiu corrompido.'; }
+mv "$partial" "$dump"
+c_grn "✓ banco: $(du -h "$dump" | awk '{print $1}') (conferido)"
+
+# Schema cannot change while bundling. Row counts are derived from the dump,
+# so live inserts do not invalidate its MVCC data snapshot.
+after="$BACKUP_DIR/.catalog-$ts.parcial"
+pg_container -i "postgres:$major-alpine" psql "$(url_do_schema)" -X -qAt -v ON_ERROR_STOP=1 \
+  < "$RECOVERY_KIT/recovery-catalog.sql" > "$after" || die 'Contrato final indisponível.'
+cmp -s "$catalog" "$after" || die 'Schema/permissões mudaram durante o backup; repita.'
+rm -f "$after"
+
+step 'Snapshot das sessões do canal'
 vol="$(volume_waha_data)"
-# O arquivo só recebe o nome definitivo depois de PROVADO que tem sessão dentro.
-# Volume errado (ou vazio) renderia um .tgz de ~87 bytes cujo `tar` sai com zero:
-# o passo virava "✓ sessões WhatsApp salvas", o arquivo sem valor entrava na
-# retenção dos 14 e o pareamento do WhatsApp — o que este snapshot existe para
-# poupar — só se dava por perdido no dia do restore.
-parcial="$BACKUP_DIR/.waha-$ts.tgz.parcial"
-if ! docker run --rm -v "${vol}:/data:ro" alpine:3.20 tar czf - -C /data . 2>/dev/null > "$parcial"; then
-  rm -f "$parcial"
-  c_ylw "⚠ não consegui ler o volume das sessões ('$vol'): o backup do banco está feito, mas o pareamento do WhatsApp NÃO entrou nele."
-elif ! tar_tem_sessao "$parcial"; then
-  rm -f "$parcial"
-  c_ylw "⚠ o snapshot das sessões saiu VAZIO — a montagem /app/.sessions do contêiner waha resolveu para '$vol' e não tem sessão gravada. Este backup NÃO salva o pareamento do WhatsApp (o restore vai pedir o QR code de novo). Confira a montagem antes de considerar o backup completo."
+partial="$BACKUP_DIR/.waha-$ts.tgz.parcial"
+if ! docker run --rm -v "${vol}:/data:ro" alpine:3.20 tar czf - -C /data . > "$partial"; then
+  rm -f "$partial"
+  [[ "$required_sessions" == 0 ]] || die 'Canal cadastrado sem snapshot: atualização bloqueada.'
+  c_ylw 'Sem sessão cadastrada; snapshot de canal omitido.'
+elif ! tar_tem_sessao "$partial"; then
+  rm -f "$partial"
+  [[ "$required_sessions" == 0 ]] || die 'Snapshot saiu VAZIO para canal cadastrado; atualização bloqueada.'
+  c_ylw 'Snapshot saiu VAZIO; não há pareamento cadastrado a preservar.'
 else
-  mv "$parcial" "$BACKUP_DIR/waha-$ts.tgz"
-  c_grn "✓ sessões WhatsApp salvas ($(du -h "$BACKUP_DIR/waha-$ts.tgz" | awk '{print $1}'))"
+  mv "$partial" "$BACKUP_DIR/waha-$ts.tgz"
 fi
 
-# Single-server: os ANEXOS (fotos, documentos) moram no disco desta VPS, no
-# Storage do Supabase (STORAGE_BACKEND=file) — o dump acima leva só as linhas
-# que apontam para eles. Sem este passo o backup dizia "concluído" e a
-# restauração devolvia anexos quebrados. Por isso aqui falha é FALHA.
-if [ "${SINGLE_SERVER:-0}" = "1" ]; then
-  step "Arquivos anexados (Storage) → $BACKUP_DIR/storage-$ts.tgz"
-  parcial_st="$BACKUP_DIR/.storage-$ts.tgz.parcial"
+storage_required=0
+if [[ "${SINGLE_SERVER:-0}" == 1 ]]; then
+  storage_required=1
+  partial="$BACKUP_DIR/.storage-$ts.tgz.parcial"
   if ! docker run --rm -v "$(dir_do_supabase)/volumes/storage:/data:ro" alpine:3.20 \
-       tar czf - -C /data . > "$parcial_st"; then
-    rm -f "$parcial_st"
-    die "Não consegui salvar os arquivos anexados: este backup NÃO está completo."
+    tar czf - -C /data . > "$partial"; then
+    rm -f "$partial"
+    die 'Snapshot dos anexos falhou.'
   fi
-  mv "$parcial_st" "$BACKUP_DIR/storage-$ts.tgz"
-  c_grn "✓ anexos: $(du -h "$BACKUP_DIR/storage-$ts.tgz" | awk '{print $1}')"
+  tar tzf "$partial" >/dev/null || { rm -f "$partial"; die 'Snapshot dos anexos corrompido.'; }
+  mv "$partial" "$BACKUP_DIR/storage-$ts.tgz"
+else
+  c_ylw 'Storage externo: recupere os objetos no provedor; este bundle cobre o banco.'
 fi
-
-# Retenção: mantém os 14 mais recentes de cada tipo.
-step "Limpando backups antigos (mantém 14)"
-(ls -1t "$BACKUP_DIR"/db-*.sql.gz 2>/dev/null || true) | tail -n +15 | xargs -r rm -f 2>/dev/null || true
-(ls -1t "$BACKUP_DIR"/waha-*.tgz 2>/dev/null || true) | tail -n +15 | xargs -r rm -f 2>/dev/null || true
-(ls -1t "$BACKUP_DIR"/storage-*.tgz 2>/dev/null || true) | tail -n +15 | xargs -r rm -f 2>/dev/null || true
-c_grn "✓ backup concluído em $BACKUP_DIR"
+python3 "$RECOVERY_KIT/recovery.py" create "$dump" --sessions-required "$required_sessions" \
+  --storage-required "$storage_required" || die 'Bundle incompleto; não atualize.'
+python3 "$RECOVERY_KIT/recovery.py" verify "$dump" >/dev/null || die 'Integridade do bundle reprovou.'
+if [[ -n "${BACKUP_OFFSITE_DIR:-}" ]]; then
+  python3 "$RECOVERY_KIT/recovery.py" replicate "$dump" --destination "$BACKUP_OFFSITE_DIR" >/dev/null \
+    || die 'Cópia externa falhou; atualização bloqueada.'
+fi
+retention_dir="$BACKUP_DIR"
+case "$(cd "$BACKUP_DIR" && pwd)/" in "$PROJECT_DIR/backups/"*) retention_dir="$PROJECT_DIR/backups";; esac
+python3 "$RECOVERY_KIT/recovery.py" retain "$retention_dir" --keep "${BACKUP_KEEP:-14}" \
+  || die 'Retenção falhou; confira os bundles antes de atualizar.'
+c_grn "✓ backup v2 verificado em $BACKUP_DIR; copie o bundle completo para fora desta VPS."

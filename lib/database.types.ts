@@ -10979,6 +10979,31 @@ export type Database = {
       fn_user_org_ids: { Args: never; Returns: string[] }
       fn_user_role_in: { Args: { p_org: string }; Returns: number }
       fn_user_role_in_org: { Args: { p_org: string }; Returns: string }
+      fn_genesis_nomes_do_roster: {
+        Args: { p_org: string };
+        Returns: { user_id: string; name: string | null; email: string | null }[];
+      };
+      fn_genesis_operator_counts: {
+        Args: { p_org: string; p_since: string; p_agent?: string };
+        Returns: Json;
+      };
+      fn_genesis_supervisao: {
+        Args: {
+          p_org: string;
+          p_from: string;
+          p_to: string;
+          p_owner?: string;
+          p_agent?: string;
+          p_channel?: string;
+          p_pipeline?: string;
+          p_wait_minutes?: number;
+          p_cold_days?: number;
+          p_kind?: string;
+          p_offset?: number;
+          p_automatico?: boolean;
+        };
+        Returns: Json;
+      };
       fn_uso_de_ia: {
         Args: {
           p_agent_id?: string

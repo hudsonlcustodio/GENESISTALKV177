@@ -78,7 +78,11 @@ async function switchUser(page: Page, email: string): Promise<void> {
  * uma 2ª troca de filtro em sequência rápida (status→fluxo) podia deixar o
  * portal anterior ainda cobrindo a tabela por baixo do próximo clique.
  */
-async function selectFilterOption(page: Page, triggerLabel: string, optionName: string): Promise<void> {
+async function selectFilterOption(
+  page: Page,
+  triggerLabel: string,
+  optionName: string,
+): Promise<void> {
   await page.getByLabel(triggerLabel).click();
   await page.getByRole("option", { name: optionName, exact: true }).click();
   await expect(page.getByRole("listbox")).toHaveCount(0);
@@ -101,28 +105,50 @@ async function createLiveEnrollment(page: Page, tag: string): Promise<LiveEnroll
   const flowName = `E2E Fila ${tag} ${stamp}`;
   const contactName = `Cliente Fila E2E ${tag} ${stamp}`;
 
-  const createFlowRes = await page.request.post("/api/v1/ai/followup-flows", { data: { name: flowName } });
+  const createFlowRes = await page.request.post("/api/v1/ai/followup-flows", {
+    data: { name: flowName },
+  });
   expect(createFlowRes.status()).toBe(201);
   const { data: flow } = (await createFlowRes.json()) as ApiOk<{ id: string }>;
 
   const graph = {
     nodes: [
       { id: "trigger-1", type: "trigger", label: "Início", position: { x: 0, y: 0 }, config: {} },
-      { id: "end-1", type: "end", label: "Fim", position: { x: 0, y: 200 }, config: { outcome: "exhausted" } },
+      {
+        id: "end-1",
+        type: "end",
+        label: "Fim",
+        position: { x: 0, y: 200 },
+        config: { outcome: "exhausted" },
+      },
     ],
-    edges: [{ id: "edge-1", source: "trigger-1", target: "end-1", priority: 0, condition: { type: "always" } }],
+    edges: [
+      {
+        id: "edge-1",
+        source: "trigger-1",
+        target: "end-1",
+        priority: 0,
+        condition: { type: "always" },
+      },
+    ],
   };
   const patchRes = await page.request.patch(`/api/v1/ai/followup-flows/${flow.id}`, {
     data: { draft_graph: graph },
   });
   expect(patchRes.status()).toBe(200);
 
-  const publishRes = await page.request.post(`/api/v1/ai/followup-flows/${flow.id}/publish`, { data: {} });
+  const publishRes = await page.request.post(`/api/v1/ai/followup-flows/${flow.id}/publish`, {
+    data: {},
+  });
   expect(publishRes.status()).toBe(200);
 
-  const createContactRes = await page.request.post("/api/v1/contacts", { data: { display_name: contactName } });
+  const createContactRes = await page.request.post("/api/v1/contacts", {
+    data: { display_name: contactName },
+  });
   expect(createContactRes.status()).toBe(201);
-  const { data: contactResult } = (await createContactRes.json()) as ApiOk<{ contact: { id: string } }>;
+  const { data: contactResult } = (await createContactRes.json()) as ApiOk<{
+    contact: { id: string };
+  }>;
 
   const createEnrollmentRes = await page.request.post("/api/v1/ai/followups/enrollments", {
     data: { pointer_id: flow.id, contact_id: contactResult.contact.id },
@@ -135,14 +161,19 @@ async function createLiveEnrollment(page: Page, tag: string): Promise<LiveEnroll
 
 /** Cancela o enrollment (se ainda vivo) e desativa o fluxo — best-effort, reduz acúmulo na fila real. */
 async function cleanupLiveEnrollment(page: Page, live: LiveEnrollment): Promise<void> {
-  await page.request.post(`/api/v1/ai/followups/enrollments/${live.enrollmentId}/cancel`, { data: {} });
+  await page.request.post(`/api/v1/ai/followups/enrollments/${live.enrollmentId}/cancel`, {
+    data: {},
+  });
   await page.request.post(`/api/v1/ai/followup-flows/${live.flowId}/disable`, { data: {} });
 }
+
+// Genesis: operar estas jornadas reais também pelo viewport mobile.
+test.use({ viewport: { width: 390, height: 844 } });
 
 test.describe("followup queue — fila unificada (Task 7.1)", () => {
   test.beforeAll(() => {
     execFileSync("npx", ["tsx", "scripts/seed-e2e-followup-promise.ts"], { stdio: "inherit" });
-  // O seed ESCREVE em .e2e-creds.json, e `creds` foi lido no carregamento do
+    // O seed ESCREVE em .e2e-creds.json, e `creds` foi lido no carregamento do
     // módulo — sem reler, o objeto em memória nunca vê o bloco que o seed
     // acabou de gravar. Foi por isto que esta spec ficou fora do CI: a mensagem
     // "o seed não grava X" descrevia o sintoma, e o seed gravava certo desde
@@ -168,7 +199,10 @@ test.describe("followup queue — fila unificada (Task 7.1)", () => {
     await expect(row.getByText("Ativo", { exact: true })).toBeVisible();
     // next-fire: relativo visível + absoluto (dd/mm/yyyy) como texto secundário.
     await expect(row.locator("td").nth(3)).toContainText(/\d{2}\/\d{2}\/\d{4}/);
-    await page.screenshot({ path: path.join(ARTIFACTS_DIR, "followup-7.1-01-queue-populated.png"), fullPage: true });
+    await page.screenshot({
+      path: path.join(ARTIFACTS_DIR, "followup-7.1-01-queue-populated.png"),
+      fullPage: true,
+    });
 
     // --- 2. filtro por status e por fluxo estreitam a lista ---
     await selectFilterOption(page, "Filtrar por status", "Ativo");
@@ -189,7 +223,10 @@ test.describe("followup queue — fila unificada (Task 7.1)", () => {
     // filtro por ESTE fluxo recém-criado — só esta 1 linha pode bater (nenhum
     // outro teste usou este nome com timestamp único).
     await expect(page.locator('[data-testid="queue-row"]')).toHaveCount(1);
-    await page.screenshot({ path: path.join(ARTIFACTS_DIR, "followup-7.1-03-filtered-by-flow.png"), fullPage: true });
+    await page.screenshot({
+      path: path.join(ARTIFACTS_DIR, "followup-7.1-03-filtered-by-flow.png"),
+      fullPage: true,
+    });
 
     // --- 3. cancelar via AlertDialog ---
     // Re-resolve o botão NO MOMENTO do clique (não reusa um handle antigo) e
@@ -202,7 +239,10 @@ test.describe("followup queue — fila unificada (Task 7.1)", () => {
     const dialog = page.getByRole("alertdialog");
     await expect(dialog).toBeVisible();
     await expect(dialog).toContainText("O lead não receberá mais mensagens deste fluxo");
-    await page.screenshot({ path: path.join(ARTIFACTS_DIR, "followup-7.1-04-cancel-dialog.png"), fullPage: true });
+    await page.screenshot({
+      path: path.join(ARTIFACTS_DIR, "followup-7.1-04-cancel-dialog.png"),
+      fullPage: true,
+    });
 
     await dialog.getByRole("button", { name: "Cancelar follow-up" }).click();
     await expect(page.getByText("Follow-up cancelado.")).toBeVisible();
@@ -224,7 +264,9 @@ test.describe("followup queue — fila unificada (Task 7.1)", () => {
     const { data: cancelledRows } = (await cancelledQueueRes.json()) as ApiOk<
       Array<{ id: string; status: string }>
     >;
-    expect(cancelledRows.some((r) => r.id === live.enrollmentId && r.status === "cancelled")).toBe(true);
+    expect(cancelledRows.some((r) => r.id === live.enrollmentId && r.status === "cancelled")).toBe(
+      true,
+    );
 
     // --- 4. a promessa seedada (cron_jobs) aparece como linha "Promessa" ---
     const promiseInfo = creds.followup_promise;
@@ -239,7 +281,9 @@ test.describe("followup queue — fila unificada (Task 7.1)", () => {
     // esta busca só pode bater em exatamente 1 linha na fila inteira da org.
     await expect(page.locator('[data-testid="queue-row"]')).toHaveCount(1);
 
-    const promiseRow = page.locator('[data-testid="queue-row"]', { hasText: promiseInfo.contact_name });
+    const promiseRow = page.locator('[data-testid="queue-row"]', {
+      hasText: promiseInfo.contact_name,
+    });
     await expect(promiseRow).toBeVisible();
     await expect(promiseRow).toContainText("Promessa");
     await expect(promiseRow).toContainText(promiseInfo.reason);
@@ -247,14 +291,19 @@ test.describe("followup queue — fila unificada (Task 7.1)", () => {
     await expect(promiseRow.locator("td").nth(3)).toContainText(/\d{2}\/\d{2}\/\d{4}/);
     // Promessa não tem botão Cancelar (fora de escopo desta task).
     await expect(promiseRow.getByRole("button", { name: "Cancelar follow-up" })).toHaveCount(0);
-    await page.screenshot({ path: path.join(ARTIFACTS_DIR, "followup-7.1-06-promise-row.png"), fullPage: true });
+    await page.screenshot({
+      path: path.join(ARTIFACTS_DIR, "followup-7.1-06-promise-row.png"),
+      fullPage: true,
+    });
 
     // Cleanup: cancela + desativa o que este teste criou (a promessa já é
     // idempotente/upsert-like no seed — não precisa de teardown aqui).
     await cleanupLiveEnrollment(page, live);
   });
 
-  test("viewer vê a fila (leitura) mas não consegue cancelar — 403 client E server-side", async ({ page }) => {
+  test("viewer vê a fila (leitura) mas não consegue cancelar — 403 client E server-side", async ({
+    page,
+  }) => {
     // Setup como manager: precisa de 1 enrollment VIVO real pra tentar cancelar como viewer.
     await login(page, creds.users.manager!.email);
     const live = await createLiveEnrollment(page, "viewer-rbac");
@@ -265,9 +314,12 @@ test.describe("followup queue — fila unificada (Task 7.1)", () => {
     // endpoint de cancelar, sessão de viewer, contra um enrollment que
     // GENUINAMENTE existe e está vivo (não um id inventado — prova que o
     // 403 é RBAC, não um 404 mascarando o teste).
-    const cancelRes = await page.request.post(`/api/v1/ai/followups/enrollments/${live.enrollmentId}/cancel`, {
-      data: {},
-    });
+    const cancelRes = await page.request.post(
+      `/api/v1/ai/followups/enrollments/${live.enrollmentId}/cancel`,
+      {
+        data: {},
+      },
+    );
     expect(cancelRes.status()).toBe(403);
     const cancelBody = (await cancelRes.json()) as { error?: { code?: string } };
     expect(cancelBody.error?.code).toBe("forbidden_role");

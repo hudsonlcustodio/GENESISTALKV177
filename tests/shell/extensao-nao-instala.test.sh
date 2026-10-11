@@ -71,6 +71,14 @@ catalogo_tem_forma "$ruim" && erro "JSON sem forma de catálogo foi aceito" \
                            || ok "JSON sem forma de catálogo é recusado"
 catalogo_tem_forma "$vazio" && erro "arquivo vazio foi aceito" \
                             || ok "arquivo vazio é recusado"
+# A successful download must contain one complete catalog, not an empty stream
+# or two independently valid catalogs concatenated by a broken origin.
+for conteudo in '   ' 'null' '[]' '{' \
+  '{"format_version":1,"origin":"https://x.test","entries":[]} {"format_version":1,"origin":"https://x.test","entries":[]}'; do
+  printf '%s\n' "$conteudo" > "$vazio"
+  catalogo_tem_forma "$vazio" && erro "stream inválido foi aceito: $conteudo" \
+                              || ok "stream inválido é recusado: $conteudo"
+done
 rm -f "$bom" "$ruim" "$vazio"
 
 bash -n "$SCRIPT" && ok "sintaxe válida"

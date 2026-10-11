@@ -1,3 +1,4 @@
+// Genesis 1.77: fixtures de e-mail preservam conteúdo/links; apenas as duas cores de texto seguem a identidade oficial autorizada.
 /**
  * O QUE O TITULAR E O ENCARREGADO LEEM SEGUE O PAÍS DA ORGANIZAÇÃO — e o
  * Brasil fica byte a byte igual (doc 88, Portugal no seletor).
@@ -63,7 +64,10 @@ vi.mock("@/lib/supabase/admin", () => ({
                   count: 0,
                 }).then(ok, erro);
             if (prop === "maybeSingle" || prop === "single")
-              return async () => ({ data: tabela === "organizations" ? banco.org : null, error: null });
+              return async () => ({
+                data: tabela === "organizations" ? banco.org : null,
+                error: null,
+              });
             return () => q;
           },
         },
@@ -178,8 +182,11 @@ async function dataJson(country: string | null, timezone: string, pais?: string 
 const comoGravado = (p: ExportPayload) => JSON.stringify({ ...p, generated_at: "X" }, null, 2);
 
 /** O payload brasileiro menos as duas chaves que o doc 110 (2A) acrescentou — ver o cabeçalho. */
-const semAsChavesDoDoc110 = ({ messages_completas: _m, secoes_no_limite: _s, ...resto }: ExportPayload) =>
-  resto as ExportPayload;
+const semAsChavesDoDoc110 = ({
+  messages_completas: _m,
+  secoes_no_limite: _s,
+  ...resto
+}: ExportPayload) => resto as ExportPayload;
 
 function textos(no: ReactNode): string[] {
   if (no === null || no === undefined || typeof no === "boolean") return [];
@@ -215,7 +222,9 @@ function pdfDe(
           is_anonymized: false,
           ...extra.contato,
         } as never,
-        consents: [{ scope: "marketing", granted: true, granted_at: "2026-02-03T04:05:06.000Z" } as never],
+        consents: [
+          { scope: "marketing", granted: true, granted_at: "2026-02-03T04:05:06.000Z" } as never,
+        ],
       },
     }),
   );
@@ -223,7 +232,9 @@ function pdfDe(
 
 describe("e-mail ao titular", () => {
   it("Brasil: o de antes do doc 88, byte a byte, mais o link do arquivo de dados (doc 103, A)", async () => {
-    expect(JSON.stringify(await emailPara(perfilDoPais("BR")), null, 2)).toBe(fixture("email.json"));
+    expect(JSON.stringify(await emailPara(perfilDoPais("BR")), null, 2)).toBe(
+      fixture("email.json"),
+    );
   });
 
   it("Portugal: pt-PT, sem LGPD, citando o RGPD como direito exercido", async () => {
@@ -309,10 +320,9 @@ describe("data.json e PDF de acesso", () => {
     expect(cheio.messages_completas).toEqual([]);
     expect(cheio.secoes_no_limite).toEqual([]);
     const gravadas = Object.keys(JSON.parse(fixture("data-cheio.json")));
-    expect(Object.keys(JSON.parse(comoGravado(cheio))).filter((k) => !gravadas.includes(k))).toEqual([
-      "messages_completas",
-      "secoes_no_limite",
-    ]);
+    expect(
+      Object.keys(JSON.parse(comoGravado(cheio))).filter((k) => !gravadas.includes(k)),
+    ).toEqual(["messages_completas", "secoes_no_limite"]);
     for (const p of [vazio, cheio]) {
       expect(Object.keys(p)).not.toContain("lei_rotulo");
       expect(Object.keys(p)).not.toContain("fuso");
@@ -328,14 +338,17 @@ describe("data.json e PDF de acesso", () => {
     }
   });
 
-  it("Brasil: o texto do PDF é o de antes, com \"Base legal\"", async () => {
+  it('Brasil: o texto do PDF é o de antes, com "Base legal"', async () => {
     const { cheio } = await dataJson(null, "America/Sao_Paulo");
     expect(pdfDe(cheio).join("\u0001")).toBe(fixture("pdf-textos.txt"));
   });
 
   it("Brasil: CPF informado na conversa sai mascarado (#2341) e o aviso de assinatura sai como antes", async () => {
     const { cheio } = await dataJson(null, "America/Sao_Paulo");
-    const pdf = pdfDe(cheio, { contato: { cpf_informado_na_conversa: true }, unsignedWarning: true });
+    const pdf = pdfDe(cheio, {
+      contato: { cpf_informado_na_conversa: true },
+      unsignedWarning: true,
+    });
     expect(pdf.join("\u0001")).toBe(fixture("pdf-textos-cpf-da-conversa-e-aviso.txt"));
   });
 
@@ -368,13 +381,16 @@ describe("data.json e PDF de acesso", () => {
   });
 
   it("o worker lê o país uma vez e passa o mesmo perfil ao coletor e ao e-mail", () => {
-    const fonte = readFileSync(join(__dirname, "..", "..", "workers", "lgpd-export-worker.ts"), "utf8");
+    const fonte = readFileSync(
+      join(__dirname, "..", "..", "workers", "lgpd-export-worker.ts"),
+      "utf8",
+    );
     expect(fonte.match(/perfilDaOrganizacao\(/g)).toHaveLength(1);
     expect(fonte).toMatch(/pais:\s*perfil\.codigo/);
     expect(fonte).toMatch(/sendExportEmail\(\{[^}]*\bperfil,/);
   });
 
-  it("Portugal: o PDF diz \"Direito exercido\" e as datas saem no fuso de Lisboa", async () => {
+  it('Portugal: o PDF diz "Direito exercido" e as datas saem no fuso de Lisboa', async () => {
     const { cheio } = await dataJson("PT", "Europe/Lisbon");
     const tudo = pdfDe(cheio).join(" ").replace(/\s+/g, " ");
     expect(tudo).toContain("Direito exercido: RGPD art. 15.º (Regulamento (UE) 2016/679)");

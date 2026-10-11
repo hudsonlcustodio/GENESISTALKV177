@@ -16,6 +16,8 @@ unset COMPOSE_PROJECT_NAME SINGLE_SERVER PSQL_DOCKER_NETWORK REVERSE_PROXY \
 
 ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
 KIT_DIR="$ROOT/hostgator-setup-kit"
+export RECOVERY_STUB_HELPER="$ROOT/tests/shell/recovery-v2-stub.sh"
+source "$RECOVERY_STUB_HELPER"
 WORK="$(cd "$(mktemp -d)" && pwd -P)"
 trap 'rm -rf "$WORK"' EXIT
 DOCKER_REAL="$(command -v docker || true)"
@@ -39,6 +41,8 @@ mkdir -p "$WORK/bin" "$FLAGS"
   printf '#!/usr/bin/env bash\nDUBLE_LOG=%q\nFLAGS=%q\n' "$LOG" "$FLAGS"
   cat <<'STUB'
 printf '%s\n' "$*" >> "$DUBLE_LOG"
+source "$RECOVERY_STUB_HELPER"
+if recovery_v2_stub "$@"; then exit 0; fi
 case " $* " in
   *" compose "*)
     printf 'COMPOSE pwd=%s projeto=%s smtp_host=%s\n' "$PWD" \
@@ -62,7 +66,7 @@ case " $* " in
       *" tar czf - "*)
         # o snapshot sai pela saída padrão; quem grava o arquivo é o host
         [ "${STORAGE_FALHA:-0}" = "1" ] && case " $* " in *volumes/storage:*) printf 'cortado'; exit 1;; esac
-        printf 'tgz' ;;
+        tar czf - --files-from /dev/null ;;
     esac ;;
 esac
 exit 0
@@ -159,7 +163,7 @@ check "pipe do dump que falha reprova o backup" test "$rc" -ne 0
 check "e diz que o dump falhou no meio" contem "$WORK/bk-pipe-falhou.out" "falhou no meio"
 check "e não deixa o arquivo cortado (nem o .parcial) na pasta" \
   bash -c "! ls '$APROJ'/backups/db-*.sql.gz >/dev/null 2>&1 && ! ls '$APROJ'/backups/.db-*.parcial >/dev/null 2>&1"
-printf 'x' | gzip > "$APROJ/backups/db-20260922-030000.sql.gz"
+make_recovery_fixture "$APROJ/backups/db-20260922-030000.sql.gz" "$KIT_DIR"
 : > "$LOG"
 (cd "$APROJ" && printf 'RESTAURAR\n' | bash "$KIT_DIR/restore.sh" backups/db-20260922-030000.sql.gz) > "$WORK/rs-comum.out" 2>&1; rc=$?
 check "restore.sh comum termina bem" test "$rc" -eq 0
@@ -260,21 +264,22 @@ rm -f "$PROJ"/backups/storage-*.tgz
 : > "$LOG"
 (cd "$PROJ" && STORAGE_FALHA=1 bash "$KIT_DIR/backup.sh") > "$WORK/bk.out" 2>&1; rc=$?
 check "falha nos anexos REPROVA o backup (não sai 'concluído')" test "$rc" -ne 0
-check "a falha diz que o backup está incompleto" grep -q "NÃO está completo" "$WORK/bk.out"
+check "a falha diz que os anexos falharam" grep -q "Snapshot dos anexos falhou" "$WORK/bk.out"
 check "e não imprime 'backup concluído'" bash -c '! grep -q "backup concluído" "$1"' _ "$WORK/bk.out"
 check "e não deixa o arquivo cortado dos anexos (nem o .parcial) na pasta" \
   bash -c '! ls "$1"/backups/storage-*.tgz >/dev/null 2>&1 && ! ls "$1"/backups/.storage-*.parcial >/dev/null 2>&1' _ "$PROJ"
 
-printf 'x' | gzip > "$PROJ/backups/db-20260922-030000.sql.gz"
-: > "$PROJ/backups/storage-20260922-030000.tgz"
+make_recovery_fixture "$PROJ/backups/db-20260922-030000.sql.gz" "$KIT_DIR"
+tar czf "$PROJ/backups/storage-20260922-030000.tgz" --files-from /dev/null
+make_recovery_fixture "$PROJ/backups/db-20260922-030000.sql.gz" "$KIT_DIR" 1
 : > "$LOG"
 (cd "$PROJ" && printf 'RESTAURAR\n' | bash "$KIT_DIR/restore.sh" backups/db-20260922-030000.sql.gz) > "$WORK/rs.out" 2>&1; rc=$?
 check "restore.sh single-server termina bem" test "$rc" -eq 0
 check "restore.sh devolve os anexos ao Storage" contem "$LOG" "-v $SB/volumes/storage:/data "
-check "restore.sh usa o arquivo PAR do dump" contem "$LOG" 'tar xzf /in/storage-20260922-030000.tgz'
+check "restore.sh usa o arquivo PAR do dump" contem "$LOG" 'storage-20260922-030000.tgz'
 rm -f "$PROJ/backups/storage-20260922-030000.tgz"
 (cd "$PROJ" && printf 'RESTAURAR\n' | bash "$KIT_DIR/restore.sh" backups/db-20260922-030000.sql.gz) > "$WORK/rs.out" 2>&1
-check "sem o arquivo dos anexos, o restore DIZ que eles não voltaram" grep -q "os ANEXOS não" "$WORK/rs.out"
+check "sem os anexos, o restore bloqueia antes do banco" grep -q "Arquivo ausente" "$WORK/rs.out"
 
 # ════════════════════════════════════════════════════════════════════════════
 echo "(c) o GoTrue manda e-mail pelo SMTP do CRM:"

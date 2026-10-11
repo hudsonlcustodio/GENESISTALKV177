@@ -11,13 +11,14 @@
  * → `AttendantAvailability`): renomear um campo aqui quebraria o painel de
  * atendimento em silêncio — a tabela renderiza `undefined` sem erro nenhum.
  */
-import { describe, expect, it, vi } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { NextRequest } from "next/server";
 
 import { fail } from "@/lib/api/wrappers";
 import { requireRole } from "@/lib/auth/require-role";
 import { isServiceRoleConfigured } from "@/lib/audit";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { createClient } from "@/lib/supabase/server";
 import { ROLE_RANK, type AuthUser, type Role } from "@/lib/auth/types";
 
 vi.mock("@/lib/auth/require-role", () => ({ requireRole: vi.fn() }));
@@ -33,6 +34,18 @@ const ANA = "11111111-1111-4111-8111-111111111111";
 const BRUNO = "99999999-9999-4999-8999-999999999999";
 const VIEWER = "77777777-7777-4777-8777-777777777777";
 const CARLA = "33333333-3333-4333-8333-333333333333";
+beforeEach(() => {
+  vi.mocked(createClient).mockResolvedValue({
+    rpc: vi.fn(async () => ({
+      data: [ANA, BRUNO, CARLA].map((id) => ({
+        user_id: id,
+        name: `Nome ${id.slice(0, 4)}`,
+        email: `${id.slice(0, 4)}@example.com`,
+      })),
+      error: null,
+    })),
+  } as unknown as Awaited<ReturnType<typeof createClient>>);
+});
 
 function sessao(papel: Role) {
   const user: AuthUser = {

@@ -56,6 +56,9 @@ async function login(page: Page): Promise<void> {
   await page.waitForURL(/\/app/, { timeout: 30_000 });
 }
 
+// Genesis: operar estas jornadas reais também pelo viewport mobile.
+test.use({ viewport: { width: 390, height: 844 } });
+
 test("o e-mail digitado na tela do contato fica salvo", async ({ page }) => {
   await login(page);
 
@@ -79,7 +82,10 @@ test("o e-mail digitado na tela do contato fica salvo", async ({ page }) => {
   // tivesse funcionado.
   await expect(page.getByText(EMAIL)).toHaveCount(0);
 
-  await page.getByRole("button", { name: /editar/i }).first().click();
+  await page
+    .getByRole("button", { name: /editar/i })
+    .first()
+    .click();
   const campo = page.locator("#ec-email");
   await campo.waitFor({ state: "visible", timeout: 10_000 });
   await campo.fill(EMAIL);
@@ -110,10 +116,9 @@ test("o e-mail digitado na tela do contato fica salvo", async ({ page }) => {
   };
   const ficha = cru.data.contact ?? (cru.data as { email: string; email_normalized: string });
   expect(ficha.email).toBe(EMAIL);
-  expect(
-    ficha.email_normalized,
-    "o Postgres deriva a coluna — era só não escrever nela",
-  ).toBe(EMAIL.toLowerCase());
+  expect(ficha.email_normalized, "o Postgres deriva a coluna — era só não escrever nela").toBe(
+    EMAIL.toLowerCase(),
+  );
 
   await page.screenshot({ path: "evidence/spec-17/contato-com-email-salvo.png", fullPage: true });
 });

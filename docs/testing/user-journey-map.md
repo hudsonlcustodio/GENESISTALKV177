@@ -3336,3 +3336,30 @@ Spec: `tests/e2e/mapas-em-provedores.spec.ts`.
 | J40.6 | O que o Google diz × o endereço anotado em 8 pedidos confirmados (28/09/2026, numa instalação real) | município 8/8, região 8/8, localidade 7/8 (na zona rural virou o povoado), rua 3/5, bairro 1/8, número interpolado → a cidade é o MUNICÍPIO; bairro e número não saem | **MEDIDO em produção** (fora deste repositório); regra em `tests/unit/mapas-pino-com-endereco.test.ts` |
 | J40.7 | O pino com endereço aproximado, aberto na conversa pela equipe | o cartão do pino mostra «Rua, Cidade, Estado (aprox.)», com o texto inteiro no `title` (o cartão corta com …) e o toque abre as COORDENADAS no mapa | **PASS pela tela** — Evidência: `evidence/triagem-16set-l12/mapas-03-pino-na-conversa.png` |
 | J40.8 | A API do canal intermediado não responde a tempo na ingestão do pino (medido 29/09/2026: timeout duas vezes seguidas) | a mensagem entra com o marcador e pede nova busca (`message.location_retry_requested`); 1 min depois, e a cada 2 min até 15, busca de novo e grava tipo `location` + link (+ endereço aproximado com chave); nunca rebaixa um pino que já tem coordenadas; desiste sem virar incidente | **PASS (unit)** — `tests/unit/pino-reintento.test.ts`, `tests/unit/channel-ingest-zernio.test.ts` |
+
+## Identidade Genesis — login e shell interno (2026-10-09)
+
+Preview local da marca padrão com o logotipo oficial fornecido pelo usuário,
+paleta Genesis e prioridade das marcas personalizadas preservada.
+
+| Caso                                                    | Resultado                                                                                                                                    |
+| ------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| Login claro desktop e mobile sem rolagem horizontal     | **PASS pela tela** — `evidence/identidade-genesis/login-claro.png`, `evidence/identidade-genesis/login-mobile.png`                                                       |
+| Login escuro e foco dos campos com contraste            | **PASS pela tela e tokens calculados** — `evidence/identidade-genesis/login-escuro.png`                                                      |
+| Login real por senha e shell da Inbox em ambos os temas | **PASS pela tela** — `evidence/identidade-genesis/inbox-claro.png`, `evidence/identidade-genesis/inbox-escuro.png`; a lista aparece em carregamento inicial nas capturas |
+
+Escopo, verificações automatizadas e limitações registrados em
+[`evidence/identidade-genesis/README.md`](../../evidence/identidade-genesis/README.md).
+Esta evidência é local e não comprova operações de mensagens ou produção.
+
+## Genesis 1.77 — Supervisão e jornadas mobile (2026-10-10)
+
+| Jornada | Prova e limite |
+| --- | --- |
+| Supervisão autenticada, filtros e detalhamento | **PASS pela tela local** — `evidence/finalizacao-v177/supervisao-desktop.png`, `evidence/finalizacao-v177/supervisao-mobile.png`, `evidence/finalizacao-v177/supervisao-mobile-escuro.png` |
+| Supervisão mobile recupera fonte após 503 controlado | **PASS no build de produção CI** — `evidence/finalizacao-v177/ci-supervisao-mobile.png` |
+| CRM cria e persiste após reload em 390 px | **PASS pela tela + banco CI** — `evidence/finalizacao-v177/ci-crm-mobile.png`; o negócio não está no enquadramento inicial |
+| Tarefas cria, prioriza, conclui e reabre | **PASS pela tela + banco CI** — `evidence/finalizacao-v177/ci-tarefas-mobile.png`; alvos 44 px, ações sem hover |
+
+Origem, SHA e limites em [evidências da finalização](../../evidence/finalizacao-v177/README.md).
+Contabo, provedores reais e aparelho físico permanecem fora desta prova.

@@ -2,6 +2,8 @@
 # Always use: -f docker-compose.prod.yml -f deploy/contabo/docker-compose.genesis.yml
 services:
   app:
+    environment:
+      GENESIS_ALERT_WEBHOOK: ""
     image: genesis-talk-app:1.77.0
     pull_policy: never
     build:
@@ -10,6 +12,8 @@ services:
       args:
         APP_VERSION: "1.77.0"
   worker:
+    environment:
+      GENESIS_ALERT_WEBHOOK: ""
     image: genesis-talk-worker:1.77.0
     pull_policy: never
     build:
@@ -26,6 +30,8 @@ services:
       args:
         APP_VERSION: "1.77.0"
   voice-agent:
+    environment:
+      GENESIS_ALERT_WEBHOOK: ""
     profiles: [telefonia]
     image: genesis-talk-voice-agent:1.77.0
     pull_policy: never

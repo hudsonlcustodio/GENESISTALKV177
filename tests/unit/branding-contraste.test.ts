@@ -29,7 +29,9 @@ import type { Rampa } from "@/lib/branding/rampa";
 const RAIZ = process.cwd();
 const CSS = fs.readFileSync(path.join(RAIZ, "app/globals.css"), "utf8");
 // Preserve upstream adversarial calibration independently of the Genesis product ramp.
-const REGUA: Regua = extrairRegua(fs.readFileSync(path.join(RAIZ, "tests/fixtures/branding-sage-calibration.css"), "utf8"));
+const REGUA: Regua = extrairRegua(
+  fs.readFileSync(path.join(RAIZ, "tests/fixtures/branding-sage-calibration.css"), "utf8"),
+);
 const GENESIS: Regua = extrairRegua(CSS);
 
 const rampaChapada = (hex: string): Rampa =>
@@ -53,8 +55,22 @@ const rampaChapada = (hex: string): Rampa =>
  *              para tudo passaria em "nenhum papel abaixo do piso".
  */
 const FIXTURE = [
-  "#0f172a", "#f5c518", "#ffffff", "#000000", "#808080", "#dc2626", "#22c55e", "#f59e0b",
-  "#2563eb", "#14b8a6", "#4b0082", "#e11d48", "#7c3aed", "#1a1f36", "#fafafa", "#506d48",
+  "#0f172a",
+  "#f5c518",
+  "#ffffff",
+  "#000000",
+  "#808080",
+  "#dc2626",
+  "#22c55e",
+  "#f59e0b",
+  "#2563eb",
+  "#14b8a6",
+  "#4b0082",
+  "#e11d48",
+  "#7c3aed",
+  "#1a1f36",
+  "#fafafa",
+  "#506d48",
 ] as const;
 
 describe("extrairRegua — os pares saem do globals.css, nunca de lista à mão", () => {
@@ -167,17 +183,25 @@ describe("dicromacia — a régua de ângulo ordena INVERTIDO", () => {
     const cru = deltaEOklab(vermelho, verde);
     expect(cru).toBeGreaterThan(0.2);
     for (const tipo of DICROMACIAS) {
-      const simulado = deltaEOklab(simularDicromacia(vermelho, tipo), simularDicromacia(verde, tipo));
+      const simulado = deltaEOklab(
+        simularDicromacia(vermelho, tipo),
+        simularDicromacia(verde, tipo),
+      );
       expect(simulado, tipo).toBeLessThan(cru * 0.5);
     }
     // Sob deuteranopia o colapso é quase total — 0,0076 contra 0,2080 crus. Matriz
     // identidade (a sabotagem óbvia) devolveria 0,2080 e reprovaria aqui.
     expect(
-      deltaEOklab(simularDicromacia(vermelho, "deuteranopia"), simularDicromacia(verde, "deuteranopia")),
+      deltaEOklab(
+        simularDicromacia(vermelho, "deuteranopia"),
+        simularDicromacia(verde, "deuteranopia"),
+      ),
     ).toBeLessThan(cru * 0.1);
     // E NÃO colapsa o eixo azul-amarelo, que a dicromacia vermelho-verde preserva: uma
     // matriz que zerasse tudo também passaria no teste acima.
-    expect(deltaESimulado("#2563eb", "#f5c518")).toBeGreaterThan(deltaEOklab("#2563eb", "#f5c518") * 0.85);
+    expect(deltaESimulado("#2563eb", "#f5c518")).toBeGreaterThan(
+      deltaEOklab("#2563eb", "#f5c518") * 0.85,
+    );
   });
 
   it("usa o PIOR caso entre as dicromacias, não a média", () => {
@@ -211,7 +235,9 @@ describe("derivarMarca — as 16 sementes adversariais", () => {
         expect(
           reprovas,
           `${semente} · grau ${tema.grauDoAccent}: ` +
-            reprovas.map((r) => `${r.papel}×${r.superficie}=${r.razao.toFixed(2)}<${r.piso}`).join(", "),
+            reprovas
+              .map((r) => `${r.papel}×${r.superficie}=${r.razao.toFixed(2)}<${r.piso}`)
+              .join(", "),
         ).toEqual([]);
       }
     }
@@ -329,9 +355,7 @@ describe("reconciliação — quem se move são as NOSSAS semânticas", () => {
     // no sistema quando ela não consegue resolver. Na Sage, `success` do tema escuro é
     // literalmente o accent; girar até 60° ou colide com o accent ou colide com `info`.
     const sage = derivarMarca("#506d48", REGUA);
-    const sinais = sage.motivos.filter(
-      (m) => m.codigo === "redundancia_nao_cromatica_necessaria",
-    );
+    const sinais = sage.motivos.filter((m) => m.codigo === "redundancia_nao_cromatica_necessaria");
     expect(sinais).toHaveLength(1);
     expect(sinais[0]).toMatchObject({ tema: "escuro", alvo: "success" });
     expect(sinais[0]!.detalhe).toMatch(/ícone|rótulo/);
@@ -370,9 +394,10 @@ describe("reconciliação — quem se move são as NOSSAS semânticas", () => {
           const moveu = r.movimentos.some((m) => m.nome === s.nome);
           const semSaida = r.semSaida.some((x) => x.nome === s.nome);
           if (!moveu && !semSaida) {
-            expect(deltaESimulado(s.hex, tema.accent), `${semente} ${s.nome}`).toBeGreaterThanOrEqual(
-              PISO_DE_SEPARACAO_SIMULADA,
-            );
+            expect(
+              deltaESimulado(s.hex, tema.accent),
+              `${semente} ${s.nome}`,
+            ).toBeGreaterThanOrEqual(PISO_DE_SEPARACAO_SIMULADA);
           }
         }
       }
@@ -405,17 +430,23 @@ describe("marca acromática — o accent do produto permanece", () => {
       [marca.escuro, REGUA.escuro],
     ] as const) {
       expect(hexParaOklch(tema.accent).C).toBeGreaterThanOrEqual(PISO_DE_CROMA);
-      expect(
-        separacaoDoNeutro(regua, tema.grauDoAccent, tema.accent),
-      ).toBeGreaterThanOrEqual(PISO_DE_SEPARACAO_DO_NEUTRO);
+      expect(separacaoDoNeutro(regua, tema.grauDoAccent, tema.accent)).toBeGreaterThanOrEqual(
+        PISO_DE_SEPARACAO_DO_NEUTRO,
+      );
     }
     // Os números exatos, fixados: 0,0681 no claro (accent-600 × neutral-600) e 0,1994 no
     // escuro (accent-400 × neutral-400). São eles que mostram por que o piso do briefing
     // (8, na convenção ×100 — ou seja 0,08 aqui) não podia ser aceito sem medir: ele
     // reprovaria o controle positivo do próprio produto no tema claro.
-    expect(separacaoDoNeutro(REGUA.claro, marca.claro.grauDoAccent, marca.claro.accent)).toBeCloseTo(0.0681, 4);
-    expect(separacaoDoNeutro(REGUA.escuro, marca.escuro.grauDoAccent, marca.escuro.accent)).toBeCloseTo(0.1994, 4);
-    expect(separacaoDoNeutro(REGUA.claro, marca.claro.grauDoAccent, marca.claro.accent)).toBeLessThan(0.08);
+    expect(
+      separacaoDoNeutro(REGUA.claro, marca.claro.grauDoAccent, marca.claro.accent),
+    ).toBeCloseTo(0.0681, 4);
+    expect(
+      separacaoDoNeutro(REGUA.escuro, marca.escuro.grauDoAccent, marca.escuro.accent),
+    ).toBeCloseTo(0.1994, 4);
+    expect(
+      separacaoDoNeutro(REGUA.claro, marca.claro.grauDoAccent, marca.claro.accent),
+    ).toBeLessThan(0.08);
 
     // Controle negativo: um accent cinza reprovaria as duas guardas. Sem esta linha, os
     // pisos acima poderiam ser satisfeitos por qualquer coisa.
@@ -489,24 +520,30 @@ describe("ramo degradado — rampas que não têm solução", () => {
 
 describe("Genesis — os papéis de produto e marcas usam os mesmos pisos", () => {
   it("mantém as âncoras oficiais e passa o contraste nos dois temas", () => {
-    expect(GENESIS.rampaDoProduto[5]).toBe("#7ed321");
-    expect(GENESIS.rampaDoProduto[7]).toBe("#00c853");
-    expect(GENESIS.rampaDoProduto[10]).toBe("#0b3d3a");
+    expect(GENESIS.rampaDoProduto[5]).toBe("#d4ff00");
+    expect(GENESIS.rampaDoProduto[7]).toBe("#00e676");
+    expect(GENESIS.rampaDoProduto[10]).toBe("#071b33");
     for (const tema of [GENESIS.claro, GENESIS.escuro]) {
       const pares = medirPares(tema, GENESIS.rampaDoProduto, 0);
       expect(pares.length).toBeGreaterThanOrEqual(18);
-      expect(pares.filter(p => !p.passa), tema.nome).toEqual([]);
+      expect(
+        pares.filter((p) => !p.passa),
+        tema.nome,
+      ).toEqual([]);
     }
     // Measure the literal CSS foreground too: the generic engine calculates it.
-    expect(razaoDeContraste("#ffffff", "#0b5d45")).toBeGreaterThanOrEqual(4.5);
-    expect(razaoDeContraste("#161510", "#8ae532")).toBeGreaterThanOrEqual(4.5);
+    expect(razaoDeContraste("#ffffff", "#006b3a")).toBeGreaterThanOrEqual(4.5);
+    expect(razaoDeContraste("#071b33", "#39ed94")).toBeGreaterThanOrEqual(4.5);
   });
   it("as sementes adversariais também passam com a régua Genesis", () => {
     for (const seed of [...FIXTURE, "#7ed321"]) {
       const marca = derivarMarca(seed, GENESIS);
       for (const tema of [marca.claro, marca.escuro]) {
         expect(tema.pares.length).toBeGreaterThanOrEqual(18);
-        expect(tema.pares.filter(p => !p.passa), seed).toEqual([]);
+        expect(
+          tema.pares.filter((p) => !p.passa),
+          seed,
+        ).toEqual([]);
       }
     }
   });

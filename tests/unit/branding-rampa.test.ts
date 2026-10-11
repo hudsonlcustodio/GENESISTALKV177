@@ -49,7 +49,9 @@ function blocoRoot(css: string): string {
 }
 
 function stopsSageDoCss(): string[] {
-  const raiz = blocoRoot(fs.readFileSync(path.join(RAIZ, "tests/fixtures/branding-sage-calibration.css"), "utf8"));
+  const raiz = blocoRoot(
+    fs.readFileSync(path.join(RAIZ, "tests/fixtures/branding-sage-calibration.css"), "utf8"),
+  );
   return GRAUS.map((g) => {
     const m = new RegExp(`--color-accent-${g}:\\s*(#[0-9a-f]{6})`, "i").exec(raiz);
     if (!m?.[1]) throw new Error(`não achei --color-accent-${g} no :root do globals.css`);
@@ -107,9 +109,9 @@ describe("rampaDeSemente — catraca de calibração contra o design system", ()
 
   it("preserva as três âncoras oficiais da rampa Genesis", () => {
     const raiz = blocoRoot(CSS);
-    expect(raiz).toContain("--color-accent-500: #7ed321;");
-    expect(raiz).toContain("--color-accent-700: #00c853;");
-    expect(raiz).toContain("--color-accent-950: #0b3d3a;");
+    expect(raiz).toContain("--color-accent-500: #d4ff00;");
+    expect(raiz).toContain("--color-accent-700: #00e676;");
+    expect(raiz).toContain("--color-accent-950: #071b33;");
   });
 
   it("lê 11 stops distintos do globals.css (guarda de vacuidade)", () => {

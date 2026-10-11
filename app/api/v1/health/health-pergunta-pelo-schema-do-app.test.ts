@@ -59,7 +59,7 @@ function pedido(): NextRequest {
 function cabecalhosDoPingDoBanco(chamadas: Parameters<typeof fetch>[]): Headers | null {
   for (const [entrada, init] of chamadas) {
     const alvo = typeof entrada === "string" ? entrada : String(entrada);
-    if (alvo.startsWith(URL_DO_PROJETO)) return new Headers(init?.headers);
+    if (alvo.startsWith(`${URL_DO_PROJETO}/rest/v1/`)) return new Headers(init?.headers);
   }
   return null;
 }
@@ -90,7 +90,7 @@ describe("GET /api/v1/health — o ping do banco declara o schema", () => {
     // conserto, ESTE corpo chegava com o app inteiro funcionando ao lado.
     vi.stubGlobal("fetch", (entrada: string | URL | Request, init?: RequestInit) => {
       const alvo = typeof entrada === "string" ? entrada : String(entrada);
-      if (!alvo.startsWith(URL_DO_PROJETO)) {
+      if (!alvo.startsWith(URL_DO_PROJETO) || alvo.endsWith("/auth/v1/settings")) {
         return Promise.resolve(new Response("{}", { status: 200 }));
       }
       const pediuPublic = new Headers(init?.headers).get("Accept-Profile") === "public";

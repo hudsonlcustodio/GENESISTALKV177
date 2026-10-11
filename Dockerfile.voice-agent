@@ -1,5 +1,5 @@
 # Worker de voz (SIP/ARI + IA em tempo real) — mesmo padrão do Dockerfile.worker:
-# roda TS direto via tsx (sem build), imagem single-stage com devDeps.
+# roda TS direto via tsx de runtime, sem dependências de desenvolvimento.
 FROM node:22-alpine
 
 WORKDIR /app
@@ -16,7 +16,7 @@ COPY package.json pnpm-lock.yaml ./
 # ENOENT em `patches/@react-pdf__hyphenate.patch` e a imagem não nasce.
 # `Dockerfile` e `Dockerfile.worker` já copiam; esta era a única que não copiava.
 COPY patches ./patches
-RUN pnpm install --frozen-lockfile
+RUN pnpm install --frozen-lockfile --prod
 
 COPY . .
 

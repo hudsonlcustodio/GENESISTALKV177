@@ -172,14 +172,16 @@ const IDEMPOTENCY_WINDOW_MS = 5_000;
 // Postgres `infinity` literal — bot must never reassume after handoff (IA-06).
 const SILENCE_INFINITY = "infinity";
 
-export async function triggerHandoff(
-  input: TriggerHandoffInput,
-): Promise<TriggerHandoffResult> {
+export async function triggerHandoff(input: TriggerHandoffInput): Promise<TriggerHandoffResult> {
   try {
     const admin = createAdminClient();
     const guard = async () => {
       if (input.serviceBoundary) {
-        if (input.serviceBoundary.organization_id !== input.organizationId || input.serviceBoundary.conversation_id !== input.conversationId) throw new Error("service_scope_mismatch");
+        if (
+          input.serviceBoundary.organization_id !== input.organizationId ||
+          input.serviceBoundary.conversation_id !== input.conversationId
+        )
+          throw new Error("service_scope_mismatch");
         await assertServiceBoundarySupabase(admin, input.serviceBoundary);
       }
     };
@@ -191,7 +193,7 @@ export async function triggerHandoff(
     const { data: convNow } = await admin
       .from("conversations")
       .select(
-        "id, organization_id, contact_id, last_handoff_at, last_handoff_reason, last_outbound_at",
+        "id, organization_id, contact_id, last_handoff_at, last_handoff_reason, last_outbound_at, active_ai_agent_id",
       )
       .eq("id", input.conversationId)
       .eq("organization_id", input.organizationId)
@@ -206,6 +208,7 @@ export async function triggerHandoff(
       organization_id: string;
       last_handoff_at: string | null;
       last_handoff_reason: string | null;
+      active_ai_agent_id?: string | null;
     };
     const c = convNow as unknown as ConvNowRow;
 
@@ -340,20 +343,24 @@ export async function triggerHandoff(
     }
 
     // Step 3 — durable event for any downstream consumer.
-    const { error: emitErr } = await admin.rpc("emit_event" as never, {
-      p_event_type: "ai.handoff_triggered",
-      p_entity_kind: "conversation",
-      p_entity_id: input.conversationId,
-      p_payload: {
-        conversation_id: input.conversationId,
-        organization_id: input.organizationId,
-        reason: input.reason,
-        lead_id: input.leadId ?? null,
-        metadata: input.metadata ?? {},
-      },
-      p_metadata: { source: "handoff-orchestrator" },
-      p_organization_id: input.organizationId,
-    } as never);
+    const { error: emitErr } = await admin.rpc(
+      "emit_event" as never,
+      {
+        p_event_type: "ai.handoff_triggered",
+        p_entity_kind: "conversation",
+        p_entity_id: input.conversationId,
+        p_payload: {
+          conversation_id: input.conversationId,
+          organization_id: input.organizationId,
+          agent_id: c.active_ai_agent_id ?? null,
+          reason: input.reason,
+          lead_id: input.leadId ?? null,
+          metadata: input.metadata ?? {},
+        },
+        p_metadata: { source: "handoff-orchestrator" },
+        p_organization_id: input.organizationId,
+      } as never,
+    );
     if (emitErr) {
       logger.warn("[handoff-orchestrator] emit_event failed", {
         conversation_id: input.conversationId,

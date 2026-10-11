@@ -113,21 +113,31 @@ describe("histórico da agenda — a repartição nas quatro abas", () => {
     // instrumento morto.
     montar(AGENDAMENTOS, ANCORA);
 
-    const soma = contador("proximos") + contador("aguardando") + contador("passados") + contador("cancelados");
+    const soma =
+      contador("proximos") + contador("aguardando") + contador("passados") + contador("cancelados");
     expect(
       soma,
       "toda linha tem que cair em exatamente uma aba: o que some daqui some da tela, " +
         "e o que aparece duas vezes vira compromisso fantasma",
     ).toBe(AGENDAMENTOS.length);
 
-    expect(contador("proximos"), "a vitrine tem futuro e ele precisa chegar em Próximos").toBeGreaterThan(0);
-    expect(contador("passados"), "a vitrine tem passado e ele precisa chegar em Passados").toBeGreaterThan(0);
+    expect(
+      contador("proximos"),
+      "a vitrine tem futuro e ele precisa chegar em Próximos",
+    ).toBeGreaterThan(0);
+    expect(
+      contador("passados"),
+      "a vitrine tem passado e ele precisa chegar em Passados",
+    ).toBeGreaterThan(0);
     expect(contador("aguardando"), "a vitrine tem um pendente de propósito").toBeGreaterThan(0);
     expect(contador("cancelados"), "a vitrine tem um cancelado de propósito").toBeGreaterThan(0);
 
     // E os corpos têm conteúdo: linha renderizada, com o nome de quem é atendido.
     const linhas = idsNaAba("proximos");
-    expect(linhas.length, "aba com contador positivo e lista vazia é tela mentindo").toBeGreaterThan(0);
+    expect(
+      linhas.length,
+      "aba com contador positivo e lista vazia é tela mentindo",
+    ).toBeGreaterThan(0);
     expect(
       screen.getByTestId(`linha-${linhas[0]}`).textContent?.trim().length ?? 0,
       "linha desenhada em branco é aba que parece cheia e não diz nada a quem abre",
@@ -186,8 +196,8 @@ describe("histórico da agenda — a repartição nas quatro abas", () => {
 
     expect(
       idsNaAba("cancelados"),
-      "cancelado que não chega em Cancelados some do histórico: quem for conferir depois por que "
-        + "a vaga ficou vazia não acha o registro de que alguém desmarcou",
+      "cancelado que não chega em Cancelados some do histórico: quem for conferir depois por que " +
+        "a vaga ficou vazia não acha o registro de que alguém desmarcou",
     ).toEqual(["cancelado-ontem"]);
     expect(
       contador("passados"),
@@ -196,13 +206,19 @@ describe("histórico da agenda — a repartição nas quatro abas", () => {
   });
 
   it("pendente é Aguardando confirmação esteja ele no futuro ou já vencido", () => {
-    montar([ag("pendente-futuro", 120, { situacao: "pending" }), ag("pendente-vencido", -120, { situacao: "pending" })]);
+    montar([
+      ag("pendente-futuro", 120, { situacao: "pending" }),
+      ag("pendente-vencido", -120, { situacao: "pending" }),
+    ]);
 
     expect(
       idsNaAba("aguardando").sort(),
       "'Aguardando confirmação' é a aba de ação de hoje: pendente que cai fora dela nunca é cobrado de ninguém",
     ).toEqual(["pendente-futuro", "pendente-vencido"]);
-    expect(contador("proximos"), "pendente ainda não é compromisso firme — anunciá-lo em Próximos promete o que não foi confirmado").toBe(0);
+    expect(
+      contador("proximos"),
+      "pendente ainda não é compromisso firme — anunciá-lo em Próximos promete o que não foi confirmado",
+    ).toBe(0);
     expect(
       contador("passados"),
       "pendente vencido contado como passado dá por encerrado um pedido que ninguém confirmou",
@@ -210,18 +226,24 @@ describe("histórico da agenda — a repartição nas quatro abas", () => {
   });
 
   it("o desfecho já registrado continua em Passados — é lá que a decisão 17 lê a situação", () => {
-    // `completed` e `no_show` não são desvio nenhum: caem pela regra do relógio.
+    // Desfechos encerrados permanecem no histórico, independentemente do relógio.
     // Este caso prende isso porque é de Passados que saem os botões
     // "Realizado"/"Faltou", e um desfecho que caísse noutra aba deixaria os dois
     // sem lugar na tela.
-    montar([ag("realizado", -300, { situacao: "completed" }), ag("faltou", -240, { situacao: "no_show" })]);
+    montar([
+      ag("realizado", -300, { situacao: "completed" }),
+      ag("faltou", -240, { situacao: "no_show" }),
+    ]);
 
     expect(
       idsNaAba("passados").sort(),
-      "é de Passados que saem 'Realizado' e 'Faltou' (decisão 17): desfecho noutra aba deixa os "
-        + "dois botões sem lugar na tela, e o aviso da Central sem para onde mandar o clique",
+      "é de Passados que saem 'Realizado' e 'Faltou' (decisão 17): desfecho noutra aba deixa os " +
+        "dois botões sem lugar na tela, e o aviso da Central sem para onde mandar o clique",
     ).toEqual(["faltou", "realizado"]);
-    expect(contador("cancelados"), "faltar não é cancelar — misturar os dois apaga a diferença entre quem avisou e quem não").toBe(0);
+    expect(
+      contador("cancelados"),
+      "faltar não é cancelar — misturar os dois apaga a diferença entre quem avisou e quem não",
+    ).toBe(0);
   });
 
   it("o contador de cada aba é o tamanho da lista daquela aba", () => {
@@ -255,7 +277,10 @@ describe("histórico da agenda — a repartição nas quatro abas", () => {
     ).toContain("Nenhum cancelamento");
 
     fireEvent.click(screen.getByTestId("aba-proximos"));
-    expect(screen.queryByTestId("historico-vazio"), "com linha na aba, o vazio tem que sumir").toBeNull();
+    expect(
+      screen.queryByTestId("historico-vazio"),
+      "com linha na aba, o vazio tem que sumir",
+    ).toBeNull();
     expect(screen.getByTestId("linha-so-futuro")).toBeTruthy();
   });
 
@@ -302,59 +327,13 @@ describe("histórico da agenda — a repartição nas quatro abas", () => {
 
     expect(
       idsNaAba("passados"),
-      "passou a hora e a linha continua em Próximos: a tela promete para daqui a pouco um "
-        + "horário que já foi, e quem atende só descobre quando o paciente não chega",
+      "passou a hora e a linha continua em Próximos: a tela promete para daqui a pouco um " +
+        "horário que já foi, e quem atende só descobre quando o paciente não chega",
     ).toEqual(["as-15h"]);
     expect(contador("proximos"), "e ela não pode ficar contada nos dois lados").toBe(0);
   });
 
-  /**
-   * CONTROLE POSITIVO da catraca abaixo, e é um `it` NORMAL de propósito.
-   *
-   * `it.fails` é satisfeito por QUALQUER falha — import quebrado, testid
-   * renomeado, render que estoura. Se a montagem parar de funcionar, a catraca
-   * fica verde por não conseguir nem desenhar o cenário, e ninguém vira essa
-   * pedra nunca: catraca verde pelo motivo errado é pior que caso ausente,
-   * porque parece cobertura.
-   *
-   * Este caso exercita o MESMO cenário e só exige que ele apareça em ALGUMA
-   * aba. Regressão de montagem reprova ALTO aqui, apontando para a montagem,
-   * enquanto a catraca seguiria muda.
-   */
-  it("controle positivo: o compromisso EM ANDAMENTO é desenhado em alguma aba", () => {
-    montar([ag("em-andamento", -5, { duracao: 30 })]);
-
-    const soma = contador("proximos") + contador("aguardando") + contador("passados") + contador("cancelados");
-    expect(soma, "se ele não está em aba nenhuma, a catraca abaixo é ruído").toBe(1);
-  });
-
-  /**
-   * CATRACA — defeito medido, não teste desligado.
-   *
-   * `separar()` decide "passado" por `isBefore(comeca, agora)`, e só olha o
-   * COMEÇO. Uma consulta que começou às 14h32, dura 30 minutos e está
-   * ACONTECENDO às 14h37 é classificada como passada. Consequências, as duas
-   * na mesma linha:
-   *
-   *   1. ela some de "Próximos" no minuto em que começa — quem abre a tela
-   *      durante o atendimento não vê o que está em curso;
-   *   2. ela aparece em "Passados" oferecendo "Realizado" e "Faltou" (decisão
-   *      17) enquanto a pessoa ainda está na sala: o produto pergunta se
-   *      aconteceu antes de ter acontecido, e "Faltou" clicado ali é falta
-   *      registrada em cima de quem compareceu.
-   *
-   * O resto da casa já trata o compromisso como ocupado até `termina` — a
-   * consulta de sobreposição de `lib/agenda/consulta.ts` filtra por
-   * `starts_at < ate AND ends_at > de`. Aqui `termina` não é lido.
-   *
-   * UMA asserção só, e é deliberado: `it.fails` é satisfeito pela PRIMEIRA que
-   * falha, então asserção extra seria letra morta enquanto o defeito existir, e
-   * estrearia sem cobertura no dia do conserto.
-   *
-   * No dia em que a fronteira passar a olhar `termina`, este caso REPROVA por
-   * ter passado, e quem consertar é obrigado a vir tirar o `.fails`.
-   */
-  it.fails("o compromisso EM ANDAMENTO ainda é Próximos — começou, mas não terminou", () => {
+  it("o compromisso EM ANDAMENTO ainda é Próximos — começou, mas não terminou", () => {
     montar([ag("em-andamento", -5, { duracao: 30 })]);
 
     expect(
@@ -362,5 +341,23 @@ describe("histórico da agenda — a repartição nas quatro abas", () => {
       "o que está acontecendo agora sai da tela de quem atende e reaparece em Passados " +
         "oferecendo 'Faltou' para quem está na sala",
     ).toEqual(["em-andamento"]);
+  });
+  it("no instante exato do término muda para Passados", () => {
+    montar([ag("termina-agora", -30, { duracao: 30 })]);
+    expect(idsNaAba("passados")).toEqual(["termina-agora"]);
+    expect(contador("proximos")).toBe(0);
+  });
+
+  it("respeita o instante do término mesmo com offset diferente", () => {
+    const evento = ag("offset", -5, { duracao: 30 });
+    const fim = new Date(evento.termina);
+    evento.termina = new Date(fim.getTime() - 3 * 60 * 60_000).toISOString().replace("Z", "-03:00");
+    montar([evento]);
+    expect(idsNaAba("proximos")).toEqual(["offset"]);
+  });
+
+  it("desfecho registrado encerra inclusive um horário futuro", () => {
+    montar([ag("encerrado", 60, { situacao: "completed" })]);
+    expect(idsNaAba("passados")).toEqual(["encerrado"]);
   });
 });

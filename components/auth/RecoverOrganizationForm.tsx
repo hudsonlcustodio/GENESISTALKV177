@@ -3,6 +3,7 @@
 import { useState, useTransition } from "react";
 
 import { useT } from "@/hooks/i18n/useT";
+import { useAuthFormReady } from "./useAuthFormReady";
 import { recoverOrganization } from "@/app/actions/auth/recoverOrganization";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -49,6 +50,7 @@ export function RecoverOrganizationForm({
   comAprovacao?: boolean;
 }) {
   const t = useT();
+  const ready = useAuthFormReady();
   const [name, setName] = useState(nomeSugerido ?? "");
   const [error, setError] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
@@ -66,30 +68,36 @@ export function RecoverOrganizationForm({
 
   return (
     <form method="post" className="space-y-4" onSubmit={submit} noValidate>
-      <div className="space-y-1.5">
-        <Label htmlFor="recovery-org-name">{t("Nome da empresa")}</Label>
-        <Input
-          id="recovery-org-name"
-          value={name}
-          onChange={(event) => setName(event.target.value)}
-          autoComplete="organization"
-          autoFocus
-          disabled={isPending}
-          aria-invalid={Boolean(error)}
-        />
-      </div>
-      {error && (
-        <p className="text-sm text-destructive" role="alert">
-          {error}
-        </p>
-      )}
-      <Button className="w-full" type="submit" disabled={isPending || name.trim().length < 2}>
-        {isPending
-          ? t("Preparando seu ambiente…")
-          : comAprovacao
-            ? t("Enviar pedido")
-            : t("Continuar para o onboarding")}
-      </Button>
+      <fieldset disabled={!ready} className="min-w-0 space-y-4">
+        <div className="space-y-1.5">
+          <Label htmlFor="recovery-org-name">{t("Nome da empresa")}</Label>
+          <Input
+            id="recovery-org-name"
+            value={name}
+            onChange={(event) => setName(event.target.value)}
+            autoComplete="organization"
+            autoFocus
+            disabled={!ready || isPending}
+            aria-invalid={Boolean(error)}
+          />
+        </div>
+        {error && (
+          <p className="text-sm text-destructive" role="alert">
+            {error}
+          </p>
+        )}
+        <Button
+          className="w-full"
+          type="submit"
+          disabled={!ready || isPending || name.trim().length < 2}
+        >
+          {isPending
+            ? t("Preparando seu ambiente…")
+            : comAprovacao
+              ? t("Enviar pedido")
+              : t("Continuar para o onboarding")}
+        </Button>
+      </fieldset>
     </form>
   );
 }

@@ -1,0 +1,356 @@
+{
+  "date": "2026-10-10",
+  "generatedAt": "2026-10-10T21:34:38.067Z",
+  "decision": "BLOCKED",
+  "root": "C:\\Users\\INFLUX\\Documents\\AURUM SOLTEC\\GENESIS 360\\GENESIS TALK\\GENESIS-TALK",
+  "head": "8337c0b7a5c9636bf574742001255230a184d32f",
+  "node": "v24.21.0",
+  "pnpmRequired": "9.15.9",
+  "productionRuntime": "Node 22 in Docker; current focused tests used local Node 24",
+  "sqlMigrationFiles": 464,
+  "currentTreeWasDirty": true,
+  "statusAtPackaging": " M app/(public)/layout.tsx\n M app/globals.css\n M app/icon.tsx\n M app/layout.tsx\n M components/branding/MarcaDoProduto.tsx\n M components/shell/Sidebar.tsx\n M components/ui/badge.tsx\n M components/ui/button.tsx\n M components/ui/input.tsx\n M components/ui/textarea.tsx\n M docs/testing/user-journey-map.md\n M lib/branding/desenho.ts\n M lib/branding/genesis-360.ts\n M lib/branding/icone-do-app.tsx\n M lib/branding/regua-do-produto.ts\n M tests/unit/branding-contraste.test.ts\n M tests/unit/branding-icone-do-app.test.ts\n M tests/unit/branding-pares-pintados.test.ts\n M tests/unit/branding-rampa.test.ts\n M tests/unit/marca-do-produto.test.tsx\n M tests/unit/tailwind-tokens.test.ts\n?? .changes/identidade-oficial-genesis.md\n?? docs/genesis/evidence/audit-2026-10-10/\n?? evidence/identidade-genesis/\n?? lib/branding/arte-do-produto.ts\n?? public/branding/\n",
+  "preexistingChangedFiles": [
+    {
+      "path": "app/(public)/layout.tsx",
+      "sha256": "3a96e519fd946e0759a89107f258f892b2da1b4cae4f6cea123d1d167e61219c"
+    },
+    {
+      "path": "app/globals.css",
+      "sha256": "f73807e5022dbf4773e197bd89f784dfce5d6ec4662b33c1e6ddd79c91708e1f"
+    },
+    {
+      "path": "app/icon.tsx",
+      "sha256": "ed61aaf547a94c4b7fd2d94622f46c69964d3cb6f56f6eaaa8918538ebbd8571"
+    },
+    {
+      "path": "app/layout.tsx",
+      "sha256": "53cdfa2ed63277321f5aa7b5c47dc8379f880360286471d87b0871abcf0223d6"
+    },
+    {
+      "path": "components/branding/MarcaDoProduto.tsx",
+      "sha256": "126830d89f9f03089139844a1fc10f5711a148c6b299319a5bd6e6fedeb9a914"
+    },
+    {
+      "path": "components/shell/Sidebar.tsx",
+      "sha256": "29bd8825973a00a26554ee8e790c406f83a145aa94404a89e7247b4f45e4eef7"
+    },
+    {
+      "path": "components/ui/badge.tsx",
+      "sha256": "506225b3b8917c22a778efee9d0e44952c440f6ed96eca060474dfd69de1f19e"
+    },
+    {
+      "path": "components/ui/button.tsx",
+      "sha256": "0d91218077598f7012d41362fbac803a5fc2278253c4b7759d1eb36422aeb65b"
+    },
+    {
+      "path": "components/ui/input.tsx",
+      "sha256": "10e465c946e289a227e63c6a9fe96ff997e602b0febd4fb73a84b6680144769c"
+    },
+    {
+      "path": "components/ui/textarea.tsx",
+      "sha256": "338d67d9573bdbda3603c86d1da6ddfe373b599c1820560b81f11d6cafa2e3b3"
+    },
+    {
+      "path": "docs/testing/user-journey-map.md",
+      "sha256": "802449f1e7cc2d7424c49f5282ded8f0ed502a3940d1a50f3ff817212d6638c4"
+    },
+    {
+      "path": "lib/branding/desenho.ts",
+      "sha256": "8185b76b224b3eee530d94ee66cef0ef6acd93831d45622f41498e920a56efc4"
+    },
+    {
+      "path": "lib/branding/genesis-360.ts",
+      "sha256": "befa608d0aeb5f8f856551579e6801545ed050472a276f6815182e5d1d101e29"
+    },
+    {
+      "path": "lib/branding/icone-do-app.tsx",
+      "sha256": "19fdbcde321945b8b56075d964fbf29c70f2458a71521af59a9d7e06c620b786"
+    },
+    {
+      "path": "lib/branding/regua-do-produto.ts",
+      "sha256": "9ef09137b4e4735925ac05591c792fc80b4e089f15b0ccfa11464678501d86f8"
+    },
+    {
+      "path": "tests/unit/branding-contraste.test.ts",
+      "sha256": "a89c19cb5181be13dd4180a109cd6e054356df4a761b3ef7050f3909c3d3161a"
+    },
+    {
+      "path": "tests/unit/branding-icone-do-app.test.ts",
+      "sha256": "55f9862f819124542a513e852d2606ecd607b339f90b65146dac9b96e9b37960"
+    },
+    {
+      "path": "tests/unit/branding-pares-pintados.test.ts",
+      "sha256": "a6ed58ffab61386542017dc12dfea3ff1d3219e6dfc6126cd248bff55b023cc7"
+    },
+    {
+      "path": "tests/unit/branding-rampa.test.ts",
+      "sha256": "4203c2aa0c362cef70e42a4680543bf2ee3c2bc9981bbd3226d7e6c872163463"
+    },
+    {
+      "path": "tests/unit/marca-do-produto.test.tsx",
+      "sha256": "b683102490b2cef61a2e9a105ae1b25928d69487aae75e7b2e3133afee6e7c7b"
+    },
+    {
+      "path": "tests/unit/tailwind-tokens.test.ts",
+      "sha256": "e3df67523bdb56803aa46d963ca54c3ba9a32267f1ad2340ee5fd033c02974f7"
+    },
+    {
+      "path": ".changes/identidade-oficial-genesis.md",
+      "sha256": "2fb152abb08327650dbec8164aac77273c49c8077e1873c45ff5cde4cae78564"
+    },
+    {
+      "path": "evidence/identidade-genesis/README.md",
+      "sha256": "f80891523bd3bfab30b2543516d4a5de300e775084378bb604b0bcc91e8704ad"
+    },
+    {
+      "path": "evidence/identidade-genesis/inbox-claro.png",
+      "sha256": "7eb05f18e53eb9d835ca3e57647fdd5fad4077ff582412252e3014bf7906e28d"
+    },
+    {
+      "path": "evidence/identidade-genesis/inbox-escuro.png",
+      "sha256": "ffd922cc5b67c1c34b5aa9bcddaa0b49256635a8a11d4ee6bd952f9c2c191dcf"
+    },
+    {
+      "path": "evidence/identidade-genesis/login-claro.png",
+      "sha256": "545ec032cd66fb6f84a99c1000ed9f196352df58ef47874c2d55f17212af28d2"
+    },
+    {
+      "path": "evidence/identidade-genesis/login-escuro.png",
+      "sha256": "6641777a7fa86e85f4fee3d8f8f7256285e2f7fcb816c846836a18d6a8dd3f43"
+    },
+    {
+      "path": "evidence/identidade-genesis/login-mobile.png",
+      "sha256": "401a7cd1da1682b7314d9c6be08fc70fbd6b2b7c4dd47ba3b1a4b8741e85e5f0"
+    },
+    {
+      "path": "lib/branding/arte-do-produto.ts",
+      "sha256": "3abc084f00826b568b5f9f5206eb2256ed88bdd71867b0f3b62da9daa622a51e"
+    },
+    {
+      "path": "public/branding/README.md",
+      "sha256": "ab12e66e584dfe76b44fffb01363bcf07ad278e2b3ce256c504e7edf3759d23f"
+    },
+    {
+      "path": "public/branding/genesis-360.png",
+      "sha256": "486d2a157fc4c29696bf22988c05a517845ec6798ea55d2955bd7e1f3c93dcbb"
+    }
+  ],
+  "checks": {
+    "focused": [
+      {
+        "name": "release-acervo",
+        "exitCode": 1,
+        "signal": null,
+        "timedOut": false,
+        "durationSeconds": 3.288,
+        "command": [
+          "C:\\Program Files\\nodejs\\node.exe",
+          "node_modules/tsx/dist/cli.mjs",
+          "scripts/acervo-cabe-na-tela.ts"
+        ],
+        "log": ".runtime/audit-2026-10-10/release-acervo.log"
+      },
+      {
+        "name": "channels",
+        "exitCode": 0,
+        "signal": null,
+        "timedOut": false,
+        "durationSeconds": 2.157,
+        "command": [
+          "C:\\Program Files\\nodejs\\node.exe",
+          "node_modules/tsx/dist/cli.mjs",
+          "scripts/lint-channels.ts"
+        ],
+        "log": ".runtime/audit-2026-10-10/channels.log"
+      },
+      {
+        "name": "role-rank",
+        "exitCode": 0,
+        "signal": null,
+        "timedOut": false,
+        "durationSeconds": 0.516,
+        "command": [
+          "C:\\Program Files\\nodejs\\node.exe",
+          "node_modules/tsx/dist/cli.mjs",
+          "scripts/lint-role-rank.ts"
+        ],
+        "log": ".runtime/audit-2026-10-10/role-rank.log"
+      },
+      {
+        "name": "genesis-focused",
+        "exitCode": 0,
+        "signal": null,
+        "timedOut": false,
+        "durationSeconds": 241.674,
+        "command": [
+          "C:\\Program Files\\nodejs\\node.exe",
+          "node_modules/vitest/vitest.mjs",
+          "run",
+          "tests/unit/genesis-contabo-contract.test.ts",
+          "tests/unit/genesis-followup-history.test.tsx",
+          "tests/unit/genesis-supervisao-fontes.test.tsx",
+          "tests/unit/agenda-separar-historico.test.tsx",
+          "tests/unit/branding-contraste.test.ts",
+          "tests/unit/branding-regua-do-produto.test.ts",
+          "tests/unit/branding-icone-do-app.test.ts",
+          "tests/unit/marca-do-produto.test.tsx",
+          "tests/unit/manifest-x-migrations.test.ts",
+          "tests/unit/realtime-bootstrap.test.tsx",
+          "tests/unit/suporte-cobertura-de-efeitos.test.ts",
+          "--maxWorkers=1",
+          "--testTimeout=60000",
+          "--reporter=default"
+        ],
+        "log": ".runtime/audit-2026-10-10/genesis-focused.log"
+      }
+    ],
+    "securityInitial": [
+      {
+        "name": "audit-full",
+        "exitCode": 1,
+        "signal": null,
+        "timedOut": false,
+        "durationSeconds": 2.733,
+        "command": [
+          "C:\\Program Files\\nodejs\\node.exe",
+          "C:/Users/INFLUX/AppData/Roaming/npm/node_modules/pnpm/bin/pnpm.cjs",
+          "audit",
+          "--json"
+        ],
+        "log": ".runtime/audit-2026-10-10/audit-full.log"
+      },
+      {
+        "name": "audit-prod",
+        "exitCode": 0,
+        "signal": null,
+        "timedOut": false,
+        "durationSeconds": 1.54,
+        "command": [
+          "C:\\Program Files\\nodejs\\node.exe",
+          "C:/Users/INFLUX/AppData/Roaming/npm/node_modules/pnpm/bin/pnpm.cjs",
+          "audit",
+          "--prod",
+          "--json"
+        ],
+        "log": ".runtime/audit-2026-10-10/audit-prod.log"
+      },
+      {
+        "name": "secret-scan",
+        "exitCode": 1,
+        "signal": null,
+        "timedOut": false,
+        "durationSeconds": 0.758,
+        "command": [
+          "C:/Python314/python.exe",
+          "scripts/genesis-secret-scan.py"
+        ],
+        "log": ".runtime/audit-2026-10-10/secret-scan.log"
+      }
+    ],
+    "secretScanCorrected": {
+      "exitCode": 0,
+      "status": "PASS",
+      "scanned_files": 7008,
+      "candidate_count": 7708,
+      "findings": [],
+      "limits": "Precise credential patterns and forbidden paths; not a proof that every possible secret format is absent.",
+      "note": "Initial attempt failed on Git safe.directory; corrected only the child-process Git configuration and reran successfully."
+    },
+    "health": {
+      "status": "BUG_REPRODUCED",
+      "passedReproductionCases": 2,
+      "productHealthApproved": false
+    },
+    "restoreAcl": {
+      "status": "REPRODUCED",
+      "postgres": "17-alpine",
+      "scope": "Minimal isolated PostgreSQL counterexample using the production backup flags; not a full application restore or exploit.",
+      "before": {
+        "anon_executes_restricted_function": false,
+        "service_role_can_delete_audit": false
+      },
+      "after": {
+        "anon_executes_restricted_function": true,
+        "service_role_can_delete_audit": true
+      },
+      "grantRevokeCommandsInDump": false,
+      "noExistingDatabaseOrVolumeAccessed": true
+    }
+  },
+  "freshFullGovBuildDbE2e": "NOT_RUN",
+  "limits": [
+    "No Contabo access or production credentials supplied",
+    "Full current typecheck/build/E2E not rerun; local memory about 1.36 GiB free out of 7.95 GiB",
+    "Historical CI evidence belongs to other commits, not the current dirty candidate",
+    "No full production restore, load test, physical mobile keyboard test or real provider flow performed"
+  ],
+  "evidenceFiles": [
+    {
+      "path": "docs/genesis/evidence/audit-2026-10-10/focused-results.json",
+      "sha256": "05ed213af0661f6b82556de7f449c0cbfd5bf407c92ed4755f435da4240a2986"
+    },
+    {
+      "path": "docs/genesis/evidence/audit-2026-10-10/security-results.json",
+      "sha256": "a5677eff9bb76531568d247eea243479e48f269957b419ab952f71779a789317"
+    },
+    {
+      "path": "docs/genesis/evidence/audit-2026-10-10/genesis-focused.log",
+      "sha256": "62e8cd47cfd2fed81271620e5ef532449ddba507a60fdd29b1fcfba796843ccd"
+    },
+    {
+      "path": "docs/genesis/evidence/audit-2026-10-10/channels.log",
+      "sha256": "18893b3396d01c1366daf9b8c56b87c50273551be400e466078dc31a6d78b88e"
+    },
+    {
+      "path": "docs/genesis/evidence/audit-2026-10-10/role-rank.log",
+      "sha256": "544632767d482cced38aec50b27c339b6e17870c6d8c47001a7510a0f0ce3fcb"
+    },
+    {
+      "path": "docs/genesis/evidence/audit-2026-10-10/release-acervo.log",
+      "sha256": "469d82674d75a0f9f5a8fca5af9c2616fad243799ee3f6e9bf7cdff8e040de62"
+    },
+    {
+      "path": "docs/genesis/evidence/audit-2026-10-10/audit-full.log",
+      "sha256": "6e8c22dd6c3b04ebf52183c5bd94570d7a532d309451fa44334f8b3f2e3e5a0c"
+    },
+    {
+      "path": "docs/genesis/evidence/audit-2026-10-10/audit-prod.log",
+      "sha256": "f057c4afc9c9a6243b9541219fc6f18927ee65fc92855b9f19475f9e68cbf88b"
+    },
+    {
+      "path": "docs/genesis/evidence/audit-2026-10-10/secret-scan-corrected.json",
+      "sha256": "7f829d526746900f30627c26c492c6e4541cc4736ff03b3ff2dfbc41b7c854d7"
+    },
+    {
+      "path": "docs/genesis/evidence/audit-2026-10-10/health-repro.log",
+      "sha256": "5dd201bf6f91410b796e01f7b218b7833eaf931d6467638d2df22f13bd3bd8b5"
+    },
+    {
+      "path": "docs/genesis/evidence/audit-2026-10-10/restore-acl-proof.json",
+      "sha256": "e43078e009232c2a56471348fcad3d196e376bc397df9e524bcc2139f37a1c0f"
+    },
+    {
+      "path": "docs/genesis/evidence/audit-2026-10-10/reproduce-restore-acl.mjs",
+      "sha256": "82b0ba46c7b63913fcd48a55f446c55db17c82e40418da6b35ef74debea82f10"
+    },
+    {
+      "path": "docs/genesis/evidence/audit-2026-10-10/health-repro.repro.ts",
+      "sha256": "41f4fccd3ff2d6d4e7d29c90a66b7aab63c36d8ac5976c7cc6d2a92972bd9cbc"
+    },
+    {
+      "path": "docs/genesis/evidence/audit-2026-10-10/vitest.audit.config.mjs",
+      "sha256": "a2781c03a7717bdacd680ec77519dd5a4cd0ce87b221d7afb273ccc3f79444ea"
+    },
+    {
+      "path": "docs/genesis/evidence/audit-2026-10-10/README.md",
+      "sha256": "cbeabca1b98f41c3c7844da1643201be81afff84bb58ef50639469bb33a26103"
+    }
+  ],
+  "finalVerification": {
+    "packagedHealthReproduction": "2 passed; confirms existing bug, not readiness",
+    "proofScriptSyntax": "PASS: node --check",
+    "gitDiffCheck": "PASS",
+    "note": "Only documentation/proof artifacts changed during this audit; preexisting source changes preserved."
+  }
+}

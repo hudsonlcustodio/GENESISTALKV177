@@ -4,6 +4,7 @@ import { useEffect, useState, useTransition } from "react";
 import Link from "next/link";
 
 import { useT } from "@/hooks/i18n/useT";
+import { useAuthFormReady } from "./useAuthFormReady";
 import { TOTPInput } from "@/components/auth/TOTPInput";
 import { Button } from "@/components/ui/button";
 import { verifyMfa } from "@/app/actions/auth/verifyMfa";
@@ -14,6 +15,7 @@ interface MfaFormProps {
 
 export function MfaForm({ next }: MfaFormProps) {
   const t = useT();
+  const ready = useAuthFormReady();
   const [code, setCode] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [locked, setLocked] = useState(false);
@@ -73,39 +75,44 @@ export function MfaForm({ next }: MfaFormProps) {
       className="space-y-6"
       noValidate
     >
-      <TOTPInput
-        value={code}
-        onChange={setCode}
-        onComplete={(c) => submit(c)}
-        disabled={isPending || locked}
-        autoFocus
-        hasError={!!error}
-      />
+      <fieldset disabled={!ready} className="min-w-0 space-y-4">
+        <TOTPInput
+          value={code}
+          onChange={setCode}
+          onComplete={(c) => submit(c)}
+          disabled={!ready || isPending || locked}
+          autoFocus
+          hasError={!!error}
+        />
 
-      {error && (
-        <div
-          role="alert"
-          className="rounded-md border border-destructive/30 bg-destructive/10 px-3 py-2 text-center text-sm text-destructive"
+        {error && (
+          <div
+            role="alert"
+            className="rounded-md border border-destructive/30 bg-destructive/10 px-3 py-2 text-center text-sm text-destructive"
+          >
+            {locked && secondsLeft > 0
+              ? `${t("Muitas tentativas. Tente novamente em")} ${secondsLeft}s.`
+              : error}
+          </div>
+        )}
+
+        <Button
+          type="submit"
+          className="w-full"
+          disabled={!ready || isPending || locked || code.length !== 6}
         >
-          {locked && secondsLeft > 0
-            ? `${t("Muitas tentativas. Tente novamente em")} ${secondsLeft}s.`
-            : error}
+          {isPending ? t("Verificando...") : t("Verificar")}
+        </Button>
+
+        <div className="text-center text-sm">
+          <Link
+            href={recoveryHref}
+            className="text-muted-foreground underline-offset-4 hover:underline"
+          >
+            {t("Perdi acesso ao autenticador")}
+          </Link>
         </div>
-      )}
-
-      <Button
-        type="submit"
-        className="w-full"
-        disabled={isPending || locked || code.length !== 6}
-      >
-        {isPending ? t("Verificando...") : t("Verificar")}
-      </Button>
-
-      <div className="text-center text-sm">
-        <Link href={recoveryHref} className="text-muted-foreground underline-offset-4 hover:underline">
-          {t("Perdi acesso ao autenticador")}
-        </Link>
-      </div>
+      </fieldset>
     </form>
   );
 }

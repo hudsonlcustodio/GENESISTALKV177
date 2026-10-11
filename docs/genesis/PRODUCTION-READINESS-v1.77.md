@@ -1,5 +1,11 @@
 # GENESIS TALK v1.77 — resultado dos gates
 
+> Registro histórico da auditoria anterior às correções. O estado vigente e as
+> limitações da finalização estão em [FINALIZACAO-v1.77.md](FINALIZACAO-v1.77.md)
+> e nos checks do PR #4, identificados pelo SHA. As falhas abaixo não foram
+> reescritas retroativamente.
+
+
 Decisão: **BLOCKED**. Registro UTC: 2026-10-08T22:46:23.375591+00:00.
 Source executável: **`615c9a1c4c746bd981ee22c1c9aa53004d6b9bd9`**, branch `main`, [repositório](https://github.com/hudsonlcustodio/GENESISTALKV177).
 O commit posterior de evidências não altera source executável. O SHA final do push consta no Git e na resposta da sessão.

@@ -16,7 +16,28 @@ jobs:
       NODE_OPTIONS: --max-old-space-size=6144
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
       - uses: ./.github/actions/preparar-node
         timeout-minutes: 5
       - run: pnpm run gov:verify
       - run: pnpm run build
+
+  genesis-recovery:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: python3 -m unittest discover -s tests/operations -v
+      - run: node scripts/genesis-recovery-rehearsal.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: genesis-recovery-${{ github.event.pull_request.head.sha || github.sha }}
+          path: .runtime/recovery/**/result.json
+          if-no-files-found: error

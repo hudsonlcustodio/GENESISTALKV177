@@ -24,6 +24,8 @@ unset COMPOSE_PROJECT_NAME
 
 ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
 KIT_DIR="$ROOT/hostgator-setup-kit"
+export RECOVERY_STUB_HELPER="$ROOT/tests/shell/recovery-v2-stub.sh"
+source "$RECOVERY_STUB_HELPER"
 WORK="$(mktemp -d)"
 trap 'rm -rf "$WORK"' EXIT
 case "$WORK" in *"/data"*) echo "WORK ($WORK) colide com a troca de caminho do dublê" >&2; exit 2 ;; esac
@@ -45,6 +47,8 @@ head -c 4096 /dev/urandom > "$SESSOES/noweb/waha.sqlite3"
 cat > "$WORK/bin/docker" <<'STUB'
 #!/usr/bin/env bash
 set -uo pipefail
+source "$RECOVERY_STUB_HELPER"
+if recovery_v2_stub "$@"; then exit 0; fi
 case " $* " in *" run "*) ;; *) exit 0 ;; esac          # compose ps/inspect: nada a dizer
 case " $* " in *" pg_dump "*) echo "-- dump"; exit 0 ;; esac
 shift                                                     # "run"
@@ -109,10 +113,10 @@ STUB
 "$CHMOD_REAL" +x "$WORK/bin-chmod/chmod"
 rm -rf "$PROJ/backups"; mkdir -p "$PROJ/backups"
 ( cd "$PROJ" && PATH="$WORK/bin-chmod:$PATH" bash "$KIT_DIR/backup.sh" ) > "$WORK/saida-chmod.txt" 2>&1; rc=$?
-check "o backup termina bem" test "$rc" -eq 0
-check "e avisa que a pasta ficou como estava" grep -q "não consegui fechar a pasta" "$WORK/saida-chmod.txt"
+check "o backup recusa pasta sem proteção" test "$rc" -ne 0
+check "e explica a proteção ausente" grep -q "proteger a pasta" "$WORK/saida-chmod.txt"
 arq="$(ls "$PROJ"/backups/waha-*.tgz 2>/dev/null | head -1 || true)"
-if [ -n "$arq" ]; then check "a sessão do WhatsApp sai 600 mesmo assim" modo_e "$arq" 600; else check "waha-*.tgz existe" false; fi
+check "nenhuma sessão é gravada na pasta desprotegida" test -z "$arq"
 
 # O outro backup do repositório: scripts/backup-db.sh (o "Backup diário" do
 # docs/deploy-selfhost) chama o pg_dump do host, e o dump seguia o umask de
