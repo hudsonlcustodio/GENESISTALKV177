@@ -423,7 +423,7 @@ jobs:
           mkdir -p genesis-image-evidence
           docker image inspect genesis-talk-app:1.77.0 > genesis-image-evidence/app.json
           git rev-parse HEAD > genesis-image-evidence/source-sha.txt
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: github.repository == 'hudsonlcustodio/GENESISTALKV177'
         with:
           name: genesis-app-image-${{ matrix.arch }}
@@ -713,7 +713,7 @@ jobs:
             docker image inspect "genesis-talk-${service}:1.77.0" > "genesis-image-evidence/${service}.json"
           done
           git rev-parse HEAD > genesis-image-evidence/source-sha.txt
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: github.repository == 'hudsonlcustodio/GENESISTALKV177'
         with:
           name: genesis-background-images-${{ matrix.arch }}
